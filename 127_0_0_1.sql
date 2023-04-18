@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Tempo de geração: 18-Abr-2023 às 00:12
+-- Tempo de geração: 18-Abr-2023 às 18:27
 -- Versão do servidor: 8.0.31
 -- versão do PHP: 8.0.26
 
@@ -31,19 +31,20 @@ USE `controlesistema`;
 
 DROP TABLE IF EXISTS `permissoes`;
 CREATE TABLE IF NOT EXISTS `permissoes` (
-  `id` int UNSIGNED NOT NULL AUTO_INCREMENT,
-  `id_usuario` int UNSIGNED NOT NULL,
-  `arisp` tinyint(1) NOT NULL DEFAULT '0',
-  `copes` tinyint(1) NOT NULL DEFAULT '0',
-  `detran` tinyint(1) NOT NULL DEFAULT '0',
-  `documentador` tinyint(1) NOT NULL DEFAULT '0',
-  `adm_intranet` tinyint(1) NOT NULL DEFAULT '0',
-  `adm_pge` tinyint(1) NOT NULL DEFAULT '0',
-  `sipro` tinyint(1) NOT NULL DEFAULT '0',
-  `eProtocolo` tinyint(1) NOT NULL DEFAULT '0',
+  `id` int NOT NULL AUTO_INCREMENT,
+  `id_usuario` int NOT NULL,
+  `sistemas` varchar(30) NOT NULL,
+  `permissao` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `id_usuario` (`id_usuario`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Extraindo dados da tabela `permissoes`
+--
+
+INSERT INTO `permissoes` (`id`, `id_usuario`, `sistemas`, `permissao`) VALUES
+(1, 0, 'eProtocolo', 0);
 
 -- --------------------------------------------------------
 
