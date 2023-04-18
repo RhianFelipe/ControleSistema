@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Tempo de geração: 17/04/2023 às 12:37
+-- Tempo de geração: 18-Abr-2023 às 00:12
 -- Versão do servidor: 8.0.31
--- Versão do PHP: 8.0.26
+-- versão do PHP: 8.0.26
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -26,21 +26,45 @@ USE `controlesistema`;
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `funcionario`
+-- Estrutura da tabela `permissoes`
 --
 
-DROP TABLE IF EXISTS `funcionario`;
-CREATE TABLE IF NOT EXISTS `funcionario` (
-  `Nome` varchar(50) DEFAULT NULL,
-  `Sisterma` varchar(50) DEFAULT NULL
+DROP TABLE IF EXISTS `permissoes`;
+CREATE TABLE IF NOT EXISTS `permissoes` (
+  `id` int UNSIGNED NOT NULL AUTO_INCREMENT,
+  `id_usuario` int UNSIGNED NOT NULL,
+  `arisp` tinyint(1) NOT NULL DEFAULT '0',
+  `copes` tinyint(1) NOT NULL DEFAULT '0',
+  `detran` tinyint(1) NOT NULL DEFAULT '0',
+  `documentador` tinyint(1) NOT NULL DEFAULT '0',
+  `adm_intranet` tinyint(1) NOT NULL DEFAULT '0',
+  `adm_pge` tinyint(1) NOT NULL DEFAULT '0',
+  `sipro` tinyint(1) NOT NULL DEFAULT '0',
+  `eProtocolo` tinyint(1) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`),
+  KEY `id_usuario` (`id_usuario`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
+-- --------------------------------------------------------
+
 --
--- Despejando dados para a tabela `funcionario`
+-- Estrutura da tabela `usuarios`
 --
 
-INSERT INTO `funcionario` (`Nome`, `Sisterma`) VALUES
-('Choco', 'SUC');
+DROP TABLE IF EXISTS `usuarios`;
+CREATE TABLE IF NOT EXISTS `usuarios` (
+  `id` int UNSIGNED NOT NULL AUTO_INCREMENT,
+  `nome` varchar(30) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Extraindo dados da tabela `usuarios`
+--
+
+INSERT INTO `usuarios` (`id`, `nome`) VALUES
+(1, 'Rhian'),
+(2, 'Polenta');
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
