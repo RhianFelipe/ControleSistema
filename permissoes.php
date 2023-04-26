@@ -17,9 +17,6 @@ echo $row["id"] ." - " .$row["nome"] . "<br>";
 }
 $mysqli->close();
 
-
-
-//teste2
 ?>
 <!DOCTYPE html>
 <html lang="en">
