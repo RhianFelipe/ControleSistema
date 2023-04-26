@@ -15,7 +15,6 @@ echo $row["id"] ." - " .$row["nome"] . "<br>";
 }
 
 }
-//QUALQUER COISA 
 $mysqli->close();
 
 ?>
