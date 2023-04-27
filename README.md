@@ -1,5 +1,5 @@
-<h1 align="center">Controle de Sistemas</h1>
-<p align="center"><i>Repositório para versionamento e documentação do projeto "Controle de Sistemas" com objetivo de gerenciar as permissões dos usuários para determinado site.</i></p>
+<h1 align="center">Controle de Acesso de Sistemas</h1>
+<p align="center"><i>Repositório para versionamento e documentação do projeto "Controle de Acesso de Sistemas" com objetivo de gerenciar as permissões dos usuários para determinado site.</i></p>
 
 <p align="center" display="inline-block">
   <img src="https://img.shields.io/github/languages/top/Editora-Artigos/article-model" alt="top-language"/>
