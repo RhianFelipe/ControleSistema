@@ -1,1 +1,50 @@
 /*usado para estilizar tela cadastro*/
+
+#area-form{
+
+    justify-content: center;
+    text-align: center; /*Deixar os textos no centro*/
+    display: flex;
+    margin-top: 10rem;
+   
+     }
+
+#area-form h1{
+font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+margin-top: 2rem;
+}
+#form{
+width: 38%;
+height: 38%;
+
+margin: 3rem;
+background-color: #ccc;
+}
+
+
+#form input {
+
+  
+    cursor: pointer;
+    box-shadow: 0 0px 7px 0 rgba(0,0,0,0.2), 0 2px 15px 0 rgba(0,0,0,0.19);
+    background-color: white;
+    padding: 6px 16px;
+    border: 1px solid black;
+    border-radius: 15px;
+    margin-bottom: 3rem;
+
+
+ 
+    
+
+}
+
+#form label{
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    
+}
+
+
+
+
+

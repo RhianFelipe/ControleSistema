@@ -11,7 +11,7 @@ include "./db/conexao.php";
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css?v=<?php echo time(); ?>">
     <title>Sistema de Controle de Permissões</title>
 </head>
 
@@ -24,28 +24,28 @@ include "./db/conexao.php";
 
     </header>
 
-    
-        <section>
-            <h1>Área de Consulta</h1>
-            <div>
-                <label> Nome:</label> <input class="inputTable" type="text">
-                <label> E-mail:</label> <input class="inputTable" type="text">
 
-                <label>Sistemas:</label>
-                <select name="permissao">
-                    <option selected value="0">0</option>
-                    <option value="1">1</option>
-                </select>
+    <section>
+        <h1>Área de Consulta</h1>
+        <div>
+            <label> Nome:</label> <input class="inputTable" type="text">
+            <label> E-mail:</label> <input class="inputTable" type="text">
 
-                <label>Permissão:</label>
-                <select name="permissao">
-                    <option selected value="0">0</option>
-                    <option value="1">1</option>
-                </select>
+            <label>Sistemas:</label>
+            <select name="permissao">
+                <option selected value="0">0</option>
+                <option value="1">1</option>
+            </select>
 
-            </div>
-        </section>
-   
+            <label>Permissão:</label>
+            <select name="permissao">
+                <option selected value="0">0</option>
+                <option value="1">1</option>
+            </select>
+            teste
+        </div>
+    </section>
+
 </body>
 
 </html>

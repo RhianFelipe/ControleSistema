@@ -1,7 +1,19 @@
 
 /*Usar para criar estilos globais*/
+
+/*Remove o espaço extra adicionado pelo padding e a borda de um elemento.*/
 *{
 padding: 0;
 margin: 0;
-    
-    }
+box-shadow: none;
+
+
+}
+
+/*Define a altura da página como 100%*/
+html,
+body{
+    height: 100vh;
+  
+}
+
