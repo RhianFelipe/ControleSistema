@@ -23,8 +23,6 @@ background-color: #ccc;
 
 
 #form input {
-
-  
     cursor: pointer;
     box-shadow: 0 0px 7px 0 rgba(0,0,0,0.2), 0 2px 15px 0 rgba(0,0,0,0.19);
     background-color: white;
@@ -33,15 +31,10 @@ background-color: #ccc;
     border-radius: 15px;
     margin-bottom: 3rem;
 
-
- 
-    
-
 }
 
 #form label{
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-    
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; 
 }
 
 
