@@ -119,4 +119,58 @@ mysqli_close($mysqli); // Fecho a conexão
 
 
 
+<script>
 
+   // criar o popup
+
+
+ // criar a tabela
+
+function openPopup(){
+
+var popup = window.open("", "Permissões", "width=400,height=400");
+var table = document.createElement("table");
+
+// adicionar cabeçalho da tabela
+var thead = document.createElement("thead");
+var headerRow = document.createElement("tr");
+var systemHeader = document.createElement("th");
+systemHeader.innerText = "Sistema";
+var permissionHeader = document.createElement("th");
+permissionHeader.innerText = "Permissão";
+headerRow.appendChild(systemHeader);
+headerRow.appendChild(permissionHeader);
+thead.appendChild(headerRow);
+table.appendChild(thead);
+
+// adicionar linhas da tabela
+var tbody = document.createElement("tbody");
+var row = document.createElement("tr");
+var systemName = document.createElement("td");
+systemName.innerText = "eProtocolo";
+var permissionCell = document.createElement("td");
+var permissionCheckbox = document.createElement("input");
+permissionCheckbox.type = "checkbox";
+permissionCell.appendChild(permissionCheckbox);
+row.appendChild(systemName);
+row.appendChild(permissionCell);
+tbody.appendChild(row);
+table.appendChild(tbody);
+
+// adicionar botão salvar
+var saveButton = document.createElement("button");
+saveButton.innerText = "Salvar";
+saveButton.onclick = function() {
+    // implementar lógica para salvar permissões aqui
+    alert("Permissões salvas!");
+};
+popup.document.body.appendChild(table);
+popup.document.body.appendChild(saveButton);
+
+
+}
+
+
+
+
+</script>
