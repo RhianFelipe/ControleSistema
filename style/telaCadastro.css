@@ -1,0 +1,82 @@
+/*usado para estilizar tela cadastro*/
+
+
+
+/*ESTILIZAÇÃO DO FORMULÁRIO*/
+
+/*Posicionar formulario*/
+#area-form{
+
+    justify-content: center;
+    text-align: center; /*Deixar os textos no centro*/
+    display: flex;
+    margin-top: 10rem;
+   
+     }
+
+/*Estilizar H1*/
+#area-form h1{
+font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+margin-top: 2rem;
+}
+/*Estilizar formulário*/
+#form{
+width: 25%;
+border-radius: 15px;
+margin: 3rem;
+background-color: #696363ab;
+}
+
+/*Estilizar input do formulario*/
+.input-value {
+    cursor: pointer;
+    box-shadow: 0 0px 7px 0 rgba(0,0,0,0.2), 0 2px 15px 0 rgba(0,0,0,0.19);
+    background-color: white;
+    padding: 6px 16px;
+    border: 1px solid black;
+    margin-bottom: 1.5rem;
+
+}
+/*Estilizar botão da permissão do formulario*/
+#button-permissao {
+    cursor: pointer;
+    box-shadow: 0 0px 7px 0 rgba(0,0,0,0.2), 0 2px 15px 0 rgba(0,0,0,0.19);
+    background-color: white;
+    padding: 5px 15px;
+    border: 1px solid black;
+    border-radius: 3px;
+    margin-bottom: 2rem;
+ 
+}
+/*Estilizar botão submit do formulario*/
+#button-submit{
+    cursor: pointer;
+    margin-bottom: 1rem;
+    background: #ffffff;
+	color: #000000;
+	border: 1px solid #000000;
+	border-radius: 20px;
+	font-size: 15px;
+	text-shadow: none;
+    padding: 1.5%;
+
+}
+#button-submit:hover{
+    background: #303130;
+	color: #fff;
+	border: 1px solid #eee;
+	border-radius: 20px;
+	text-shadow: none;
+    }
+
+
+/*Estilizar label do formulario*/
+#form label{
+
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; 
+}
+
+
+
+/*=======================================*/
+
