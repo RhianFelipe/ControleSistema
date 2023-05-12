@@ -42,7 +42,7 @@ if(count($_POST)>0){
                 <option value="" selected disabled hidden>---</option>
                 <option value="valor1">Procurador</option>
                 <option value="valor2">Tercerizado</option>
-                <option value="valor4">Funcionário</option>
+                <option value="valor4">Servidor</option>
                 <option value="valor3">Estagiário</option>
                 <option value="valor4">Advogado</option>
             </select> <br>
