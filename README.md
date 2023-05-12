@@ -43,3 +43,6 @@ dotnet run
 [About wikis - GitHub Docs](https://docs.github.com/en/communities/documenting-your-project-with-wikis/about-wikis)
 
 [About discussions - GitHub Docs](https://docs.github.com/en/discussions/collaborating-with-your-community-using-discussions/about-discussions)
+
+Git config Proxy for auth - git config --global http.proxy http://estag.rhian:password@10.15.54.69:8080
+
