@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Tempo de geração: 08-Maio-2023 às 18:36
+-- Tempo de geração: 11-Maio-2023 às 16:22
 -- Versão do servidor: 8.0.31
 -- versão do PHP: 8.0.26
 
@@ -66,6 +66,7 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
   `id` int UNSIGNED NOT NULL AUTO_INCREMENT,
   `nome` varchar(30) NOT NULL,
   `email` varchar(30) NOT NULL,
+  `grupo` varchar(30) DEFAULT NULL,
   `data_create` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;

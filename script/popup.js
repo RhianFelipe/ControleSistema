@@ -1,12 +1,9 @@
+function openPopup() {
+    var popupWrapper = document.getElementById("popupWrapper");
+    popupWrapper.style.display = "block";
+}
 
-function openPopup(){
-
-  const button = document.querySelector("#button-permissao")
- console.log("pal", button)
-
-  button.addEventListener('click',()=> {
-  console.log("Clicou")
-  
-  })
-
+function closePopup() {
+    var popupWrapper = document.getElementById("popupWrapper");
+    popupWrapper.style.display = "none";
 }
