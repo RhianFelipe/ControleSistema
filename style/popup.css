@@ -1,3 +1,5 @@
+
+/*Estilizar e posicionar o popup*/
 .popup-wrapper {
     position: fixed;
     z-index: 1;
@@ -8,14 +10,14 @@
     background-color: rgba(0, 0, 0, 0.7);
     display: none;
 }
-
+/*Estilizar o popup*/
 .popup {
     background-color: rgb(255, 253, 253);
     margin: 10% auto;
     padding: 20px;
     width: 50%;
 }
-
+/*Estilizar  o X para fechar o popup*/
 .close {
     float: right;
     font-size: 28px;
