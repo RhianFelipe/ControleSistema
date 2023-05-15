@@ -1,17 +1,13 @@
 <?php
 include "../db/conexao.php";
 include "../src/popup.php";
-
 //Pegar dados do formulário pelo método POST
-
-
 function verificarExistencia($valor,$tabela,$variavel){
  $verificar = "SELECT $valor FROM $tabela WHERE $valor='$variavel'";
  $resultVerificacao = $mysqli->query($verificar) or die($mysqli->error);
 }
-
-
 if(count($_POST)>0){ 
+  //Pegar valores do formulario
     $nome = $_POST['nome'];
     $email = $_POST['email'];
     $grupo = $_POST['grupo'];
@@ -48,6 +44,7 @@ if(count($_POST)>0){
             <label>E-mail:</label>
             <input class="input-value" placeholder="usuario@pge.pr.gov.br" name="email" type="text" required><br>
             <label>Grupo:</label>
+            <!--pegar valores do grupo que está no banco de dados e mostrar no Select -->
             <?php $sql  = mysqli_query($mysqli, "select grupo from usuarios");?>
             <select class="input-value" name="grupo"><?php
                 while($resultado = mysqli_fetch_array($sql)){ ?>     
