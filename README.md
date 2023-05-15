@@ -21,8 +21,8 @@ Este projeto foi desenvolvido com o objetivo de supervisionar o acesso dos funci
   <img width="48" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Visual_Studio_Code_1.35_icon.svg/2048px-Visual_Studio_Code_1.35_icon.svg.png" alt="vscode-logo"/>
 </p>
 
-## Running
-dotnet run
+## Documentação
+
 
 ## References
 [About issues - GitHub Docs](https://docs.github.com/en/issues/tracking-your-work-with-issues/about-issues)
