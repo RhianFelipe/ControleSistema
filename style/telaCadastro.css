@@ -37,6 +37,7 @@ background-color: #696363ab;
     margin-bottom: 1.5rem;
 
 }
+
 /*Estilizar botão da permissão do formulario*/
 #button-permissao {
     cursor: pointer;
@@ -76,6 +77,12 @@ background-color: #696363ab;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; 
 }
 
+footer{
+        background: blue;
+        height: 23%;
+        margin-top: 3rem;
+        width: 100%;
+}
 
 
 /*=======================================*/

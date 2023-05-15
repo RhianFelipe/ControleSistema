@@ -1,12 +1,11 @@
 
-function openPopup(){
-
-  const button = document.querySelector("#button-permissao")
- console.log("pal", button)
-
-  button.addEventListener('click',()=> {
-  console.log("Clicou")
-  
-  })
-
+// Abre o Popup
+function openPopup() {
+    var popupWrapper = document.getElementById("popupWrapper");
+    popupWrapper.style.display = "block";
+}
+// Fecha o Popup ao apertar no X
+function closePopup() {
+    var popupWrapper = document.getElementById("popupWrapper");
+    popupWrapper.style.display = "none";
 }

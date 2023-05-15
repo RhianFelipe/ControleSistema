@@ -1,29 +1,33 @@
-<!DOCTYPE html>
-<html lang="en">
+<link rel="stylesheet" href="../style/popup.css?v=<?php echo time(); ?>">
+<div class="popup-wrapper" id="popupWrapper">
+    <div class="popup">
+        <span class="close" onclick="closePopup()">&times;</span> <!--&times === X -->
+        <?php
+          include "../db/conexao.php";
+           $nome = $_POST['nome'];
+           var_dump($_POST);
+          // ID do usuário a ter as permissões alteradas
+          $id_usuario = 1;
+    
+          $buscaSistemas ="SELECT sistemas,permissao FROM permissoes";
+         $queryBuscaSistemas =  $mysqli->query($buscaSistemas) or die($mysqli->error);
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="../script/popup.js"></script>
-    <link rel="stylesheet" href="../style/popup.css?v=<?php echo time(); ?>">
-    <title>Document</title>
-</head>
+         if (true) {
+          echo "<form method='post' action=''>";
+          echo "<table>";
+          echo "<tr><th>Sistema</th><th>Permissão</th></tr>";
+          while ($row = mysqli_fetch_assoc($queryBuscaSistemas)) {
+            echo "<tr>";
+            echo "<td>".$row['sistemas']."</td>";
+            echo "<td><input type='checkbox' name='' value='1'> ".$row['permissao']."</td>";
+            echo "</tr>";
+               
+          }
+          echo "</table>";
+          echo "<input type='submit' value='Salvar'>";
+          echo "</form>";
+        }
+       ?>
 
-<body>
-    <div class="popup-wrapper">
-        <div class="popup">
-            <div class="popup-close">
-                x
-            </div>
-
-            <div class="popup-content">
-                <h2>Popup</h2>
-                <p>O autor foi de base</p>
-                <a href="#">Salvar</a>
-            </div>
-        </div>
     </div>
-</body>
-
-</html>
+</div>

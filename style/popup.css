@@ -1,44 +1,26 @@
-/*Usado para estilizar o popup*/
 
-*{
-box-sizing: border-box;
+/*Estilizar e posicionar o popup*/
+.popup-wrapper {
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: none;
 }
-
-.popup-wrapper{
-background: rgba(0,0,0,.5);
-position: fixed;
-top: 0;
-left: 0;
-width: 100%;
-height: 100%;
-
+/*Estilizar o popup*/
+.popup {
+    background-color: rgb(255, 253, 253);
+    margin: 10% auto;
+    padding: 20px;
+    width: 50%;
 }
-
-.popup{
-
- font-family: arial;
- text-align: center;
- width: 100%;
- max-width: 100%;   
- margin: 10%;
- padding: 20px;
- background: white;
- position: relative;
-}
-
-.popup a {
-color: white;
-border: 0;
-cursor: pointer;
-padding: 6px 10px;
-text-decoration: none;
-background-color: crimson;
-
-}
-.popup-close{
-position: absolute;
-top: 5px;
-right: 10px;
-cursor: pointer;
-
+/*Estilizar  o X para fechar o popup*/
+.close {
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
 }
