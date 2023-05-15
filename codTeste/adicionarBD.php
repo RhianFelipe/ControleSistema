@@ -71,8 +71,7 @@ if(count($_POST)>0){
   $sistema = $_POST['sistemas'];
   $permissao = $_POST['permissao'];
 
-  $id_usuario = $mysqli->insert_id;
-  echo "ID:" . $id_usuario;
+  c
  
 $usuarioExiste = "SELECT nome FROM usuarios WHERE nome='$nome'";
 $resultUsuarioExiste = $mysqli->query($usuarioExiste) or die($mysqli->error);
@@ -99,9 +98,6 @@ if ($resultUsuarioExiste->num_rows >0) {
       echo "<p>Ocorreu um erro ao atualizar a permissão.</p>";
     }
 
-
-
-    
   echo "Não existe o sistema";
 } else {
   
@@ -174,3 +170,45 @@ popup.document.body.appendChild(saveButton);
 
 
 </script>
+
+
+<link rel="stylesheet" href="../style/popup.css?v=<?php echo time(); ?>">
+<div class="popup-wrapper" id="popupWrapper">
+    <div class="popup">
+        <span class="close" onclick="closePopup()">&times;</span> <!--&times === X -->
+        <?php
+          include "../db/conexao.php";
+          
+          // ID do usuário a ter as permissões alteradas
+          $id_usuario = 1;
+          
+          // Busca todos os sistemas do banco de dados
+          $buscaSistemas = $conexao->query("SELECT * FROM sistemas ORDER BY nome_sistema");
+          
+          // Busca as permissões do usuário para cada sistema
+          $buscaPermissoes = $conexao->prepare("SELECT permissao FROM permissoes WHERE id_usuario = ? AND id_sistema = ?");
+          
+          if ($buscaSistemas->rowCount() > 0) {
+              echo "<form method='post' action='salvar_permissao.php'>";
+              echo "<table>";
+              echo "<tr><th>Sistema</th><th>Permissão</th></tr>";
+              
+              while ($sistema = $buscaSistemas->fetch()) {
+                  echo "<tr><td>".$sistema['nome_sistema']."</td>";
+                  
+                  // Busca a permissão do usuário para o sistema atual
+                  $buscaPermissoes->execute([$id_usuario, $sistema['id_sistema']]);
+                  $permissao = $buscaPermissoes->fetchColumn();
+                  
+                  // Cria o checkbox de permissão
+                  echo "<td><input type='checkbox' name='permissoes[".$sistema['id_sistema']."]' value='1'".($permissao == 1 ? " checked" : "")."></td></tr>";
+              }
+                    
+              echo "</table>";
+              echo "<input type='submit' value='Salvar'>";
+              echo "</form>";
+          }
+        ?>
+
+    </div>
+</div>

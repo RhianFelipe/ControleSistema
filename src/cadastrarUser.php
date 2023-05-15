@@ -3,14 +3,21 @@ include "../db/conexao.php";
 include "../src/popup.php";
 
 //Pegar dados do formulário pelo método POST
+
+
+function verificarExistencia($valor,$tabela,$variavel){
+ $verificar = "SELECT $valor FROM $tabela WHERE $valor='$variavel'";
+ $resultVerificacao = $mysqli->query($verificar) or die($mysqli->error);
+}
+
+
 if(count($_POST)>0){ 
     $nome = $_POST['nome'];
     $email = $_POST['email'];
-   var_dump($_POST);
-
-
-
-   
+    $grupo = $_POST['grupo'];
+    $id_usuario = $mysqli->insert_id;
+    echo "ID:" . $id_usuario;
+    var_dump($_POST);
 }
 ?>
 
@@ -41,14 +48,12 @@ if(count($_POST)>0){
             <label>E-mail:</label>
             <input class="input-value" placeholder="usuario@pge.pr.gov.br" name="email" type="text" required><br>
             <label>Grupo:</label>
-            <select class="input-value" name="select">
-                <option value="" selected disabled hidden>---</option>
-                <option value="valor1">Procurador</option>
-                <option value="valor2">Tercerizado</option>
-                <option value="valor4">Servidor</option>
-                <option value="valor3">Estagiário</option>
-                <option value="valor4">Advogado</option>
-            </select> <br>
+            <?php $sql  = mysqli_query($mysqli, "select grupo from usuarios");?>
+            <select class="input-value" name="grupo"><?php
+                while($resultado = mysqli_fetch_array($sql)){ ?>     
+                    <option value="<?=  $resultado['grupo'] ?>"><?php echo $resultado['grupo']; ?></option>
+                    <?php } ?>
+              </select> <br>
             <label>Gerenciar Permissões:</label>
             <!-- Botão para abrir o pop-up de gerenciamento de Permissões-->
             <button onclick="openPopup()" id="button-permissao" type="button">Permissões</button> <br>
@@ -57,7 +62,8 @@ if(count($_POST)>0){
     </div>
 
     <footer>
-
+        
+                  
     </footer>
      <!--Importar script do popup -->
     <script src="../script/popup.js"></script>
