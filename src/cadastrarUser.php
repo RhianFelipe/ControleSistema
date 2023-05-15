@@ -8,6 +8,9 @@ if(count($_POST)>0){
     $email = $_POST['email'];
    var_dump($_POST);
 
+
+
+   
 }
 ?>
 
