@@ -31,5 +31,5 @@ dotnet run
 
 [About discussions - GitHub Docs](https://docs.github.com/en/discussions/collaborating-with-your-community-using-discussions/about-discussions)
 
-Git config Proxy for auth - git config --global http.proxy http://estag.rhian:password@10.15.54.69:8080
+git config --global http.proxy http://estag.rhyan:password@10.15.54.69:8080
 
