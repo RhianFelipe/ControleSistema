@@ -7,21 +7,22 @@
     <?php
     include "../db/consulta.php";
     include "../db/conexao.php";
-    // Recebe o nome do usuário do formulário de cadastro
-    $nome = $_POST['nome'];
-    // ID do usuário a ter as permissões alteradas
-    $id_usuario = 1;
+  
+    $permissao = $_POST['permissao'];
 
     // Cria um formulário com uma tabela que exibe os sistemas e as permissões em checkbox
-    echo "<form method='post' action=''>";
+    echo "<form method='POST' action=''>";
     echo "<table>";
     echo "<tr><th>Sistema</th><th>Permissão</th></tr>";
     while ($row = mysqli_fetch_assoc($queryBuscaSistemas)) {
       echo "<tr>";
       echo "<td>" . $row['sistemas'] . "</td>";
-      echo "<td><input type='checkbox' name='' value='1'> " . $row['permissao'] . "</td>";
+      echo "<td><input type='checkbox' name='permissao[$row[sistemas] ]' value='1'> " . $row['permissao'] . "</td>";
       echo "</tr>";
+      
     }
+
+
     echo "</table>";
     // Botão para submeter o formulário de permissões
     echo "<input type='submit' value='Salvar'>";
