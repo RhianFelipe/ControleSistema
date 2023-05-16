@@ -5,15 +5,12 @@
     <!-- Botão para fechar o pop-up -->
     <span class="close" onclick="closePopup()">&times;</span>
     <?php
+    include "../db/consulta.php";
     include "../db/conexao.php";
     // Recebe o nome do usuário do formulário de cadastro
     $nome = $_POST['nome'];
     // ID do usuário a ter as permissões alteradas
     $id_usuario = 1;
-
-    // Consulta os sistemas e as permissões disponíveis no banco de dados
-    $buscaSistemas = "SELECT sistemas,permissao FROM permissoes";
-    $queryBuscaSistemas =  $mysqli->query($buscaSistemas) or die($mysqli->error);
 
     // Cria um formulário com uma tabela que exibe os sistemas e as permissões em checkbox
     echo "<form method='post' action=''>";

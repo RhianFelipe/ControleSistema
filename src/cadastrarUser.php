@@ -57,8 +57,8 @@ if (count($_POST) > 0) {
             <!-- Obter valores dos grupos do banco de dados e mostrá-los em um menu suspenso -->
             <?php $sql  = mysqli_query($mysqli, "select grupo from usuarios"); ?>
             <select class="input-value" name="grupo"><?php
-                                                        while ($resultado = mysqli_fetch_array($sql)) { ?>
-                    <option value="<?= $resultado['grupo'] ?>"><?php echo $resultado['grupo']; ?></option>
+                    while ($resultado = mysqli_fetch_array($sql)) { ?>
+                <option value="<?= $resultado['grupo'] ?>"><?php echo $resultado['grupo']; ?></option>
                 <?php } ?>
             </select> <br>
             <label>Gerenciar Permissões:</label>
@@ -66,6 +66,12 @@ if (count($_POST) > 0) {
             <button onclick="openPopup()" id="button-permissao" type="button">Permissões</button> <br>
             <button id="button-submit" type="submit">Cadastrar</button>
         </form>
+
+
     </div>
 
-    <!-- Importar
+    <footer></footer>
+    <script src="../script/popup.js"></script>
+</body>
+
+</html>
