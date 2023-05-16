@@ -1,18 +1,26 @@
 <?php
+// Incluir arquivo de conexão com o banco de dados e arquivo de pop-up
 include "../db/conexao.php";
 include "../src/popup.php";
-//Pegar dados do formulário pelo método POST
-function verificarExistencia($valor,$tabela,$variavel){
- $verificar = "SELECT $valor FROM $tabela WHERE $valor='$variavel'";
- $resultVerificacao = $mysqli->query($verificar) or die($mysqli->error);
+
+// Função para verificar a existência de um valor em uma tabela do banco de dados
+function verificarExistencia($mysqli, $valor, $tabela, $variavel)
+{
+    $verificar = "SELECT $valor FROM $tabela WHERE $valor='$variavel'";
+    $resultVerificacao = $mysqli->query($verificar) or die($mysqli->error);
+    return $resultVerificacao;
 }
-if(count($_POST)>0){ 
-  //Pegar valores do formulario
+
+// Verificar se existem dados enviados pelo formulário pelo método POST
+if (count($_POST) > 0) {
+    // Pegar valores do formulário
     $nome = $_POST['nome'];
     $email = $_POST['email'];
     $grupo = $_POST['grupo'];
+    // Obter o ID do usuário recém-criado no banco de dados
     $id_usuario = $mysqli->insert_id;
     echo "ID:" . $id_usuario;
+    // Imprimir os valores recebidos do formulário
     var_dump($_POST);
 }
 ?>
@@ -24,17 +32,19 @@ if(count($_POST)>0){
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../style.css?v=<?php echo time(); ?>"> <!-- Voltar uma pasta e pegar o style.css   -->
+    <!-- Importar folhas de estilo -->
+    <link rel="stylesheet" href="../style.css?v=<?php echo time(); ?>"> <!-- Voltar uma pasta e pegar o style.css -->
     <link rel="stylesheet" href="../style/telaCadastro.css?v=<?php echo time(); ?>">
     <title>Cadastrar Usuário</title>
 </head>
 
 <body>
+    <!-- Criação do Header para logo e navegação-->
     <header>
-        <!-- Criação do Header para logo e navegação-->
         <img src="../assets/img/logo-govpr.png" alt="">
         <a href="../index.php">Voltar para Filtro</a>
     </header>
+
     <!-- Criação formulário para cadastro de Usuário-->
     <div id="area-form">
         <form id="form" method="POST" action="">
@@ -44,13 +54,13 @@ if(count($_POST)>0){
             <label>E-mail:</label>
             <input class="input-value" placeholder="usuario@pge.pr.gov.br" name="email" type="text" required><br>
             <label>Grupo:</label>
-            <!--pegar valores do grupo que está no banco de dados e mostrar no Select -->
-            <?php $sql  = mysqli_query($mysqli, "select grupo from usuarios");?>
+            <!-- Obter valores dos grupos do banco de dados e mostrá-los em um menu suspenso -->
+            <?php $sql  = mysqli_query($mysqli, "select grupo from usuarios"); ?>
             <select class="input-value" name="grupo"><?php
-                while($resultado = mysqli_fetch_array($sql)){ ?>     
-                    <option value="<?=  $resultado['grupo'] ?>"><?php echo $resultado['grupo']; ?></option>
-                    <?php } ?>
-              </select> <br>
+                                                        while ($resultado = mysqli_fetch_array($sql)) { ?>
+                    <option value="<?= $resultado['grupo'] ?>"><?php echo $resultado['grupo']; ?></option>
+                <?php } ?>
+            </select> <br>
             <label>Gerenciar Permissões:</label>
             <!-- Botão para abrir o pop-up de gerenciamento de Permissões-->
             <button onclick="openPopup()" id="button-permissao" type="button">Permissões</button> <br>
@@ -58,12 +68,4 @@ if(count($_POST)>0){
         </form>
     </div>
 
-    <footer>
-        
-                  
-    </footer>
-     <!--Importar script do popup -->
-    <script src="../script/popup.js"></script>
-</body>
-
-</html>
+    <!-- Importar

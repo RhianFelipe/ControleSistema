@@ -71,7 +71,7 @@ if(count($_POST)>0){
   $sistema = $_POST['sistemas'];
   $permissao = $_POST['permissao'];
 
-  c
+  
  
 $usuarioExiste = "SELECT nome FROM usuarios WHERE nome='$nome'";
 $resultUsuarioExiste = $mysqli->query($usuarioExiste) or die($mysqli->error);
