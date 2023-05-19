@@ -38,6 +38,7 @@ if (count($_POST) > 0) {
         
         echo "Usuário cadastrado com sucesso!";
         echo "ID: " . $id_usuario;
+         
         }
     }
 }
@@ -53,12 +54,6 @@ if (count($_POST) > 0) {
     <!-- Importar folhas de estilo -->
     <link rel="stylesheet" href="../style.css?v=<?php echo time(); ?>"> <!-- Voltar uma pasta e pegar o style.css -->
     <link rel="stylesheet" href="../style/telaCadastro.css?v=<?php echo time(); ?>">
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script>
-
-</script>
-
-
     <title>Cadastrar Usuário</title>
 </head>
 
@@ -74,7 +69,7 @@ if (count($_POST) > 0) {
         <form id="form" method="POST" action="">
             <h1>Cadastrar Usuário</h1><br>
             <label>Nome:</label>
-            <input class="input-value" placeholder="nome" name="nome" type="text" required><br>
+            <input class="input-value" id="nome" placeholder="nome" name="nome" type="text" required><br>
             <label>E-mail:</label>
             <input class="input-value" placeholder="usuario@pge.pr.gov.br" name="email" type="text" required><br>
             <label>Grupo:</label>
@@ -89,12 +84,16 @@ if (count($_POST) > 0) {
             <!-- Botão para abrir o pop-up de gerenciamento de Permissões-->
             <button onclick="openPopup()" id="button-permissao" type="button">Permissões</button> <br>
             <button id="button-submit" type="submit">Cadastrar</button>
+             
         </form>
 
     </div>
 
     <footer></footer>
     <script src="../script/popup.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="../script/ajax.js"></script>
+
 </body>
 
 </html>

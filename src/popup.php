@@ -8,7 +8,7 @@
     include "../db/consulta.php";
     include "../db/conexao.php";
   
-    $permissao = $_POST['permissao'];
+
 
     // Cria um formulário com uma tabela que exibe os sistemas e as permissões em checkbox
     echo "<form method='POST' action=''>";
