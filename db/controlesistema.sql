@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Tempo de geração: 11-Maio-2023 às 16:22
+-- Tempo de geração: 19-Maio-2023 às 19:32
 -- Versão do servidor: 8.0.31
 -- versão do PHP: 8.0.26
 
@@ -29,10 +29,10 @@ SET time_zone = "+00:00";
 
 DROP TABLE IF EXISTS `desativados`;
 CREATE TABLE IF NOT EXISTS `desativados` (
-  `id` int UNSIGNED NOT NULL AUTO_INCREMENT,
+  `id` int NOT NULL AUTO_INCREMENT,
   `nome` varchar(30) NOT NULL,
   `email` varchar(30) NOT NULL,
-  `sistemas` varchar(30) NOT NULL,
+  `sistema` varchar(30) NOT NULL,
   `permissao` varchar(30) NOT NULL,
   `data_exclusao` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
@@ -46,14 +46,21 @@ CREATE TABLE IF NOT EXISTS `desativados` (
 
 DROP TABLE IF EXISTS `permissoes`;
 CREATE TABLE IF NOT EXISTS `permissoes` (
-  `id` int UNSIGNED NOT NULL AUTO_INCREMENT,
+  `id` int NOT NULL AUTO_INCREMENT,
   `id_usuario` int UNSIGNED NOT NULL,
   `sistemas` varchar(30) NOT NULL,
   `permissao` tinyint(1) NOT NULL DEFAULT '0',
   `data_altere` datetime DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `id_usuario` (`id_usuario`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Extraindo dados da tabela `permissoes`
+--
+
+INSERT INTO `permissoes` (`id`, `id_usuario`, `sistemas`, `permissao`, `data_altere`) VALUES
+(1, 0, 'eProtocolo', 0, NULL);
 
 -- --------------------------------------------------------
 
@@ -63,13 +70,20 @@ CREATE TABLE IF NOT EXISTS `permissoes` (
 
 DROP TABLE IF EXISTS `usuarios`;
 CREATE TABLE IF NOT EXISTS `usuarios` (
-  `id` int UNSIGNED NOT NULL AUTO_INCREMENT,
+  `id` int NOT NULL AUTO_INCREMENT,
   `nome` varchar(30) NOT NULL,
   `email` varchar(30) NOT NULL,
   `grupo` varchar(30) DEFAULT NULL,
   `data_create` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Extraindo dados da tabela `usuarios`
+--
+
+INSERT INTO `usuarios` (`id`, `nome`, `email`, `grupo`, `data_create`) VALUES
+(1, 'Rhian Felipe', 'rhian.felipe@hotmail.com', 'estagiário', '2023-05-19 13:15:57');
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
