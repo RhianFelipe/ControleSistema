@@ -18,8 +18,8 @@ if (count($_POST) > 0) {
     $nome = $_POST['nome'];
     $email = $_POST['email'];
     $grupo = $_POST['grupo'];
-   
-        // Imprimir os valores recebidos do formulário
+
+    // Imprimir os valores recebidos do formulário
     var_dump($_POST);
 
     $existeNome = verificarExistencia($mysqli, "nome", "usuarios", $nome);
@@ -30,18 +30,17 @@ if (count($_POST) > 0) {
         if ($existeEmail->num_rows > 0) {
             echo "Esse e-mail já existe";
         } else {
-           // Salvar as informações do usuário no banco de dados
-        $insertUsuario = "INSERT INTO usuarios (nome, email, grupo, data_create) VALUES ('$nome','$email','$grupo', NOW())";
-        $mysqli->query($insertUsuario) or die($mysqli->error);
-        $id_usuario = $mysqli->insert_id; // Obter o ID do usuário recém-inserido
+            // Salvar as informações do usuário no banco de dados
+            $insertUsuario = "INSERT INTO usuarios (nome, email, grupo, data_create) VALUES ('$nome','$email','$grupo', NOW())";
+            $mysqli->query($insertUsuario) or die($mysqli->error);
+            $id_usuario = $mysqli->insert_id; // Obter o ID do usuário recém-inserido
+            
 
-        
-        echo "Usuário cadastrado com sucesso!";
-        echo "ID: " . $id_usuario;
-         
+
         }
     }
 }
+
 ?>
 
 <!DOCTYPE html>
@@ -81,10 +80,30 @@ if (count($_POST) > 0) {
                                                                                                                 ?>
             </select> <br>
             <label>Gerenciar Permissões:</label>
+            <!-- Criação da tabela de permissões -->
+            <table id="tabela-permissoes">
+            <h3>Permissões:</h3>
+    <p>Marque as permissões para cada sistema:</p>
+    <input type="checkbox" name="sistemas[SistemaA]" value="1"> SistemaA<br>
+    <input type="checkbox" name="sistemas[SistemaB]" value="0"> SistemaB<br>
+
+
+                <?php /*
+                include "../db/consulta.php";
+                while ($row = mysqli_fetch_assoc($queryBuscaSistemas)) {
+                    echo "<tr>";
+                    echo "<td>" . $row['sistemas'] . "</td>";
+                    echo "<td><input type='checkbox' name='permissao[" . $row['sistemas'] . "]' value='1'> " . $row['permissao'] . "</td>";
+                    echo "</tr>";
+                }
+                */
+                ?>
+
+            </table>
             <!-- Botão para abrir o pop-up de gerenciamento de Permissões-->
             <button onclick="openPopup()" id="button-permissao" type="button">Permissões</button> <br>
             <button id="button-submit" type="submit">Cadastrar</button>
-             
+
         </form>
 
     </div>
@@ -92,7 +111,7 @@ if (count($_POST) > 0) {
     <footer></footer>
     <script src="../script/popup.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="../script/ajax.js"></script>
+
 
 </body>
 
