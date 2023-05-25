@@ -1,0 +1,27 @@
+html, body {
+    background-color: rgb(243, 243, 243);
+
+}
+
+header {
+    background-color: rgb(69, 116, 143);
+    padding: 10px;
+    margin: 10px;
+    margin-top: auto;
+    margin-left: auto;
+
+}
+
+.imgHeader {
+        margin-left: 40px;
+
+}
+
+section {
+    background-color: rgb(196, 196, 196);
+    width: 700px; 
+    margin-top: 100px;
+    margin-left: auto;
+    margin-right: auto;
+
+}
