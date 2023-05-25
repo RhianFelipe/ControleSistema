@@ -3,8 +3,7 @@
 include "../db/conexao.php";
 include "../db/consulta.php";
 include "../src/popup.php";
-$erro = false;
-// Função para verificar a existência de um valor em uma tabela do banco de dados
+
 function verificarExistencia($mysqli, $valor, $tabela, $variavel)
 {
     $verificar = "SELECT $valor FROM $tabela WHERE $valor='$variavel'";
@@ -12,35 +11,64 @@ function verificarExistencia($mysqli, $valor, $tabela, $variavel)
     return $resultVerificacao;
 }
 
-// Verificar se existem dados enviados pelo formulário pelo método POST
-if (count($_POST) > 0) {
-    // Pegar valores do formulário
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    // Obtém os valores do formulário
     $nome = $_POST['nome'];
     $email = $_POST['email'];
     $grupo = $_POST['grupo'];
-
-    // Imprimir os valores recebidos do formulário
+    $sistemas = $_POST['sistemas'];
     var_dump($_POST);
-
     $existeNome = verificarExistencia($mysqli, "nome", "usuarios", $nome);
     $existeEmail = verificarExistencia($mysqli, "email", "usuarios", $email);
+
     if ($existeNome->num_rows > 0) {
         echo "Esse nome já existe";
     } else {
         if ($existeEmail->num_rows > 0) {
-            echo "Esse e-mail já existe";
         } else {
-            // Salvar as informações do usuário no banco de dados
-            $insertUsuario = "INSERT INTO usuarios (nome, email, grupo, data_create) VALUES ('$nome','$email','$grupo', NOW())";
-            $mysqli->query($insertUsuario) or die($mysqli->error);
-            $id_usuario = $mysqli->insert_id; // Obter o ID do usuário recém-inserido
-            
+            $query = "INSERT INTO usuarios (nome, email, grupo, data_create) VALUES ('$nome', '$email', '$grupo', NOW())";
+            mysqli_query($mysqli, $query);
 
+            // Obtém o ID do novo usuário
+            $idUsuario = mysqli_insert_id($mysqli);
 
+            // Remove as permissões antigas do usuário
+            $query = "DELETE FROM Permissoes WHERE id_usuario = $idUsuario";
+            mysqli_query($mysqli, $query);
+
+            // Insere ou atualiza as permissões selecionadas para o usuário
+            foreach ($sistemas as $sistema => $permissao) {
+                // Verifica se o usuário já possui uma permissão para o sistema
+                $query = "SELECT * FROM permissoes WHERE id_usuario = $idUsuario AND sistemas = '$sistema'";
+                $result = mysqli_query($mysqli, $query);
+
+                if ($result->num_rows > 0) {
+                    // Atualiza a permissão existente
+                    $query = "UPDATE permissoes SET permissao = '$permissao' WHERE id_usuario = $idUsuario AND sistemas = '$sistema'";
+                    mysqli_query($mysqli, $query);
+                    echo "ENTROU NO UPDATE";
+                } else {
+                    // Verifica se o sistema já existe na tabela de permissões para outros usuários
+                    $query = "SELECT * FROM permissoes WHERE sistemas = '$sistema'";
+                    $result = mysqli_query($mysqli, $query);
+
+                    if ($result->num_rows > 0) {
+                        echo "ENTROU NO INSERT";
+                        // Insere uma nova permissão apenas se o sistema já existe para outros usuários
+                        $query = "INSERT INTO permissoes (id_usuario, sistemas, permissao) VALUES ($idUsuario, '$sistema', $permissao)";
+                        mysqli_query($mysqli, $query);
+                    }
+                }
+            }
         }
     }
-}
 
+    // Fecha a conexão com o banco de dados
+    mysqli_close($mysqli);
+
+    // Exibe uma mensagem de sucesso
+    echo "Usuário criado/alterado com sucesso!";
+}
 ?>
 
 <!DOCTYPE html>
@@ -76,16 +104,16 @@ if (count($_POST) > 0) {
             <select class="input-value" name="grupo">
                 <?php
                 while ($colunaGrupo = mysqli_fetch_array($queryBuscaGrupo)) { ?>
-                    <option value="<?= $colunaGrupo['grupo'] ?>"><?php echo $colunaGrupo['grupo']; ?></option> <?php }
-                                                                                                                ?>
+                    <option value="<?= $colunaGrupo['grupo'] ?>"><?php echo $colunaGrupo['grupo']; ?></option> <?php } ?>
             </select> <br>
             <label>Gerenciar Permissões:</label>
             <!-- Criação da tabela de permissões -->
             <table id="tabela-permissoes">
-            <h3>Permissões:</h3>
-    <p>Marque as permissões para cada sistema:</p>
-    <input type="checkbox" name="sistemas[SistemaA]" value="1"> SistemaA<br>
-    <input type="checkbox" name="sistemas[SistemaB]" value="0"> SistemaB<br>
+                <h3>Permissões:</h3>
+                <p>Marque as permissões para cada sistema:</p>
+                <input type="checkbox" name="sistemas[SistemaA]" value="concedida"> SistemaA<br>
+                <input type="checkbox" name="sistemas[SistemaB]" value="concedida"> SistemaB<br>
+
 
 
                 <?php /*
