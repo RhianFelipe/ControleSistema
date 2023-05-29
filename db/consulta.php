@@ -17,8 +17,6 @@ $queryBuscaSistemas =  $mysqli->query($buscaSistemas) or die($mysqli->error);
 // Consulta os grupos de cada funcionario(procuradores, estags, servidores...)
 $buscaGrupo = "SELECT grupo FROM usuarios"; 
 $queryBuscaGrupo = $mysqli->query($buscaGrupo) or die($mysqli->error);
-
-
  ?>
 
 
