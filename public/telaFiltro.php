@@ -23,8 +23,8 @@
     <section>
         <h1>Área de Consulta</h1>
         <div>
-            <label> Nome:</label> <input class="inputTable" type="text">
-            <label> E-mail:</label> <input class="inputTable" type="text">
+            <label> Nome:</label> <input class="input-table" type="text">
+            <label> E-mail:</label> <input class="input-table" type="text">
 
             <label>Sistemas:</label>
             <select name="permissao">
