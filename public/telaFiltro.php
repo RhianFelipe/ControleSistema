@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -43,7 +42,8 @@
     </section>
 
     <footer>
-        Todos os direitos reservados 
+        Todos os direitos reservados
     </footer>
 </body>
+
 </html>

@@ -26,4 +26,3 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
   echo "Permissões salvas com sucesso!";
 }
-?>

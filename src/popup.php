@@ -7,7 +7,7 @@
       <?php
       include "../db/consulta.php";
       include "../db/conexao.php";
-    
+
 
 
       // Cria um formulário com uma tabela que exibe os sistemas e as permissões em checkbox
@@ -19,7 +19,6 @@
         echo "<td>" . $row['sistemas'] . "</td>";
         echo "<td><input type='checkbox' name='permissao[$row[sistemas] ]' value='1'> " . $row['permissao'] . "</td>";
         echo "</tr>";
-        
       }
 
 

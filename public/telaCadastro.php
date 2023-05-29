@@ -1,5 +1,4 @@
-
-<?php 
+<?php
 include "../db/conexao.php";
 include "../db/consulta.php";
 
@@ -72,7 +71,7 @@ include "../db/consulta.php";
                 ?>
             </div>
 
-            
+
             <button id="button-submit" type="submit">Cadastrar</button>
 
         </form>
@@ -80,9 +79,9 @@ include "../db/consulta.php";
     </div>
 
     <footer></footer>
-  
-    <script >
-         function togglePermissoes() {
+
+    <script>
+        function togglePermissoes() {
             var selectsPermissoes = document.getElementById('selects-permissoes');
             var buttonPermissao = document.getElementById('button-permissao');
             if (selectsPermissoes.style.display === 'none') {
