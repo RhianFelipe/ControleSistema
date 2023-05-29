@@ -1,7 +1,5 @@
 <?php 
  include "../db/conexao.php";
-
-
 //Função que faz consultar para verificar se existe algum atributo no Banco de Dados
 function verificarExistencia($mysqli, $valor, $tabela, $variavel)
 {
