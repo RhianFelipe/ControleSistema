@@ -42,14 +42,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     $queryPermissao = "INSERT INTO permissoes (id_usuario, sistemas, permissao) VALUES ('$idUsuario', '$nomeSistema', '$valorSelecionado')";
                     mysqli_query($mysqli, $queryPermissao);
                 }
-            
         }
     }
     }
     // Fecha a conexão com o banco de dados
     mysqli_close($mysqli);
 
-    // Exibe uma mensagem de sucesso
+    // Exibe uma mensagem de sucesso e continua na mesma página de login
     echo "Usuário criado/alterado com sucesso!";
     header("Location: ../public/telaCadastro.php");
 exit();
