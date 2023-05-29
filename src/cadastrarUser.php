@@ -3,13 +3,6 @@
 include "../db/conexao.php";
 include "../db/consulta.php";
 
-function verificarExistencia($mysqli, $valor, $tabela, $variavel)
-{
-    $verificar = "SELECT $valor FROM $tabela WHERE $valor='$variavel'";
-    $resultVerificacao = $mysqli->query($verificar) or die($mysqli->error);
-    return $resultVerificacao;
-}
-
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Obtém os valores do formulário
     $nome = $_POST['nome'];
