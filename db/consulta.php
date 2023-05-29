@@ -9,9 +9,6 @@ function verificarExistencia($mysqli, $valor, $tabela, $variavel)
     $resultVerificacao = $mysqli->query($verificar) or die($mysqli->error);
     return $resultVerificacao;
 }
-
-
-
 // Consulta os sistemas e as permissões disponíveis no banco de dados
 $buscaSistemas = "SELECT sistemas FROM permissoes";
 $queryBuscaSistemas =  $mysqli->query($buscaSistemas) or die($mysqli->error);
