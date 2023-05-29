@@ -48,6 +48,13 @@ FROM usuarios
 JOIN permissoes ON usuarios.id = permissoes.id_usuario;
 
 
+==========================================
+INSERT INTO usuarios(grupo) VALUES ('Estagiário');
+INSERT INTO usuarios(grupo) VALUES ('Servidor');
+INSERT INTO usuarios(grupo) VALUES ('Tercerizado');
+INSERT INTO usuarios(grupo) VALUES ('Procurador');
+INSERT INTO usuarios(grupo) VALUES ('Advogado');
+
 */
 
 
