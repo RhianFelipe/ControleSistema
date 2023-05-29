@@ -1,11 +1,7 @@
 <?php
 include "../db/conexao.php";
 include "../db/consulta.php";
-
-
-
 ?>
-
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -23,7 +19,7 @@ include "../db/consulta.php";
     <!-- Criação do Header para logo e navegação-->
     <header>
         <img src="../public/assets/img/logo-govpr.png" alt="">
-        <a href="../public/index.php">Voltar para Filtro</a>
+        <a href="../public/telaFiltro">Voltar para Filtro</a>
     </header>
 
     <!-- Criação formulário para cadastro de Usuário-->
@@ -93,8 +89,5 @@ include "../db/consulta.php";
             }
         }
     </script>
-
-
 </body>
-
 </html>
