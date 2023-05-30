@@ -3,7 +3,6 @@
 include "../src/cadastrarUsuarios.php";
 cadastrarUsuario();
 ?>
-
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -20,7 +19,7 @@ cadastrarUsuario();
 <body>
     <!-- Criação do Header para logo e navegação-->
     <header>
-        <img src="../public/assets/img/logo-govpr.png" alt="">
+        <img src="../public/assets/img/logo-govpr-white.png" alt="">
         <a href="../public/telaFiltro">Voltar para Filtro</a>
     </header>
 
@@ -29,11 +28,13 @@ cadastrarUsuario();
         <form id="form" method="POST" action="../public/telaCadastro.php">
             <h1>Cadastrar Usuário</h1><br>
             <label>Nome:</label>
-            <input class="input-value" id="nome" value="<?php if(isset($_POST['nome'])) echo $_POST['nome']?>" placeholder="nome" name="nome" type="text" required><br>
+            <input class="input-value" id="nome" value="<?php if(isset($_POST['nome'])) echo $_POST['nome']?>"
+                placeholder="nome" name="nome" type="text" required><br>
 
             <label>E-mail:</label>
-            <input class="input-value" value="<?php if(isset($_POST['email'])) echo $_POST['email']?>"  placeholder="usuario@pge.pr.gov.br" name="email" type="text" required><br>
-            
+            <input class="input-value" value="<?php if(isset($_POST['email'])) echo $_POST['email']?>"
+                placeholder="usuario@pge.pr.gov.br" name="email" type="text" required><br>
+
 
             <label>Grupo:</label>
             <!-- Obter valores dos grupos do banco de dados e mostrá-los em um menu suspenso -->
@@ -83,6 +84,7 @@ cadastrarUsuario();
     <footer></footer>
 
     <script src="../script/gerenciarPermissoes.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 </body>
 
 </html>

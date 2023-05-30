@@ -2,7 +2,7 @@
 
 /*Usado para criar variaveis globais*/
 :root{
-
+--footer-header-color:rgb(69, 116, 143);
 
 }
 /*Remove o espaço extra adicionado pelo padding e a borda de um elemento.*/
@@ -18,4 +18,27 @@ box-shadow: none;
 html,
 body {
   height: 100vh;
+}
+
+header, footer{
+  background-color: var(--footer-header-color);
+  
+}
+
+
+header{
+
+
+}
+
+footer{
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+
+  padding: 10px;
+  text-align: center;
+  height: 100px;
+
 }

@@ -16,8 +16,7 @@
         <a href="../public/telaCadastro.php">Cadastrar Usuários</a>
         <a href="">Lista de Usuários</a>
     </header>
-
-    <section>
+    <section class="area-consulta">
         <h1>Área de Consulta</h1>
         <div>
             <label>Nome:</label> <input class="input-table" type="text">
@@ -34,18 +33,20 @@
                 <option selected value="0">0</option>
                 <option value="1">1</option>
             </select>
+        </div>
     </section>
     <!-- Tabela para exibir os dados -->
-    <table>
-        <thead>
-            <tr>
-                <th>Nome</th>
-                <th>Email</th>
-                <th>Ações</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php
+    <section>
+        <table>
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>Email</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php
             // Conexão com o banco de dados (substitua as informações de conexão com as suas)
             include "../db/conexao.php";
 
@@ -60,38 +61,42 @@
                     $nome = $row["nome"];
                     $email = $row["email"];
             ?>
-                    <tr>
-                        <td><?php echo $nome; ?></td>
-                        <td><?php echo $email; ?></td>
-                        <td>
-                            <button onclick="abrirPopup()">Permissões</button>
-                            <button onclick="excluir()">Excluir</button>
-                        </td>
-                    </tr>
-            <?php
+                <tr>
+                    <td><?php echo $nome; ?></td>
+                    <td><?php echo $email; ?></td>
+                    <td>
+                        <button onclick="abrirPopup()">Permissões</button>
+                        <button onclick="excluir()">Excluir</button>
+                    </td>
+                </tr>
+                <?php
                 }
             } else {
                 echo "<tr><td colspan='3'>Nenhum registro encontrado.</td></tr>";
             }
             $mysqli->close();
             ?>
-        </tbody>
-    </table>
-    </div>
+            </tbody>
+        </table>
+    </section>
+
+
 
 
     <footer>
         Todos os direitos reservados
     </footer>
 
-    <script>
-        function abrirPopup() {
-            // Lógica para abrir o popup
-        }
 
-        function excluir() {
-            // Lógica para excluir o registro
-        }
+
+    <script>
+    function abrirPopup() {
+        // Lógica para abrir o popup
+    }
+
+    function excluir() {
+        // Lógica para excluir o registro
+    }
     </script>
 </body>
 
