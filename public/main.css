@@ -1,5 +1,13 @@
 /*Usar para criar estilos globais*/
 
+/*Usado para criar variaveis globais*/
+:root{
+
+
+}
+
+
+
 /*Remove o espaço extra adicionado pelo padding e a borda de um elemento.*/
 *{
 padding: 0;
