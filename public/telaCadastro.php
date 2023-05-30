@@ -1,7 +1,9 @@
 <?php
-include "../db/conexao.php";
-include "../db/consulta.php";
+// Incluir arquivo de conexão com o banco de dados e arquivo de pop-up
+include "../src/cadastrarUsuarios.php";
+cadastrarUsuario();
 ?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -10,7 +12,7 @@ include "../db/consulta.php";
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Importar folhas de estilo -->
-    <link rel="stylesheet" href="../public/style.css?v=<?php echo time(); ?>">
+    <link rel="stylesheet" href="../public/main.css?v=<?php echo time(); ?>">
     <link rel="stylesheet" href="../public/style/telaCadastro.css?v=<?php echo time(); ?>">
     <title>Cadastrar Usuário</title>
 </head>
@@ -24,23 +26,29 @@ include "../db/consulta.php";
 
     <!-- Criação formulário para cadastro de Usuário-->
     <div id="area-form">
-        <form id="form" method="POST" action="../src/cadastrarUser.php">
+        <form id="form" method="POST" action="../public/telaCadastro.php">
             <h1>Cadastrar Usuário</h1><br>
             <label>Nome:</label>
-            <input class="input-value" id="nome" placeholder="nome" name="nome" type="text" required><br>
+            <input class="input-value" id="nome" value="<?php if(isset($_POST['nome'])) echo $_POST['nome']?>" placeholder="nome" name="nome" type="text" required><br>
+
             <label>E-mail:</label>
-            <input class="input-value" placeholder="usuario@pge.pr.gov.br" name="email" type="text" required><br>
+            <input class="input-value" value="<?php if(isset($_POST['email'])) echo $_POST['email']?>"  placeholder="usuario@pge.pr.gov.br" name="email" type="text" required><br>
+            
+
             <label>Grupo:</label>
             <!-- Obter valores dos grupos do banco de dados e mostrá-los em um menu suspenso -->
             <select class="input-value" name="grupo">
                 <?php
-                while ($colunaGrupo = mysqli_fetch_array($queryBuscaGrupo)) { ?>
-                    <option value="<?= $colunaGrupo['grupo'] ?>"><?php echo $colunaGrupo['grupo']; ?></option> <?php } ?>
+                $gruposPermitidos = array("Procurador", "Servidor", "Tercerizado", "Estagiário", "Advogado");
+                foreach ($gruposPermitidos as $grupoPermitido) {
+                    echo "<option value='$grupoPermitido'>$grupoPermitido</option>";
+                }
+                ?>
             </select> <br>
             <label>Gerenciar Permissões:</label>
             <!-- Criação da tabela de permissões -->
 
-            <button onclick="togglePermissoes() " id="button-permissao" type="button">Permissões</button> <br>
+            <button onclick="gerenciarPermissoes() " id="button-permissao" type="button">Permissões</button> <br>
             <div id="selects-permissoes" style="display: none;">
                 <h3>Permissões:</h3>
                 <p>Marque as permissões para cada sistema:</p>
@@ -66,8 +74,6 @@ include "../db/consulta.php";
                 }
                 ?>
             </div>
-
-
             <button id="button-submit" type="submit">Cadastrar</button>
 
         </form>
@@ -76,18 +82,7 @@ include "../db/consulta.php";
 
     <footer></footer>
 
-    <script>
-        function togglePermissoes() {
-            var selectsPermissoes = document.getElementById('selects-permissoes');
-            var buttonPermissao = document.getElementById('button-permissao');
-            if (selectsPermissoes.style.display === 'none') {
-                selectsPermissoes.style.display = 'block';
-                buttonPermissao.textContent = 'Ocultar Permissões';
-            } else {
-                selectsPermissoes.style.display = 'none';
-                buttonPermissao.textContent = 'Permissões';
-            }
-        }
-    </script>
+    <script src="../script/gerenciarPermissoes.js"></script>
 </body>
+
 </html>
