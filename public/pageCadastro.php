@@ -20,12 +20,12 @@ cadastrarUsuario();
     <!-- Criação do Header para logo e navegação-->
     <header>
         <img src="../public/assets/img/logo-govpr-white.png" alt="">
-        <a href="../public/telaFiltro">Voltar para Filtro</a>
+        <a href="../public/pageFiltro">Voltar para Filtro</a>
     </header>
 
     <!-- Criação formulário para cadastro de Usuário-->
     <div id="area-form">
-        <form id="form" method="POST" action="../public/telaCadastro.php">
+        <form id="form" method="POST" action="../public/pageCadastro.php">
             <h1>Cadastrar Usuário</h1><br>
             <label>Nome:</label>
             <input class="input-value" id="nome" value="<?php if(isset($_POST['nome'])) echo $_POST['nome']?>"
