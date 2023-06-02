@@ -89,55 +89,45 @@ include "../src/popup.php";
                 ?>
             </tbody>
         </table>
-<!-- Início Modal editar usuário -->
-<div class="modal fade" id="editUsuarioModal" tabindex="-1" aria-labelledby="editUsuarioModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="editUsuarioModalLabel">Editar Usuário</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <span id="msgAlertaErroEdit"></span>
-                <form class="row g-3" id="edit-usuario-form">
-                    <input type="hidden" name="id" id="editid">
-                    <div class="col-12">
-                        <?php
-                        include "../db/conexao.php";
-
-                        $id = $_GET['id']; // Obter o ID do usuário da requisição GET
-
-                        echo "<p>ID: $id</p>"; // Exibir o ID aqui
-
-                        $sistemas = $_POST['sistemas'];
-                        $permissoes = $_POST['permissoes'];
-
-                        // Atualizar as permissões no banco de dados
-                        $sql = "UPDATE permissoes SET permissao = CASE sistemas ";
-                        foreach ($sistemas as $sistema) {
-                            $permissao = isset($permissoes[$sistema]) ? 1 : 0;
-                            $sql .= "WHEN '$sistema' THEN $permissao ";
-                        }
-                        $sql .= "END WHERE id_usuario = $id";
-                        $result = $mysqli->query($sql);
-
-                        if ($result) {
-                            echo "Permissões atualizadas com sucesso.";
-                        } else {
-                            echo "Erro ao atualizar as permissões.";
-                        }
-                        $mysqli->close();
-                        ?>
+        <!-- Início Modal editar usuário -->
+        <div class="modal fade" id="editUsuarioModal" tabindex="-1" aria-labelledby="editUsuarioModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="editUsuarioModalLabel">Editar Usuário</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                    <div class="col-12">
-                        <input type="submit" class="btn btn-outline-warning btn-sm" id="edit-usuario-btn" value="Salvar">
+                    <div class="modal-body">
+                        <span id="msgAlertaErroEdit"></span>
+                        <form class="row g-3" id="edit-usuario-form">
+                            <input type="hidden" name="id" id="editid">
+                            <div class="col-12">
+                            
+                                <div class="col-12">
+
+                                <td>
+    
+</td>
+
+                                    <?php
+                                    include "../db/conexao.php";
+
+                                    echo "<div id='sistemasEdit'></div>";
+                echo "<div id='permissaoEdit'></div>";
+
+                                    $mysqli->close();
+                                    ?>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <input type="submit" class="btn btn-outline-warning btn-sm" id="edit-usuario-btn" value="Salvar">
+                            </div>
+                        </form>
                     </div>
-                </form>
+                </div>
             </div>
         </div>
-    </div>
-</div>
-<!-- Fim Modal editar usuário -->
+        <!-- Fim Modal editar usuário -->
 
     </section>
 
@@ -156,11 +146,16 @@ include "../src/popup.php";
             if (!resposta['status']) {
                 document.getElementById("msgAlerta").innerHTML = resposta['msg']
 
+
+
             } else {
                 const editModel = new bootstrap.Modal(document.getElementById("editUsuarioModal"))
                 editModel.show()
+                document.getElementById('sistemasEdit').innerHTML = resposta['dados'].sistemas;
+                document.getElementById('permissaoEdit').innerHTML = resposta['dados'].permissao;
+           
 
-                    console.log(editModel)
+
             }
 
         }
