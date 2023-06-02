@@ -1,4 +1,4 @@
-<?php 
+<?php
 include "../src/popup.php";
 ?>
 
@@ -12,7 +12,8 @@ include "../src/popup.php";
     <link rel="stylesheet" href="../public/main.css?v=<?php echo time(); ?>">
     <link rel="stylesheet" href="../public/style/telaFiltro.css?v=<?php echo time(); ?>">
     <link rel="stylesheet" href="../public/style/popup.css?v=<?php echo time(); ?>">
-   
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+
     <title>Sistema de Controle de Permissões</title>
 </head>
 
@@ -24,7 +25,7 @@ include "../src/popup.php";
     </header>
     <section class="area-consulta">
         <h1>Área de Consulta</h1>
-        <div>                                                                                         
+        <div>
             <label>Nome:</label> <input class="input-table" type="text">
             <label>E-mail:</label> <input class="input-table" type="text">
 
@@ -67,18 +68,19 @@ include "../src/popup.php";
                         $id = $row["id"];
                         $nome = $row["nome"];
                         $email = $row["email"];
-                        ?>
+                ?>
                         <tr>
                             <td><?php echo $id; ?></td>
                             <td><?php echo $nome; ?></td>
                             <td><?php echo $email; ?></td>
                             <td>
-                            <button onclick="openPopup(<?php echo $id; ?>)">Permissões</button>
-                                <button onclick="excluir()">Excluir</button>
+                                <span id="msgAlerta"></span>
+                                <button class='btn btn-outline-warning btn-sm' onclick="openPopup(<?php echo $id; ?>)">Editar</a>
+
+                                    <button onclick="">Excluir</button>
                             </td>
                         </tr>
-                        <?php
-
+                <?php
                     }
                 } else {
                     echo "<tr><td colspan='3'>Nenhum registro encontrado.</td></tr>";
@@ -87,28 +89,100 @@ include "../src/popup.php";
                 ?>
             </tbody>
         </table>
+<!-- Início Modal editar usuário -->
+<div class="modal fade" id="editUsuarioModal" tabindex="-1" aria-labelledby="editUsuarioModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="editUsuarioModalLabel">Editar Usuário</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <span id="msgAlertaErroEdit"></span>
+                <form class="row g-3" id="edit-usuario-form">
+                    <input type="hidden" name="id" id="editid">
+                    <div class="col-12">
+                        <?php
+                        include "../db/conexao.php";
+
+                        $id = $_GET['id']; // Obter o ID do usuário da requisição GET
+
+                        echo "<p>ID: $id</p>"; // Exibir o ID aqui
+
+                        $sistemas = $_POST['sistemas'];
+                        $permissoes = $_POST['permissoes'];
+
+                        // Atualizar as permissões no banco de dados
+                        $sql = "UPDATE permissoes SET permissao = CASE sistemas ";
+                        foreach ($sistemas as $sistema) {
+                            $permissao = isset($permissoes[$sistema]) ? 1 : 0;
+                            $sql .= "WHEN '$sistema' THEN $permissao ";
+                        }
+                        $sql .= "END WHERE id_usuario = $id";
+                        $result = $mysqli->query($sql);
+
+                        if ($result) {
+                            echo "Permissões atualizadas com sucesso.";
+                        } else {
+                            echo "Erro ao atualizar as permissões.";
+                        }
+                        $mysqli->close();
+                        ?>
+                    </div>
+                    <div class="col-12">
+                        <input type="submit" class="btn btn-outline-warning btn-sm" id="edit-usuario-btn" value="Salvar">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Fim Modal editar usuário -->
+
     </section>
 
     <footer>
         Todos os direitos reservados
     </footer>
 
-<script>
+    <script>
+        async function openPopup(id) {
+            console.log(id)
 
+            const dados = await fetch('../src/editarUser.php?id=' + id);
+            const resposta = await dados.json();
 
-    function openPopup(userId) {
-      var popupWrapper = document.getElementById("popupWrapper");
-      popupWrapper.style.display = "block";
+            console.log(resposta);
+            if (!resposta['status']) {
+                document.getElementById("msgAlerta").innerHTML = resposta['msg']
+
+            } else {
+                const editModel = new bootstrap.Modal(document.getElementById("editUsuarioModal"))
+                editModel.show()
+
+                    console.log(editModel)
+            }
+
+        }
+        /* 
+    async function openPopup(id_usuario) {
+        console.log(id_usuario); // Verifica o valor do ID no console do navegador
+        var popupWrapper = document.getElementById("popupWrapper");
+        var popupContent = document.getElementById("popupContent");
+        popupWrapper.style.display = "block";
+
+        await fetch('../src/popup.php?id=' + id_usuario)
+        console.log(await fetch('../src/popup.php?id=' + id_usuario))
     }
+*/
 
-    function closePopup() {
-      var popupWrapper = document.getElementById("popupWrapper");
-      popupWrapper.style.display = "none";
-    }
- 
-</script>
-
-</script>
-
+        function closePopup() {
+            var popupWrapper = document.getElementById("popupWrapper");
+            popupWrapper.style.display = "none";
+        }
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">
+    </script>
 </body>
+
 </html>
