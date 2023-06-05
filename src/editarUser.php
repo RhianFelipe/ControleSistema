@@ -7,8 +7,12 @@ if(!empty($id)){
 
     $sql = "SELECT id_usuario,sistemas, permissao FROM permissoes WHERE id_usuario = $id";
     $result = $mysqli->query($sql);
-    $row = $result->fetch_assoc();
-    $retorna = ['status' => true, 'dados' => $row];
+    $rows = array();
+    while ($row = $result->fetch_assoc()) {
+        $rows[] = $row;
+    }
+    
+    $retorna = ['status' => true, 'dados' => $rows];
 
 }else{
     $retorna = ['status' => false, 'msg' => "<div class='alert alert-danger' role='alert'>ERRO: Usuario não cadastrado com sucesso!"];
