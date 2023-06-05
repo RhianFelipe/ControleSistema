@@ -108,19 +108,21 @@ include "../src/popup.php";
 
                                 <div class="col-12">
                                     <table>
-                                        <tr><td>Sistemas</td><td>Permissão</td></tr>
-                                        <tr><td id="sistemasEdit"></td>
-                                       
+                                        <tr>
+                                            <th>Sistemas</th>
+                                            <th>Permissão</th>
+                                        </tr>
+                                        <tr>
+                                            <td id="sistemasEdit"></td>
+                                            <td id="permissaoEdit"></td>
+                                        </tr>
                                     </table>
-                                    
-
-                                    
 
                                     <?php
                                     include "../db/conexao.php";
 
-                                  //  echo "<div id='sistemasEdit'></div>";
-                                  //   echo  "<div id='permissaoEdit'></div>";
+                                    //  echo "<div id='sistemasEdit'></div>";
+                                    //   echo  "<div id='permissaoEdit'></div>";
 
 
                                     $mysqli->close();
@@ -174,16 +176,44 @@ include "../src/popup.php";
             const permissaoEdit = document.getElementById('permissaoEdit');
             permissaoEdit.innerHTML = ""; // Limpar o conteúdo existente, se houver
 
-            const permissao = resposta['dados'].map(obj => obj.permissao);
-            console.log(permissao);
+            const permissoes = resposta['dados'].map(obj => obj.permissao);
+            console.log(permissoes);
 
-            const checkbox = document.createElement('input');
-            checkbox.type = 'checkbox';
-            checkbox.checked = permissao === '1'; // Marca a checkbox se permissao for igual a '1'
+            permissoes.forEach(permissao => {
+                const checkbox = document.createElement('input');
+                checkbox.type = 'checkbox';
+                checkbox.checked = permissao === '1'; // Marca o checkbox se a permissao for igual a '1'
 
-            permissaoEdit.appendChild(checkbox);
+                const td = document.createElement('td');
+                td.style.padding = '4.3'; // Ajustar o espaçamento interno da célula
 
+                const label = document.createElement('label');
+                label.style.margin = '0'; // Ajustar o espaçamento externo do rótulo
+                label.appendChild(checkbox);
+
+                td.appendChild(label);
+
+                const tr = document.createElement('tr');
+                tr.appendChild(td);
+
+                permissaoEdit.appendChild(tr);
+            });
         }
+    }
+
+    const editForm = document.getElementById("edit-usuario-form");
+    if (editForm) {
+        editForm.addEventListener("submit", async (e) => {
+            e.preventDefault()
+            console.log("Botão edit funcionou");
+            const dadosForm = new FormData(editForm);
+            await fetch("../src/updateUser.php", {
+                method:"POST",
+                body: dadosForm
+            })
+
+        })
+
     }
     </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
