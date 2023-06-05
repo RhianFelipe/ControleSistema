@@ -12,7 +12,8 @@ include "../src/popup.php";
     <link rel="stylesheet" href="../public/main.css?v=<?php echo time(); ?>">
     <link rel="stylesheet" href="../public/style/telaFiltro.css?v=<?php echo time(); ?>">
     <link rel="stylesheet" href="../public/style/popup.css?v=<?php echo time(); ?>">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
 
     <title>Sistema de Controle de Permissões</title>
 </head>
@@ -69,17 +70,18 @@ include "../src/popup.php";
                         $nome = $row["nome"];
                         $email = $row["email"];
                 ?>
-                        <tr>
-                            <td><?php echo $id; ?></td>
-                            <td><?php echo $nome; ?></td>
-                            <td><?php echo $email; ?></td>
-                            <td>
-                                <span id="msgAlerta"></span>
-                                <button class='btn btn-outline-warning btn-sm' onclick="openPopup(<?php echo $id; ?>)">Editar</a>
+                <tr>
+                    <td><?php echo $id; ?></td>
+                    <td><?php echo $nome; ?></td>
+                    <td><?php echo $email; ?></td>
+                    <td>
+                        <span id="msgAlerta"></span>
+                        <button class='btn btn-outline-warning btn-sm'
+                            onclick="openPopup(<?php echo $id; ?>)">Editar</a>
 
-                                    <button onclick="">Excluir</button>
-                            </td>
-                        </tr>
+                            <button onclick="">Excluir</button>
+                    </td>
+                </tr>
                 <?php
                     }
                 } else {
@@ -90,7 +92,8 @@ include "../src/popup.php";
             </tbody>
         </table>
         <!-- Início Modal editar usuário -->
-        <div class="modal fade" id="editUsuarioModal" tabindex="-1" aria-labelledby="editUsuarioModalLabel" aria-hidden="true">
+        <div class="modal fade" id="editUsuarioModal" tabindex="-1" aria-labelledby="editUsuarioModalLabel"
+            aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -102,18 +105,22 @@ include "../src/popup.php";
                         <form class="row g-3" id="edit-usuario-form">
                             <input type="hidden" name="id" id="editid">
                             <div class="col-12">
-                            
-                                <div class="col-12">
 
-                                <td>
-    
-</td>
+                                <div class="col-12">
+                                    <table>
+                                        <tr><td>Sistemas</td><td>Permissão</td></tr>
+                                        <tr><td id="sistemasEdit"></td>
+                                       
+                                    </table>
+                                    
+
+                                    
 
                                     <?php
                                     include "../db/conexao.php";
 
-                                    echo "<div id='sistemasEdit'></div>";
-                                   echo  "<div id='permissaoEdit'></div>";
+                                  //  echo "<div id='sistemasEdit'></div>";
+                                  //   echo  "<div id='permissaoEdit'></div>";
 
 
                                     $mysqli->close();
@@ -121,7 +128,8 @@ include "../src/popup.php";
                                 </div>
                             </div>
                             <div class="col-12">
-                                <input type="submit" class="btn btn-outline-warning btn-sm" id="edit-usuario-btn" value="Salvar">
+                                <input type="submit" class="btn btn-outline-warning btn-sm" id="edit-usuario-btn"
+                                    value="Salvar">
                             </div>
                         </form>
                     </div>
@@ -138,48 +146,48 @@ include "../src/popup.php";
 
     <script>
     async function openPopup(id) {
-    console.log(id)
+        console.log(id)
 
-    const dados = await fetch('../src/editarUser.php?id=' + id);
-    const resposta = await dados.json();
+        const dados = await fetch('../src/editarUser.php?id=' + id);
+        const resposta = await dados.json();
 
-    console.log(resposta);
-    if (!resposta['status']) {
-        document.getElementById("msgAlerta").innerHTML = resposta['msg']
-    } else {
-        const editModel = new bootstrap.Modal(document.getElementById("editUsuarioModal"))
-        editModel.show()
+        console.log(resposta);
+        if (!resposta['status']) {
+            document.getElementById("msgAlerta").innerHTML = resposta['msg']
+        } else {
+            const editModel = new bootstrap.Modal(document.getElementById("editUsuarioModal"))
+            editModel.show()
 
-        const sistemasEdit = document.getElementById('sistemasEdit');
-        sistemasEdit.innerHTML = ""; // Limpar o conteúdo existente, se houver
-        console.log("Dados:",resposta['dados'])
-    
-        const sistemas = resposta['dados'].map(obj => obj.sistemas);
-        console.log(sistemas);
-        sistemas.forEach(sistema => {
-            const li = document.createElement('li');
-            li.textContent = sistema;
-            sistemasEdit.appendChild(li);
-        });
+            const sistemasEdit = document.getElementById('sistemasEdit');
+            sistemasEdit.innerHTML = ""; // Limpar o conteúdo existente, se houver
+            console.log("Dados:", resposta['dados'])
+
+            const sistemas = resposta['dados'].map(obj => obj.sistemas);
+            console.log(sistemas);
+            sistemas.forEach(sistema => {
+                const li = document.createElement('li');
+                li.textContent = sistema;
+                sistemasEdit.appendChild(li);
+            });
 
 
-        const permissaoEdit = document.getElementById('permissaoEdit');
-permissaoEdit.innerHTML = ""; // Limpar o conteúdo existente, se houver
+            const permissaoEdit = document.getElementById('permissaoEdit');
+            permissaoEdit.innerHTML = ""; // Limpar o conteúdo existente, se houver
 
-const permissao = resposta['dados'].map(obj => obj.permissao);
-console.log(permissao);
+            const permissao = resposta['dados'].map(obj => obj.permissao);
+            console.log(permissao);
 
-const checkbox = document.createElement('input');
-checkbox.type = 'checkbox';
-checkbox.checked = permissao === '1'; // Marca a checkbox se permissao for igual a '1'
+            const checkbox = document.createElement('input');
+            checkbox.type = 'checkbox';
+            checkbox.checked = permissao === '1'; // Marca a checkbox se permissao for igual a '1'
 
-permissaoEdit.appendChild(checkbox);
+            permissaoEdit.appendChild(checkbox);
 
+        }
     }
-}
-
     </script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">
     </script>
 </body>
 
