@@ -1,24 +1,93 @@
 html, body {
     background-color: rgb(243, 243, 243);
+
 }
 
 header {
- 
+    background-color: #4d6d84;
     padding: 10px;
     margin: 10px;
     margin-top: auto;
     margin-left: auto;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+
 }
 
-.img-header {
-        margin-left: 40px;
+.imgHeader {
+    margin-left: 40px;
+
 }
 
-.area-consulta {
-    background-color: rgb(196, 196, 196);
+.navbar{
+    float: right;
+    margin-top: 8px;
+
+}
+
+.navbar ul {
+    list-style-type: none;
+
+}
+
+.navbar li {
+    display: inline-block;
+    
+}
+
+.listHeader a {
+    font-size: 109%;
+    display: block;
+    color: white;
+    text-align: left;
+    padding: 14px 16px;
+    text-decoration: none;
+
+}
+
+.listHeader a:hover {
+    display: block;
+    color: rgb(230, 230, 230);
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+
+}
+
+section {   
+    background-color: rgb(219, 219, 219);
     width: 700px; 
+    padding: 22px 30px 90px 17px;
     margin-top: 100px;
     margin-left: auto;
     margin-right: auto;
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.5);
+    border-radius: 4px;
+    border: 2px solid rgb(196, 196, 196);
+
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+    margin-top: 20px;
+
+  }
+
+  th, td {
+    border: 2px solid rgb(196, 196, 196);
+    padding: 8px;
+    text-align: left;
+ 
+  }
+
+  th {
+    background-color: #f2f2f2;
+  }
+
+footer {
+    background-color: #4d6d84;
+    color: white;
+    margin-top: 30%;
+    padding: 30px;
 
 }
