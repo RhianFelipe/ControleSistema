@@ -51,6 +51,7 @@ include "../src/popup.php";
                     <th>ID</th>
                     <th>Nome</th>
                     <th>Email</th>
+                    <th>Grupo</th>
                     <th>Ações</th>
                 </tr>
             </thead>
@@ -60,7 +61,7 @@ include "../src/popup.php";
                 include "../db/conexao.php";
 
                 // Consulta SQL para obter os dados
-                $sql = "SELECT id, nome, email FROM usuarios ORDER BY nome";
+                $sql = "SELECT id, nome, email, grupo FROM usuarios ORDER BY nome";
                 $result = $mysqli->query($sql);
 
                 if ($result->num_rows > 0) {
@@ -69,11 +70,13 @@ include "../src/popup.php";
                         $id = $row["id"];
                         $nome = $row["nome"];
                         $email = $row["email"];
+                        $grupo = $row["grupo"];
                 ?>
                 <tr>
                     <td><?php echo $id; ?></td>
                     <td><?php echo $nome; ?></td>
                     <td><?php echo $email; ?></td>
+                    <td><?php echo $grupo; ?></td>
                     <td>
                         <span id="msgAlerta"></span>
                         <button class='btn btn-outline-warning btn-sm'
@@ -105,8 +108,9 @@ include "../src/popup.php";
                         <form class="row g-3" id="edit-usuario-form">
                             <input type="hidden" name="id" id="editid">
                             <div class="col-12">
-
+                                         
                                 <div class="col-12">
+
                                     <table>
                                         <tr>
                                             <th>Sistemas</th>
@@ -115,18 +119,10 @@ include "../src/popup.php";
                                         <tr>
                                             <td id="sistemasEdit"></td>
                                             <td id="permissaoEdit"></td>
+                                            
+                                         
                                         </tr>
                                     </table>
-
-                                    <?php
-                                    include "../db/conexao.php";
-
-                                    //  echo "<div id='sistemasEdit'></div>";
-                                    //   echo  "<div id='permissaoEdit'></div>";
-
-
-                                    $mysqli->close();
-                                    ?>
                                 </div>
                             </div>
                             <div class="col-12">
@@ -159,6 +155,7 @@ include "../src/popup.php";
         } else {
             const editModel = new bootstrap.Modal(document.getElementById("editUsuarioModal"))
             editModel.show()
+            document.getElementById("editid").value = resposta['dados'][0].id_usuario;
 
             const sistemasEdit = document.getElementById('sistemasEdit');
             sistemasEdit.innerHTML = ""; // Limpar o conteúdo existente, se houver
@@ -202,18 +199,21 @@ include "../src/popup.php";
     }
 
     const editForm = document.getElementById("edit-usuario-form");
+    console.log("Dados do Formulario de Edição:", editForm);
     if (editForm) {
         editForm.addEventListener("submit", async (e) => {
             e.preventDefault()
             console.log("Botão edit funcionou");
             const dadosForm = new FormData(editForm);
-            await fetch("../src/updateUser.php", {
-                method:"POST",
+            console.log("Dados do formEdit instanciados: ", dadosForm)
+            const dados = await fetch("../src/updateUser.php", {
+                method: "POST",
                 body: dadosForm
             })
+            const resposta = await dados.json();
+            console.log("Resposta do edit form:", resposta)
 
         })
-
     }
     </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
