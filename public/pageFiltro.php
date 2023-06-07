@@ -19,9 +19,13 @@ include "../src/popup.php";
 
 <body>
     <header>
-        <h1>Controle de Sistemas</h1>
-        <a href="../public/pageCadastro.php">Cadastrar Usuários</a>
-        <a href="">Lista de Usuários</a>
+        <img class="imgHeader" src="..\public\assets\img\logo-govpr-white.png">
+        <nav class="navbar">
+            <ul>
+                <li class="listHeader"><a class="a1" href="../public/pageCadastro.php">Cadastrar Usuários</a></li>
+                <li class="listHeader"><a class="a2" href="">Lista de Usuários</a></li>
+            </ul>
+        </nav>
     </header>
     <section class="area-consulta">
         <h1>Área de Consulta</h1>

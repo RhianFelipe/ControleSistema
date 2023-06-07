@@ -5,7 +5,7 @@ html, body {
 
 header {
     background-color: #4d6d84;
-    padding: 10px;
+    padding: 30px;
     margin: 10px;
     margin-top: auto;
     margin-left: auto;
@@ -14,7 +14,7 @@ header {
 }
 
 .imgHeader {
-    margin-left: 40px;
+    width: 10%;
 
 }
 
@@ -34,12 +34,12 @@ header {
     
 }
 
-.listHeader a {
+.listHeader .a1 {
     font-size: 109%;
     display: block;
     color: white;
     text-align: left;
-    padding: 14px 16px;
+    margin-right: 15px;
     text-decoration: none;
 
 }
@@ -48,7 +48,6 @@ header {
     display: block;
     color: rgb(230, 230, 230);
     text-align: center;
-    padding: 14px 16px;
     text-decoration: none;
 
 }
