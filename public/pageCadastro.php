@@ -76,9 +76,7 @@ cadastrarUsuario();
                 ?>
             </div>
             <button id="button-submit" type="submit">Cadastrar</button>
-
         </form>
-
     </div>
 
     <footer></footer>
@@ -86,5 +84,4 @@ cadastrarUsuario();
     <script src="../script/gerenciarPermissoes.js"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 </body>
-
 </html>
