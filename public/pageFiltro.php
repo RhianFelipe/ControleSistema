@@ -223,7 +223,22 @@ include "../src/popup.php";
 
                 const idUsuario = document.getElementById("editid").value;
                 const dadosForm = new FormData(editForm);
-              
+                const sistemas = [];
+                const permissoes = [];
+
+                for (let pair of dadosForm.entries()) {
+                    const [name, value] = pair;
+
+                    if (name === 'sistema[]') {
+                        sistemas.push(value);
+                    } else if (name === 'permissao[]') {
+                        permissoes.push(value);
+                    }
+                }
+
+                console.log("ID:", idUsuario);
+                console.log("Sistemas:", sistemas);
+                console.log("Permissões:", permissoes);
 
                 console.log("Dados do formEdit instanciados: ", dadosForm)
                 const dados = await fetch("../src/updateUser.php", {

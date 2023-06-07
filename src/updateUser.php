@@ -33,7 +33,7 @@ else if (empty($dados['permissao'])) {
 
   // Atualiza as permissões dos sistemas no banco de dados
   foreach ($sistemas as $index => $sistema) {
-    $permissao = isset($dados['permissao'][$sistema]) ? 1 : 0;
+    $permissao = isset($dados['permissao']) ? 1 : 0;
    
     // Realize a atualização no banco de dados
     $sql = "UPDATE permissoes SET permissao = $permissao WHERE id_usuario = $idUsuario AND sistemas = '$sistema'";
@@ -41,7 +41,7 @@ else if (empty($dados['permissao'])) {
   
     // Verifique se a atualização foi bem-sucedida e trate os erros, se necessário
   }
-  if($queryUpdate && $permissao == 0 ){
+  if($queryUpdate && $permissao == 1){
 
     $retorna = ['status' => true, 'msg' => "Usuário editado com sucesso!"];
     echo json_encode($retorna);
