@@ -50,7 +50,7 @@ cadastrarUsuario();
             <!-- Criação da tabela de permissões -->
 
             <button onclick="gerenciarPermissoes() " id="button-permissao" type="button">Permissões</button> <br>
-            <div id="selects-permissoes" style="display: none;">
+            <div id="selects-permissoes" style="display: none; margin-left:50rem;">
                 <h3>Permissões:</h3>
                 <p>Marque as permissões para cada sistema:</p>
                 <?php
