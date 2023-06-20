@@ -1,6 +1,4 @@
-<?php
-include "../src/popup.php";
-?>
+
 
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -48,6 +46,7 @@ include "../src/popup.php";
     </section>
     <!-- Tabela para exibir os dados -->
     <section>
+    <span id="msgAlerta"></span>
         <table>
             <thead>
                 <tr>
@@ -57,7 +56,9 @@ include "../src/popup.php";
                     <th>Grupo</th>
                     <th>Ações</th>
                 </tr>
+             
             </thead>
+          
             <tbody>
                 <?php
                 // Conexão com o banco de dados (substitua as informações de conexão com as suas)
@@ -66,7 +67,7 @@ include "../src/popup.php";
                 // Consulta SQL para obter os dados
                 $sql = "SELECT id, nome, email, grupo FROM usuarios ORDER BY nome";
                 $result = $mysqli->query($sql);
-
+            
                 if ($result->num_rows > 0) {
                     // Exibe os dados na tabela
                     while ($row = $result->fetch_assoc()) {
@@ -75,19 +76,23 @@ include "../src/popup.php";
                         $email = $row["email"];
                         $grupo = $row["grupo"];
                 ?>
-                <tr>
+                 
+                 <tr id="linha-usuario-<?php echo $id; ?>">
                     <td><?php echo $id; ?></td>
                     <td><?php echo $nome; ?></td>
                     <td><?php echo $email; ?></td>
                     <td><?php echo $grupo; ?></td>
                     <td>
-                        <span id="msgAlerta"></span>
+                       
                         <button class='btn btn-outline-warning btn-sm'
                             onclick="openPopup(<?php echo $id; ?>)">Editar</a>
 
-                            <button onclick="">Excluir</button>
+                        <button class='btn btn-outline-danger btn-sm'
+                            onclick="apagarUsuarioDados(<?php echo $id; ?>)">Excluir</button>
+
                     </td>
                 </tr>
+
                 <?php
                     }
                 } else {
@@ -107,11 +112,11 @@ include "../src/popup.php";
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <span id="msgAlertaErroEdit"></span>
+                        
                         <form class="row g-3" id="edit-usuario-form">
                             <input type="hidden" name="id" id="editid">
                             <div class="col-12">
-                                <div class="col-12">
+                            
 
                                     <table>
                                         <tr>
@@ -123,7 +128,7 @@ include "../src/popup.php";
                                             <td id="permissaoEdit"></td>
                                         </tr>
                                     </table>
-                                </div>
+                                
                             </div>
                             <div class="col-12">
                                 <input type="submit" class="btn btn-outline-warning btn-sm" id="edit-usuario-btn"
@@ -139,9 +144,29 @@ include "../src/popup.php";
     </section>
 
     <footer>
+        kkjioijpok
         Todos os direitos reservados
     </footer>
+    <script>
+            async function apagarUsuarioDados(id) {
+    console.log("Entrou:", id);
+    const dados = await fetch('../src/deleteUser.php?id=' + id);
+    const resposta = await dados.json();
+    console.log(resposta);
+    
+    const linhaUsuario = document.getElementById('linha-usuario-' + id);
+    
+    if (!resposta.status) {
+        document.getElementById("msgAlerta").innerHTML = resposta.msg;
+    } else {
+        document.getElementById("msgAlerta").innerHTML = resposta.msg;
+        alert("Usuario deletado com sucesso!");
+        linhaUsuario.remove();
+    }
+}
 
+
+    </script>
     <script src="../script/popupEdit.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">

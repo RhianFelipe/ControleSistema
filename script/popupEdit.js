@@ -67,7 +67,6 @@
             });
         }
     }
-
     const editForm = document.getElementById("edit-usuario-form");
     if (editForm) {
         editForm.addEventListener("submit", async (e) => {
@@ -106,7 +105,11 @@
             });
             const resposta = await dados.json();
             console.log("Resposta do edit form:", resposta);
-            alert('Foi Salvo');
+            if (resposta.status === true) {
+                alert('As alterações foram salvas corretamente!');
+            } else {
+                alert('Ocorreu um erro ao salvar as alterações.');
+            }
         });
 
     }

@@ -17,7 +17,7 @@ box-shadow: none;
 /*Define a altura da página como 100%*/
 html,
 body {
-  height: 100vh;
+  height: 0vh;
 }
 
 header, footer{
