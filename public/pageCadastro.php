@@ -80,7 +80,12 @@ cadastrarUsuario();
     </div>
 
     <footer></footer>
-
+    <script>
+    $(document).on('submit', '#form', function() {
+        $("input").val("");
+        $("textarea").val("");
+    });
+</script>
     <script src="../script/gerenciarPermissoes.js"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 </body>

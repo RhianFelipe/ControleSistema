@@ -37,7 +37,8 @@ else if (empty($dados['permissao'])) {
     $novasPermissoes[$index] = $permissao;
     $novasSistemas =  $sistemas;
     // Realize a atualização no banco de dados
-    $sql = "UPDATE permissoes SET permissao = $permissao WHERE id_usuario = $idUsuario AND sistemas = '$sistema'";
+    $sql = "UPDATE permissoes SET permissao = $permissao, data_altere = NOW() WHERE id_usuario = $idUsuario AND sistemas = '$sistema'";
+
     $queryUpdate = $mysqli->query($sql) or die($mysqli->error);
    
     // Verifique se a atualização foi bem-sucedida e trate os erros, se necessário

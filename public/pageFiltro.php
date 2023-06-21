@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -45,8 +43,9 @@
         </div>
     </section>
     <!-- Tabela para exibir os dados -->
-    <section>
     <span id="msgAlerta"></span>
+    <section>
+
         <table>
             <thead>
                 <tr>
@@ -56,9 +55,9 @@
                     <th>Grupo</th>
                     <th>Ações</th>
                 </tr>
-             
+
             </thead>
-          
+
             <tbody>
                 <?php
                 // Conexão com o banco de dados (substitua as informações de conexão com as suas)
@@ -76,19 +75,19 @@
                         $email = $row["email"];
                         $grupo = $row["grupo"];
                 ?>
-                 
-                 <tr id="linha-usuario-<?php echo $id; ?>">
+
+                <tr id="linha-usuario-<?php echo $id; ?>">
                     <td><?php echo $id; ?></td>
                     <td><?php echo $nome; ?></td>
                     <td><?php echo $email; ?></td>
                     <td><?php echo $grupo; ?></td>
                     <td>
-                       
+
                         <button class='btn btn-outline-warning btn-sm'
                             onclick="openPopup(<?php echo $id; ?>)">Editar</a>
 
-                        <button class='btn btn-outline-danger btn-sm'
-                            onclick="apagarUsuarioDados(<?php echo $id; ?>)">Excluir</button>
+                            <button class='btn btn-outline-danger btn-sm'
+                                onclick="apagarUsuarioDados(<?php echo $id; ?>)">Excluir</button>
 
                     </td>
                 </tr>
@@ -112,23 +111,23 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        
+
                         <form class="row g-3" id="edit-usuario-form">
                             <input type="hidden" name="id" id="editid">
                             <div class="col-12">
-                            
 
-                                    <table>
-                                        <tr>
-                                            <th>Sistemas</th>
-                                            <th>Permissão</th>
-                                        </tr>
-                                        <tr>
-                                            <td id="sistemasEdit"></td>
-                                            <td id="permissaoEdit"></td>
-                                        </tr>
-                                    </table>
-                                
+
+                                <table>
+                                    <tr>
+                                        <th>Sistemas</th>
+                                        <th>Permissão</th>
+                                    </tr>
+                                    <tr>
+                                        <td id="sistemasEdit"></td>
+                                        <td id="permissaoEdit"></td>
+                                    </tr>
+                                </table>
+
                             </div>
                             <div class="col-12">
                                 <input type="submit" class="btn btn-outline-warning btn-sm" id="edit-usuario-btn"
@@ -144,28 +143,32 @@
     </section>
 
     <footer>
-        kkjioijpok
+
         Todos os direitos reservados
     </footer>
     <script>
-            async function apagarUsuarioDados(id) {
-    console.log("Entrou:", id);
-    const dados = await fetch('../src/deleteUser.php?id=' + id);
-    const resposta = await dados.json();
-    console.log(resposta);
-    
-    const linhaUsuario = document.getElementById('linha-usuario-' + id);
-    
-    if (!resposta.status) {
-        document.getElementById("msgAlerta").innerHTML = resposta.msg;
-    } else {
-        document.getElementById("msgAlerta").innerHTML = resposta.msg;
-        alert("Usuario deletado com sucesso!");
-        linhaUsuario.remove();
+    async function apagarUsuarioDados(id) {
+        console.log("Entrou:", id);
+        var confirmar = confirm("Tem certeza que deseja excluir o registro selecionado?");
+        if (confirmar == true) {
+
+            const dados = await fetch('../src/deleteUser.php?id=' + id);
+            const resposta = await dados.json();
+            console.log(resposta);
+
+            const linhaUsuario = document.getElementById('linha-usuario-' + id);
+
+            if (!resposta.status) {
+                alert("ERRO: Usuário não deletado!");
+            } else {
+
+                alert("Usuario deletado com sucesso!");
+                linhaUsuario.remove();
+            }
+
+        }
+
     }
-}
-
-
     </script>
     <script src="../script/popupEdit.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
