@@ -13,74 +13,77 @@
     <title>Sistema de Controle de Permissões</title>
 </head>
 
-<body onload="limparFiltragem()">
+<body>
     <header>
         <img class="imgHeader" src="..\public\assets\img\logo-govpr-white.png">
         <nav class="navbar">
+        <a href="../public/pageFiltro">Voltar para Filtro</a>
             <ul>
-                <li class="listHeader"><a class="a1" href="../public/pageCadastro.php">Cadastrar Usuários</a></li>
-                <li class="listHeader"><a class="a2" href="../public/pageLista.php">Lista de Usuários</a></li>
+             
             </ul>
         </nav>
     </header>
-    <section class="area-consulta">
-        <h1>Área de Consulta</h1>
-        <form action="../src/filtrarUser.php" method="POST">
-            <div>
-                <label>Nome:</label>
-                <input class="input-table" type="text" name="nome">
-                <label>E-mail:</label>
-                <input class="input-table" type="text" name="email">
-                <button type="submit" onclick="ocultarListagem()">Filtrar</button>
-            </div>
-        </form>
+
+ 
+    <!-- Tabela para exibir os dados -->
+    <span id="msgAlerta"></span>
+    <section >
 
         <table>
             <thead>
                 <tr>
+                    <th>ID</th>
                     <th>Nome</th>
                     <th>Email</th>
+                    <th>Grupo</th>
                     <th>Ações</th>
                 </tr>
+
             </thead>
+
             <tbody>
                 <?php
-            if (isset($_GET['resultados'])) {
-                $resultados = json_decode(urldecode($_GET['resultados']), true);
-                if (empty($resultados)) {
-                    echo "<tr><td colspan='3'>Nenhum resultado encontrado.</td></tr>";
-                } else {
-                    foreach ($resultados as $resultado) {
-                        $id = $resultado['id'];
-                        $nomeUsuario = $resultado['nome'];
-                        $emailUsuario = $resultado['email'];
-                        ?>
+                // Conexão com o banco de dados (substitua as informações de conexão com as suas)
+                include "../db/conexao.php";
+
+                // Consulta SQL para obter os dados
+                $sql = "SELECT id, nome, email, grupo FROM usuarios ORDER BY nome";
+                $result = $mysqli->query($sql);
+            
+                if ($result->num_rows > 0) {
+                    // Exibe os dados na tabela
+                    while ($row = $result->fetch_assoc()) {
+                        $id = $row["id"];
+                        $nome = $row["nome"];
+                        $email = $row["email"];
+                        $grupo = $row["grupo"];
+                ?>
+
                 <tr id="linha-usuario-<?php echo $id; ?>">
-                    <td><?php echo $nomeUsuario; ?></td>
-                    <td><?php echo $emailUsuario; ?></td>
+                    <td><?php echo $id; ?></td>
+                    <td><?php echo $nome; ?></td>
+                    <td><?php echo $email; ?></td>
+                    <td><?php echo $grupo; ?></td>
                     <td>
-                        <button class="btn btn-outline-warning btn-sm"
-                            onclick="openPopup('<?php echo $id; ?>')">Editar</button>
-                        <button class="btn btn-outline-danger btn-sm"
-                            onclick="apagarUsuarioDados('<?php echo $id; ?>')">Excluir</button>
+
+                        <button class='btn btn-outline-warning btn-sm'
+                            onclick="openPopup(<?php echo $id; ?>)">Editar</a>
+
+                            <button class='btn btn-outline-danger btn-sm'
+                                onclick="apagarUsuarioDados(<?php echo $id; ?>)">Excluir</button>
+
                     </td>
                 </tr>
+
                 <?php
                     }
+                } else {
+                    echo "<tr><td colspan='3'>Nenhum registro encontrado.</td></tr>";
                 }
-            } else {
-                echo "<tr><td colspan='3'>Digite um nome ou email para filtrar.</td></tr>";
-            }
-            ?>
+                $mysqli->close();
+                ?>
             </tbody>
         </table>
-    </section>
-
-
-    <!-- Tabela para exibir os dados -->
-    <span id="msgAlerta"></span>
-   
-
         <!-- Início Modal editar usuário -->
         <div class="modal fade" id="editUsuarioModal" tabindex="-1" aria-labelledby="editUsuarioModalLabel"
             aria-hidden="true">
@@ -119,7 +122,9 @@
             </div>
         </div>
         <!-- Fim Modal editar usuário -->
-    
+
+    </section>
+
     <footer>
 
         Todos os direitos reservados
