@@ -21,7 +21,7 @@
   width: 25%;
   border-radius: 15px;
   margin: 3rem;
-  background-color: #696363ab;
+  background-color: var(--section-bgcolor); 
 }
 
 /*Estilizar input do formulario*/

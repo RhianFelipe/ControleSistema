@@ -3,6 +3,7 @@
 /*Usado para criar variaveis globais*/
 :root{
 --footer-header-color:rgb(69, 116, 143);
+--section-bgcolor: rgb(219, 219, 219);
 
 }
 /*Remove o espaço extra adicionado pelo padding e a borda de um elemento.*/
@@ -26,7 +27,6 @@ header, footer{
 }
 
 footer{
-
   bottom: 0;
   left: 0;
   width: 100%;
