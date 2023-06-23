@@ -1,54 +1,3 @@
-html, body {
-    background-color: rgb(255, 255, 255);
-
-}
-
-header {
-    background-color: #4d6d84;
-    padding: 30px;
-    margin: auto;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
-
-}
-
-.imgHeader {
-    width: 10%;
-
-}
-
-.navbar{
-    float: right;
-    margin-top: 8px;
-
-}
-
-.navbar ul {
-    list-style-type: none;
-
-}
-
-.navbar li {
-    display: inline-block;
-    
-}
-
-.listHeader .a1 {
-    font-size: 109%;
-    display: block;
-    color: white;
-    text-align: left;
-    margin-right: 15px;
-    text-decoration: none;
-
-}
-
-.listHeader a:hover {
-    display: block;
-    color: rgb(230, 230, 230);
-    text-align: center;
-    text-decoration: none;
-
-}
 
 section {   
     background-color: rgb(219, 219, 219);
@@ -82,7 +31,6 @@ table {
   }
 
 footer {
-    background-color: #4d6d84;
     color: white;
     margin-top: 30%;
     padding: 30px;

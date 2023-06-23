@@ -16,10 +16,10 @@
     <header>
         <img class="imgHeader" src="..\public\assets\img\logo-govpr-white.png">
         <nav class="navbar">
-            <ul>
-                <li class="listHeader"><a class="a1" href="../public/pageCadastro.php">Cadastrar Usuários</a></li>
-                <li class="listHeader"><a class="a2" href="../public/pageLista.php">Lista de Usuários</a></li>
-            </ul>
+    
+                <li class="list-header"><a class="a1" href="../public/pageCadastro.php">Cadastrar Usuários</a></li>
+                <li class="list-header"><a class="a1" href="../public/pageLista.php">Lista de Usuários</a></li>
+          
         </nav>
     </header>
     <section class="area-consulta">

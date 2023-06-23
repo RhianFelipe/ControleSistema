@@ -13,14 +13,19 @@ cadastrarUsuario();
     <!-- Importar folhas de estilo -->
     <link rel="stylesheet" href="../public/main.css?v=<?php echo time(); ?>">
     <link rel="stylesheet" href="../public/style/telaCadastro.css?v=<?php echo time(); ?>">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
     <title>Cadastrar Usuário</title>
 </head>
 
 <body>
     <!-- Criação do Header para logo e navegação-->
     <header>
-        <img src="../public/assets/img/logo-govpr-white.png" alt="">
-        <a href="../public/pageFiltro">Voltar para Filtro</a>
+        <img class="imgHeader" src="..\public\assets\img\logo-govpr-white.png">
+        <nav class="navbar">
+            
+            <li class="list-header"><a class="a1" href="../public/pageFiltro">Voltar para Filtro</a> </li>
+        </nav>
     </header>
 
     <!-- Criação formulário para cadastro de Usuário-->
@@ -50,7 +55,7 @@ cadastrarUsuario();
             <!-- Criação da tabela de permissões -->
 
             <button onclick="gerenciarPermissoes() " id="button-permissao" type="button">Permissões</button> <br>
-            <div id="selects-permissoes" style="display: none; margin-left:50rem;">
+            <div id="selects-permissoes" style="display: none; ">
                 <h3>Permissões:</h3>
                 <p>Marque as permissões para cada sistema:</p>
                 <?php
@@ -81,8 +86,9 @@ cadastrarUsuario();
 
     <footer></footer>
     <script>
- 
-</script>
+
+    </script>
     <script src="../script/utils.js"></script>
 </body>
+
 </html>

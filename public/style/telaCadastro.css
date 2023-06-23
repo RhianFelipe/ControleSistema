@@ -7,7 +7,7 @@
   justify-content: center;
   text-align: center; /*Deixar os textos no centro*/
   display: flex;
-  margin-top: 10rem;
+  margin-top: 5rem;
 }
 
 /*Estilizar H1*/
@@ -33,6 +33,13 @@
   border: 1px solid black;
   margin-bottom: 1.5rem;
 }
+
+/*Estilizar Permissões*/
+#selects-permissoes{
+
+
+}
+
 
 /*Estilizar botão da permissão do formulario*/
 #button-permissao {

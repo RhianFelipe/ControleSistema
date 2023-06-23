@@ -2,7 +2,7 @@
 
 /*Usado para criar variaveis globais*/
 :root{
---footer-header-color:rgb(69, 116, 143);
+--footer-header-color:#4d6d84;
 --section-bgcolor: rgb(219, 219, 219);
 
 }
@@ -21,12 +21,55 @@ body {
   height: 0vh;
 }
 
-header, footer{
-  background-color: var(--footer-header-color);
-  
+
+/*Estilização padrão do Header*/
+header {
+  background-color: var(--footer-header-color); 
+  padding: 30px;
+  margin: auto;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+
 }
 
+.imgHeader {
+  width: 10%;
+
+}
+
+.navbar{
+  float: right;
+  margin-top: 8px;
+
+}
+.navbar li {
+  display: inline-block;
+    list-style-type: none;
+}
+
+.list-header .a1 {
+  font-size: 109%;
+  display: block;
+  color: white;
+  text-align: left;
+  margin-right: 15px;
+  text-decoration: none;
+
+}
+
+.list-header a:hover {
+  display: block;
+  color: rgb(230, 230, 230);
+  text-align: center;
+  text-decoration: none;
+
+}
+
+/*Estilização padrão do Footer*/
+
+
+
 footer{
+  background-color: var(--footer-header-color);
   bottom: 0;
   left: 0;
   width: 100%;
