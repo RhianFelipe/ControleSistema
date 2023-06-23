@@ -19,7 +19,10 @@
 
 
             const sistemas = resposta['dados'].map(obj => obj.sistemas);
+      
+
             console.log("Sistemas Mapeados: ", sistemas);
+            
             sistemas.forEach(sistema => {
                 const li = document.createElement('li');
                 li.textContent = sistema;
