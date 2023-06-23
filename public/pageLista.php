@@ -27,7 +27,7 @@
         <table>
             <thead>
                 <tr>
-                    <th>ID</th>
+              
                     <th>Nome</th>
                     <th>Email</th>
                     <th>Grupo</th>
@@ -52,7 +52,7 @@
                         $grupo = $row["grupo"];
                 ?>
                 <tr id="linha-usuario-<?php echo $id; ?>">
-                    <td><?php echo $id; ?></td>
+                   
                     <td><?php echo $nome; ?></td>
                     <td><?php echo $email; ?></td>
                     <td><?php echo $grupo; ?></td>

@@ -33,11 +33,11 @@ cadastrarUsuario();
         <form id="form" method="POST" action="../public/pageCadastro.php">
             <h1>Cadastrar Usuário</h1><br>
             <label>Nome:</label>
-            <input class="input-value" id="nome" value="<?php if(isset($_POST['nome'])) echo $_POST['nome']?>"
+            <input class="input-value" id="nome" value="<?php if(isset($_POST['nome']))?>"
                 placeholder="nome" name="nome" type="text" required><br>
 
             <label>E-mail:</label>
-            <input class="input-value" value="<?php if(isset($_POST['email'])) echo $_POST['email']?>"
+            <input class="input-value" value="<?php if(isset($_POST['email'])) ?>"
                 placeholder="usuario@pge.pr.gov.br" name="email" type="text" required><br>
 
 
