@@ -23,7 +23,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $id = $row['id'];
             $nomeUsuario = $row['nome'];
             $emailUsuario = $row['email'];
-            $resultados[] = array('id' =>  $id,'nome' => $nomeUsuario, 'email' => $emailUsuario);
+            $resultados[] = array('id' =>  $id, 'nome' => $nomeUsuario, 'email' => $emailUsuario);
         }
     } else {
         $resultados = array();
@@ -33,4 +33,3 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     header('Location: ../public/pageFiltro.php?resultados=' . urlencode(json_encode($resultados)));
     exit();
 }
-?>

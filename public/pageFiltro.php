@@ -7,8 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../public/main.css?v=<?php echo time(); ?>">
     <link rel="stylesheet" href="../public/style/telaFiltro.css?v=<?php echo time(); ?>">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
 
     <title>Sistema de Controle de Permissões</title>
 </head>
@@ -45,33 +44,31 @@
             </thead>
             <tbody>
                 <?php
-            if (isset($_GET['resultados'])) {
-                $resultados = json_decode(urldecode($_GET['resultados']), true);
-                if (empty($resultados)) {
-                    echo "<tr><td colspan='3'>Nenhum resultado encontrado.</td></tr>";
-                } else {
-                    foreach ($resultados as $resultado) {
-                        $id = $resultado['id'];
-                        $nomeUsuario = $resultado['nome'];
-                        $emailUsuario = $resultado['email'];
-                        ?>
-                <tr id="linha-usuario-<?php echo $id; ?>">
-                    <td><?php echo $nomeUsuario; ?></td>
-                    <td><?php echo $emailUsuario; ?></td>
-                    <td>
-                        <button class="btn btn-outline-warning btn-sm"
-                            onclick="openPopup('<?php echo $id; ?>')">Editar</button>
-                        <button class="btn btn-outline-danger btn-sm"
-                            onclick="apagarUsuarioDados('<?php echo $id; ?>')">Excluir</button>
-                    </td>
-                </tr>
+                if (isset($_GET['resultados'])) {
+                    $resultados = json_decode(urldecode($_GET['resultados']), true);
+                    if (empty($resultados)) {
+                        echo "<tr><td colspan='3'>Nenhum resultado encontrado.</td></tr>";
+                    } else {
+                        foreach ($resultados as $resultado) {
+                            $id = $resultado['id'];
+                            $nomeUsuario = $resultado['nome'];
+                            $emailUsuario = $resultado['email'];
+                ?>
+                            <tr id="linha-usuario-<?php echo $id; ?>">
+                                <td><?php echo $nomeUsuario; ?></td>
+                                <td><?php echo $emailUsuario; ?></td>
+                                <td>
+                                    <button class="btn btn-outline-warning btn-sm" onclick="openPopup('<?php echo $id; ?>')">Editar</button>
+                                    <button class="btn btn-outline-danger btn-sm" onclick="apagarUsuarioDados('<?php echo $id; ?>')">Excluir</button>
+                                </td>
+                            </tr>
                 <?php
+                        }
                     }
+                } else {
+                    echo "<tr><td colspan='3'>Digite um nome ou email para filtrar.</td></tr>";
                 }
-            } else {
-                echo "<tr><td colspan='3'>Digite um nome ou email para filtrar.</td></tr>";
-            }
-            ?>
+                ?>
             </tbody>
         </table>
     </section>
@@ -79,84 +76,53 @@
 
     <!-- Tabela para exibir os dados -->
     <span id="msgAlerta"></span>
-   
-
-        <!-- Início Modal editar usuário -->
-        <div class="modal fade" id="editUsuarioModal" tabindex="-1" aria-labelledby="editUsuarioModalLabel"
-            aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="editUsuarioModalLabel">Editar Usuário</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-
-                        <form class="row g-3" id="edit-usuario-form">
-                            <input type="hidden" name="id" id="editid">
-                            <div class="col-12">
 
 
-                                <table>
-                                    <tr>
-                                        <th>Sistemas</th>
-                                        <th>Permissão</th>
-                                    </tr>
-                                    <tr>
-                                        <td id="sistemasEdit"></td>
-                                        <td id="permissaoEdit"></td>
-                                    </tr>
-                                </table>
+    <!-- Início Modal editar usuário -->
+    <div class="modal fade" id="editUsuarioModal" tabindex="-1" aria-labelledby="editUsuarioModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editUsuarioModalLabel">Editar Usuário</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
 
-                            </div>
-                            <div class="col-12">
-                                <input type="submit" class="btn btn-outline-warning btn-sm" id="edit-usuario-btn"
-                                    value="Salvar">
-                            </div>
-                        </form>
-                    </div>
+                    <form class="row g-3" id="edit-usuario-form">
+                        <input type="hidden" name="id" id="editid">
+                        <div class="col-12">
+
+
+                            <table>
+                                <tr>
+                                    <th>Sistemas</th>
+                                    <th>Permissão</th>
+                                </tr>
+                                <tr>
+                                    <td id="sistemasEdit"></td>
+                                    <td id="permissaoEdit"></td>
+                                </tr>
+                            </table>
+
+                        </div>
+                        <div class="col-12">
+                            <input type="submit" class="btn btn-outline-warning btn-sm" id="edit-usuario-btn" value="Salvar">
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
-        <!-- Fim Modal editar usuário -->
-    
+    </div>
+    <!-- Fim Modal editar usuário -->
+
     <footer>
 
         Todos os direitos reservados
     </footer>
-    <script>
-    function limparFiltragem() {
-        const urlSemParametros = window.location.pathname;
-        history.replaceState(null, null, urlSemParametros);
-    }
-
-    async function apagarUsuarioDados(id) {
-        console.log("Entrou:", id);
-        var confirmar = confirm("Tem certeza que deseja excluir o registro selecionado?");
-        if (confirmar == true) {
-
-            const dados = await fetch('../src/deleteUser.php?id=' + id);
-            const resposta = await dados.json();
-            console.log(resposta);
-
-            const linhaUsuario = document.getElementById('linha-usuario-' + id);
-
-            if (!resposta.status) {
-                alert("ERRO: Usuário não deletado!");
-            } else {
-
-                alert("Usuario deletado com sucesso!");
-                linhaUsuario.remove();
-                location.reload(); // Recarrega a página
-            }
-
-        }
-
-    }
-    </script>
     <script src="../script/popupEdit.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">
+    <script src="../script/deleteUser.js"></script>
+    <script src="../script/utils.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">
     </script>
 </body>
 

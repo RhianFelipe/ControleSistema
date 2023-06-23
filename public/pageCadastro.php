@@ -1,6 +1,6 @@
 <?php
 // Incluir arquivo de conexão com o banco de dados e arquivo de pop-up
-include "../src/cadastrarUsuarios.php";
+include "../src/cadastrarUser.php";
 cadastrarUsuario();
 ?>
 <!DOCTYPE html>
@@ -81,12 +81,8 @@ cadastrarUsuario();
 
     <footer></footer>
     <script>
-    $(document).on('submit', '#form', function() {
-        $("input").val("");
-        $("textarea").val("");
-    });
+ 
 </script>
-    <script src="../script/gerenciarPermissoes.js"></script>
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="../script/utils.js"></script>
 </body>
 </html>

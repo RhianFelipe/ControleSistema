@@ -1,6 +1,5 @@
 <?php
 
-
 function cadastrarUsuario(){
   include "../db/conexao.php";
   include "../db/consulta.php";
@@ -39,9 +38,6 @@ function cadastrarUsuario(){
                     }
                 }
                 echo "<script>alert('Usuário cadastrado com sucesso!');</script>";
-             
-                
-
         } 
      
         }
