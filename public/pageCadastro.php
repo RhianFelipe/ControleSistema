@@ -1,6 +1,10 @@
 
+
+<?php 
 // Incluir arquivo de conexão com o banco de dados e arquivo de pop-up
-<?php include "../src/cadastrarUser.php";?>
+include "../src/cadastrarUser.php";
+
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 
