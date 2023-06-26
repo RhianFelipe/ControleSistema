@@ -1,8 +1,6 @@
-<?php
+
 // Incluir arquivo de conexão com o banco de dados e arquivo de pop-up
-include "../src/cadastrarUser.php";
-cadastrarUsuario();
-?>
+<?php include "../src/cadastrarUser.php";?>
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -84,10 +82,11 @@ cadastrarUsuario();
         </form>
     </div>
 
-    <footer></footer>
-    <script>
+    <footer>
 
-    </script>
+    Todos os direitos reservados
+
+    </footer>
     <script src="../script/utils.js"></script>
 </body>
 

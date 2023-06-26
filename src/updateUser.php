@@ -1,5 +1,6 @@
 <?php
 include_once "../db/conexao.php";
+include "../src/logUser.php";
 
 $dados = filter_input_array(INPUT_POST, FILTER_DEFAULT);
 
@@ -26,7 +27,7 @@ if (empty($dados['id'])) {
 
   // Recupera o ID do usuário a ser atualizado
   $idUsuario = $dados['id'];
-
+  logAtualizacaoUsuario($mysqli,$idUsuario);
   // Atualiza as permissões dos sistemas no banco de dados
   foreach ($sistemas as $index => $sistema) {
     $permissao = $dados['permissao'][$index];
@@ -39,9 +40,12 @@ if (empty($dados['id'])) {
 
     // Verifique se a atualização foi bem-sucedida e trate os erros, se necessário
   }
+  
+ 
   if ($queryUpdate) {
 
     $retorna = ['status' => true, 'msg' => "Usuário editado com sucesso!", 'permissoes' => $novasPermissoes, 'Sistemas' => $novasSistemas];
     echo json_encode($retorna);
   }
+ 
 }

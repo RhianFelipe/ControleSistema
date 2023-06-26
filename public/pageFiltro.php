@@ -19,6 +19,7 @@
     
                 <li class="list-header"><a class="a1" href="../public/pageCadastro.php">Cadastrar Usuários</a></li>
                 <li class="list-header"><a class="a1" href="../public/pageLista.php">Lista de Usuários</a></li>
+                <li class="list-header"><a class="a1" href="../public/pageLogs.php">Logs de Usuário</a></li>
           
         </nav>
     </header>

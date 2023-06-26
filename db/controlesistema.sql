@@ -78,6 +78,26 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `logsusuarios`
+--
+
+DROP TABLE IF EXISTS `logsusuarios`;
+CREATE TABLE IF NOT EXISTS `logsusuarios` (
+  `id` int NOT NULL AUTO_INCREMENT,
+   `nome_usuario` varchar(255) NOT NULL,
+  `id_usuario` int NOT NULL,
+  `tipo_operacao` varchar(20) NOT NULL,
+  `data_operacao` datetime NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `id_usuario` (`id_usuario`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- --------------------------------------------------------
+
+
 --
 -- Extraindo dados da tabela `usuarios`
 --
@@ -85,6 +105,10 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
 INSERT INTO `usuarios` (`id`, `nome`, `email`, `grupo`, `data_create`) VALUES
 (1, 'Rhian Felipe', 'rhian.felipe@hotmail.com', 'estagiário', '2023-05-19 13:15:57');
 COMMIT;
+
+
+
+
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
