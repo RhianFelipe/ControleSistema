@@ -1,0 +1,36 @@
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+  }
+  
+  section {
+    display: flex;
+    flex-direction: column;
+  }
+  
+ 
+  section {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  table {
+    width: 50%;
+    border-collapse: collapse;
+  }
+  
+  th, td {
+    padding: 8px 4px; 
+    border-bottom: 1px solid #ddd;
+    text-align: left;
+  }
+  
+  
+  th {
+    background-color: #f2f2f2;
+  }
+  
+ 
