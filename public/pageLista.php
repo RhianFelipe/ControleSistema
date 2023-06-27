@@ -79,7 +79,7 @@
     </section>
 
     <footer>
-        Todos os direitos reservados
+       <p>&copy; 2023 Procuradoria Geral do Estado do Paraná. Todos os direitos reservados.</p>
     </footer>
 
     <script src="../script/popupEdit.js"></script>

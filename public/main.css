@@ -70,7 +70,8 @@ header {
 
 footer{
   background-color: var(--footer-header-color);
-  bottom: 0;
+  color: white;
+
   left: 0;
   width: 100%;
 

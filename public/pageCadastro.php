@@ -42,7 +42,6 @@ include "../src/cadastrarUser.php";
             <input class="input-value" value="<?php if(isset($_POST['email'])) ?>"
                 placeholder="usuario@pge.pr.gov.br" name="email" type="text" required><br>
 
-
             <label>Grupo:</label>
             <!-- Obter valores dos grupos do banco de dados e mostrá-los em um menu suspenso -->
             <select class="input-value" name="grupo">
@@ -87,9 +86,7 @@ include "../src/cadastrarUser.php";
     </div>
 
     <footer>
-
-    Todos os direitos reservados
-
+     <p>&copy; 2023 Procuradoria Geral do Estado do Paraná. Todos os direitos reservados.</p>
     </footer>
     <script src="../script/utils.js"></script>
 </body>
