@@ -18,15 +18,13 @@ if (empty($dados['id'])) {
   echo json_encode($retorna);
   exit; // Encerrar a execução do script
 } else {
-
   include_once "../db/conexao.php";
-  // Se todos os campos estão preenchidos, prosseguir com a lógica de atualização no banco de dados
 
-  // Recupera os valores dos sistemas enviados pelo formulário
+  // Recupera os valores dos sistemas enviados pelo formulário e do ID
   $sistemas = $dados['sistema'];
-
-  // Recupera o ID do usuário a ser atualizado
   $idUsuario = $dados['id'];
+
+//Logs para atualização do Usuário
   logAtualizacaoUsuario($mysqli,$idUsuario);
   // Atualiza as permissões dos sistemas no banco de dados
   foreach ($sistemas as $index => $sistema) {
@@ -40,8 +38,7 @@ if (empty($dados['id'])) {
 
     // Verifique se a atualização foi bem-sucedida e trate os erros, se necessário
   }
-  
- 
+
   if ($queryUpdate) {
 
     $retorna = ['status' => true, 'msg' => "Usuário editado com sucesso!", 'permissoes' => $novasPermissoes, 'Sistemas' => $novasSistemas];
@@ -49,3 +46,5 @@ if (empty($dados['id'])) {
   }
  
 }
+
+?>

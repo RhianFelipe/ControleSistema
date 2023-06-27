@@ -8,7 +8,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $nome = $_POST['nome'];
     $email = $_POST['email'];
     $grupo = $_POST['grupo'];
-
+    //verifica se existe Nome e Email
     $existeNome = verificarExistencia($mysqli, "nome", "usuarios", $nome);
     $existeEmail = verificarExistencia($mysqli, "email", "usuarios", $email);
 
@@ -20,6 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         } else if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
             echo "<script>alert('E-mail digitado errado.');</script>";
         } else {
+            //inserir usuarios no BD
             $inserirUsuario = "INSERT INTO usuarios (nome, email, grupo, data_create) VALUES ('$nome', '$email', '$grupo', NOW())";
             mysqli_query($mysqli, $inserirUsuario);
             // Obtém o ID do novo usuário
@@ -36,16 +37,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     mysqli_query($mysqli, $inserirPermissao);
                 }
             }
-
             // Adiciona o registro de log
             logCriacaoUsuario($mysqli, $idUsuario, $nome);
-           
-
             echo "<script>alert('Usuário cadastrado com sucesso!');</script>";
         }
     }
 }
-
 // Fecha a conexão com o banco de dados
 mysqli_close($mysqli);
 ?>

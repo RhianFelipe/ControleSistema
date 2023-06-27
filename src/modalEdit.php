@@ -10,8 +10,6 @@
                     <form class="row g-3" id="edit-usuario-form">
                         <input type="hidden" name="id" id="editid">
                         <div class="col-12">
-
-
                             <table>
                                 <tr>
                                     <th>Sistemas</th>
@@ -22,7 +20,6 @@
                                     <td id="permissaoEdit"></td>
                                 </tr>
                             </table>
-
                         </div>
                         <div class="col-12">
                             <input type="submit" class="btn btn-outline-warning btn-sm" id="edit-usuario-btn" value="Salvar">
