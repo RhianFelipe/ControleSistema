@@ -17,6 +17,7 @@ include "../src/cadastrarUser.php";
         integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
         <script src="../script/utils.js"></script>
     <title>Cadastrar Usuário</title>
+    <link rel="icon" href="../public/assets/img/icon-govpr.png" type="image/x-icon">
 </head>
 
 <body>
