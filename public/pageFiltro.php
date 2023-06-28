@@ -7,7 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../public/main.css?v=<?php echo time(); ?>">
     <link rel="stylesheet" href="../public/style/telaFiltro.css?v=<?php echo time(); ?>">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
 
     <title>Sistema de Controle de Permissões</title>
 </head>
@@ -16,11 +17,11 @@
     <header>
         <img class="imgHeader" src="..\public\assets\img\logo-govpr-white.png">
         <nav class="navbar">
-    
-                <li class="list-header"><a class="a1" href="../public/pageCadastro.php">Cadastrar Usuários</a></li>
-                <li class="list-header"><a class="a1" href="../public/pageLista.php">Lista de Usuários</a></li>
-                <li class="list-header"><a class="a1" href="../public/pageLogs.php">Logs de Usuário</a></li>
-          
+
+            <li class="list-header"><a class="a1" href="../public/pageCadastro.php">Cadastrar Usuários</a></li>
+            <li class="list-header"><a class="a1" href="../public/pageLista.php">Lista de Usuários</a></li>
+            <li class="list-header"><a class="a1" href="../public/pageLogs.php">Logs de Usuário</a></li>
+
         </nav>
     </header>
     <section class="area-consulta">
@@ -45,31 +46,40 @@
             </thead>
             <tbody>
                 <?php
-                if (isset($_GET['resultados'])) {
-                    $resultados = json_decode(urldecode($_GET['resultados']), true);
-                    if (empty($resultados)) {
-                        echo "<tr><td colspan='3'>Nenhum resultado encontrado.</td></tr>";
-                    } else {
-                        foreach ($resultados as $resultado) {
-                            $id = $resultado['id'];
-                            $nomeUsuario = $resultado['nome'];
-                            $emailUsuario = $resultado['email'];
-                ?>
-                            <tr id="linha-usuario-<?php echo $id; ?>">
-                                <td><?php echo $nomeUsuario; ?></td>
-                                <td><?php echo $emailUsuario; ?></td>
-                                <td>
-                                    <button class="btn btn-outline-warning btn-sm" onclick="openPopup('<?php echo $id; ?>')">Editar</button>
-                                    <button class="btn btn-outline-danger btn-sm" onclick="apagarUsuarioDados('<?php echo $id; ?>')">Excluir</button>
-                                </td>
-                            </tr>
+session_start(); // Inicia a sessão
+
+// Verifica se existem resultados na sessão
+if (isset($_SESSION['resultados_filtro'])) {
+    $resultados = $_SESSION['resultados_filtro'];
+
+    if (empty($resultados)) {
+        echo "<tr><td colspan='3'>Nenhum resultado encontrado.</td></tr>";
+    } else {
+        foreach ($resultados as $resultado) {
+            $id = $resultado['id'];
+            $nomeUsuario = $resultado['nome'];
+            $emailUsuario = $resultado['email'];
+?>
+                <tr id="linha-usuario-<?php echo $id; ?>">
+                    <td><?php echo $nomeUsuario; ?></td>
+                    <td><?php echo $emailUsuario; ?></td>
+                    <td>
+                        <button class="btn btn-outline-warning btn-sm"
+                            onclick="openPopup('<?php echo $id; ?>')">Editar</button>
+                        <button class="btn btn-outline-danger btn-sm"
+                            onclick="apagarUsuarioDados('<?php echo $id; ?>')">Excluir</button>
+                    </td>
+                </tr>
                 <?php
-                        }
-                    }
-                } else {
-                    echo "<tr><td colspan='3'>Digite um nome ou email para filtrar.</td></tr>";
-                }
-                ?>
+        }
+    }
+
+    unset($_SESSION['resultados_filtro']); // Remove os dados da sessão após exibir os resultados (opcional)
+} else {
+    echo "<tr><td colspan='3'>Digite um nome ou email para filtrar.</td></tr>";
+}
+?>
+
             </tbody>
         </table>
     </section>
@@ -84,12 +94,13 @@
     <!-- Fim Modal editar usuário -->
 
     <footer>
-     <p>&copy; 2023 Procuradoria Geral do Estado do Paraná. Todos os direitos reservados.</p>
+        <p>&copy; 2023 Procuradoria Geral do Estado do Paraná. Todos os direitos reservados.</p>
     </footer>
     <script src="../script/popupEdit.js"></script>
     <script src="../script/deleteUser.js"></script>
     <script src="../script/utils.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">
     </script>
 </body>
 
