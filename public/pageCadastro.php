@@ -25,7 +25,7 @@ include "../src/cadastrarUser.php";
         <img class="imgHeader" src="..\public\assets\img\logo-govpr-white.png">
         <nav class="navbar">
 
-            <li class="list-header"><a class="a1" href="../public/pageFiltro">Voltar para Filtro</a> </li>
+            <li class="list-header"><a class="a1" href="../public/pageFiltro.php">Voltar para Filtro</a> </li>
         </nav>
     </header>
 
