@@ -17,11 +17,11 @@
     <header>
         <img class="imgHeader" src="..\public\assets\img\logo-govpr-white.png">
         <nav class="navbar">
-
+            
             <li class="list-header"><a class="a1" href="../public/pageCadastro.php">Cadastrar Usuários</a></li>
             <li class="list-header"><a class="a1" href="../public/pageLista.php">Lista de Usuários</a></li>
             <li class="list-header"><a class="a1" href="../public/pageLogs.php">Logs de Usuário</a></li>
-
+            <li class="list-header"><a onclick="openPopupSistema()" class="a1">Inserir Sistema</a></li>
         </nav>
     </header>
     <section class="area-consulta">
@@ -91,6 +91,7 @@ if (isset($_SESSION['resultados_filtro'])) {
 
     <!-- Início Modal editar usuário -->
     <?php include '../src/modalEdit.php'; ?>
+    <?php include '../src/modalSistema.php'; ?>
     <!-- Fim Modal editar usuário -->
 
     <footer>
@@ -99,6 +100,7 @@ if (isset($_SESSION['resultados_filtro'])) {
     <script src="../script/popupEdit.js"></script>
     <script src="../script/deleteUser.js"></script>
     <script src="../script/utils.js"></script>
+    <script src="../script/sistemaEdit.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">
     </script>
