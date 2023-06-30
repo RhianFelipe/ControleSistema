@@ -74,7 +74,7 @@
         </table>
 
         <!-- Início Modal editar usuário -->
-        <?php include '../src/modals/modalEdit.php'; ?>
+        <?php include '../src/modalEdit.php'; ?>
         <!-- Fim Modal editar usuário -->
     </section>
 
