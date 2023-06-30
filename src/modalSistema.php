@@ -4,7 +4,7 @@ include "../db/consulta.php";
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $nomeSistema = $_POST['nomeSistema'];
-    $existeNomeSistema = verificarExistencia($mysqli, "nomeSistema", "permissoes", $$nomeSistema);
+    $existeNomeSistema = verificarExistencia($mysqli, "nomeSistema", "permissoes", $nomeSistema);
     if ($existeNomeSistema->num_rows > 0) {
         echo "<script>alert('Esse sistema já existe.');</script>";
     } else {
@@ -74,8 +74,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <script>
     function excluirSistema(nomeSistema) {
         if (confirm("Deseja realmente excluir o sistema " + nomeSistema + "?")) {
-            // Coloque aqui o código para excluir o sistema
-            // Você pode usar AJAX para enviar uma requisição ao servidor e executar a exclusão no backend
+            // Requisição AJAX
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function() {
+                if (this.readyState === 4 && this.status === 200) {
+                    alert("Sistema excluído com sucesso.");
+                    location.reload();
+                } else if (this.readyState === 4) {
+                    alert("Ocorreu um erro ao excluir o sistema.");
+                }
+            };
+            xhttp.open("GET", "../src/deleteSistema.php?nomeSistema=" + encodeURIComponent(nomeSistema), true);
+            xhttp.send();
         }
     }
 </script>
