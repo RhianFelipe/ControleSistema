@@ -8,7 +8,7 @@ function logCriacaoUsuario($mysqli, $idUsuario, $nomeUsuario) {
 
     // Execute a consulta SQL
     if (mysqli_query($mysqli, $sql)) {
-        echo "Registro de criação de usuário adicionado ao log com sucesso.";
+        //echo "Registro de criação de usuário adicionado ao log com sucesso.";
     } else {
         echo "Erro ao adicionar registro de criação de usuário ao log: " . mysqli_error($mysqli);
     }
