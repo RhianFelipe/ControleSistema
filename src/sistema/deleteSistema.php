@@ -1,6 +1,6 @@
 
 <?php
-include "../db/conexao.php";
+include "../../db/conexao.php";
 
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     $nomeSistema = $_GET['nomeSistema'];

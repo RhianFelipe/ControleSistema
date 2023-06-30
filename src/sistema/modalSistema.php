@@ -1,6 +1,6 @@
 <?php
-include "../db/conexao.php";
-include "../db/consulta.php";
+include "./../db/conexao.php";
+include "./../db/consulta.php";
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $nomeSistema = $_POST['nomeSistema'];
@@ -34,7 +34,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     </div>
 
                     <?php
-                    $buscaNomeSistema = "SELECT nomeSistema FROM permissoes";
+                    $buscaNomeSistema = "SELECT DISTINCT nomeSistema FROM permissoes";
                     $queryBuscaNomeSistema = $mysqli->query($buscaNomeSistema) or die($mysqli->error);
                     if (mysqli_num_rows($queryBuscaNomeSistema) > 0) {
                         echo "<table>";
@@ -84,7 +84,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     alert("Ocorreu um erro ao excluir o sistema.");
                 }
             };
-            xhttp.open("GET", "../src/deleteSistema.php?nomeSistema=" + encodeURIComponent(nomeSistema), true);
+            xhttp.open("GET", "../src/sistema/deleteSistema.php?nomeSistema=" + encodeURIComponent(nomeSistema), true);
             xhttp.send();
         }
     }

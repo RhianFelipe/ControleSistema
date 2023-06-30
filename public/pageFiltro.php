@@ -91,7 +91,7 @@ if (isset($_SESSION['resultados_filtro'])) {
 
     <!-- Início Modal editar usuário -->
     <?php include '../src/modalEdit.php'; ?>
-    <?php include '../src/modalSistema.php'; ?>
+    <?php include '../src/sistema/modalSistema.php'; ?>
     <!-- Fim Modal editar usuário -->
 
     <footer>
