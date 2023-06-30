@@ -1,5 +1,5 @@
 <?php
-include_once "../db/conexao.php";
+include "../db/conexao.php";
 include_once "../src/logUser.php";
 $id = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_NUMBER_INT);
 if (empty($id)) {

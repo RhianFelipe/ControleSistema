@@ -17,13 +17,3 @@ $buscaGrupo = "SELECT grupo FROM usuarios";
 $queryBuscaGrupo = $mysqli->query($buscaGrupo) or die($mysqli->error);
 
 
-$sistemas = array(
-    "admIntranet" => "ADM/INTRANET",
-    "admInternet" => "ADM/INTERNET",
-    "arisp" => "ARISP",
-    "copel" => "Copel",
-    "detran" => "Detran",
-    "documentador" => "Documentador",
-    "sipro" => "Sipro",
-    "eProtocolo" => "eProtocolo"
-);

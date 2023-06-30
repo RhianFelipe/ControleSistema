@@ -27,16 +27,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $idUsuario = mysqli_insert_id($mysqli);
 
             // Inserir as permissões para cada sistema
-            foreach ($sistemas as $nomeSistema => $valorPermissao) {
-                // Verifica se o sistema está presente nos dados enviados pelo formulário
-                if (isset($_POST['sistemas'][$nomeSistema])) {
-                    $valorSelecionado = $_POST['sistemas'][$nomeSistema];
-
-                    // Insere o valor selecionado no banco de dados
-                    $inserirPermissao = "INSERT INTO permissoes (id_usuario, sistemas, permissao) VALUES ('$idUsuario', '$nomeSistema', '$valorSelecionado')";
-                    mysqli_query($mysqli, $inserirPermissao);
-                }
+            foreach ($_POST['sistemas'] as $nomeSistema => $valorPermissao) {
+                $valorSelecionado = $valorPermissao;
+                
+                // Insere o valor selecionado no banco de dados
+                $inserirPermissao = "INSERT INTO permissoes (id_usuario, sistemas, permissao) VALUES ('$idUsuario', '$nomeSistema', '$valorSelecionado')";
+                mysqli_query($mysqli, $inserirPermissao);
             }
+            
+            
             // Adiciona o registro de log
             logCriacaoUsuario($mysqli, $idUsuario, $nome);
             echo "<script>alert('Usuário cadastrado com sucesso!');</script>";

@@ -15,7 +15,7 @@ include "../src/cadastrarUser.php";
     <link rel="stylesheet" href="../public/style/telaCadastro.css?v=<?php echo time(); ?>">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
-        <script src="../script/utils.js"></script>
+    <script src="../script/utils.js"></script>
     <title>Cadastrar Usuário</title>
     <link rel="icon" href="../public/assets/img/icon-govpr.png" type="image/x-icon">
 </head>
@@ -56,11 +56,14 @@ include "../src/cadastrarUser.php";
 
             <button onclick="gerenciarPermissoes() " id="button-permissao" type="button">Permissões</button> <br>
             <div id="selects-permissoes" style="display: none; ">
-           
+
                 <?php
           include "../db/conexao.php";
 
-          $sql = "SELECT DISTINCT nomeSistema FROM permissoes";
+          $sql = "SELECT DISTINCT nomeSistema
+          FROM permissoes
+          WHERE nomeSistema NOT LIKE '%:%' AND nomeSistema <> ''
+          ";
           $result = mysqli_query($mysqli, $sql);
           
           // Verificar se a consulta teve resultados
@@ -70,24 +73,23 @@ include "../src/cadastrarUser.php";
               // Loop pelos resultados da consulta
               while ($row = mysqli_fetch_assoc($result)) {
                   $nomeSistema = $row['nomeSistema'];
-          
                   // Verificar se o nome do sistema é válido
-                  if (!empty($nomeSistema) && strpos($nomeSistema, ':') === false) {
                       $sistemas[] = $nomeSistema;
-                  }
+                     var_dump($sistemas);
               }
               // Mostrar os valores em um select
               if (!empty($sistemas)) {
                   echo "<div id='selects-permissoes'>";
                   foreach ($sistemas as $nomeSistema) {
-                      echo "<div class='selects-permissoes'>";
-                      echo "<label for='$nomeSistema'>$nomeSistema:</label>";
-                      echo "<select name='sistemas[$nomeSistema]' id='$nomeSistema'>";
-                      echo "<option value='0'>Não</option>";
-                      echo "<option value='1'>Sim</option>";
-                      echo "</select>";
-                      echo "</div><br><br>";
-                  }
+                    echo "<div class='selects-permissoes'>";
+                    echo "<label for='$nomeSistema'>$nomeSistema:</label>";
+                    echo "<select name='sistemas[$nomeSistema]' id='$nomeSistema'>";
+                    echo "<option value='0'>Não</option>";
+                    echo "<option value='1'>Sim</option>";
+                    echo "</select>";
+                    echo "</div><br><br>";
+                }
+                
                   echo "</div>";
               }
           }
@@ -103,7 +105,7 @@ include "../src/cadastrarUser.php";
     <footer>
         <p>&copy; 2023 Procuradoria Geral do Estado do Paraná. Todos os direitos reservados.</p>
     </footer>
-   
+
 </body>
 
 </html>
