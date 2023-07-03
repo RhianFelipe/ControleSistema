@@ -1,3 +1,15 @@
+<?php
+session_start();
+
+// Verifica se a variável de sessão está definida
+if (!isset($_SESSION['user'])) {
+    // Redireciona o usuário para o painel de login
+    header("Location: ../public/pagelogin.php");
+    exit();
+}
+?>
+
+
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -46,7 +58,7 @@
             </thead>
             <tbody>
                 <?php
-session_start(); // Inicia a sessão
+
 
 // Verifica se existem resultados na sessão
 if (isset($_SESSION['resultados_filtro'])) {
