@@ -51,54 +51,49 @@ include "../src/cadastrarUser.php";
                 echo "<option value='$grupoPermitido'>$grupoPermitido</option>";
                 }
                 ?>
-            </select> <br>
-            <label>Gerenciar Permissões:</label>
-            <!-- Criação da tabela de permissões -->
+          </select>
+<label>Gerenciar Permissões:</label>
 
-            <button onclick="gerenciarPermissoes() " id="button-permissao" type="button">Permissões</button> <br>
-            <div id="selects-permissoes" style="display: none; ">
+<button onclick="gerenciarPermissoes()" id="button-permissao" type="button">Permissões</button><br>
 
-                <?php
-          include "../db/conexao.php";
+<div id="selects-permissoes" style="display: none;">
+  <?php
+    include "../db/conexao.php";
 
-          $sql = "SELECT DISTINCT nomeSistema
-          FROM permissoes
-          WHERE nomeSistema NOT LIKE '%:%' AND nomeSistema <> ''
-          ";
-          $result = mysqli_query($mysqli, $sql);
-          
-          // Verificar se a consulta teve resultados
-          if (mysqli_num_rows($result) > 0) {
-              $sistemas = array();
-          
-              // Loop pelos resultados da consulta
-              while ($row = mysqli_fetch_assoc($result)) {
-                  $nomeSistema = $row['nomeSistema'];
-                  // Verificar se o nome do sistema é válido
-                      $sistemas[] = $nomeSistema;
-                     var_dump($sistemas);
-              }
-              // Mostrar os valores em um select
-              if (!empty($sistemas)) {
-                  echo "<div id='selects-permissoes'>";
-                  foreach ($sistemas as $nomeSistema) {
-                    echo "<div class='selects-permissoes'>";
-                    echo "<label for='$nomeSistema'>$nomeSistema:</label>";
-                    echo "<select name='sistemas[$nomeSistema]' id='$nomeSistema'>";
-                    echo "<option value='0'>Não</option>";
-                    echo "<option value='1'>Sim</option>";
-                    echo "</select>";
-                    echo "</div><br><br>";
-                }
-                
-                  echo "</div>";
-              }
-          }
-          
-          // Fechar a conexão com o banco de dados
-          mysqli_close($mysqli);
-          ?>
-            </div>
+    $sql = "SELECT DISTINCT nomeSistema
+            FROM permissoes
+            WHERE nomeSistema NOT LIKE '%:%' AND nomeSistema <> ''
+    ";
+    $result = mysqli_query($mysqli, $sql);
+
+    // Verificar se a consulta teve resultados
+    if (mysqli_num_rows($result) > 0) {
+      $sistemas = array();
+
+      // Loop pelos resultados da consulta
+      while ($row = mysqli_fetch_assoc($result)) {
+        $nomeSistema = $row['nomeSistema'];
+        // Verificar se o nome do sistema é válido
+        $sistemas[] = $nomeSistema;
+      }
+      // Mostrar os valores em um select
+      if (!empty($sistemas)) {
+        echo "<div id='selects-permissoes'>";
+        foreach ($sistemas as $nomeSistema) {
+          echo "<div class='selects-permissoes'>";
+          echo "<label for='$nomeSistema'>$nomeSistema:</label>";
+          echo "<select name='sistemas[$nomeSistema]' id='$nomeSistema'>";
+          echo "<option value='0'>Não</option>";
+          echo "<option value='1'>Sim</option>";
+          echo "</select>";
+          echo "</div><br><br>";
+        }
+        echo "</div>";
+      }
+    }
+  ?>
+</div>
+
             <button id="button-submit" type="submit">Cadastrar</button>
         </form>
     </div>
