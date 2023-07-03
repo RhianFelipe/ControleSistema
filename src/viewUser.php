@@ -13,7 +13,7 @@ if(!empty($id)){
     } 
     $retorna = ['status' => true, 'dados' => $rows];
 }else{
-    $retorna = ['status' => false, 'msg' => "<div class='alert alert-danger' role='alert'>ERRO: Usuario não cadastrado com sucesso!"];
+    $retorna = ['status' => false, 'msg' => "<div class='alert alert-danger' role='alert'>ERRO: Usuario não encontrado!"];
 }
 
 echo json_encode($retorna);

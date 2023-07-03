@@ -148,13 +148,21 @@ if (editForm) {
 
     try {
       const resposta = await dados.json();
-      alert("As alterações foram salvas corretamente!");
+      Swal.fire({
+        position: 'top',
+        icon: 'success',
+        title: 'As alterações foram salvas corretamente!',
+        showConfirmButton: false,
+        timer: 1500
+      })
       return;
     } catch (error) {
       console.log("Erro ao processar a resposta:", error);
-      alert(
-        "Ocorreu um erro ao processar a resposta. Verifique o console para mais detalhes."
-      );
+      Swal.fire({
+        title: 'Erro',
+        text: 'ERRO: As alterações não foram salvas!',
+        icon: 'error'
+    });
     }
   });
 }

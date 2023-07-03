@@ -1,8 +1,17 @@
 async function apagarUsuarioDados(id) {
     console.log("Entrou:", id);
-    var confirmar = confirm("Tem certeza que deseja excluir o registro selecionado?");
-    if (confirmar == true) {
+    const confirmar = await Swal.fire({
+        title: 'Tem certeza?',
+        text: 'Tem certeza que deseja excluir o registro selecionado?',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Sim',
+        cancelButtonText: 'Não'
+    });
 
+    if (confirmar.isConfirmed) {
         const dados = await fetch('../src/deleteUser.php?id=' + id);
         const resposta = await dados.json();
         console.log(resposta);
@@ -10,14 +19,20 @@ async function apagarUsuarioDados(id) {
         const linhaUsuario = document.getElementById('linha-usuario-' + id);
 
         if (!resposta.status) {
-            alert("ERRO: Usuário não deletado!");
+            Swal.fire({
+                title: 'Erro',
+                text: 'ERRO: Usuário não deletado!',
+                icon: 'error'
+            });
         } else {
-
-            alert("Usuario deletado com sucesso!");
-            linhaUsuario.remove();
-            location.reload(); // Recarrega a página
+            Swal.fire({
+                title: 'Sucesso',
+                text: 'Usuário deletado com sucesso!',
+                icon: 'success'
+            }).then(() => {
+                linhaUsuario.remove();
+                location.reload(); // Recarrega a página
+            });
         }
-
     }
-
 }
