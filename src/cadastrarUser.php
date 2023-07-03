@@ -4,53 +4,52 @@ include "../db/consulta.php";
 include "../src/logUser.php";
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Obtém os valores do formulário
-    $nome = $_POST['nome'];
-    $email = $_POST['email'];
-    $grupo = $_POST['grupo'];
-    //verifica se existe Nome e Email
+    // Obter os valores do formulário
+    $dados = filter_input_array(INPUT_POST, FILTER_DEFAULT);
+
+    $nome = $dados['nome'];
+    $email = $dados['email'];
+    $grupo = $dados['grupo'];
+
+    // Verificar se existe Nome e Email
     $existeNome = verificarExistencia($mysqli, "nome", "usuarios", $nome);
     $existeEmail = verificarExistencia($mysqli, "email", "usuarios", $email);
 
     if ($existeNome->num_rows > 0) {
-        echo "<script>alert('Esse nome já existe.');</script>";
-        echo "<script>window.location.href = '../public/pageCadastro.php';</script>";
-        exit();
+        $retorna = ['status' => false, 'msg' => "Esse nome já existe."];
+        echo json_encode($retorna);
     } else {
         if ($existeEmail->num_rows > 0) {
-            echo "<script>alert('Esse e-mail já existe.');</script>";
-            echo "<script>window.location.href = '../public/pageCadastro.php';</script>";
-            exit();
+            $retorna = ['status' => false, 'msg' => "Esse e-mail já existe."];
+            echo json_encode($retorna);
         } else if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-            echo "<script>alert('E-mail digitado errado.');</script>";
-            echo "<script>window.location.href = '../public/pageCadastro.php';</script>";
-            exit();
+            $retorna = ['status' => false, 'msg' => "E-mail digitado errado."];
+            echo json_encode($retorna);
         } else {
-            //inserir usuarios no BD
+            // Inserir usuários no BD
             $inserirUsuario = "INSERT INTO usuarios (nome, email, grupo, data_create) VALUES ('$nome', '$email', '$grupo', NOW())";
             mysqli_query($mysqli, $inserirUsuario);
-            // Obtém o ID do novo usuário
+            // Obter o ID do novo usuário
             $idUsuario = mysqli_insert_id($mysqli);
 
             // Inserir as permissões para cada sistema
-            foreach ($_POST['sistemas'] as $nomeSistema => $valorPermissao) {
+            foreach ($dados['sistemas'] as $nomeSistema => $valorPermissao) {
                 $valorSelecionado = $valorPermissao;
-                
-                // Insere o valor selecionado no banco de dados
+
+                // Inserir o valor selecionado no banco de dados
                 $inserirPermissao = "INSERT INTO permissoes (id_usuario, sistemas, permissao) VALUES ('$idUsuario', '$nomeSistema', '$valorSelecionado')";
                 mysqli_query($mysqli, $inserirPermissao);
             }
-            
-            
-            // Adiciona o registro de log
+
+            // Adicionar o registro de log
             logCriacaoUsuario($mysqli, $idUsuario, $nome);
-            
-            echo "<script>alert('Usuário cadastrado com sucesso!');</script>";
-            echo "<script>window.location.href = '../public/pageCadastro.php';</script>";
-            exit();
+
+            $retorna = ['status' => true, 'msg' => "Usuário cadastrado com sucesso!"];
+            echo json_encode($retorna);
         }
     }
 }
+
 // Fecha a conexão com o banco de dados
 mysqli_close($mysqli);
 ?>

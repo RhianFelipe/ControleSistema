@@ -1,15 +1,5 @@
 <?php 
-
-session_start();
-
-// Verifica se a variável de sessão está definida
-if (!isset($_SESSION['user'])) {
-    // Redireciona o usuário para o painel de login
-    header("Location: ../public/pagelogin.php");
-    exit();
-}
-
-
+// Incluir arquivo de conexão com o banco de dados e arquivo de pop-up
 include "../src/cadastrarUser.php";
 
 ?>
@@ -26,6 +16,7 @@ include "../src/cadastrarUser.php";
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
     <script src="../script/utils.js"></script>
+    <script src="../js/sweetalert2.js"></script>
     <title>Cadastrar Usuário</title>
     <link rel="icon" href="../public/assets/img/icon-govpr.png" type="image/x-icon">
 </head>
@@ -116,6 +107,58 @@ include "../src/cadastrarUser.php";
         <p>&copy; 2023 Procuradoria Geral do Estado do Paraná. Todos os direitos reservados.</p>
     </footer>
 
+<script>
+
+    // Recuperar do HTML o SELETOR cad-usuario-form com JavaScript
+const cadUsuarioForm = document.getElementById("form");
+
+// Verificar se a constante cadUsuarioForm é TRUE
+if (cadUsuarioForm) {
+    // Aguardar e identificar o clique do usuário no botão cadastrar com JavaScript
+    cadUsuarioForm.addEventListener("submit", async (e) => {
+        // Bloquear o recarregamento da página com JavaScript
+        e.preventDefault();
+
+        // Receber os dados do formulário com JavaScript
+        const dadosForm = new FormData(cadUsuarioForm);
+
+        // Enviar os dados do JavaScript para o PHP
+        const dados = await fetch("../src/cadastrarUser.php", {
+            method: "POST", // Enviar os dados do JavaScript para o PHP através do método POST
+            body: dadosForm, // Enviar os dados do JavaScript para o PHP
+        });
+
+        // Ler o retorno do PHP com JavaScript
+        const resposta = await dados.json();
+
+        // Verificar com JavaScript se cadastrou no banco de dados
+        if (resposta['status']) {
+            // Usar o SweetAlert para apresentar a mensagem após cadastrar no banco de dados com PHP
+            Swal.fire({
+                text: resposta['msg'],
+                icon: 'success',
+                showCancelButton: false,
+                confirmButtonColor: '#3085d6',
+                confirmButtonText: 'Fechar'
+            });
+
+            // Limpar o formulário com JavaScript
+            cadUsuarioForm.reset();
+        } else {
+            // Usar o SweetAlert para apresentar a mensagem de erro após não cadastrar no banco de dados com PHP
+            Swal.fire({
+                text: resposta['msg'],
+                icon: 'error',
+                showCancelButton: false,
+                confirmButtonColor: '#3085d6',
+                confirmButtonText: 'Fechar'
+            });
+        }
+    });
+}
+
+</script>
+    
 </body>
 
 </html>
