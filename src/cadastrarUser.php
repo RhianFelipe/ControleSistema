@@ -14,11 +14,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if ($existeNome->num_rows > 0) {
         echo "<script>alert('Esse nome já existe.');</script>";
+        echo "<script>window.location.href = '../public/pageCadastro.php';</script>";
+        exit();
     } else {
         if ($existeEmail->num_rows > 0) {
             echo "<script>alert('Esse e-mail já existe.');</script>";
+            echo "<script>window.location.href = '../public/pageCadastro.php';</script>";
+            exit();
         } else if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
             echo "<script>alert('E-mail digitado errado.');</script>";
+            echo "<script>window.location.href = '../public/pageCadastro.php';</script>";
+            exit();
         } else {
             //inserir usuarios no BD
             $inserirUsuario = "INSERT INTO usuarios (nome, email, grupo, data_create) VALUES ('$nome', '$email', '$grupo', NOW())";
@@ -38,7 +44,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             
             // Adiciona o registro de log
             logCriacaoUsuario($mysqli, $idUsuario, $nome);
+            
             echo "<script>alert('Usuário cadastrado com sucesso!');</script>";
+            echo "<script>window.location.href = '../public/pageCadastro.php';</script>";
+            exit();
         }
     }
 }

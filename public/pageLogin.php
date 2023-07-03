@@ -2,7 +2,7 @@
 session_start(); // Inicia a sessão
 
 // Verifica se os campos de usuário e senha foram enviados via POST
-if (isset($_POST['usuario']) && isset($_POST['senha'])) {
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['usuario']) && isset($_POST['senha'])) {
     // Inclui o arquivo de conexão com o banco de dados
     include "../db/conexao.php";
 
@@ -10,7 +10,6 @@ if (isset($_POST['usuario']) && isset($_POST['senha'])) {
     $usuario = $_POST['usuario'];
     $senha = $_POST['senha'];
 
-    // Utiliza declarações preparadas para evitar ataques de injeção de SQL
     $consulta = "SELECT * FROM admin WHERE usuario = ? AND senha = ?";
     $stmt = mysqli_prepare($mysqli, $consulta);
     mysqli_stmt_bind_param($stmt, 'ss', $usuario, $senha);
@@ -25,17 +24,38 @@ if (isset($_POST['usuario']) && isset($_POST['senha'])) {
         $_SESSION['user'] = $user['id'];
         $_SESSION['nome'] = $user['nome'];
 
-        // Redireciona o usuário para a página desejada
+        // Redireciona o usuário para a página desejada usando o método POST/REDIRECT/GET
         header("Location: ../public/pageFiltro.php");
         exit();
     } else {
-        echo "Falha ao logar! Usuário ou senha incorretos!";
+        // Define uma flag de erro para exibir o alerta na página
+        $_SESSION['login_error'] = true;
+
+        // Redireciona o usuário para a página de login novamente usando o método POST/REDIRECT/GET
+        header("Location: ../public/pageLogin.php");
+        exit();
     }
 
     // Fecha o statement
     mysqli_stmt_close($stmt);
     // Fecha a conexão com o banco de dados
     mysqli_close($mysqli);
+}
+
+// Verifica se houve um erro de login e exibe o alerta
+if (isset($_SESSION['login_error']) && $_SESSION['login_error']) {
+    echo "<script>
+        window.onload = function() {
+            Swal.fire(
+                'Falha ao logar!',
+                'Usuário ou senha incorretos!',
+                'error'
+            );
+        }
+    </script>";
+
+    // Limpa a flag de erro de login
+    $_SESSION['login_error'] = false;
 }
 ?>
 
@@ -73,7 +93,7 @@ if (isset($_POST['usuario']) && isset($_POST['senha'])) {
             <label>Senha:</label>
             <input class="input-value" value="" placeholder="senha" name="senha"  type="password" required><br>
           
-            <button id="button-submit" type="submit">Cadastrar</button>
+            <button id="button-submit"  type="submit">Cadastrar</button>
         </form>
     </div>
 
@@ -81,6 +101,8 @@ if (isset($_POST['usuario']) && isset($_POST['senha'])) {
         <p>&copy; 2023 Procuradoria Geral do Estado do Paraná. Todos os direitos reservados.</p>
     </footer>
 
+    <script src="../js/sweetalert2.js"></script>
+   
 </body>
 
 </html>
