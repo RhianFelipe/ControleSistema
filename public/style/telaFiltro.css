@@ -1,31 +1,176 @@
+/* styles.css */
 
-section {   
-    background-color: rgb(219, 219, 219);
-    width: 700px; 
-    padding: 22px 30px 90px 17px;
-    margin-top: 100px;
-    margin-left: auto;
-    margin-right: auto;
-    box-shadow: 0 0 2px rgba(0, 0, 0, 0.5);
-    border-radius: 4px;
-    border: 2px solid rgb(196, 196, 196);
+/* Personalização adicional */
+body {
+  background-color: #f2f2f2;
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
 
+.navbar {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+.list-header {
+  float: left;
+}
+
+.list-header a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+.list-header a:hover {
+  background-color: #111;
+}
+
+#area-form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80vh;
+  background-color: var(--section-bgcolor);
+}
+
+#form {
+  width: 400px;
+  border-radius: 15px;
+  padding: 2rem;
+  background-color: #f2f2f2;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.input-value {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 1rem;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+#button-permissao {
+  display: inline-block;
+  padding: 8px 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #fff;
+  color: #555;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+#button-submit {
+  display: block;
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 1rem;
+  border: none;
+  border-radius: 4px;
+  background-color: #4d6d84;
+  color: #fff;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+#button-submit:hover {
+  background-color: #395670;
+}
+
+footer {
+  background-color: var(--footer-header-color);
+  color: white;
+  margin-top: 10rem;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  padding: 10px;
+  text-align: center;
+}
+
+.area-consulta {
+  background-color: #f2f2f2;
+  width: 700px;
+  padding: 22px 30px 90px 17px;
+  margin: 100px auto;
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.5);
+  border-radius: 4px;
+  border: 2px solid rgb(196, 196, 196);
+}
+
+form div {
+  margin-bottom: 10px;
+}
+
+input[type="text"],
+input[type="email"] {
+  width: calc(50% - 5px);
+  padding: 12px;
+  margin-bottom: 1rem;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.input-wrapper {
+  display: flex;
+}
+
+.input-wrapper input[type="email"] {
+  margin-left: 4px;
+}
+
+::placeholder {
+  color: #888;
+}
+.input-wrapper {
+  display: flex;
+  align-items: baseline; /* Alinha verticalmente com a linha de base dos campos de entrada */
+}
+
+.input-wrapper input {
+  margin-right: 10px;
+}
+
+#button-filtro {
+  padding: 12px 15px;
+  background-color: #4d6d84;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  font-size: 16px;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+  margin-left: 10px; /* Adicionado para espaçamento entre o último campo de entrada e o botão */
+}
+
+
+
+#button-filtro:hover {
+  background-color: #395670;
 }
 
 table {
-    border-collapse: collapse;
-    width: 100%;
-    margin-top: 20px;
+  border-collapse: collapse;
+  width: 100%;
+  margin-top: 20px;
+}
 
-  }
+th,
+td {
+  border: 2px solid rgb(196, 196, 196);
+  padding: 8px;
+  text-align: left;
+}
 
-  th, td {
-    border: 2px solid rgb(196, 196, 196);
-    padding: 0px; /*era 8*/
-    text-align: left;
- 
-  }
-
-  th {
-    background-color: #f2f2f2;
-  }
+th {
+  background-color: #f2f2f2;
+  font-weight: bold;
+}

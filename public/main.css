@@ -19,6 +19,8 @@ box-shadow: none;
 html,
 body {
   height: 0vh;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+  "Lucida Sans", Arial, sans-serif;
 }
 
 
@@ -32,8 +34,8 @@ header {
 }
 
 .imgHeader {
-  width: 10%;
-
+  width: 150px;
+  height: auto;
 }
 
 .navbar{

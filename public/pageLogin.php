@@ -93,7 +93,7 @@ if (isset($_SESSION['login_error']) && $_SESSION['login_error']) {
             <label>Senha:</label>
             <input class="input-value" value="" placeholder="senha" name="senha"  type="password" required><br>
           
-            <button id="button-submit"  type="submit">Cadastrar</button>
+            <button id="button-submit"  type="submit">login</button>
         </form>
     </div>
 
