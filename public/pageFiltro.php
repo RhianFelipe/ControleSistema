@@ -74,9 +74,11 @@ if (isset($_SESSION['resultados_filtro'])) {
                     <td><?php echo $nomeUsuario; ?></td>
                     <td><?php echo $emailUsuario; ?></td>
                     <td>
-                        <button class="btn btn-outline-warning btn-sm"
+
+
+                        <button class="button-edit"
                             onclick="openPopup('<?php echo $id; ?>')">Editar</button>
-                        <button class="btn btn-outline-danger btn-sm"
+                        <button class="button-excluir"
                             onclick="apagarUsuarioDados('<?php echo $id; ?>')">Excluir</button>
                     </td>
                 </tr>

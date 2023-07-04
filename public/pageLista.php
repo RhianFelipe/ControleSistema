@@ -70,9 +70,10 @@ if (!isset($_SESSION['user'])) {
                     <td><?php echo $email; ?></td>
                     <td><?php echo $grupo; ?></td>
                     <td>
-                        <button class='btn btn-outline-warning btn-sm'
-                            onclick="openPopup(<?php echo $id; ?>)">Editar</a>
-                            <button class='btn btn-outline-danger btn-sm'
+                        <button class='button-edit'
+                        
+                            onclick="openPopup(<?php echo $id; ?>)">Editar
+                            <button class='button-excluir'
                                 onclick="apagarUsuarioDados(<?php echo $id; ?>)">Excluir</button>
                     </td>
                 </tr>

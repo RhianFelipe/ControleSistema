@@ -21,14 +21,14 @@ body {
 
 .list-header a {
   display: block;
-  color: white;
+  color: rgb(53, 46, 46);
   text-align: center;
   padding: 14px 16px;
   text-decoration: none;
 }
 
 .list-header a:hover {
-  background-color: #111;
+  background-color: #627b919a;
 }
 
 #area-form {
@@ -56,16 +56,7 @@ body {
   font-size: 14px;
 }
 
-#button-permissao {
-  display: inline-block;
-  padding: 8px 16px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  background-color: #fff;
-  color: #555;
-  cursor: pointer;
-  font-size: 14px;
-}
+
 
 #button-submit {
   display: block;
@@ -84,16 +75,7 @@ body {
   background-color: #395670;
 }
 
-footer {
-  background-color: var(--footer-header-color);
-  color: white;
-  margin-top: 10rem;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  padding: 10px;
-  text-align: center;
-}
+
 
 .area-consulta {
   background-color: #f2f2f2;
@@ -156,16 +138,16 @@ input[type="email"] {
 #button-filtro:hover {
   background-color: #395670;
 }
-
 table {
   border-collapse: collapse;
   width: 100%;
-  margin-top: 20px;
+ 
 }
+
 th,
 td {
-  border: 2px solid rgb(196, 196, 196);
-  padding: 8px;
+  border: 5rem solid rgb(185, 22, 22);
+  padding: 0.5rem;
   text-align: left;
 }
 
@@ -174,14 +156,9 @@ th {
   font-weight: bold;
 }
 
-/* Adiciona divisão vertical em cada coluna */
-td {
-  border-right: 1px solid #ccc;
+td,
+th {
+  border-right: 5rem solid rgb(196, 196, 196);
+  border-bottom: 10rem solid rgb(196, 196, 196);
 }
-
-/* Adiciona divisão horizontal em cada linha */
-tr:not(:last-child) td {
-  border-bottom: 1px solid #ccc;
-}
-
 
