@@ -1,0 +1,26 @@
+/* styles.css */
+
+/* Personalização adicional */
+
+
+ 
+  table {
+    border-collapse: collapse;
+    width: 100%;
+   
+  }
+  
+  th,
+  td {
+    border: 5rem solid rgb(185, 22, 22);
+    padding: 0.5rem;
+    text-align: left;
+  }
+  
+  th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+  }
+  
+  
+  

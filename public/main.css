@@ -55,15 +55,16 @@ header {
   text-align: left;
   margin-right: 15px;
   text-decoration: none;
-
+  padding: 14px 16px;
 }
 
 .list-header a:hover {
-  display: block;
-  color: rgb(230, 230, 230);
+  border-radius: 4%;
+  
   text-align: center;
   text-decoration: none;
-
+  background-color: rgba(250, 235, 215, 0.082);
+  
 }
 
 /*Estilização padrão do Footer*/
@@ -93,6 +94,7 @@ footer{
   color: #ffffff;
   margin-right: 5px;
   cursor: pointer;
+  margin-bottom: 1rem;
 }
 
 .button-edit:hover{
