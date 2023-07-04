@@ -2,19 +2,26 @@
 
 /* Personalização adicional */
 
+section{
+    display: flex;
+ 
+    justify-content: center;
 
+}
  
   table {
     border-collapse: collapse;
-    width: 100%;
+    width: auto;
+
    
   }
   
   th,
   td {
-    border: 5rem solid rgb(185, 22, 22);
+
     padding: 0.5rem;
     text-align: left;
+ 
   }
   
   th {
