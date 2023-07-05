@@ -7,7 +7,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
 
     // Lógica para excluir o sistema do banco de dados
     // Substitua a linha abaixo pelo código apropriado para realizar a exclusão no banco de dados
-    $excluirSistema = "DELETE FROM permissoes WHERE nomeSistema = '$nomeSistema'";
+    $excluirSistema = "DELETE FROM admin WHERE nomeSistema = '$nomeSistema'";
     $queryExcluirSistema = $mysqli->query($excluirSistema) or die($mysqli->error);
     
     // Envie uma resposta ao cliente (opcional)
