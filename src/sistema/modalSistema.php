@@ -4,11 +4,11 @@ include "./../db/consulta.php";
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $nomeSistema = $_POST['nomeSistema'];
-    $existeNomeSistema = verificarExistencia($mysqli, "nomeSistema", "permissoes", $nomeSistema);
+    $existeNomeSistema = verificarExistencia($mysqli, "nomeSistema", "admin", $nomeSistema);
     if ($existeNomeSistema->num_rows > 0) {
         echo "<script>alert('Esse sistema já existe.');</script>";
     } else {
-        $inserirSistema = "INSERT INTO permissoes(nomeSistema) VALUES ('$nomeSistema')";
+        $inserirSistema = "INSERT INTO admin(nomeSistema) VALUES ('$nomeSistema')";
         $queryInserirSistema = $mysqli->query($inserirSistema) or die($mysqli->error);
     }
 }
@@ -34,7 +34,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     </div>
 
                     <?php
-                    $buscaNomeSistema = "SELECT DISTINCT nomeSistema FROM permissoes";
+                    $buscaNomeSistema = "SELECT DISTINCT nomeSistema FROM admin";
                     $queryBuscaNomeSistema = $mysqli->query($buscaNomeSistema) or die($mysqli->error);
                     if (mysqli_num_rows($queryBuscaNomeSistema) > 0) {
                         echo "<table>";

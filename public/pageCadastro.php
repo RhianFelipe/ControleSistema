@@ -71,7 +71,7 @@ if (!isset($_SESSION['user'])) {
     include "../db/conexao.php";
 
     $sql = "SELECT DISTINCT nomeSistema
-            FROM permissoes
+            FROM admin
             WHERE nomeSistema NOT LIKE '%:%' AND nomeSistema <> ''
     ";
     $result = mysqli_query($mysqli, $sql);
