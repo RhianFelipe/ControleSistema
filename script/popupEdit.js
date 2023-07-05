@@ -20,6 +20,7 @@ async function openPopup(id) {
     document.getElementById("editid").value = idUsuario;
     console.log("ID:", idUsuario); // Exibe o ID do usuário
 
+
     const sistemasEdit = document.getElementById("sistemasEdit");
     sistemasEdit.innerHTML = ""; // Limpa o conteúdo existente
 
@@ -126,8 +127,21 @@ if (editForm) {
       sistemas.push(sistema);
     });
 
+
+// Obtém o valor selecionado do campo de seleção
+
+
+
     const dadosForm = new FormData();
     dadosForm.append("id", idUsuario);
+    const selectGrupo = document.getElementById("input-value");
+    const grupoSelecionado = selectGrupo.value;
+    console.log("Grupo enviado:", grupoSelecionado);
+    
+    
+    // Adicione o valor ao objeto FormData
+    dadosForm.append("grupo", grupoSelecionado);
+
 
     // Adiciona os sistemas e permissões ao objeto FormData
     sistemas.forEach((sistema) => {

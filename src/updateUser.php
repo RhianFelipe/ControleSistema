@@ -24,24 +24,36 @@ if (empty($dados['id'])) {
   $sistemas = $dados['sistema'];
   $idUsuario = $dados['id'];
 
-//Logs para atualização do Usuário
-  logAtualizacaoUsuario($mysqli,$idUsuario);
-  // Atualiza as permissões dos sistemas no banco de dados
+  // Logs para atualização do Usuário
+  logAtualizacaoUsuario($mysqli, $idUsuario);
+
+  // Verificar se o campo grupo está preenchido
+  if (!empty($dados['grupo'])) {
+    // Atualizar o grupo do usuário
+    $novoGrupo = $dados['grupo'];
+    $sqlGrupo = "UPDATE usuarios SET grupo = '$novoGrupo' WHERE id = $idUsuario";
+    $queryUpdateGrupo = $mysqli->query($sqlGrupo) or die($mysqli->error);
+  }
+
+  // Atualizar as permissões dos sistemas no banco de dados
   foreach ($sistemas as $index => $sistema) {
     $permissao = $dados['permissao'][$index];
     $novasPermissoes[$index] = $permissao;
-    $novasSistemas =  $sistemas;
-    // Realize a atualização no banco de dados
+    $novasSistemas = $sistemas;
+    // Realizar a atualização no banco de dados
     $sql = "UPDATE permissoes SET permissao = $permissao, data_altere = NOW() WHERE id_usuario = $idUsuario AND sistemas = '$sistema'";
 
     $queryUpdate = $mysqli->query($sql) or die($mysqli->error);
 
-    // Verifique se a atualização foi bem-sucedida e trate os erros, se necessário
+    // Verificar se a atualização foi bem-sucedida e tratar os erros, se necessário
   }
 
   if ($queryUpdate) {
-
-    $retorna = ['status' => true, 'msg' => "Usuário editado com sucesso!", 'permissoes' => $novasPermissoes, 'Sistemas' => $novasSistemas];
+    $mensagem = "Permissões atualizadas com sucesso!";
+    if (!empty($dados['grupo'])) {
+      $mensagem = "Grupo e permissões atualizados com sucesso!";
+    }
+    $retorna = ['status' => true, 'msg' => $mensagem, 'permissoes' => $novasPermissoes, 'Sistemas' => $novasSistemas];
     echo json_encode($retorna);
   }
  
