@@ -54,15 +54,16 @@ header {
   text-align: left;
   margin-right: 15px;
   text-decoration: none;
-
+  padding: 14px 16px;
 }
 
 .list-header a:hover {
-  display: block;
-  color: rgb(230, 230, 230);
+  border-radius: 4%;
+  
   text-align: center;
   text-decoration: none;
-
+  background-color: rgba(250, 235, 215, 0.082);
+  
 }
 
 /*Estilização padrão do Footer*/
@@ -81,3 +82,36 @@ footer{
   height: 100px;
 
 }
+
+/*Estilização padrão do Botões editar e excluir*/
+
+.button-edit {
+  border: 1px solid black;
+  border-radius: 5px;
+  padding: 5px 10px;
+  background-color:var(--footer-header-color);
+  color: #ffffff;
+  margin-right: 5px;
+  cursor: pointer;
+  margin-bottom: 1rem;
+}
+
+.button-edit:hover{
+  background-color:#4d6d84ef;
+  
+}
+
+.button-excluir {
+  border: 1px solid black;
+  border-radius: 5px;
+  padding: 5px 10px;
+  background-color: #fff;
+  color: #000;
+  cursor: pointer;
+}
+
+.button-excluir:hover{
+  background-color:#f3eeeec7;
+
+}
+

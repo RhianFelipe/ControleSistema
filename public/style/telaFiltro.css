@@ -1,35 +1,6 @@
 /* styles.css */
 
 /* Personalização adicional */
-body {
-  background-color: #f2f2f2;
-  font-family: Arial, sans-serif;
-  margin: 0;
-  padding: 0;
-}
-
-.navbar {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
-}
-
-.list-header {
-  float: left;
-}
-
-.list-header a {
-  display: block;
-  color: white;
-  text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
-}
-
-.list-header a:hover {
-  background-color: #111;
-}
 
 #area-form {
   display: flex;
@@ -158,30 +129,21 @@ input[type="email"] {
 }
 
 table {
-  border-collapse: collapse;
-  width: 100%;
-  margin-top: 20px;
-}
-th,
-td {
-  border: 2px solid rgb(196, 196, 196);
-  padding: 8px;
-  text-align: left;
-}
+    border-collapse: collapse;
+    width: 100%;
+    margin-top: 20px;
 
-th {
-  background-color: #f2f2f2;
-  font-weight: bold;
-}
+  }
 
-/* Adiciona divisão vertical em cada coluna */
-td {
-  border-right: 1px solid #ccc;
-}
+  th, td {
+    border: 2px solid rgb(196, 196, 196);
+    padding: 0px; /*era 8*/
+    text-align: left;
+   
+ 
+  }
 
-/* Adiciona divisão horizontal em cada linha */
-tr:not(:last-child) td {
-  border-bottom: 1px solid #ccc;
-}
-
+  th {
+    background-color: #f2f2f2;
+  }
 
