@@ -21,7 +21,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $id = $row['id'];
             $nomeUsuario = $row['nome'];
             $emailUsuario = $row['email'];
-            $resultados[] = array('id' =>  $id, 'nome' => $nomeUsuario, 'email' => $emailUsuario);
+            $grupoUsuario = $row['grupo'];
+            $resultados[] = array('id' => $id, 'nome' => $nomeUsuario, 'email' => $emailUsuario, 'grupo' => $grupoUsuario);
         }
     } else {
         $resultados = array();

@@ -50,6 +50,7 @@ if (!isset($_SESSION['user'])) {
                 <tr>
                     <th>Nome</th>
                     <th>Email</th>
+                    <th>Grupo</th>
                     <th>Ações</th>
                 </tr>
             </thead>
@@ -68,10 +69,12 @@ if (!isset($_SESSION['user'])) {
                             $id = $resultado['id'];
                             $nomeUsuario = $resultado['nome'];
                             $emailUsuario = $resultado['email'];
+                            $grupoUsuario = $resultado['grupo'];
                 ?>
                             <tr id="linha-usuario-<?php echo $id; ?>">
                                 <td><?php echo $nomeUsuario; ?></td>
                                 <td><?php echo $emailUsuario; ?></td>
+                                <td><?php echo $grupoUsuario; ?></td>
                                 <td>
 
 
