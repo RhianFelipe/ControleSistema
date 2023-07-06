@@ -62,10 +62,15 @@ if (!isset($_SESSION['user'])) {
             transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
         }
     </style>
+    
     <header>
         <img class="imgHeader" src="..\public\assets\img\logo-govpr-white.png">
         <nav class="navbar">
-            <li class="list-header"><a class="a1" href="../public/pageFiltro.php">Voltar para Filtro</a> </li>
+            <li class="list-header"><a class="a1" href="../public/pageCadastro.php">Cadastrar Usuários</a></li>
+            <li class="list-header"><a class="a1" href="../public/pageFiltro.php">Filtrar Usuários</a></li>
+            <li class="list-header"><a class="a1" href="../public/pageLista.php">Lista de Usuários</a></li>
+            <li class="list-header"><a class="a1" href="../public/pageLogs.php">Logs de Usuário</a></li>
+            <li class="list-header"><a onclick="openPopupSistema()" class="a1">Inserir Sistema</a></li>
         </nav>
     </header>
 

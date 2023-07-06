@@ -30,6 +30,7 @@ if (!isset($_SESSION['user'])) {
         <nav class="navbar">
 
             <li class="list-header"><a class="a1" href="../public/pageCadastro.php">Cadastrar Usuários</a></li>
+            <li class="list-header"><a class="a1" href="../public/pageFiltro.php">Filtrar Usuários</a></li>
             <li class="list-header"><a class="a1" href="../public/pageLista.php">Lista de Usuários</a></li>
             <li class="list-header"><a class="a1" href="../public/pageLogs.php">Logs de Usuário</a></li>
             <li class="list-header"><a onclick="openPopupSistema()" class="a1">Inserir Sistema</a></li>
@@ -75,7 +76,7 @@ if (!isset($_SESSION['user'])) {
                                 <td><?php echo $nomeUsuario; ?></td>
                                 <td><?php echo $emailUsuario; ?></td>
                                 <td><?php echo $grupoUsuario; ?></td>
-                                <td>
+                                <td class="td-button">
 
 
                                     <button class="button-edit" onclick="openPopup('<?php echo $id; ?>')">Editar</button>
