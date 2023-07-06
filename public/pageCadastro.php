@@ -1,4 +1,4 @@
-<?php 
+<?php
 // Incluir arquivo de conexão com o banco de dados e arquivo de pop-up
 include "../src/cadastrarUser.php";
 
@@ -22,8 +22,7 @@ if (!isset($_SESSION['user'])) {
     <!-- Importar folhas de estilo -->
     <link rel="stylesheet" href="../public/main.css?v=<?php echo time(); ?>">
     <link rel="stylesheet" href="../public/style/telaCadastro.css?v=<?php echo time(); ?>">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
     <script src="../script/utils.js"></script>
     <script src="../js/sweetalert2.js"></script>
     <title>Cadastrar Usuário</title>
@@ -32,6 +31,37 @@ if (!isset($_SESSION['user'])) {
 
 <body>
     <!-- Criação do Header para logo e navegação-->
+
+    <style>
+        .column-container {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .selects-permissoes {
+            flex-basis: 50%;
+            margin-bottom: 10px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .custom-select {
+            width: 100%;
+            padding: 6px 12px;
+            font-size: 14px;
+            line-height: 1.42857143;
+            color: #555555;
+            background-color: #ffffff;
+            background-image: none;
+            border: 1px solid #cccccc;
+            border-radius: 4px;
+            box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+            transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+        }
+    </style>
     <header>
         <img class="imgHeader" src="..\public\assets\img\logo-govpr-white.png">
         <nav class="navbar">
@@ -47,8 +77,7 @@ if (!isset($_SESSION['user'])) {
             <input class="input-value" id="nome" value="" placeholder="nome" name="nome" type="text" required><br>
 
             <label>E-mail:</label>
-            <input class="input-value" value="" placeholder="usuario@pge.pr.gov.br" name="email" type="text"
-                required><br>
+            <input class="input-value" value="" placeholder="usuario@pge.pr.gov.br" name="email" type="text" required><br>
 
             <label>Grupo:</label>
             <!-- Obter valores dos grupos do banco de dados e mostrá-los em um menu suspenso -->
@@ -67,8 +96,7 @@ if (!isset($_SESSION['user'])) {
             <button id="button-submit" type="submit">Cadastrar</button>
         </form>
         <!-- Modal para gerenciar permissões -->
-        <div class="modal fade" id="editUsuarioModal" tabindex="-1" aria-labelledby="editUsuarioModalLabel"
-            aria-hidden="true">
+        <div class="modal fade" id="editUsuarioModal" tabindex="-1" aria-labelledby="editUsuarioModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -83,9 +111,9 @@ if (!isset($_SESSION['user'])) {
                                 include "../db/conexao.php";
 
                                 $sql = "SELECT DISTINCT nomeSistema
-                                        FROM admin
-                                        WHERE nomeSistema NOT LIKE '%:%' AND nomeSistema <> ''
-                                ";
+        FROM admin
+        WHERE nomeSistema NOT LIKE '%:%' AND nomeSistema <> ''
+";
                                 $result = mysqli_query($mysqli, $sql);
 
                                 // Verificar se a consulta teve resultados
@@ -98,27 +126,27 @@ if (!isset($_SESSION['user'])) {
                                         // Verificar se o nome do sistema é válido
                                         $sistemas[] = $nomeSistema;
                                     }
-                                    // Mostrar os valores em selects
-                                    if (!empty($sistemas)) {
-                                        foreach ($sistemas as $nomeSistema) {
-                                            echo "<div class='selects-permissoes col-md-6'>"; // Adicione a classe "col-md-6" para criar duas colunas
-                                            echo "<label for='$nomeSistema'>$nomeSistema:</label>";
-                                            echo "<select class='form-select' name='sistemas[$nomeSistema]' id='$nomeSistema'>"; // Adicione a classe "form-select" para estilizar os selects
-                                            echo "<option value='0'>Não</option>";
-                                            echo "<option value='1'>Sim</option>";
-                                            echo "</select>";
-                                            echo "</div><br><br>";
-                                        }
-                                        
+
+                                    echo '<div class="column-container">';
+                                    foreach ($sistemas as $nomeSistema) {
+                                        echo '<div class="selects-permissoes">';
+                                        echo "<label for='$nomeSistema'>$nomeSistema:</label>";
+                                        echo "<select class='' name='sistemas[$nomeSistema]' id='$nomeSistema'>";
+                                        echo "<option value='0'>Não</option>";
+                                        echo "<option value='1'>Sim</option>";
+                                        echo "</select>";
+                                        echo "</div>";
                                     }
+                                    echo '</div>';
                                 }
                                 ?>
+
                                 <!-- Fim dos selects gerados dinamicamente -->
                             </form>
                         </div>
                     </div>
                     <div class="modal-footer">
-                      
+
                         <button type="button" class="btn btn-primary" id="salvarModal">Salvar</button>
                     </div>
                 </div>
@@ -132,74 +160,73 @@ if (!isset($_SESSION['user'])) {
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">
     </script>
-   <script>
-    function abrirModalPermissoes() {
-        const editSistema = new bootstrap.Modal(document.getElementById('editUsuarioModal'));
-        editSistema.show();
-    }
-
-    // Evento de clique no botão "Permissões"
-    document.getElementById('button-permissao').addEventListener('click', abrirModalPermissoes);
-
-    // Enviar os dados do formulário para o arquivo PHP
-    document.getElementById('form').addEventListener('submit', function (event) {
-        event.preventDefault(); // Impedir o envio padrão do formulário
-
-        const formData = new FormData(this);
-
-        // Enviar os dados selecionados na modal para o FormData
-        const modalForm = document.getElementById('modalForm');
-        const selectsModal = modalForm.getElementsByTagName('select');
-        for (let i = 0; i < selectsModal.length; i++) {
-            const select = selectsModal[i];
-            const nomeSistema = select.id;
-            const valor = select.value;
-            formData.append(`sistemas[${nomeSistema}]`, valor);
+    <script>
+        function abrirModalPermissoes() {
+            const editSistema = new bootstrap.Modal(document.getElementById('editUsuarioModal'));
+            editSistema.show();
         }
 
-        // Enviar os dados do formulário para o arquivo PHP usando Fetch API
-        fetch(this.action, {
-            method: this.method,
-            body: formData
-        })
-            .then(function (response) {
-                return response.json();
-            })
-            .then(function (data) {
-                if (data.status) {
-                    Swal.fire({
-                        text: data.msg,
-                        icon: 'success',
-                        showCancelButton: false,
-                        confirmButtonColor: '#3085d6',
-                        confirmButtonText: 'Fechar'
-                    });
-                } else {
-                    Swal.fire({
-                        text: data.msg,
-                        icon: 'error',
-                        showCancelButton: false,
-                        confirmButtonColor: '#3085d6',
-                        confirmButtonText: 'Fechar'
-                    });
-                }
-            })
-            .catch(function (error) {
-                console.error(error);
-            });
-    });
+        // Evento de clique no botão "Permissões"
+        document.getElementById('button-permissao').addEventListener('click', abrirModalPermissoes);
 
-    // Evento de clique no botão "Salvar"
-    document.getElementById('salvarModal').addEventListener('click', function () {
-        Swal.fire({
-            text: 'Os dados foram salvos.',
-            icon: 'success',
-            showCancelButton: false,
-            confirmButtonColor: '#3085d6',
-            confirmButtonText: 'Fechar'
+        // Enviar os dados do formulário para o arquivo PHP
+        document.getElementById('form').addEventListener('submit', function(event) {
+            event.preventDefault(); // Impedir o envio padrão do formulário
+
+            const formData = new FormData(this);
+
+            // Enviar os dados selecionados na modal para o FormData
+            const modalForm = document.getElementById('modalForm');
+            const selectsModal = modalForm.getElementsByTagName('select');
+            for (let i = 0; i < selectsModal.length; i++) {
+                const select = selectsModal[i];
+                const nomeSistema = select.id;
+                const valor = select.value;
+                formData.append(`sistemas[${nomeSistema}]`, valor);
+            }
+
+            // Enviar os dados do formulário para o arquivo PHP usando Fetch API
+            fetch(this.action, {
+                    method: this.method,
+                    body: formData
+                })
+                .then(function(response) {
+                    return response.json();
+                })
+                .then(function(data) {
+                    if (data.status) {
+                        Swal.fire({
+                            text: data.msg,
+                            icon: 'success',
+                            showCancelButton: false,
+                            confirmButtonColor: '#3085d6',
+                            confirmButtonText: 'Fechar'
+                        });
+                    } else {
+                        Swal.fire({
+                            text: data.msg,
+                            icon: 'error',
+                            showCancelButton: false,
+                            confirmButtonColor: '#3085d6',
+                            confirmButtonText: 'Fechar'
+                        });
+                    }
+                })
+                .catch(function(error) {
+                    console.error(error);
+                });
         });
-    });
-</script>
+
+        // Evento de clique no botão "Salvar"
+        document.getElementById('salvarModal').addEventListener('click', function() {
+            Swal.fire({
+                text: 'Os dados foram salvos.',
+                icon: 'success',
+                showCancelButton: false,
+                confirmButtonColor: '#3085d6',
+                confirmButtonText: 'Fechar'
+            });
+        });
+    </script>
