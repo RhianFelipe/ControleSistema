@@ -4,7 +4,7 @@ include "../db/conexao.php";
 // Função para registrar a operação de criação de usuário no log
 function logCriacaoUsuario($mysqli, $idUsuario, $nomeUsuario) {
     // Crie a consulta SQL para inserir o registro de log
-    $sql = "INSERT INTO logsusuarios (id_usuario, nome_usuario,email_usuario tipo_operacao, data_operacao) VALUES ('$idUsuario', '$nomeUsuario', 'Criado', NOW())";
+    $sql = "INSERT INTO logsusuarios (id_usuario, nome_usuario,email_usuario, grupo_usuario ,tipo_operacao, data_operacao) VALUES ('$idUsuario', '$nomeUsuario', 'Criado', NOW())";
 
     // Execute a consulta SQL
     if (mysqli_query($mysqli, $sql)) {
@@ -17,24 +17,26 @@ function logCriacaoUsuario($mysqli, $idUsuario, $nomeUsuario) {
 // Função para registrar a operação de atualização de usuário no log
 function logAtualizacaoUsuario($mysqli, $id) {
     // Crie a consulta SQL para inserir o registro de log
-    $sqlNomeUsuario = "SELECT nome,email FROM usuarios WHERE id = $id";
+    $sqlNomeUsuario = "SELECT nome,email,grupo FROM usuarios WHERE id = $id";
     $queryNomeUsuario = $mysqli->query($sqlNomeUsuario) or die($mysqli->error);
     $rowNomeUsuario = $queryNomeUsuario->fetch_assoc();
     $nomeUsuario = $rowNomeUsuario['nome'];
     $emailUsuario = $rowNomeUsuario['email'];
-    $sqlLogs = "INSERT INTO logsusuarios (id_usuario, nome_usuario,email_usuario tipo_operacao, data_operacao) VALUES ('$id', '$nomeUsuario','$emailUsuario', 'Atualizado', NOW())";
+    $grupoUsuario = $rowNomeUsuario['grupo'];
+    $sqlLogs = "INSERT INTO logsusuarios (id_usuario, nome_usuario,email_usuario, grupo_usuario ,tipo_operacao, data_operacao) VALUES ('$id', '$nomeUsuario','$emailUsuario',' $grupoUsuario', 'Atualizado', NOW())";
     $queryLogs = $mysqli->query($sqlLogs) or die($mysqli->error);
 }
 
 // Função para registrar a operação de exclusão de usuário no log
 function logExclusaoUsuario($mysqli, $id) {
     // Consulta o nome do usuário com base no ID
-    $sqlNomeUsuario = "SELECT nome,email FROM usuarios WHERE id = $id";
+    $sqlNomeUsuario = "SELECT nome,email,grupo FROM usuarios WHERE id = $id";
     $queryNomeUsuario = $mysqli->query($sqlNomeUsuario) or die($mysqli->error);
     $rowNomeUsuario = $queryNomeUsuario->fetch_assoc();
     $nomeUsuario = $rowNomeUsuario['nome'];
     $emailUsuario = $rowNomeUsuario['email'];
-    $sqlLogs = "INSERT INTO logsusuarios (id_usuario, nome_usuario,email_usuario ,tipo_operacao, data_operacao) VALUES ('$id', '$nomeUsuario','$emailUsuario', 'Excluído', NOW())";
+    $grupoUsuario = $rowNomeUsuario['grupo'];
+    $sqlLogs = "INSERT INTO logsusuarios (id_usuario, nome_usuario,email_usuario, grupo_usuario ,tipo_operacao, data_operacao) VALUES ('$id', '$nomeUsuario','$emailUsuario',' $grupoUsuario', 'Excluído', NOW())";
     $queryLogs = $mysqli->query($sqlLogs) or die($mysqli->error);
 }
 ?>
