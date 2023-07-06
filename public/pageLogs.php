@@ -44,22 +44,23 @@ if (!isset($_SESSION['user'])) {
     include "../db/conexao.php";
 
     // Consulta os logs de usuários ordenados pela última data de operação
-    $sql = "SELECT id, nome_usuario, tipo_operacao, data_operacao FROM logsusuarios ORDER BY data_operacao DESC";
+    $sql = "SELECT id, nome_usuario,email_usuario, tipo_operacao, data_operacao FROM logsusuarios ORDER BY data_operacao DESC";
     $resultado = mysqli_query($mysqli, $sql);
 
     // Verifica se há registros de logs
     if (mysqli_num_rows($resultado) > 0) {
         echo "<table>";
-        echo "<tr><th>ID</th><th>Nome do Usuário</th><th>Tipo de Operação</th><th>Data da Operação</th></tr>";
+        echo "<tr><th>ID</th><th>Nome do Usuário</th><th>Email do Usuário</th><th>Tipo de Operação</th><th>Data da Operação</th></tr>";
 
         // Itera sobre os registros de logs
         while ($row = mysqli_fetch_assoc($resultado)) {
             $id = $row['id'];
             $nomeUsuario = $row['nome_usuario'];
+            $emailUsuario = $row['email_usuario'];
             $tipoOperacao = $row['tipo_operacao'];
             $dataOperacao = $row['data_operacao'];
 
-            echo "<tr><td>$id</td><td>$nomeUsuario</td><td>$tipoOperacao</td><td>$dataOperacao</td></tr>";
+            echo "<tr><td>$id</td><td>$nomeUsuario</td><td>$emailUsuario</td><td>$tipoOperacao</td><td>$dataOperacao</td></tr>";
         }
 
         echo "</table>";
