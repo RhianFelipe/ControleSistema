@@ -30,7 +30,7 @@ if (!isset($_SESSION['user'])) {
         <nav class="navbar">
 
             <li class="list-header"><a class="a1" href="../public/pageCadastro.php">Cadastrar Usuários</a></li>
-            <li class="list-header"><a class="a1" href="../public/pageFiltro.php">Filtrar Usuários</a></li>
+          
             <li class="list-header"><a class="a1" href="../public/pageLista.php">Lista de Usuários</a></li>
             <li class="list-header"><a class="a1" href="../public/pageLogs.php">Logs de Usuário</a></li>
             <li class="list-header"><a onclick="openPopupSistema()" class="a1">Inserir Sistema</a></li>

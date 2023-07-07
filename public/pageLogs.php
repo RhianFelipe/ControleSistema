@@ -27,14 +27,13 @@ if (!isset($_SESSION['user'])) {
 <header>
         <img class="imgHeader" src="..\public\assets\img\logo-govpr-white.png">
         <nav class="navbar">
-    
-                <li class="list-header"><a class="a1" href="../public/pageCadastro.php">Cadastrar Usuários</a></li>
-                <li class="list-header"><a class="a1" href="../public/pageLista.php">Lista de Usuários</a></li>
-                <li class="list-header"><a class="a1" href="../public/pageLogs.php">Logs de Usuário</a></li>
-          
+
+            <li class="list-header"><a class="a1" href="../public/pageCadastro.php">Cadastrar Usuários</a></li>
+            <li class="list-header"><a class="a1" href="../public/pageFiltro.php">Filtrar Usuários</a></li>
+            <li class="list-header"><a class="a1" href="../public/pageLista.php">Lista de Usuários</a></li>
+            <li class="list-header"><a onclick="openPopupSistema()" class="a1">Inserir Sistema</a></li>
         </nav>
     </header>
-
     <section>
 
 
@@ -76,6 +75,12 @@ if (!isset($_SESSION['user'])) {
     <footer>
     <p>&copy; 2023 Procuradoria Geral do Estado do Paraná. Todos os direitos reservados.</p>
     </footer>
+    <?php include '../src/sistema/modalSistema.php'; ?>
+    <script src="../script/utils.js"></script>
+    <script src="../js/sweetalert2.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">
+    </script>
 </body>
 
 </html>

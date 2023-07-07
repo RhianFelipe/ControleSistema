@@ -27,10 +27,15 @@ if (!isset($_SESSION['user'])) {
 </head>
 
 <body>
-    <header>
+<header>
         <img class="imgHeader" src="..\public\assets\img\logo-govpr-white.png">
         <nav class="navbar">
-            <li class="list-header"><a class="a1" href="../public/pageFiltro.php">Voltar para Filtro</a> </li>
+
+            <li class="list-header"><a class="a1" href="../public/pageCadastro.php">Cadastrar Usuários</a></li>
+            <li class="list-header"><a class="a1" href="../public/pageFiltro.php">Filtrar Usuários</a></li>
+        
+            <li class="list-header"><a class="a1" href="../public/pageLogs.php">Logs de Usuário</a></li>
+            <li class="list-header"><a onclick="openPopupSistema()" class="a1">Inserir Sistema</a></li>
         </nav>
     </header>
 
@@ -95,7 +100,7 @@ if (!isset($_SESSION['user'])) {
     <footer>
        <p>&copy; 2023 Procuradoria Geral do Estado do Paraná. Todos os direitos reservados.</p>
     </footer>
-
+    <script src="../script/utils.js"></script>
     <script src="../script/popupEdit.js"></script>
     <script src="../script/deleteUser.js"></script>
     <script src="../js/sweetalert2.js"></script>
