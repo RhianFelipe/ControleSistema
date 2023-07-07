@@ -5,12 +5,9 @@ function limparFiltragem() {
 }
 
 async function openModalSistema(){
-
     const editSistema = new bootstrap.Modal(
         document.getElementById("editSistema")
       );
-      editSistema.show();
-
-      
+      editSistema.show();   
 }
 

@@ -7,7 +7,7 @@ if (empty($id)) {
     echo json_encode($retorna);
 } else {
     // Log de exclusão de Usuário
-    logExclusaoUsuario($mysqli, $id);
+    logOperacaoUsuario($mysqli, $id,'Excluído');
     // Mover os dados para a tabela de desativados
     $sqlInsert = "INSERT INTO desativados (nome, email, sistema, permissao, data_exclusao)
     SELECT u.nome, u.email, p.sistemas, p.permissao, NOW() AS data_exclusao

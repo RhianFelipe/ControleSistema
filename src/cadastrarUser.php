@@ -42,7 +42,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             }
 
             // Adicionar o registro de log
-            logCriacaoUsuario($mysqli, $idUsuario, $nome);
+            logOperacaoUsuario($mysqli, $idUsuario,'Criado');
 
             $retorna = ['status' => true, 'msg' => "Usuário cadastrado com sucesso!"];
             echo json_encode($retorna);

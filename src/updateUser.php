@@ -25,7 +25,8 @@ if (empty($dados['id'])) {
   $idUsuario = $dados['id'];
 
   // Logs para atualização do Usuário
-  logAtualizacaoUsuario($mysqli, $idUsuario);
+  logOperacaoUsuario($mysqli, $idUsuario,'Permissão Atualizada');
+
 
   // Verificar se o campo grupo está preenchido
   if (!empty($dados['grupo'])) {

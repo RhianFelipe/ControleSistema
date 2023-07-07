@@ -32,38 +32,6 @@ if (!isset($_SESSION['user'])) {
 <body>
 
     <!-- Criação do Header para logo e navegação-->
-
-    <style>
-        .column-container {
-            display: flex;
-            flex-wrap: wrap;
-        }
-
-        .selects-permissoes {
-            flex-basis: 50%;
-            margin-bottom: 10px;
-        }
-
-        label {
-            display: block;
-            margin-bottom: 5px;
-        }
-
-        .custom-select {
-            width: 100%;
-            padding: 6px 12px;
-            font-size: 14px;
-            line-height: 1.42857143;
-            color: #555555;
-            background-color: #ffffff;
-            background-image: none;
-            border: 1px solid #cccccc;
-            border-radius: 4px;
-            box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
-            transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
-        }
-    </style>
-
     <header>
         <img class="imgHeader" src="..\public\assets\img\logo-govpr-white.png">
         <nav class="navbar">
@@ -116,10 +84,7 @@ if (!isset($_SESSION['user'])) {
                                 <?php
                                 include "../db/conexao.php";
 
-                                $sql = "SELECT DISTINCT nomeSistema
-        FROM admin
-        WHERE nomeSistema NOT LIKE '%:%' AND nomeSistema <> ''
-";
+                                $sql = "SELECT DISTINCT nomeSistema FROM admin  WHERE nomeSistema NOT LIKE '%:%' AND nomeSistema <> ''";
                                 $result = mysqli_query($mysqli, $sql);
 
                                 // Verificar se a consulta teve resultados
