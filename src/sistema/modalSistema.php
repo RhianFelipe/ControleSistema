@@ -29,8 +29,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <div class="col-12">
                         <label for="sistema">Sistema</label>
                         <input name="nomeSistema" type="text">
-                        <input type="submit" class="btn btn-outline-warning btn-sm" id="edit-usuario-btn"
-                            value="Salvar">
+                        <input type="submit" class="btn btn-outline-warning btn-sm" id="edit-usuario-btn" value="Salvar">
                     </div>
 
                     <?php
