@@ -33,7 +33,7 @@ if (!isset($_SESSION['user'])) {
             <li class="list-header"><a class="a1" href="../public/pageFiltro.php">Filtrar Usuários</a></li>
 
             <li class="list-header"><a class="a1" href="../public/pageLogs.php">Logs de Usuário</a></li>
-            <li class="list-header"><a onclick="openPopupSistema()" class="a1">Inserir Sistema</a></li>
+            <li class="list-header"><a onclick="openModalSistema()" class="a1">Inserir Sistema</a></li>
         </nav>
     </header>
 
@@ -73,7 +73,7 @@ if (!isset($_SESSION['user'])) {
                             <td><?php echo $email; ?></td>
                             <td><?php echo $grupo; ?></td>
                             <td>
-                                <button class='button-edit' onclick="openPopup(<?php echo $id; ?>)">Editar
+                                <button class='button-edit' onclick="openModalEdit(<?php echo $id; ?>)">Editar
                                     <button class='button-excluir' onclick="apagarUsuarioDados(<?php echo $id; ?>)">Excluir</button>
                             </td>
                         </tr>
@@ -97,7 +97,7 @@ if (!isset($_SESSION['user'])) {
         <p>&copy; 2023 Procuradoria Geral do Estado do Paraná. Todos os direitos reservados.</p>
     </footer>
     <script src="../script/utils.js"></script>
-    <script src="../script/popupEdit.js"></script>
+    <script src="../script/editModalUser.js"></script>
     <script src="../script/deleteUser.js"></script>
     <script src="../js/sweetalert2.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">

@@ -1,4 +1,4 @@
-async function openPopup(id) {
+async function openModalEdit(id) {
   console.log(id); // Exibe o ID recebido
 
   // Faz uma requisição assíncrona para obter dados do usuário com base no ID

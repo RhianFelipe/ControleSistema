@@ -33,7 +33,7 @@ if (!isset($_SESSION['user'])) {
 
             <li class="list-header"><a class="a1" href="../public/pageLista.php">Lista de Usuários</a></li>
             <li class="list-header"><a class="a1" href="../public/pageLogs.php">Logs de Usuário</a></li>
-            <li class="list-header"><a onclick="openPopupSistema()" class="a1">Inserir Sistema</a></li>
+            <li class="list-header"><a onclick="openModalSistema()" class="a1">Inserir Sistema</a></li>
         </nav>
     </header>
     <section class="area-consulta">
@@ -79,7 +79,7 @@ if (!isset($_SESSION['user'])) {
                                 <td class="td-button">
 
 
-                                    <button class="button-edit" onclick="openPopup('<?php echo $id; ?>')">Editar</button>
+                                    <button class="button-edit" onclick="openModalEdit('<?php echo $id; ?>')">Editar</button>
                                     <button class="button-excluir" onclick="apagarUsuarioDados('<?php echo $id; ?>')">Excluir</button>
                                 </td>
                             </tr>
@@ -108,7 +108,7 @@ if (!isset($_SESSION['user'])) {
     <!-- Fim Modal editar usuário -->
 
 
-    <script src="../script/popupEdit.js"></script>
+    <script src="../script/editModalUser.js"></script>
     <script src="../script/deleteUser.js"></script>
     <script src="../script/utils.js"></script>
     <script src="../js/sweetalert2.js"></script>

@@ -167,74 +167,8 @@ if (!isset($_SESSION['user'])) {
 
 
     <script src="../script/utils.js"></script>
+    <script src="../script/cadastrarUser.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">
     </script>
-    <script>
-        function abrirModalPermissoes() {
-            const editSistema = new bootstrap.Modal(document.getElementById('editUsuarioModal'));
-            editSistema.show();
-        }
-
-        // Evento de clique no botão "Permissões"
-        document.getElementById('button-permissao').addEventListener('click', abrirModalPermissoes);
-
-        // Enviar os dados do formulário para o arquivo PHP
-        document.getElementById('form').addEventListener('submit', function(event) {
-            event.preventDefault(); // Impedir o envio padrão do formulário
-
-            const formData = new FormData(this);
-
-            // Enviar os dados selecionados na modal para o FormData
-            const modalForm = document.getElementById('modalForm');
-            const selectsModal = modalForm.getElementsByTagName('select');
-            for (let i = 0; i < selectsModal.length; i++) {
-                const select = selectsModal[i];
-                const nomeSistema = select.id;
-                const valor = select.value;
-                formData.append(`sistemas[${nomeSistema}]`, valor);
-            }
-
-            // Enviar os dados do formulário para o arquivo PHP usando Fetch API
-            fetch(this.action, {
-                    method: this.method,
-                    body: formData
-                })
-                .then(function(response) {
-                    return response.json();
-                })
-                .then(function(data) {
-                    if (data.status) {
-                        Swal.fire({
-                            text: data.msg,
-                            icon: 'success',
-                            showCancelButton: false,
-                            confirmButtonColor: '#3085d6',
-                            confirmButtonText: 'Fechar'
-                        });
-                    } else {
-                        Swal.fire({
-                            text: data.msg,
-                            icon: 'error',
-                            showCancelButton: false,
-                            confirmButtonColor: '#3085d6',
-                            confirmButtonText: 'Fechar'
-                        });
-                    }
-                })
-                .catch(function(error) {
-                    console.error(error);
-                });
-        });
-
-        // Evento de clique no botão "Salvar"
-        document.getElementById('salvarModal').addEventListener('click', function() {
-            Swal.fire({
-                text: 'Os dados foram salvos.',
-                icon: 'success',
-                showCancelButton: false,
-                confirmButtonColor: '#3085d6',
-                confirmButtonText: 'Fechar'
-            });
-        });
-    </script>
+ 
