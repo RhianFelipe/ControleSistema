@@ -1,16 +1,17 @@
 /*Usar para criar estilos globais*/
 
 /*Usado para criar variaveis globais*/
-:root{
---footer-header-color:#4d6d84;
---section-bgcolor: rgb(219, 219, 219);
+:root {
+  --footer-header-color: #4d6d84;
+  --section-bgcolor: rgb(219, 219, 219);
 
 }
+
 /*Remove o espaço extra adicionado pelo padding e a borda de um elemento.*/
-*{
-padding: 0;
-margin: 0;
-box-shadow: none;
+* {
+  padding: 0;
+  margin: 0;
+  box-shadow: none;
 
 }
 
@@ -19,14 +20,14 @@ html,
 body {
   height: 0vh;
   font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
-  "Lucida Sans", Arial, sans-serif;
+    "Lucida Sans", Arial, sans-serif;
 
 }
 
 
 /*Estilização padrão do Header*/
 header {
-  background-color: var(--footer-header-color); 
+  background-color: var(--footer-header-color);
   padding: 30px;
   margin: auto;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
@@ -38,14 +39,15 @@ header {
   height: auto;
 }
 
-.navbar{
+.navbar {
   float: right;
   margin-top: 8px;
 
 }
+
 .navbar li {
   display: inline-block;
-    list-style-type: none;
+  list-style-type: none;
 }
 
 .list-header .a1 {
@@ -59,18 +61,18 @@ header {
 
 .list-header a:hover {
   border-radius: 4%;
-  
+
   text-align: center;
   text-decoration: none;
   background-color: rgba(250, 235, 215, 0.082);
-  
+
 }
 
 /*Estilização padrão do Footer*/
 
 
 
-footer{
+footer {
   background-color: var(--footer-header-color);
   color: white;
 
@@ -89,16 +91,16 @@ footer{
   border: 1px solid black;
   border-radius: 5px;
   padding: 5px 10px;
-  background-color:var(--footer-header-color);
+  background-color: var(--footer-header-color);
   color: #ffffff;
   margin-right: 5px;
   cursor: pointer;
   margin-bottom: 1rem;
 }
 
-.button-edit:hover{
-  background-color:#4d6d84ef;
-  
+.button-edit:hover {
+  background-color: #4d6d84ef;
+
 }
 
 .button-excluir {
@@ -110,8 +112,7 @@ footer{
   cursor: pointer;
 }
 
-.button-excluir:hover{
-  background-color:#f3eeeec7;
+.button-excluir:hover {
+  background-color: #f3eeeec7;
 
 }
-

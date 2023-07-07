@@ -2,32 +2,29 @@
 
 /* Personalização adicional */
 
-section{
-    display: flex;
- 
-    justify-content: center;
+section {
+  display: flex;
+
+  justify-content: center;
 
 }
- 
-  table {
-    border-collapse: collapse;
-    width: auto;
 
-   
-  }
-  
-  th,
-  td {
+table {
+  border-collapse: collapse;
+  width: auto;
 
-    padding: 0.5rem;
-    text-align: left;
- 
-  }
-  
-  th {
-    background-color: #f2f2f2;
-    font-weight: bold;
-  }
-  
-  
-  
+
+}
+
+th,
+td {
+
+  padding: 0.5rem;
+  text-align: left;
+
+}
+
+th {
+  background-color: #f2f2f2;
+  font-weight: bold;
+}

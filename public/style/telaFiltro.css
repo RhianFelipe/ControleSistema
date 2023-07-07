@@ -96,9 +96,11 @@ input[type="email"] {
 ::placeholder {
   color: #888;
 }
+
 .input-wrapper {
   display: flex;
-  align-items: baseline; /* Alinha verticalmente com a linha de base dos campos de entrada */
+  align-items: baseline;
+  /* Alinha verticalmente com a linha de base dos campos de entrada */
 }
 
 .input-wrapper input {
@@ -114,7 +116,8 @@ input[type="email"] {
   font-size: 16px;
   border-radius: 4px;
   transition: background-color 0.3s ease;
-  margin-left: 10px; /* Adicionado para espaçamento entre o último campo de entrada e o botão */
+  margin-left: 10px;
+  /* Adicionado para espaçamento entre o último campo de entrada e o botão */
 }
 
 
@@ -124,24 +127,26 @@ input[type="email"] {
 }
 
 table {
-    border-collapse: collapse;
-    width: 100%;
-    margin-top: 20px;
+  border-collapse: collapse;
+  width: 100%;
+  margin-top: 20px;
 
-  }
+}
 
-  th, td {
-    border: 2px solid rgb(196, 196, 196);
-    padding: 0px; /*era 8*/
-    text-align: left;
-   
- 
-  }
+th,
+td {
+  border: 2px solid rgb(196, 196, 196);
+  padding: 0px;
+  /*era 8*/
+  text-align: left;
 
-  th {
-    background-color: #f2f2f2;
-  }
 
-  .td-button {
-    display: inline;
-  }
+}
+
+th {
+  background-color: #f2f2f2;
+}
+
+.td-button {
+  display: inline;
+}
