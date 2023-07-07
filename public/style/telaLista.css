@@ -23,6 +23,9 @@ td {
   text-align: left;
 
 }
+tr:hover {
+  background-color: #f9f9f9;
+}
 
 th {
   background-color: #f2f2f2;
