@@ -4,30 +4,42 @@
 
 section {
   display: flex;
-
   justify-content: center;
-
-}
-
-table {
+  }
+  
+  table {
+  width: 80%;
   border-collapse: collapse;
-  width: auto;
-
-
-}
-
-th,
-td {
-
-  padding: 0.5rem;
-  text-align: left;
-
-}
-tr:hover {
-  background-color: #f9f9f9;
-}
-
-th {
   background-color: #f2f2f2;
-  font-weight: bold;
-}
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  }
+  
+  th,
+  td {
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
+  }
+  
+  th {
+  background-color: #e6e6e6;
+  }
+  
+  tr {
+  margin: 1rem;
+  }
+  
+  tr:hover {
+  background-color: #f9f9f9;
+  }
+
+
+  #edit-usuario-form td {
+   
+    padding: 0px;
+    padding-left: 0.5rem;
+    /*era 8*/
+    text-align: left;
+  
+  }
+  
