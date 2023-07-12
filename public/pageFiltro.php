@@ -25,28 +25,25 @@ if (!isset($_SESSION['user'])) {
 </head>
 
 <body onload="limparFiltragem()">
-    <header>
-        <img class="imgHeader" src="..\public\assets\img\logo-govpr-white.png">
+    <header> <img class="imgHeader" src="..\public\assets\img\logo-govpr-white.png">
         <nav class="navbar">
-
             <li class="list-header"><a class="a1" href="../public/pageCadastro.php">Cadastrar Usuários</a></li>
-
             <li class="list-header"><a class="a1" href="../public/pageLista.php">Lista de Usuários</a></li>
             <li class="list-header"><a class="a1" href="../public/pageLogs.php">Logs de Usuário</a></li>
             <li class="list-header"><a onclick="openModalSistema()" class="a1">Inserir Sistema</a></li>
         </nav>
     </header>
     <section class="area-consulta">
-        <h1>Área de Consulta</h1>
+        <h1 class="consulta-title">Área de Consulta</h1>
         <form action="../src/filtrarUser.php" method="POST">
             <div class="input-wrapper">
                 <input placeholder="nome" class="input-table" type="text" name="nome">
                 <input placeholder="e-mail" class="input-table" type="text" name="email">
-                <button type="submit" id="button-filtro">Filtrar</button>
+                <button type="submit" id="button-filtro" class="btn-filtro">Filtrar</button>
             </div>
         </form>
 
-        <table>
+        <table class="consulta-table">
             <thead>
                 <tr>
                     <th>Nome</th>
@@ -57,8 +54,6 @@ if (!isset($_SESSION['user'])) {
             </thead>
             <tbody>
                 <?php
-
-
                 // Verifica se existem resultados na sessão
                 if (isset($_SESSION['resultados_filtro'])) {
                     $resultados = $_SESSION['resultados_filtro'];
@@ -72,13 +67,11 @@ if (!isset($_SESSION['user'])) {
                             $emailUsuario = $resultado['email'];
                             $grupoUsuario = $resultado['grupo'];
                 ?>
-                            <tr id="linha-usuario-<?php echo $id; ?>">
+                            <tr class="linha-usuario" id="linha-usuario-<?php echo $id; ?>">
                                 <td><?php echo $nomeUsuario; ?></td>
                                 <td><?php echo $emailUsuario; ?></td>
                                 <td><?php echo $grupoUsuario; ?></td>
                                 <td class="td-button">
-
-
                                     <button class="button-edit" onclick="openModalEdit('<?php echo $id; ?>')">Editar</button>
                                     <button class="button-excluir" onclick="apagarUsuarioDados('<?php echo $id; ?>')">Excluir</button>
                                 </td>

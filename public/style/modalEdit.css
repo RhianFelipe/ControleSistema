@@ -1,0 +1,16 @@
+#edit-usuario-btn {
+    display: inline-block;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+    color: #fff;
+    cursor: pointer;
+    background-color: #fca311;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+  
+  }
+  
+  #edit-usuario-btn:hover {
+    background-color: #fca211c9;
+  }

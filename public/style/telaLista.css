@@ -1,45 +1,29 @@
-/* styles.css */
-
-/* Personalização adicional */
-
 section {
   display: flex;
   justify-content: center;
-  }
-  
-  table {
-  width: 80%;
+}
+
+.lista-usuarios {
+  width: 60%;
   border-collapse: collapse;
+  margin-top: 20px;
+  margin: 0;
   background-color: #f2f2f2;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  }
-  
-  th,
-  td {
+}
+
+.lista-usuarios th,
+.lista-usuarios td {
   padding: 10px;
-  border-bottom: 1px solid #ccc;
-  }
-  
-  th {
+}
+
+.lista-usuarios th {
   background-color: #e6e6e6;
-  }
-  
-  tr {
+}
+
+.lista-usuarios tr {
   margin: 1rem;
-  }
-  
-  tr:hover {
+}
+
+.lista-usuarios tr:hover {
   background-color: #f9f9f9;
-  }
-
-
-  #edit-usuario-form td {
-   
-    padding: 0px;
-    padding-left: 0.5rem;
-    /*era 8*/
-    text-align: left;
-  
-  }
-  
+}

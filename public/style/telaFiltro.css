@@ -1,8 +1,4 @@
-/* styles.css */
-
-/* Personalização adicional */
-
-#area.form {
+#area-form {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -10,8 +6,7 @@
   background-color: var(--section-bgcolor);
 }
 
-#form {
-  width: 400px;
+.form-container {
   border-radius: 15px;
   padding: 2rem;
   background-color: #f2f2f2;
@@ -19,7 +14,6 @@
 }
 
 .input-value {
-  width: 100%;
   padding: 12px;
   margin-bottom: 1rem;
   border: 2px solid #ccc;
@@ -27,7 +21,7 @@
   font-size: 14px;
 }
 
-#button-permissao {
+.button-permissao {
   display: inline-block;
   padding: 8px 16px;
   border: 1px solid #ccc;
@@ -38,7 +32,7 @@
   font-size: 14px;
 }
 
-#button-submit {
+.button-submit {
   display: block;
   width: 100%;
   padding: 12px;
@@ -51,36 +45,20 @@
   cursor: pointer;
 }
 
-#button-submit:hover {
+.button-submit:hover {
   background-color: #395670;
-}
-
-footer {
-  background-color: var(--footer-header-color);
-  color: white;
-  margin-top: 10rem;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  padding: 10px;
-  text-align: center;
 }
 
 .area-consulta {
   background-color: #f2f2f2;
-  width: 950px;
-  padding: 22px 30px 90px 17px;
+  width: 1000px;
+  padding: 30px;
   margin: 100px auto;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
   border-radius: 4px;
 }
 
-form div {
-  margin-bottom: 10px;
-}
-
-input[type="text"],
-input[type="email"] {
+.input-table {
   width: calc(50% - 5px);
   padding: 12px;
   margin-bottom: 1rem;
@@ -89,25 +67,15 @@ input[type="email"] {
   font-size: 14px;
 }
 
-.input-wrapper input[type="email"] {
-  margin-left: 4px;
-}
-
-::placeholder {
-  color: #888;
-}
-
 .input-wrapper {
-  display: flex;
-  align-items: baseline;
-  /* Alinha verticalmente com a linha de base dos campos de entrada */
+  margin-bottom: 10px;
 }
 
 .input-wrapper input {
   margin-right: 10px;
 }
 
-#button-filtro {
+.btn-filtro {
   padding: 12px 15px;
   background-color: #4d6d84;
   border: none;
@@ -120,36 +88,34 @@ input[type="email"] {
   /* Adicionado para espaçamento entre o último campo de entrada e o botão */
 }
 
-
-
-#button-filtro:hover {
+.btn-filtro:hover {
   background-color: #395670;
 }
 
-table {
+.consulta-table {
   border-collapse: collapse;
   width: 100%;
   margin-top: 20px;
-
+  margin: 0;
 }
 
-th,
-td {
-  border: 2px solid rgb(196, 196, 196);
-  padding: 0px;
-  /*era 8*/
-  text-align: left;
-
-
-}
-
-th {
+.consulta-table th {
   background-color: #f2f2f2;
 }
-tr:hover {
+
+.consulta-table tr:hover {
   background-color: #f9f9f9;
 }
 
-.td-button {
-  display: inline;
+.consulta-table td {
+  padding: 10px;
+}
+
+.input-wrapper {
+  display: flex;
+  align-items: baseline;
+}
+
+.input-wrapper input {
+  margin-right: 10px;
 }

@@ -4,7 +4,6 @@
 :root {
   --footer-header-color: #4d6d84;
   --section-bgcolor: rgb(219, 219, 219);
-
 }
 
 /*Remove o espaço extra adicionado pelo padding e a borda de um elemento.*/
@@ -12,7 +11,6 @@
   padding: 0;
   margin: 0;
   box-shadow: none;
-
 }
 
 /*Define a altura da página como 100%*/
@@ -21,9 +19,7 @@ body {
   height: 0vh;
   font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
     "Lucida Sans", Arial, sans-serif;
-
 }
-
 
 /*Estilização padrão do Header*/
 header {
@@ -31,7 +27,6 @@ header {
   padding: 30px;
   margin: auto;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
-
 }
 
 .imgHeader {
@@ -42,35 +37,28 @@ header {
 .navbar {
   float: right;
   margin-top: 8px;
-
 }
 
 .navbar li {
   display: inline-block;
   list-style-type: none;
+  margin-right: 15px;
 }
 
 .list-header .a1 {
-  font-size: 109%;
+  font-size: 16px;
   color: white;
-  text-align: left;
-  margin-right: 15px;
   text-decoration: none;
-  padding: 14px 16px;
+  padding: 10px 16px;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
 }
 
-.list-header a:hover {
-  border-radius: 4%;
-
-  text-align: center;
-  text-decoration: none;
-  background-color: rgba(250, 235, 215, 0.082);
-
+.list-header .a1:hover {
+  background-color: rgba(250, 235, 215, 0.2);
 }
 
 /*Estilização padrão do Footer*/
-
-
 
 footer {
   background-color: var(--footer-header-color);
@@ -82,37 +70,36 @@ footer {
   padding: 10px;
   text-align: center;
   height: 100px;
-
 }
 
 /*Estilização padrão do Botões editar e excluir*/
-
-.button-edit {
-  border: 1px solid black;
+.button-edit,
+.button-excluir {
+  border: none;
   border-radius: 5px;
   padding: 5px 10px;
-  background-color: var(--footer-header-color);
-  color: #ffffff;
-  margin-right: 5px;
+  color: #fff;
   cursor: pointer;
-  margin-bottom: 1rem;
+  transition: background-color 0.3s ease;
 }
 
-.button-edit:hover {
-  background-color: #4d6d84ef;
-
+.button-edit {
+  background-color: var(--footer-header-color);
+  margin-right: 5px;
 }
 
 .button-excluir {
-  border: 1px solid black;
-  border-radius: 5px;
-  padding: 5px 10px;
-  background-color: #fff;
-  color: #000;
-  cursor: pointer;
+  background-color: #e02e2e;
+  border-radius: 4px;
+}
+
+.button-edit:hover {
+  background-color: #395670;
 }
 
 .button-excluir:hover {
-  background-color: #f3eeeec7;
-
+  background-color: #c02929;
 }
+
+
+

@@ -9,7 +9,6 @@ if (!isset($_SESSION['user'])) {
 }
 ?>
 
-
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -28,22 +27,20 @@ if (!isset($_SESSION['user'])) {
     <header>
         <img class="imgHeader" src="..\public\assets\img\logo-govpr-white.png">
         <nav class="navbar">
-
-            <li class="list-header"><a class="a1" href="../public/pageCadastro.php">Cadastrar Usuários</a></li>
-            <li class="list-header"><a class="a1" href="../public/pageFiltro.php">Filtrar Usuários</a></li>
-
-            <li class="list-header"><a class="a1" href="../public/pageLogs.php">Logs de Usuário</a></li>
-            <li class="list-header"><a onclick="openModalSistema()" class="a1">Inserir Sistema</a></li>
+            <ul class="list-header">
+                <li><a class="a1" href="../public/pageCadastro.php">Cadastrar Usuários</a></li>
+                <li><a class="a1" href="../public/pageFiltro.php">Filtrar Usuários</a></li>
+                <li><a class="a1" href="../public/pageLogs.php">Logs de Usuário</a></li>
+                <li><a onclick="openModalSistema()" class="a1">Inserir Sistema</a></li>
+            </ul>
         </nav>
     </header>
 
     <!-- Tabela para exibir os dados -->
-    <span id="msgAlerta"></span>
     <section>
-        <table>
+        <table class="lista-usuarios">
             <thead>
                 <tr>
-
                     <th>Nome</th>
                     <th>Email</th>
                     <th>Grupo</th>
@@ -68,19 +65,18 @@ if (!isset($_SESSION['user'])) {
                         $grupo = $row["grupo"];
                 ?>
                         <tr id="linha-usuario-<?php echo $id; ?>">
-
                             <td><?php echo $nome; ?></td>
                             <td><?php echo $email; ?></td>
                             <td><?php echo $grupo; ?></td>
                             <td>
-                                <button class='button-edit' onclick="openModalEdit(<?php echo $id; ?>)">Editar
-                                    <button class='button-excluir' onclick="apagarUsuarioDados(<?php echo $id; ?>)">Excluir</button>
+                                <button class="button-edit" onclick="openModalEdit(<?php echo $id; ?>)">Editar</button>
+                                <button class="button-excluir" onclick="apagarUsuarioDados(<?php echo $id; ?>)">Excluir</button>
                             </td>
                         </tr>
                 <?php
                     }
                 } else {
-                    echo "<tr><td colspan='3'>Nenhum registro encontrado.</td></tr>";
+                    echo "<tr><td colspan='4'>Nenhum registro encontrado.</td></tr>";
                 }
                 $mysqli->close();
                 ?>
@@ -93,17 +89,11 @@ if (!isset($_SESSION['user'])) {
         <!-- Fim Modal editar usuário -->
     </section>
 
-    <footer>
-        <p>&copy; 2023 Procuradoria Geral do Estado do Paraná. Todos os direitos reservados.</p>
-    </footer>
     <script src="../script/utils.js"></script>
     <script src="../script/editModalUser.js"></script>
     <script src="../script/deleteUser.js"></script>
     <script src="../js/sweetalert2.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">
-    </script>
-
-
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 </body>
 
 </html>

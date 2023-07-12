@@ -51,7 +51,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                 echo "<tr>   
                                             <td>" . $nomeSistema . "</td>
                                             <td>
-                                                <button class='btn btn-outline-danger btn-sm' onclick='excluirSistema(\"" . $nomeSistema . "\")'>Excluir</button>
+                                                <button class='button-excluir' onclick='excluirSistema(\"" . $nomeSistema . "\")'>Excluir</button>
                                             </td>
                                         </tr>";
                             }

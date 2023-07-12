@@ -69,9 +69,7 @@ if (!isset($_SESSION['user'])) {
         mysqli_close($mysqli);
         ?>
 
-        <footer>
-            <p>&copy; 2023 Procuradoria Geral do Estado do Paraná. Todos os direitos reservados.</p>
-        </footer>
+
         <?php include '../src/sistema/modalSistema.php'; ?>
         <script src="../script/utils.js"></script>
         <script src="../js/sweetalert2.js"></script>
