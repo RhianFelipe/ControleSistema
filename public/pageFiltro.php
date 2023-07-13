@@ -1,14 +1,12 @@
 <?php
 session_start();
 
-// Verifica se a variável de sessão está definida
 if (!isset($_SESSION['user'])) {
-    // Redireciona o usuário para o painel de login
     header("Location: ../public/pageLogin.php");
     exit();
 }
-?>
 
+?>
 
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -25,12 +23,15 @@ if (!isset($_SESSION['user'])) {
 </head>
 
 <body onload="limparFiltragem()">
-    <header> <img class="imgHeader" src="..\public\assets\img\logo-govpr-white.png">
+    <header>
+        <img class="imgHeader" src="..\public\assets\img\logo-govpr-white.png">
         <nav class="navbar">
-            <li class="list-header"><a class="a1" href="../public/pageCadastro.php">Cadastrar Usuários</a></li>
-            <li class="list-header"><a class="a1" href="../public/pageLista.php">Lista de Usuários</a></li>
-            <li class="list-header"><a class="a1" href="../public/pageLogs.php">Logs de Usuário</a></li>
-            <li class="list-header"><a onclick="openModalSistema()" class="a1">Inserir Sistema</a></li>
+            <ul class="list-header">
+                <li><a class="a1" href="../public/pageCadastro.php">Cadastrar Usuários</a></li>
+                <li><a class="a1" href="../public/pageLista.php">Lista de Usuários</a></li>
+                <li><a class="a1" href="../public/pageLogs.php">Logs de Usuário</a></li>
+                <li><a onclick="openModalSistema()" class="a1">Inserir Sistema</a></li>
+            </ul>
         </nav>
     </header>
     <section class="area-consulta">
@@ -53,53 +54,37 @@ if (!isset($_SESSION['user'])) {
                 </tr>
             </thead>
             <tbody>
-                <?php
-                // Verifica se existem resultados na sessão
-                if (isset($_SESSION['resultados_filtro'])) {
-                    $resultados = $_SESSION['resultados_filtro'];
-
-                    if (empty($resultados)) {
-                        echo "<tr><td colspan='3'>Nenhum resultado encontrado.</td></tr>";
-                    } else {
-                        foreach ($resultados as $resultado) {
-                            $id = $resultado['id'];
-                            $nomeUsuario = $resultado['nome'];
-                            $emailUsuario = $resultado['email'];
-                            $grupoUsuario = $resultado['grupo'];
-                ?>
-                            <tr class="linha-usuario" id="linha-usuario-<?php echo $id; ?>">
-                                <td><?php echo $nomeUsuario; ?></td>
-                                <td><?php echo $emailUsuario; ?></td>
-                                <td><?php echo $grupoUsuario; ?></td>
+                <?php if (isset($_SESSION['resultados_filtro'])): ?>
+                    <?php $resultados = $_SESSION['resultados_filtro']; ?>
+                    <?php if (empty($resultados)): ?>
+                        <tr>
+                            <td colspan="4">Nenhum resultado encontrado.</td>
+                        </tr>
+                    <?php else: ?>
+                        <?php foreach ($resultados as $resultado): ?>
+                            <tr class="linha-usuario" id="linha-usuario-<?php echo $resultado['id']; ?>">
+                                <td><?php echo $resultado['nome']; ?></td>
+                                <td><?php echo $resultado['email']; ?></td>
+                                <td><?php echo $resultado['grupo']; ?></td>
                                 <td class="td-button">
-                                    <button class="button-edit" onclick="openModalEdit('<?php echo $id; ?>')">Editar</button>
-                                    <button class="button-excluir" onclick="apagarUsuarioDados('<?php echo $id; ?>')">Excluir</button>
+                                    <button class="button-edit" onclick="openModalEdit('<?php echo $resultado['id']; ?>')">Editar</button>
+                                    <button class="button-excluir" onclick="apagarUsuarioDados('<?php echo $resultado['id']; ?>')">Excluir</button>
                                 </td>
                             </tr>
-                <?php
-                        }
-                    }
-
-                    unset($_SESSION['resultados_filtro']); // Remove os dados da sessão após exibir os resultados (opcional)
-                } else {
-                    echo "<tr><td colspan='3'>Digite um nome ou email para filtrar.</td></tr>";
-                }
-                ?>
-
+                        <?php endforeach; ?>
+                    <?php endif; ?>
+                    <?php unset($_SESSION['resultados_filtro']); ?>
+                <?php else: ?>
+                    <tr>
+                        <td colspan="4">Digite um nome ou email para filtrar.</td>
+                    </tr>
+                <?php endif; ?>
             </tbody>
         </table>
     </section>
 
-
-    <!-- Tabela para exibir os dados -->
-    <span id="msgAlerta"></span>
-
-
-    <!-- Início Modal editar usuário -->
     <?php include '../src/modalEdit.php'; ?>
     <?php include '../src/sistema/modalSistema.php'; ?>
-    <!-- Fim Modal editar usuário -->
-
 
     <script src="../script/editModalUser.js"></script>
     <script src="../script/deleteUser.js"></script>

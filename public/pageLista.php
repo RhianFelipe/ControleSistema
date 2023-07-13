@@ -1,12 +1,19 @@
 <?php
 session_start();
 
-// Verifica se a variável de sessão está definida
 if (!isset($_SESSION['user'])) {
-    // Redireciona o usuário para o painel de login
     header("Location: ../public/pageLogin.php");
     exit();
 }
+
+include "../db/conexao.php";
+
+$sql = "SELECT id, nome, email, grupo FROM usuarios ORDER BY nome";
+$result = $mysqli->query($sql);
+
+$usuarios = $result->num_rows > 0 ? $result->fetch_all(MYSQLI_ASSOC) : [];
+
+$mysqli->close();
 ?>
 
 <!DOCTYPE html>
@@ -36,7 +43,6 @@ if (!isset($_SESSION['user'])) {
         </nav>
     </header>
 
-    <!-- Tabela para exibir os dados -->
     <section>
         <table class="lista-usuarios">
             <thead>
@@ -48,45 +54,27 @@ if (!isset($_SESSION['user'])) {
                 </tr>
             </thead>
             <tbody>
-                <?php
-                // Conexão com o banco de dados (substitua as informações de conexão com as suas)
-                include "../db/conexao.php";
-
-                // Consulta SQL para obter os dados
-                $sql = "SELECT id, nome, email, grupo FROM usuarios ORDER BY nome";
-                $result = $mysqli->query($sql);
-
-                if ($result->num_rows > 0) {
-                    // Exibe os dados na tabela
-                    while ($row = $result->fetch_assoc()) {
-                        $id = $row["id"];
-                        $nome = $row["nome"];
-                        $email = $row["email"];
-                        $grupo = $row["grupo"];
-                ?>
-                        <tr id="linha-usuario-<?php echo $id; ?>">
-                            <td><?php echo $nome; ?></td>
-                            <td><?php echo $email; ?></td>
-                            <td><?php echo $grupo; ?></td>
-                            <td>
-                                <button class="button-edit" onclick="openModalEdit(<?php echo $id; ?>)">Editar</button>
-                                <button class="button-excluir" onclick="apagarUsuarioDados(<?php echo $id; ?>)">Excluir</button>
-                            </td>
-                        </tr>
-                <?php
-                    }
-                } else {
-                    echo "<tr><td colspan='4'>Nenhum registro encontrado.</td></tr>";
-                }
-                $mysqli->close();
-                ?>
+                <?php foreach ($usuarios as $usuario): ?>
+                    <tr id="linha-usuario-<?php echo $usuario['id']; ?>">
+                        <td><?php echo $usuario['nome']; ?></td>
+                        <td><?php echo $usuario['email']; ?></td>
+                        <td><?php echo $usuario['grupo']; ?></td>
+                        <td>
+                            <button class="button-edit" onclick="openModalEdit(<?php echo $usuario['id']; ?>)">Editar</button>
+                            <button class="button-excluir" onclick="apagarUsuarioDados(<?php echo $usuario['id']; ?>)">Excluir</button>
+                        </td>
+                    </tr>
+                <?php endforeach; ?>
+                <?php if (empty($usuarios)): ?>
+                    <tr>
+                        <td colspan="4">Nenhum registro encontrado.</td>
+                    </tr>
+                <?php endif; ?>
             </tbody>
         </table>
 
-        <!-- Início Modal editar usuário -->
         <?php include '../src/modalEdit.php'; ?>
         <?php include '../src/sistema/modalSistema.php'; ?>
-        <!-- Fim Modal editar usuário -->
     </section>
 
     <script src="../script/utils.js"></script>

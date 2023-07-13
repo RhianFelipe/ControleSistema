@@ -126,8 +126,6 @@ if (!isset($_SESSION['user'])) {
 
     </div>
 
-
-
     <footer>
         <p>&copy; 2023 Procuradoria Geral do Estado do Paraná. Todos os direitos reservados.</p>
         <div class="contact-info">

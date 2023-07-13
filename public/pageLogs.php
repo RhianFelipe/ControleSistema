@@ -1,16 +1,19 @@
 <?php
 session_start();
 
-// Verifica se a variável de sessão está definida
 if (!isset($_SESSION['user'])) {
-    // Redireciona o usuário para o painel de login
     header("Location: ../public/pageLogin.php");
     exit();
 }
+
+include "../db/conexao.php";
+
+$sql = "SELECT id, nome_usuario, email_usuario, grupo_usuario, tipo_operacao, data_operacao FROM logsusuarios ORDER BY data_operacao DESC";
+$resultado = mysqli_query($mysqli, $sql);
 ?>
+
 <!DOCTYPE html>
 <html>
-
 <head>
     <meta charset="UTF-8">
     <title>Histórico de Logs de Usuários</title>
@@ -19,7 +22,6 @@ if (!isset($_SESSION['user'])) {
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
     <link rel="icon" href="../public/assets/img/icon-govpr.png" type="image/x-icon">
 </head>
-
 <body>
     <header>
         <img class="imgHeader" src="..\public\assets\img\logo-govpr-white.png">
@@ -35,44 +37,40 @@ if (!isset($_SESSION['user'])) {
     <section>
         <h1>Histórico de Logs de Usuários</h1>
 
-        <?php
-        include "../db/conexao.php";
-
-        // Consulta os logs de usuários ordenados pela última data de operação
-        $sql = "SELECT id, nome_usuario,email_usuario,grupo_usuario, tipo_operacao, data_operacao FROM logsusuarios ORDER BY data_operacao DESC";
-        $resultado = mysqli_query($mysqli, $sql);
-
-        // Verifica se há registros de logs
-        if (mysqli_num_rows($resultado) > 0) {
-            echo "<table class='logs-table'>";
-            echo "<tr><th>ID</th><th>Nome do Usuário</th><th>Email do Usuário</th><th>Grupo do Usuário</th><th>Tipo de Operação</th><th>Data da Operação</th></tr>";
-
-            // Itera sobre os registros de logs
-            while ($row = mysqli_fetch_assoc($resultado)) {
-                $id = $row['id'];
-                $nomeUsuario = $row['nome_usuario'];
-                $emailUsuario = $row['email_usuario'];
-                $grupoUsuario = $row['grupo_usuario'];
-                $tipoOperacao = $row['tipo_operacao'];
-                $dataOperacao = $row['data_operacao'];
-
-                echo "<tr><td>$id</td><td>$nomeUsuario</td><td>$emailUsuario</td><td>$grupoUsuario</td><td>$tipoOperacao</td><td>$dataOperacao</td></tr>";
-            }
-
-            echo "</table>";
-        } else {
-            echo "<p>Nenhum registro de log encontrado.</p>";
-        }
-
-        // Fecha a conexão com o banco de dados
-        mysqli_close($mysqli);
-        ?>
+        <?php if (mysqli_num_rows($resultado) > 0): ?>
+            <table class='logs-table'>
+                <tr>
+                    <th>ID</th>
+                    <th>Nome do Usuário</th>
+                    <th>Email do Usuário</th>
+                    <th>Grupo do Usuário</th>
+                    <th>Tipo de Operação</th>
+                    <th>Data da Operação</th>
+                </tr>
+                <?php while ($row = mysqli_fetch_assoc($resultado)): ?>
+                    <tr>
+                        <td><?php echo $row['id']; ?></td>
+                        <td><?php echo $row['nome_usuario']; ?></td>
+                        <td><?php echo $row['email_usuario']; ?></td>
+                        <td><?php echo $row['grupo_usuario']; ?></td>
+                        <td><?php echo $row['tipo_operacao']; ?></td>
+                        <td><?php echo $row['data_operacao']; ?></td>
+                    </tr>
+                <?php endwhile; ?>
+            </table>
+        <?php else: ?>
+            <p>Nenhum registro de log encontrado.</p>
+        <?php endif; ?>
 
         <?php include '../src/sistema/modalSistema.php'; ?>
-        <script src="../script/utils.js"></script>
-        <script src="../js/sweetalert2.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
     </section>
-</body>
 
+    <script src="../script/utils.js"></script>
+    <script src="../js/sweetalert2.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+</body>
 </html>
+
+<?php
+mysqli_close($mysqli);
+?>
