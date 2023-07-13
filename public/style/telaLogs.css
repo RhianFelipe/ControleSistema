@@ -1,3 +1,4 @@
+/* Estilização da seção */
 section {
   display: flex;
   flex-direction: column;
@@ -6,6 +7,7 @@ section {
   margin-top: 20px;
 }
 
+/* Estilização da tabela de logs */
 .logs-table {
   width: 100%;
   border-collapse: collapse;
@@ -14,17 +16,19 @@ section {
   border-radius: 4px;
 }
 
+/* Estilização das células de cabeçalho e células de dados */
 .logs-table th,
 .logs-table td {
   padding: 10px;
-  /*border-bottom: 1px solid #ccc;  descomente se caso queira colocar borda*/
+  /*border-bottom: 1px solid #ccc;  descomente se caso queira adicionar uma borda inferior */
 }
 
+/* Estilização das células de cabeçalho */
 .logs-table th {
   background-color: #e6e6e6;
 }
 
+/* Efeito de hover nas linhas da tabela */
 .logs-table tr:hover {
   background-color: #f9f9f9;
 }
-

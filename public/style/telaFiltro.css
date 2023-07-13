@@ -1,11 +1,15 @@
+/* Estilização do formulário de cadastro */
+
+/* Posicionar o formulário */
 #area-form {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 80vh;
-  background-color: var(--section-bgcolor);
+  background-color: var(--section-bgcolor); /* Cor de fundo personalizada */
 }
 
+/* Estilizar o contêiner do formulário */
 .form-container {
   border-radius: 15px;
   padding: 2rem;
@@ -13,6 +17,7 @@
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
 
+/* Estilizar os inputs do formulário */
 .input-value {
   padding: 12px;
   margin-bottom: 1rem;
@@ -21,6 +26,7 @@
   font-size: 14px;
 }
 
+/* Estilizar o botão de permissões */
 .button-permissao {
   display: inline-block;
   padding: 8px 16px;
@@ -32,6 +38,7 @@
   font-size: 14px;
 }
 
+/* Estilizar o botão de submit */
 .button-submit {
   display: block;
   width: 100%;
@@ -49,6 +56,7 @@
   background-color: #395670;
 }
 
+/* Estilizar área de consulta */
 .area-consulta {
   background-color: #f2f2f2;
   width: 1000px;
@@ -58,6 +66,7 @@
   border-radius: 4px;
 }
 
+/* Estilizar inputs da tabela de consulta */
 .input-table {
   width: calc(50% - 5px);
   padding: 12px;
@@ -67,6 +76,7 @@
   font-size: 14px;
 }
 
+/* Estilizar wrapper de input */
 .input-wrapper {
   margin-bottom: 10px;
 }
@@ -75,6 +85,7 @@
   margin-right: 10px;
 }
 
+/* Estilizar botão de filtro */
 .btn-filtro {
   padding: 12px 15px;
   background-color: #4d6d84;
@@ -92,6 +103,7 @@
   background-color: #395670;
 }
 
+/* Estilizar tabela de consulta */
 .consulta-table {
   border-collapse: collapse;
   width: 100%;
@@ -111,6 +123,7 @@
   padding: 10px;
 }
 
+/* Estilizar wrapper de input */
 .input-wrapper {
   display: flex;
   align-items: baseline;

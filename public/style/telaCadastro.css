@@ -6,7 +6,6 @@
   justify-content: center;
   align-items: center;
   height: 80vh;
-  
 }
 
 /* Estilizar formulário */
@@ -67,7 +66,7 @@
 footer {
   background-color: var(--footer-header-color);
   color: white;
-  
+  margin-top: 10rem;
   left: 0;
   bottom: 0;
   width: 100%;
@@ -121,32 +120,4 @@ footer {
 
 
 
-/* Estilização da Tabela de Logs */
-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-top: 20px;
-}
 
-th,
-td {
-  padding: 8px;
-  border-bottom: 1px solid #ddd;
-  text-align: left;
-}
-
-th {
-  background-color: #f2f2f2;
-}
-
-/* Estilização do Footer */
-footer {
-  background-color: var(--footer-header-color);
-  color: white;
-  margin-top: 10rem;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  padding: 10px;
-  text-align: center;
-}

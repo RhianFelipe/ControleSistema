@@ -1,22 +1,21 @@
+/* Estilização da seção */
 section {
   display: flex;
   justify-content: center;
-  
 }
 
+/* Estilização da tabela de usuários */
 .lista-usuarios {
   width: 60%;
   border-collapse: collapse;
   margin-top: 20px;
   margin: 0;
   background-color: #f2f2f2;
-
 }
 
 .lista-usuarios th,
 .lista-usuarios td {
   padding: 10px;
-
 }
 
 .lista-usuarios th {

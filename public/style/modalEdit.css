@@ -1,16 +1,15 @@
 #edit-usuario-btn {
-    display: inline-block;
-    border: none;
-    border-radius: 5px;
-    padding: 5px 10px;
-    color: #fff;
-    cursor: pointer;
-    background-color: #fca311;
-    font-size: 16px;
-    transition: background-color 0.3s ease;
-  
-  }
-  
-  #edit-usuario-btn:hover {
-    background-color: #fca211c9;
-  }
+  display: inline-block; /* Exibir o botão como um elemento em linha */
+  border: none; /* Remover a borda do botão */
+  border-radius: 5px; /* Borda arredondada do botão */
+  padding: 5px 10px; /* Espaçamento interno do botão */
+  color: #fff; /* Cor do texto do botão */
+  cursor: pointer; /* Alterar o cursor ao passar o mouse sobre o botão */
+  background-color: #fca311; /* Cor de fundo do botão */
+  font-size: 16px; /* Tamanho da fonte do botão */
+  transition: background-color 0.3s ease; /* Transição suave da cor de fundo do botão */
+}
+
+#edit-usuario-btn:hover {
+  background-color: #fca211c9; /* Cor de fundo ao passar o mouse sobre o botão */
+}

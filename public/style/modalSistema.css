@@ -1,86 +1,95 @@
+/* Estilos do modal */
 #editSistema .modal-content {
-  border-radius: 4px;
-}
-
-#editSistema .modal-header {
-  background-color: #f2f2f2;
-  border-bottom: none;
-}
-
-#editSistema .modal-title {
-  color: #333;
-  font-size: 18px;
-  font-weight: bold;
-}
-
-#editSistema .modal-body {
-  padding: 1rem;
-}
-
-#editSistema form {
-  display: flex;
-  align-items: center;
-  margin-bottom: 1rem;
-}
-
-#editSistema label {
-  margin-bottom: 4px;
-  flex-basis: 30%;
-}
-
-#editSistema input[type="text"] {
-  flex-grow: 1;
-  padding: 3px;
-  margin-top: 4px;
-  margin-bottom: 10px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-}
-
-#editSistema table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-top: 10px;
-}
-
-#editSistema th,
-#editSistema td {
-  padding: 8px;
-  border-bottom: 1px solid #ccc;
-}
-
-#editSistema th {
-  background-color: #e6e6e6;
-}
-
-#editSistema tr:hover {
-  background-color: #f9f9f9;
-}
-
-#editSistema .button-excluir {
-  display: inline-block;
-  padding: 5px 10px;
-  border: none;
-  border-radius: 4px;
-  background-color: #e02e2e;
-  color: #fff;
-  font-size: 14px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-#editSistema .button-excluir:hover {
-  background-color: #c02929;
-}
-.btn-icon {
-  width: 25px;
-  height: 25px;
-  margin-right: 4px;
-  vertical-align: middle;
-  margin-bottom: 0.2rem;
-}
-button {
-  background-color: white;
-  border: none;
-  margin-left: 0.5rem;
-}
+    border-radius: 4px; /* Borda arredondada do modal */
+  }
+  
+  #editSistema .modal-header {
+    background-color: #f2f2f2; /* Cor de fundo do cabeçalho do modal */
+    border-bottom: none; /* Remover a borda inferior do cabeçalho */
+  }
+  
+  #editSistema .modal-title {
+    color: #333; /* Cor do título do modal */
+    font-size: 18px; /* Tamanho da fonte do título do modal */
+    font-weight: bold; /* Negrito do título do modal */
+  }
+  
+  #editSistema .modal-body {
+    padding: 1rem; /* Espaçamento interno do corpo do modal */
+  }
+  
+  /* Estilos do formulário */
+  #editSistema form {
+    display: flex; /* Exibir os elementos do formulário em linha */
+    align-items: center; /* Centralizar verticalmente os elementos */
+    margin-bottom: 1rem; /* Espaçamento inferior do formulário */
+  }
+  
+  #editSistema label {
+    margin-bottom: 4px; /* Espaçamento inferior do rótulo */
+    flex-basis: 30%; /* Largura inicial do rótulo */
+  }
+  
+  #editSistema input[type="text"] {
+    flex-grow: 1; /* Ocupar o espaço restante no contêiner */
+    padding: 3px; /* Espaçamento interno do campo de entrada de texto */
+    margin-top: 4px; /* Espaçamento superior do campo de entrada de texto */
+    margin-bottom: 10px; /* Espaçamento inferior do campo de entrada de texto */
+    border: 1px solid #ccc; /* Borda do campo de entrada de texto */
+    border-radius: 4px; /* Borda arredondada do campo de entrada de texto */
+  }
+  
+  /* Estilos da tabela */
+  #editSistema table {
+    width: 100%; /* Largura total da tabela */
+    border-collapse: collapse; /* Colapso das bordas da tabela */
+    margin-top: 10px; /* Espaçamento superior da tabela */
+  }
+  
+  #editSistema th,
+  #editSistema td {
+    padding: 8px; /* Espaçamento interno das células da tabela */
+    border-bottom: 1px solid #ccc; /* Borda inferior das células da tabela */
+  }
+  
+  #editSistema th {
+    background-color: #e6e6e6; /* Cor de fundo do cabeçalho da tabela */
+  }
+  
+  #editSistema tr:hover {
+    background-color: #f9f9f9; /* Cor de fundo ao passar o mouse sobre a linha da tabela */
+  }
+  
+  /* Estilos do botão de excluir */
+  #editSistema .button-excluir {
+    display: inline-block; /* Exibir o botão como um elemento em linha */
+    padding: 5px 10px; /* Espaçamento interno do botão */
+    border: none; /* Remover a borda do botão */
+    border-radius: 4px; /* Borda arredondada do botão */
+    background-color: #e02e2e; /* Cor de fundo do botão */
+    color: #fff; /* Cor do texto do botão */
+    font-size: 14px; /* Tamanho da fonte do botão */
+    cursor: pointer; /* Alterar o cursor ao passar o mouse sobre o botão */
+    transition: background-color 0.3s ease; /* Transição suave da cor de fundo do botão */
+  }
+  
+  #editSistema .button-excluir:hover {
+    background-color: #c02929; /* Cor de fundo ao passar o mouse sobre o botão */
+  }
+  
+  /* Estilos do ícone do botão */
+  .btn-icon {
+    width: 25px; /* Largura do ícone do botão */
+    height: 25px; /* Altura do ícone do botão */
+    margin-right: 4px; /* Espaçamento à direita do ícone do botão */
+    vertical-align: middle; /* Alinhar verticalmente o ícone do botão */
+    margin-bottom: 0.2rem; /* Espaçamento inferior do ícone do botão */
+  }
+  
+  /* Estilos do botão */
+  button {
+    background-color: white; /* Cor de fundo do botão */
+    border: none; /* Remover a borda do botão */
+    margin-left: 0.5rem; /* Espaçamento à esquerda do botão */
+  }
+  

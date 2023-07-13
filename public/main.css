@@ -63,15 +63,27 @@ header {
 footer {
   background-color: var(--footer-header-color);
   color: white;
-
-  left: 0;
-  width: 100%;
-
   padding: 10px;
-  text-align: center;
-  height: 100px;
-}
-
+  text-align: right;
+  }
+  
+  .contact-info {
+  display: flex;
+  justify-content: flex-end;
+  }
+  
+  .contact-link {
+  margin-left: 10px;
+  color: white;
+  text-decoration: none;
+  }
+  
+  .contact-icon {
+ 
+  height: 25px;
+  vertical-align: middle;
+  }
+  
 /*Estilização padrão do Botões editar e excluir*/
 .button-edit,
 .button-excluir {
