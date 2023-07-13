@@ -24,16 +24,15 @@ if (!isset($_SESSION['user'])) {
     <header>
         <img class="imgHeader" src="..\public\assets\img\logo-govpr-white.png">
         <nav class="navbar">
-
-            <li class="list-header"><a class="a1" href="../public/pageCadastro.php">Cadastrar Usuários</a></li>
-            <li class="list-header"><a class="a1" href="../public/pageFiltro.php">Filtrar Usuários</a></li>
-            <li class="list-header"><a class="a1" href="../public/pageLista.php">Lista de Usuários</a></li>
-            <li class="list-header"><a onclick="openModalSistema()" class="a1">Inserir Sistema</a></li>
+            <ul class="list-header">
+                <li><a class="a1" href="../public/pageCadastro.php">Cadastrar Usuários</a></li>
+                <li><a class="a1" href="../public/pageFiltro.php">Filtrar Usuários</a></li>
+                <li><a class="a1" href="../public/pageLista.php">Lista de Usuários</a></li>
+                <li><a onclick="openModalSistema()" class="a1">Inserir Sistema</a></li>
+            </ul>
         </nav>
     </header>
     <section>
-
-
         <h1>Histórico de Logs de Usuários</h1>
 
         <?php
@@ -45,7 +44,7 @@ if (!isset($_SESSION['user'])) {
 
         // Verifica se há registros de logs
         if (mysqli_num_rows($resultado) > 0) {
-            echo "<table>";
+            echo "<table class='logs-table'>";
             echo "<tr><th>ID</th><th>Nome do Usuário</th><th>Email do Usuário</th><th>Grupo do Usuário</th><th>Tipo de Operação</th><th>Data da Operação</th></tr>";
 
             // Itera sobre os registros de logs
@@ -69,12 +68,11 @@ if (!isset($_SESSION['user'])) {
         mysqli_close($mysqli);
         ?>
 
-
         <?php include '../src/sistema/modalSistema.php'; ?>
         <script src="../script/utils.js"></script>
         <script src="../js/sweetalert2.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">
-        </script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    </section>
 </body>
 
 </html>

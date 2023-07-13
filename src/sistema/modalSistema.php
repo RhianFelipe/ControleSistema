@@ -14,7 +14,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 
 ?>
-
+<link rel="stylesheet" href="../public/style/modalSistema.css?v=<?php echo time(); ?>">
 <div class="modal fade" id="editSistema" tabindex="-1" aria-labelledby="editUsuarioModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -27,9 +27,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <form method="POST" class="row g-3" id="edit-usuario-form">
 
                     <div class="col-12">
-                        <label for="sistema">Sistema</label>
+                        <label for="sistema">Adicionar Sistema:</label>
                         <input name="nomeSistema" type="text">
-                        <input type="submit" class="btn btn-outline-warning btn-sm" id="edit-usuario-btn" value="Salvar">
+                        <button type="submit">
+                            <img src="https://cdn-icons-png.flaticon.com/512/117/117885.png" alt="Adicionar" class="btn-icon">
+                        </button>
+
                     </div>
 
                     <?php
@@ -71,20 +74,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </div>
 
 <script>
-    function excluirSistema(nomeSistema) {
-        if (confirm("Deseja realmente excluir o sistema " + nomeSistema + "?")) {
-            // Requisição AJAX
-            var xhttp = new XMLHttpRequest();
-            xhttp.onreadystatechange = function() {
-                if (this.readyState === 4 && this.status === 200) {
-                    alert("Sistema excluído com sucesso.");
-                    location.reload();
-                } else if (this.readyState === 4) {
-                    alert("Ocorreu um erro ao excluir o sistema.");
-                }
-            };
-            xhttp.open("GET", "../src/sistema/deleteSistema.php?nomeSistema=" + encodeURIComponent(nomeSistema), true);
-            xhttp.send();
-        }
+function excluirSistema(nomeSistema) {
+    if (confirm("Deseja realmente excluir o sistema " + nomeSistema + "?")) {
+        // Requisição AJAX
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if (this.readyState === 4 && this.status === 200) {
+                alert("Sistema excluído com sucesso.");
+                location.reload();
+            } else if (this.readyState === 4) {
+                alert("Ocorreu um erro ao excluir o sistema.");
+            }
+        };
+        xhttp.open("GET", "../src/sistema/deleteSistema.php?nomeSistema=" + encodeURIComponent(nomeSistema), true);
+        xhttp.send();
     }
+}
 </script>

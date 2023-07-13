@@ -6,7 +6,7 @@ section {
   margin-top: 20px;
 }
 
-table {
+.logs-table {
   width: 100%;
   border-collapse: collapse;
   background-color: #f2f2f2;
@@ -14,23 +14,17 @@ table {
   border-radius: 4px;
 }
 
-th,
-td {
+.logs-table th,
+.logs-table td {
   padding: 10px;
-  border-bottom: 1px solid #ccc;
+  /*border-bottom: 1px solid #ccc;  descomente se caso queira colocar borda*/
 }
 
-th {
+.logs-table th {
   background-color: #e6e6e6;
 }
 
-tr:hover {
+.logs-table tr:hover {
   background-color: #f9f9f9;
 }
 
-footer {
-  margin-top: 20px;
-  text-align: center;
-  font-size: 14px;
-  color: #888;
-}

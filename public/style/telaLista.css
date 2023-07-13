@@ -1,6 +1,7 @@
 section {
   display: flex;
   justify-content: center;
+  
 }
 
 .lista-usuarios {
@@ -9,11 +10,13 @@ section {
   margin-top: 20px;
   margin: 0;
   background-color: #f2f2f2;
+
 }
 
 .lista-usuarios th,
 .lista-usuarios td {
   padding: 10px;
+
 }
 
 .lista-usuarios th {
