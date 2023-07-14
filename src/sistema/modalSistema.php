@@ -1,45 +1,41 @@
 <?php
 include "./../db/conexao.php";
 include "./../db/consulta.php";
-
-// Inclusão do script Swal.fire para exibir mensagens pop-up
 echo "<script src='../js/sweetalert2.js'></script>";
 
-// Verifica se o formulário foi submetido via POST
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $nomeSistema = $_POST['nomeSistema'];
-
-    // Verifica se o nome do sistema já existe no banco de dados
     $existeNomeSistema = verificarExistencia($mysqli, "nomeSistema", "admin", $nomeSistema);
+    
     if ($existeNomeSistema->num_rows > 0) {
-        // Exibe mensagem de erro caso o sistema já exista
         echo "<script>
-            Swal.fire(
-                'Erro!',
-                'Esse sistema já existe.',
-                'error'
-            ).then(function() {
-                window.location.href = '".$_SERVER['PHP_SELF']."';
-            });
-        </script>";
+                Swal.fire({
+                    title: 'Erro!',
+                    text: 'Esse sistema já existe.',
+                    icon: 'error'
+                }).then(function() {
+                    window.location.href = '".$_SERVER['PHP_SELF']."';
+                });
+              </script>";
     } else {
-        // Insere o novo sistema no banco de dados
         $inserirSistema = "INSERT INTO admin(nomeSistema) VALUES ('$nomeSistema')";
         $queryInserirSistema = $mysqli->query($inserirSistema) or die($mysqli->error);
-        
-        // Exibe mensagem de sucesso após a inserção do sistema
+
+        echo "<script src='../js/sweetalert2.js'></script>";
         echo "<script>
-            Swal.fire(
-                'Sucesso!',
-                'Sistema inserido com sucesso.',
-                'success'
-            ).then(function() {
-                window.location.href = '".$_SERVER['PHP_SELF']."';
-            });
-        </script>";
+                Swal.fire({
+                    title: 'Sucesso!',
+                    text: 'Sistema inserido com sucesso.',
+                    icon: 'success'
+                }).then(function() {
+                    window.location.href = '".$_SERVER['PHP_SELF']."';
+                });
+              </script>";
     }
 }
 ?>
+
+
 
 <script src="../js/sweetalert2.js"></script>
 <link rel="stylesheet" href="../public/style/modalSistema.css?v=<?php echo time(); ?>">
@@ -60,6 +56,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             <img src="../public/assets/img/icon-plus.png" alt="Adicionar" class="btn-icon">
                         </button>
                     </div>
+                    </form>
                     <?php
                     // Consulta os nomes de sistema existentes no banco de dados
                     $buscaNomeSistema = "SELECT DISTINCT nomeSistema FROM admin";
@@ -93,29 +90,49 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         echo "<p>Nenhum registro de sistema encontrado.</p>";
                     }
                     ?>
-                </form>
+               
             </div>
         </div>
     </div>
 </div>
 
+<script src="../js/sweetalert2.js"></script>
 <script>
     function excluirSistema(nomeSistema) {
-        if (confirm("Deseja realmente excluir o sistema " + nomeSistema + "?")) {
-            // Requisição AJAX para excluir o sistema
-            var xhttp = new XMLHttpRequest();
-            xhttp.onreadystatechange = function() {
-                if (this.readyState === 4 && this.status === 200) {
-                    alert("Sistema excluído com sucesso.");
-                    location.reload();
-                } else if (this.readyState === 4) {
-                    alert("Ocorreu um erro ao excluir o sistema.");
-                }
-            };
-            xhttp.open("GET", "../src/sistema/deleteSistema.php?nomeSistema=" + encodeURIComponent(nomeSistema), true);
-            xhttp.send();
-        }
+        Swal.fire({
+            title: 'Excluir Sistema',
+            text: 'Deseja realmente excluir o sistema ' + nomeSistema + '?',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Excluir',
+            cancelButtonText: 'Cancelar'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                // Requisição AJAX para excluir o sistema
+                var xhttp = new XMLHttpRequest();
+                xhttp.onreadystatechange = function() {
+                    if (this.readyState === 4 && this.status === 200) {
+                        Swal.fire({
+                            title: 'Sucesso!',
+                            text: 'Sistema excluído com sucesso.',
+                            icon: 'success'
+                        }).then(() => {
+                            location.reload();
+                        });
+                    } else if (this.readyState === 4) {
+                        Swal.fire({
+                            title: 'Erro!',
+                            text: 'Ocorreu um erro ao excluir o sistema.',
+                            icon: 'error'
+                        });
+                    }
+                };
+                xhttp.open("GET", "../src/sistema/deleteSistema.php?nomeSistema=" + encodeURIComponent(nomeSistema), true);
+                xhttp.send();
+            }
+        });
     }
 </script>
+
 
 <!-- Incluí comentários para descrever a funcionalidade do código e das partes envolvidas. -->
