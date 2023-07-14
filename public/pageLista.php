@@ -2,15 +2,18 @@
 session_start();
 
 if (!isset($_SESSION['user'])) {
+    // Redireciona o usuário para o painel de login se a sessão não estiver definida
     header("Location: ../public/pageLogin.php");
     exit();
 }
 
 include "../db/conexao.php";
 
+// Consulta para obter os usuários do banco de dados
 $sql = "SELECT id, nome, email, grupo FROM usuarios ORDER BY nome";
 $result = $mysqli->query($sql);
 
+// Verifica se há resultados e os armazena em um array associativo
 $usuarios = $result->num_rows > 0 ? $result->fetch_all(MYSQLI_ASSOC) : [];
 
 $mysqli->close();
@@ -35,6 +38,7 @@ $mysqli->close();
         <img class="imgHeader" src="..\public\assets\img\logo-govpr-white.png">
         <nav class="navbar">
             <ul class="list-header">
+                <!-- Links de navegação no cabeçalho -->
                 <li><a class="a1" href="../public/pageCadastro.php">Cadastrar Usuários</a></li>
                 <li><a class="a1" href="../public/pageFiltro.php">Filtrar Usuários</a></li>
                 <li><a class="a1" href="../public/pageLogs.php">Logs de Usuário</a></li>
@@ -55,17 +59,20 @@ $mysqli->close();
             </thead>
             <tbody>
                 <?php foreach ($usuarios as $usuario): ?>
+                    <!-- Exibir os dados de cada usuário -->
                     <tr id="linha-usuario-<?php echo $usuario['id']; ?>">
                         <td><?php echo $usuario['nome']; ?></td>
                         <td><?php echo $usuario['email']; ?></td>
                         <td><?php echo $usuario['grupo']; ?></td>
                         <td>
+                            <!-- Botões para editar e excluir usuários -->
                             <button class="button-edit" onclick="openModalEdit(<?php echo $usuario['id']; ?>)">Editar</button>
                             <button class="button-excluir" onclick="apagarUsuarioDados(<?php echo $usuario['id']; ?>)">Excluir</button>
                         </td>
                     </tr>
                 <?php endforeach; ?>
                 <?php if (empty($usuarios)): ?>
+                    <!-- Exibir mensagem se nenhum registro for encontrado -->
                     <tr>
                         <td colspan="4">Nenhum registro encontrado.</td>
                     </tr>

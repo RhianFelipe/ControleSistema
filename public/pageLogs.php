@@ -1,13 +1,16 @@
 <?php
 session_start();
 
+// Verifica se a sessão do usuário está definida
 if (!isset($_SESSION['user'])) {
+    // Redireciona o usuário para a página de login se a sessão não estiver definida
     header("Location: ../public/pageLogin.php");
     exit();
 }
 
 include "../db/conexao.php";
 
+// Consulta para recuperar os registros de log de usuários ordenados por data de operação descendente
 $sql = "SELECT id, nome_usuario, email_usuario, grupo_usuario, tipo_operacao, data_operacao FROM logsusuarios ORDER BY data_operacao DESC";
 $resultado = mysqli_query($mysqli, $sql);
 ?>
@@ -72,5 +75,6 @@ $resultado = mysqli_query($mysqli, $sql);
 </html>
 
 <?php
+// Fecha a conexão com o banco de dados
 mysqli_close($mysqli);
 ?>

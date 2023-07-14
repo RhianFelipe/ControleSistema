@@ -1,27 +1,33 @@
 <?php
 session_start();
 
+// Verifica se a solicitação é do tipo POST e se os campos de usuário e senha estão definidos
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['usuario']) && isset($_POST['senha'])) {
     include "../db/conexao.php";
 
     $usuario = $_POST['usuario'];
     $senha = $_POST['senha'];
 
+    // Consulta para verificar as credenciais do usuário no banco de dados
     $consulta = "SELECT * FROM admin WHERE usuario = ? AND senha = ?";
     $stmt = mysqli_prepare($mysqli, $consulta);
     mysqli_stmt_bind_param($stmt, 'ss', $usuario, $senha);
     mysqli_stmt_execute($stmt);
     $resultado = mysqli_stmt_get_result($stmt);
 
+    // Verifica se há um único resultado e autentica o usuário
     if ($resultado->num_rows == 1) {
         $user = $resultado->fetch_assoc();
 
+        // Armazena os dados do usuário na sessão
         $_SESSION['user'] = $user['id'];
         $_SESSION['nome'] = $user['nome'];
 
+        // Redireciona para a página de filtro após o login bem-sucedido
         header("Location: ../public/pageFiltro.php");
         exit();
     } else {
+        // Define uma variável de sessão para indicar um erro de login
         $_SESSION['login_error'] = true;
         header("Location: ../public/pageLogin.php");
         exit();
@@ -78,6 +84,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['usuario']) && isset($
     </footer>
 
     <?php
+    // Exibe uma mensagem de erro caso a variável de sessão esteja definida
     if (isset($_SESSION['login_error']) && $_SESSION['login_error']) {
         echo "<script>
         window.onload = function() {
