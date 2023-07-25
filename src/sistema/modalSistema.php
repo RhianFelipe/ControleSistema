@@ -18,7 +18,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 });
               </script>";
     } else {
-        $inserirSistema = "INSERT INTO admin(nomeSistema) VALUES ('$nomeSistema')";
+        $inserirSistema = "INSERT INTO admin(usuario,senha,nomeSistema) VALUES ('1','1','$nomeSistema')";
         $queryInserirSistema = $mysqli->query($inserirSistema) or die($mysqli->error);
 
         echo "<script src='../js/sweetalert2.js'></script>";
@@ -75,7 +75,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             $nomeSistema = $row['nomeSistema'];
 
                             // Verifica se o valor não contém ":" e não está vazio
-                            if (strpos($nomeSistema, ":") === false && !empty($nomeSistema)) {
+                            if (!empty($nomeSistema)) {
                                 echo "<tr>   
                                             <td>" . $nomeSistema . "</td>
                                             <td>

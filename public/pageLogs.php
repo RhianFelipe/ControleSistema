@@ -4,7 +4,7 @@ session_start();
 // Verifica se a sessão do usuário está definida
 if (!isset($_SESSION['user'])) {
     // Redireciona o usuário para a página de login se a sessão não estiver definida
-    header("Location: ../public/pageLogin.php");
+    header("Location: ../index.php");
     exit();
 }
 

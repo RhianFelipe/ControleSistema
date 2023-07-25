@@ -12,30 +12,33 @@ async function apagarUsuarioDados(id) {
       confirmButtonText: 'Sim',
       cancelButtonText: 'Não'
     });
-  
     if (confirmar.isConfirmed) {
-      try {
-        // Envia uma requisição para deletar o usuário usando o método fetch
-        const dados = await fetch('../src/deleteUser.php?id=' + id);
-        const resposta = await dados.json();
-        console.log(resposta);
+      fetch('../src/deleteUser.php?id=' + id)
+          .then(response => response.json())
+          .then(resposta => {
+              console.log(resposta);
+              const linhaUsuario = document.getElementById('linha-usuario-' + id);
   
-        const linhaUsuario = document.getElementById('linha-usuario-' + id);
-  
-        if (!resposta.status) {
-          // Exibe uma mensagem de erro usando o Swal.fire
-          exibirMensagem('ERRO: Usuário não deletado!', 'error');
-        } else {
-          // Exibe uma mensagem de sucesso usando o Swal.fire e executa uma ação após o fechamento do diálogo
-          exibirMensagem('Usuário deletado com sucesso!', 'success').then(() => {
-            linhaUsuario.remove();
-            location.reload(); // Recarrega a página
+              if (!resposta.status) {
+                  // Exibe uma mensagem de erro usando o SweetAlert com a descrição do erro do MySQL
+                  exibirMensagem('ERRO: ' + resposta.msg, 'error');
+              } else {
+                  // Exibe uma mensagem de sucesso usando o SweetAlert e executa uma ação após o fechamento do diálogo
+                  exibirMensagem('Usuário deletado com sucesso!', 'success').then(() => {
+                      linhaUsuario.remove();
+                      location.reload(); // Recarrega a página
+                  });
+              }
+          })
+          .catch(error => {
+              // Exibe uma mensagem de erro usando o SweetAlert para erros de parsing JSON
+              exibirMensagem('Erro na resposta do servidor', 'error');
           });
-        }
-      } catch (error) {
-        console.error(error);
-      }
-    }
+  }
+  
+  
+  
+  
   }
   
   // Função para exibir mensagem usando o Swal.fire

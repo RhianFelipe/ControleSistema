@@ -3,7 +3,7 @@ session_start();
 
 if (!isset($_SESSION['user'])) {
     // Redireciona o usuário para o painel de login se a sessão não estiver definida
-    header("Location: ../public/pageLogin.php");
+    header("Location: ../index.php");
     exit();
 }
 
@@ -88,7 +88,7 @@ $mysqli->close();
     <script src="../script/editModalUser.js"></script>
     <script src="../script/deleteUser.js"></script>
     <script src="../js/sweetalert2.js"></script>
-    k0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 </body>
 
 </html>
