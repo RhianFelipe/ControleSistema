@@ -13,34 +13,33 @@
                     <div class="col-12">
 
                         <label for="edit-grupo" class="form-label">Grupo</label>
-                        <span class="tooltip-icon" data-bs-toggle="tooltip" data-bs-placement="top"
-                            title="Selecione um valor caso queira mudar o grupo do usuário">
+                        <span class="tooltip-icon" data-bs-toggle="tooltip" data-bs-placement="top" title="Selecione um valor caso queira mudar o grupo do usuário">
                             <select id="input-value" name="grupo" class="form-select">
                                 <option value="">Selecione o grupo</option>
                                 <?php
-                $gruposPermitidos = array("Procurador", "Servidor", "Terceirizado", "Estagiário", "Advogado");
-                foreach ($gruposPermitidos as $grupoPermitido) {
-                  echo "<option value='$grupoPermitido'>$grupoPermitido</option>";
-                }
-                ?>
+                                $gruposPermitidos = array("Procurador", "Servidor", "Terceirizado", "Estagiário", "Advogado");
+                                foreach ($gruposPermitidos as $grupoPermitido) {
+                                    echo "<option value='$grupoPermitido'>$grupoPermitido</option>";
+                                }
+                                ?>
                             </select>
                         </span>
 
                     </div>
 
+                    <!-- Nova tabela para os termos -->
                     <div class="col-12">
-                        <label for="edit-sistema" class="form-label">Nome do Sistema</label>
-                        <input type="text" id="edit-sistema" name="sistema" class="form-control"
-                            placeholder="Nome do Sistema">
-                    </div>
-
-                    <div class="col-12">
-                        <label for="edit-permissao" class="form-label">Permissão do Sistema</label>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" id="edit-permissao-leitura" name="permissao"
-                                value="1">
-                            <label class="form-check-label" for="edit-permissao-leitura">Leitura</label>
-                        </div>
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Termo</th>
+                                    <th>Assinado</th>
+                                </tr>
+                            </thead>
+                            <tbody id="termosEdit">
+                                <!-- Os termos serão adicionados dinamicamente aqui -->
+                            </tbody>
+                        </table>
                     </div>
 
                     <div class="col-12">
@@ -70,10 +69,10 @@
 </div>
 
 <script>
-document.addEventListener("DOMContentLoaded", function() {
-    var tooltips = [].slice.call(document.querySelectorAll('.tooltip-icon'));
-    var tooltipInstances = tooltips.map(function(tooltip) {
-        return new bootstrap.Tooltip(tooltip);
+    document.addEventListener("DOMContentLoaded", function() {
+        var tooltips = [].slice.call(document.querySelectorAll('.tooltip-icon'));
+        var tooltipInstances = tooltips.map(function(tooltip) {
+            return new bootstrap.Tooltip(tooltip);
+        });
     });
-});
 </script>

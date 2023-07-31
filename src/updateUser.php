@@ -36,6 +36,28 @@ if (empty($dados['id'])) {
     $queryUpdateGrupo = $mysqli->query($sqlGrupo) or die($mysqli->error);
   }
 
+
+  if (!empty($dados['termo']) && !empty($dados['nome_termo'])) {
+    // Recupera os valores dos termos enviados pelo formulário e os respectivos nomes
+    $termos = $dados['termo'];
+    $nomesTermo = $dados['nome_termo'];
+    
+    // Atualizar os termos assinados no banco de dados
+    foreach ($termos as $index => $assinado) {
+      $nomeTermo = $nomesTermo[$index];
+      
+      // Realizar a atualização no banco de dados
+      $sqlTermo = "UPDATE termos_assinados SET assinado = $assinado WHERE id_usuario = $idUsuario AND nome_termo = '$nomeTermo'";
+      $queryUpdateTermo = $mysqli->query($sqlTermo) or die($mysqli->error);
+    
+      // Verificar se a atualização foi bem-sucedida e tratar os erros, se necessário
+    }
+  }
+  
+  
+  
+  
+
   // Atualizar as permissões dos sistemas no banco de dados
   foreach ($sistemas as $index => $sistema) {
     $permissao = $dados['permissao'][$index];
@@ -59,5 +81,3 @@ if (empty($dados['id'])) {
   }
  
 }
-
-?>

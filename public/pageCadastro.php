@@ -63,6 +63,10 @@ if (!isset($_SESSION['user'])) {
                 }
                 ?>
             </select>
+            <label for="termoUso">Termo de Uso e Responsabilidade?</label>
+  <input class="checkbox" type="checkbox" id="termoUso" name="termoUso">
+  <label for="termoCompromisso">Termo de Compromisso e Confidencialidade?</label>
+  <input class="checkbox" type="checkbox" id="termoCompromisso" name="termoCompromisso">
 
             <label>Gerenciar Permissões:</label>
             <button id="button-permissao" type="button">Permissões</button><br>
