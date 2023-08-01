@@ -33,97 +33,138 @@
 
     return { sistemas, permissoes };
   }
-
-  // Função para preencher a lista de permissões com checkboxes
-  function preencherPermissoes(permissoes) {
+  
+  function preencherPermissoes(permissoes, termosAssinados, grupoSelecionado) {
     const permissaoEdit = document.getElementById("permissaoEdit");
     permissaoEdit.innerHTML = "";
-
-    permissoes.forEach((permissao) => {
+  
+    // Verifica se o grupo é "Terceirizado" e se o primeiro termo está assinado
+    const primeiroTermoAssinado = grupoSelecionado === "Terceirizado" && isTermoAssinado(termosAssinados, "Termo de Uso e Responsabilidade");
+  
+    permissoes.forEach((permissao, index) => {
       const checkbox = document.createElement("input");
       checkbox.type = "checkbox";
       checkbox.checked = permissao === "1";
-
+  
+      // Se for "Terceirizado" e o primeiro termo estiver assinado, habilita todas as checkboxes
+      // Caso contrário, habilita todas as checkboxes somente se todos os termos estiverem assinados
+      if (grupoSelecionado === "Terceirizado" && primeiroTermoAssinado) {
+        checkbox.disabled = false;
+      } else if (!termosAssinados || !termosAssinados.every(termo => termo.assinado === "1")) {
+        checkbox.disabled = true;
+      }
+  
       const td = document.createElement("td");
       td.style.padding = "4.3";
-
+  
       const label = document.createElement("label");
       label.style.margin = "0";
       label.appendChild(checkbox);
-
+  
       td.appendChild(label);
-
+  
       const tr = document.createElement("tr");
       tr.appendChild(td);
-
+  
       permissaoEdit.appendChild(tr);
     });
   }
+  
+  // Função auxiliar para verificar se um termo específico está assinado
+  function isTermoAssinado(termosAssinados, nomeTermo) {
+    return termosAssinados.some(termo => termo.nome_termo === nomeTermo && termo.assinado === "1");
+  }
 
-  // Função para preencher a tabela de termos assinados com checkboxes
-  function preencherTermos(termosData) {
+  
+  
+  function preencherTermos(termosData, grupoSelecionado) {
     const termosEdit = document.getElementById("termosEdit");
     termosEdit.innerHTML = "";
-
-    termosData.forEach((termoData) => {
+  
+    // Verifica se o grupo é "Terceirizado" e se o primeiro termo está assinado
+    const primeiroTermoAssinado = grupoSelecionado === "Terceirizado" && isTermoAssinado(termosData, "Termo de Uso e Responsabilidade");
+  
+    termosData.forEach((termoData, index) => {
       const nomeTermo = termoData.nome_termo;
       const assinado = termoData.assinado;
-
+  
       const tr = document.createElement("tr");
-
+  
       const tdNomeTermo = document.createElement("td");
       tdNomeTermo.textContent = nomeTermo;
       tr.appendChild(tdNomeTermo);
-
+  
       const tdAssinado = document.createElement("td");
       const checkboxTermo = document.createElement("input");
       checkboxTermo.type = "checkbox";
       checkboxTermo.checked = assinado === "1";
+  
+      // Verifica se é o segundo termo e se o grupo é "Terceirizado"
+      if (index === 1 && grupoSelecionado === "Terceirizado") {
+        // Desabilita o checkbox do segundo termo
+        checkboxTermo.disabled = true;
+      } else {
+        // Se for "Terceirizado" e o primeiro termo estiver assinado, habilita a checkbox do termo
+        // Caso contrário, habilita a checkbox do termo somente se o termo estiver assinado
+        if (grupoSelecionado === "Terceirizado" && primeiroTermoAssinado) {
+          checkboxTermo.disabled = false;
+        }
+      }
+  
       tdAssinado.appendChild(checkboxTermo);
       tr.appendChild(tdAssinado);
-
+  
       termosEdit.appendChild(tr);
     });
   }
+  
 
-  // Função para abrir o modal de edição de usuário
-  async function openModalEdit(id) {
-    console.log(id);
 
-    try {
-      // Requisição assíncrona para obter dados do usuário com base no ID
-      const dados = await fetch("../src/viewUser.php?id=" + id);
-      const resposta = await dados.json();
 
-      console.log(resposta);
+// Função para abrir o modal de edição de usuário
+async function openModalEdit(id) {
+  console.log(id);
 
-      if (!resposta["status"]) {
-        // Se a resposta não tiver um status válido, exibe uma mensagem de alerta
-        document.getElementById("msgAlerta").innerHTML = resposta["msg"];
-      } else {
-        // Mostrar o modal de edição
-        const editModel = new bootstrap.Modal(
-          document.getElementById("editUsuarioModal")
-        );
-        editModel.show();
+  try {
+    // Requisição assíncrona para obter dados do usuário com base no ID
+    const dados = await fetch("../src/viewUser.php?id=" + id);
+    const resposta = await dados.json();
 
-        const idUsuario = resposta.dados.id_usuario;
-        console.log("ID do usuário:", idUsuario);
-        document.getElementById("editid").value = idUsuario;
+    console.log(resposta);
 
-        // Preencher a lista de sistemas e permissões
-        const { sistemas, permissoes } = preencherSistemas(resposta.dados.permissoes);
-        preencherPermissoes(permissoes);
+    if (!resposta["status"]) {
+      // Se a resposta não tiver um status válido, exibe uma mensagem de alerta
+      document.getElementById("msgAlerta").innerHTML = resposta["msg"];
+    } else {
+      // Mostrar o modal de edição
+      const editModel = new bootstrap.Modal(
+        document.getElementById("editUsuarioModal")
+      );
+      editModel.show();
 
-        // Preencher a tabela de termos assinados
-        preencherTermos(resposta.dados.termos);
-      }
-    } catch (error) {
-      console.error(error);
-      // Se ocorrer um erro ao obter os dados do usuário, exibe uma mensagem de erro
-      exibirMensagem("Erro ao obter dados do usuário.", "error");
+      const idUsuario = resposta.dados.id_usuario;
+      console.log("ID do usuário:", idUsuario);
+      document.getElementById("editid").value = idUsuario;
+
+      // Preencher a lista de sistemas e permissões
+      const { sistemas, permissoes } = preencherSistemas(resposta.dados.permissoes);
+      const grupoSelecionado = resposta.dados.grupo;
+      console.log("é oq veio?:",grupoSelecionado);
+      const termosAssinados = resposta.dados.termos;
+      console.log("AAA?:",resposta.dados.termos)
+
+      preencherPermissoes(permissoes, termosAssinados, grupoSelecionado);
+
+      // Preencher a tabela de termos assinados
+      preencherTermos(termosAssinados, grupoSelecionado);
     }
+  } catch (error) {
+    console.error(error);
+    // Se ocorrer um erro ao obter os dados do usuário, exibe uma mensagem de erro
+    exibirMensagem("Erro ao obter dados do usuário.", "error");
   }
+}
+
 
   // Função para enviar o formulário de edição
   async function submitForm(event) {
