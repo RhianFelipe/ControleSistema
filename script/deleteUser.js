@@ -36,19 +36,5 @@ async function apagarUsuarioDados(id) {
           });
   }
   
-  
-  
-  
-  }
-  
-  // Função para exibir mensagem usando o Swal.fire
-  function exibirMensagem(text, icon) {
-    return Swal.fire({
-      text: text,
-      icon: icon,
-      showCancelButton: false,
-      confirmButtonColor: '#3085d6',
-      confirmButtonText: 'Fechar'
-    });
   }
   

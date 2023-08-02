@@ -93,7 +93,7 @@ if (!isset($_SESSION['user'])) {
 
     <?php include '../src/modalEdit.php'; ?>
     <?php include '../src/sistema/modalSistema.php'; ?>
-
+    <script src="../script//preencherModalUser.js"></script>
     <script src="../script/editModalUser.js"></script>
     <script src="../script/deleteUser.js"></script>
     <script src="../script/utils.js"></script>

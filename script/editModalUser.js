@@ -1,142 +1,51 @@
 
 
-  // Função para exibir uma mensagem usando o SweetAlert
-  function exibirMensagem(text, icon) {
-    return Swal.fire({
-      text: text,
-      icon: icon,
-      showCancelButton: false,
-      confirmButtonColor: '#3085d6',
-      confirmButtonText: 'Fechar'
-    });
-  }
 
-  // Função para preencher a lista de sistemas
-  function preencherSistemas(sistemasData) {
-    const sistemasEdit = document.getElementById("sistemasEdit");
-    sistemasEdit.innerHTML = "";
-
-    const sistemas = [];
-    const permissoes = [];
-
-    sistemasData.forEach((sistemaData) => {
-      const sistema = sistemaData.sistemas;
-      const permissao = sistemaData.permissao;
-
-      sistemas.push(sistema);
-      permissoes.push(permissao);
-
-      const li = document.createElement("li");
-      li.textContent = sistema;
-      sistemasEdit.appendChild(li);
+async function excluirSistema(idUsuario, nomeSistema) {
+  try {
+    const confirmacao = await Swal.fire({
+      title: 'Tem certeza?',
+      text: `Você está prestes a excluir o sistema "${nomeSistema}". Esta ação não poderá ser desfeita.`,
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Sim, excluir',
+      cancelButtonText: 'Cancelar',
+      reverseButtons: true,
     });
 
-    return { sistemas, permissoes };
-  }
-  
-  function preencherPermissoes(permissoes, termosAssinados, grupoSelecionado) {
-    const permissaoEdit = document.getElementById("permissaoEdit");
-    permissaoEdit.innerHTML = "";
-  
-    // Verifica se o grupo é "Terceirizado" e se o primeiro termo está assinado
-    const primeiroTermoAssinado = grupoSelecionado === "Terceirizado" && isTermoAssinado(termosAssinados, "Termo de Uso e Responsabilidade");
-  
-    permissoes.forEach((permissao, index) => {
-      const checkbox = document.createElement("input");
-      checkbox.type = "checkbox";
-      checkbox.checked = permissao === "1";
-  
-      // Se for "Terceirizado" e o primeiro termo estiver assinado, habilita todas as checkboxes
-      // Caso contrário, habilita todas as checkboxes somente se todos os termos estiverem assinados
-      if (grupoSelecionado === "Terceirizado" && primeiroTermoAssinado) {
-        checkbox.disabled = false;
-      } else if (!termosAssinados || !termosAssinados.every(termo => termo.assinado === "1")) {
-        checkbox.disabled = true;
-      }
-  
-      const td = document.createElement("td");
-      td.style.padding = "4.3";
-  
-      const label = document.createElement("label");
-      label.style.margin = "0";
-      label.appendChild(checkbox);
-  
-      td.appendChild(label);
-  
-      const tr = document.createElement("tr");
-      tr.appendChild(td);
-  
-      permissaoEdit.appendChild(tr);
-    });
-  }
-  
-  // Função auxiliar para verificar se um termo específico está assinado
-  function isTermoAssinado(termosAssinados, nomeTermo) {
-    return termosAssinados.some(termo => termo.nome_termo === nomeTermo && termo.assinado === "1");
-  }
+    if (confirmacao.isConfirmed) {
+      const url = `../src/deleteUserSistema.php?idUsuario=${idUsuario}&nomeSistema=${nomeSistema}`;
+      const resposta = await fetch(url);
+      const resultado = await resposta.json();
 
-  
-  
-  function preencherTermos(termosData, grupoSelecionado) {
-    const termosEdit = document.getElementById("termosEdit");
-    termosEdit.innerHTML = "";
-  
-    // Verifica se o grupo é "Terceirizado" e se o primeiro termo está assinado
-    const primeiroTermoAssinado = grupoSelecionado === "Terceirizado" && isTermoAssinado(termosData, "Termo de Uso e Responsabilidade");
-  
-    termosData.forEach((termoData, index) => {
-      const nomeTermo = termoData.nome_termo;
-      const assinado = termoData.assinado;
-  
-      const tr = document.createElement("tr");
-  
-      const tdNomeTermo = document.createElement("td");
-      tdNomeTermo.textContent = nomeTermo;
-      tr.appendChild(tdNomeTermo);
-  
-      const tdAssinado = document.createElement("td");
-      const checkboxTermo = document.createElement("input");
-      checkboxTermo.type = "checkbox";
-      checkboxTermo.checked = assinado === "1";
-  
-      // Verifica se é o segundo termo e se o grupo é "Terceirizado"
-      if (index === 1 && grupoSelecionado === "Terceirizado") {
-        // Desabilita o checkbox do segundo termo
-        checkboxTermo.disabled = true;
+      if (resultado.status === true) {
+        console.log("Sistema excluído com sucesso!");
+        Swal.fire('Sucesso!', 'O sistema foi excluído com sucesso!', 'success');
       } else {
-        // Se for "Terceirizado" e o primeiro termo estiver assinado, habilita a checkbox do termo
-        // Caso contrário, habilita a checkbox do termo somente se o termo estiver assinado
-        if (grupoSelecionado === "Terceirizado" && primeiroTermoAssinado) {
-          checkboxTermo.disabled = false;
-        }
+        console.error("Erro ao excluir sistema:", resultado.msg);
+        Swal.fire('Erro!', 'Erro ao excluir o sistema.', 'error');
       }
-  
-      tdAssinado.appendChild(checkboxTermo);
-      tr.appendChild(tdAssinado);
-  
-      termosEdit.appendChild(tr);
-    });
+    } else {
+      console.log("Exclusão cancelada pelo usuário.");
+    }
+  } catch (error) {
+    console.error("Erro ao enviar requisição de exclusão:", error);
   }
-  
+}
 
 
-
-// Função para abrir o modal de edição de usuário
 async function openModalEdit(id) {
   console.log(id);
 
   try {
-    // Requisição assíncrona para obter dados do usuário com base no ID
     const dados = await fetch("../src/viewUser.php?id=" + id);
     const resposta = await dados.json();
 
     console.log(resposta);
 
     if (!resposta["status"]) {
-      // Se a resposta não tiver um status válido, exibe uma mensagem de alerta
       document.getElementById("msgAlerta").innerHTML = resposta["msg"];
     } else {
-      // Mostrar o modal de edição
       const editModel = new bootstrap.Modal(
         document.getElementById("editUsuarioModal")
       );
@@ -146,8 +55,7 @@ async function openModalEdit(id) {
       console.log("ID do usuário:", idUsuario);
       document.getElementById("editid").value = idUsuario;
 
-      // Preencher a lista de sistemas e permissões
-      const { sistemas, permissoes } = preencherSistemas(resposta.dados.permissoes);
+      const { sistemas, permissoes } = preencherSistemas(resposta.dados.permissoes,idUsuario);
       const grupoSelecionado = resposta.dados.grupo;
       console.log("é oq veio?:",grupoSelecionado);
       const termosAssinados = resposta.dados.termos;
@@ -155,106 +63,91 @@ async function openModalEdit(id) {
 
       preencherPermissoes(permissoes, termosAssinados, grupoSelecionado);
 
-      // Preencher a tabela de termos assinados
       preencherTermos(termosAssinados, grupoSelecionado);
     }
   } catch (error) {
     console.error(error);
-    // Se ocorrer um erro ao obter os dados do usuário, exibe uma mensagem de erro
     exibirMensagem("Erro ao obter dados do usuário.", "error");
   }
 }
 
+async function submitForm(event) {
+  event.preventDefault();
+  console.log("Entrou aqui");
 
-  // Função para enviar o formulário de edição
-  async function submitForm(event) {
-    event.preventDefault();
-    console.log("Entrou aqui");
+  const idUsuario = document.getElementById("editid").value;
+  const valoresTermos = [];
+  const nomesTermos = [];
+  const termosEdit = document.getElementById("termosEdit");
+  const checkboxesTermos = termosEdit.querySelectorAll('input[type="checkbox"]');
 
-    const idUsuario = document.getElementById("editid").value;
+  checkboxesTermos.forEach((checkbox) => {
+    const valorCheckbox = checkbox.checked ? "1" : "0";
+    valoresTermos.push(valorCheckbox);
 
-    // Obter os valores das checkboxes de termos e seus nomes
-    const valoresTermos = [];
-    const nomesTermos = [];
-    const termosEdit = document.getElementById("termosEdit");
-    const checkboxesTermos = termosEdit.querySelectorAll('input[type="checkbox"]');
+    const nomeTermo = checkbox.parentElement.previousElementSibling.textContent.trim();
+    nomesTermos.push(nomeTermo);
+  });
 
-    checkboxesTermos.forEach((checkbox) => {
-      const valorCheckbox = checkbox.checked ? "1" : "0";
-      valoresTermos.push(valorCheckbox);
+  console.log("Valores das checkboxes dos termos:", valoresTermos);
+  console.log("Nomes dos termos:", nomesTermos);
 
-      const nomeTermo = checkbox.parentElement.previousElementSibling.textContent.trim();
-      nomesTermos.push(nomeTermo);
+  const permissoes = [];
+  const permissaoEdit = document.getElementById("permissaoEdit");
+  const checkboxes = permissaoEdit.querySelectorAll('input[type="checkbox"]');
+  checkboxes.forEach((checkbox) => {
+    const permissao = checkbox.checked ? "1" : "0";
+    permissoes.push(permissao);
+  });
+
+  const sistemas = Array.from(document.getElementById("sistemasEdit").children)
+    .map(elemento => elemento.textContent.trim());
+
+  console.log("ID:", idUsuario);
+  console.log("Sistemas:", sistemas);
+  console.log("Permissões:", permissoes);
+  console.log("Valores dos termos:", valoresTermos);
+  console.log("Nomes dos termos:", nomesTermos);
+
+  const dadosForm = new FormData();
+  dadosForm.append("id", idUsuario);
+  const selectGrupo = document.getElementById("input-value");
+  const grupoSelecionado = selectGrupo.value;
+  console.log("Grupo enviado:", grupoSelecionado);
+  dadosForm.append("grupo", grupoSelecionado);
+
+  sistemas.forEach((sistema) => {
+    dadosForm.append("sistema[]", sistema);
+  });
+  permissoes.forEach((permissao) => {
+    dadosForm.append("permissao[]", permissao);
+  });
+  valoresTermos.forEach((valor) => {
+    dadosForm.append("termo[]", valor);
+  });
+  nomesTermos.forEach((nomeTermo) => {
+    dadosForm.append("nome_termo[]", nomeTermo);
+  });
+
+  try {
+    const dados = await fetch("../src/updateUser.php", {
+      method: "POST",
+      body: dadosForm,
     });
 
-    console.log("Valores das checkboxes dos termos:", valoresTermos);
-    console.log("Nomes dos termos:", nomesTermos);
-
-    // Obter os valores das checkboxes de permissões
-    const permissoes = [];
-    const permissaoEdit = document.getElementById("permissaoEdit");
-    const checkboxes = permissaoEdit.querySelectorAll('input[type="checkbox"]');
-    checkboxes.forEach((checkbox) => {
-      const permissao = checkbox.checked ? "1" : "0";
-      permissoes.push(permissao);
-    });
-
-    // Obter os sistemas selecionados
-    const sistemas = Array.from(document.getElementById("sistemasEdit").children)
-      .map(elemento => elemento.textContent.trim());
-
-    console.log("ID:", idUsuario);
-    console.log("Sistemas:", sistemas);
-    console.log("Permissões:", permissoes);
-    console.log("Valores dos termos:", valoresTermos);
-    console.log("Nomes dos termos:", nomesTermos);
-
-    // Crie o objeto FormData e adicione os dados do formulário
-    const dadosForm = new FormData();
-    dadosForm.append("id", idUsuario);
-    const selectGrupo = document.getElementById("input-value");
-    const grupoSelecionado = selectGrupo.value;
-    console.log("Grupo enviado:", grupoSelecionado);
-    dadosForm.append("grupo", grupoSelecionado);
-
-    sistemas.forEach((sistema) => {
-      dadosForm.append("sistema[]", sistema);
-    });
-    permissoes.forEach((permissao) => {
-      dadosForm.append("permissao[]", permissao);
-    });
-    valoresTermos.forEach((valor) => {
-      dadosForm.append("termo[]", valor);
-    });
-    nomesTermos.forEach((nomeTermo) => {
-      dadosForm.append("nome_termo[]", nomeTermo);
-    });
-
-    try {
-      // Envio assíncrono dos dados do formulário para o servidor
-      const dados = await fetch("../src/updateUser.php", {
-        method: "POST",
-        body: dadosForm,
-      });
-
-      const resposta = await dados.json();
-      if (resposta.status) {
-        exibirMensagem('As alterações foram salvas corretamente!', 'success');
-      } else {
-        exibirMensagem('ERRO: As alterações não foram salvas!', 'error');
-      }
-    } catch (error) {
-      console.error(error);
-      // Se ocorrer um erro durante o envio do formulário, exibe uma mensagem de erro
-      exibirMensagem('Erro ao processar a requisição.', 'error');
+    const resposta = await dados.json();
+    if (resposta.status) {
+      exibirMensagem('As alterações foram salvas corretamente!', 'success');
+    } else {
+      exibirMensagem('ERRO: As alterações não foram salvas!', 'error');
     }
+  } catch (error) {
+    console.error(error);
+    exibirMensagem('Erro ao processar a requisição.', 'error');
   }
+}
 
-  // Obtém o formulário de edição
-  const editForm = document.getElementById("edit-usuario-form");
-
-  if (editForm) {
-    // Adiciona um ouvinte de evento para o envio do formulário
-    editForm.addEventListener("submit", submitForm);
-  }
-
+const editForm = document.getElementById("edit-usuario-form");
+if (editForm) {
+  editForm.addEventListener("submit", submitForm);
+}
