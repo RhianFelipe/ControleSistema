@@ -1,8 +1,55 @@
 
+async function adicionarSistemaPersonalizado() {
+  const inputSistemaPersonalizado = document.getElementById("inputSistemaPersonalizado").value;
+  const idUsuario = document.getElementById("editid").value;
 
+  if (!idUsuario) {
+    console.error("ID do usuário não encontrado.");
+    return;
+  }
 
-async function excluirSistema(idUsuario, nomeSistema) {
   try {
+    // Construir a URL com os parâmetros, incluindo o ID do usuário
+    const url = `../src/addSistemaPerson.php?sistema=${encodeURIComponent(inputSistemaPersonalizado)}&idUsuario=${idUsuario}`;
+
+    // Requisição fetch para enviar os dados via método GET
+    const resposta = await fetch(url);
+
+    const resultado = await resposta.json();
+
+    // Verifica se a adição foi bem-sucedida
+    if (resultado.status === true) {
+      // Aqui você pode fazer alguma ação adicional, como recarregar os dados da página
+      // ou exibir uma mensagem de sucesso.
+      console.log("Sistema personalizado adicionado com sucesso!");
+
+      // Exemplo de mensagem de sucesso usando SweetAlert manualmente
+      Swal.fire({
+        title: 'Sucesso!',
+        text: 'O sistema personalizado foi adicionado com sucesso!',
+        icon: 'success',
+      });
+    } else {
+      console.error("Erro ao adicionar sistema personalizado:", resultado.msg);
+
+      // Exemplo de mensagem de erro usando SweetAlert manualmente
+      Swal.fire({
+        title: 'Erro!',
+        text: resultado.msg,
+        icon: 'error',
+      });
+    }
+  } catch (error) {
+    console.error("Erro ao enviar requisição de adição:", error);
+  }
+}
+
+
+
+
+async function excluirSistemaUser(idUsuario, nomeSistema) {
+  try {
+    console.log(idUsuario,nomeSistema)
     const confirmacao = await Swal.fire({
       title: 'Tem certeza?',
       text: `Você está prestes a excluir o sistema "${nomeSistema}". Esta ação não poderá ser desfeita.`,
@@ -32,6 +79,9 @@ async function excluirSistema(idUsuario, nomeSistema) {
     console.error("Erro ao enviar requisição de exclusão:", error);
   }
 }
+
+
+
 
 
 async function openModalEdit(id) {
@@ -70,6 +120,7 @@ async function openModalEdit(id) {
     exibirMensagem("Erro ao obter dados do usuário.", "error");
   }
 }
+
 
 async function submitForm(event) {
   event.preventDefault();

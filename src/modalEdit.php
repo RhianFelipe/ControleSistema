@@ -1,24 +1,3 @@
-<?php
-
-include "../db/conexao.php";
-
-// Consulta SQL para contar quantos sistemas existem na tabela de permissões
-$sql = "SELECT COUNT(*) AS total_sistemas FROM permissoes ";
-$result = $mysqli->query($sql);
-
-// Verifica se a consulta foi bem-sucedida e obtém o valor da contagem
-$totalSistemas = $result->num_rows > 0 ? $result->fetch_assoc()["total_sistemas"] : 0;
-
-// Exibe o total de sistemas
-echo "Total de sistemas: " . $totalSistemas;
-
-
-?>
-
-<!-- Adicione os links para o SweetAlert CSS e JS abaixo -->
-
-
-
 <link rel="stylesheet" href="../public/style/modalEdit.css?v=<?php echo time(); ?>">
 <div class="modal fade" id="editUsuarioModal" tabindex="-1" aria-labelledby="editUsuarioModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -27,9 +6,6 @@ echo "Total de sistemas: " . $totalSistemas;
                 <h5 class="modal-title" id="editUsuarioModalLabel">Editar Usuário</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-
-
-            <style></style>
             <div class="modal-body">
                 <form class="row g-3" id="edit-usuario-form">
                     <input type="hidden" name="id" id="editid">
@@ -48,7 +24,6 @@ echo "Total de sistemas: " . $totalSistemas;
                             </select>
                         </span>
                     </div>
-
                     <!-- Nova tabela para os termos -->
                     <div class="col-12">
                         <table class="table">
@@ -67,8 +42,9 @@ echo "Total de sistemas: " . $totalSistemas;
                     <div class="col-12">
                         <label for="inputSistemaPersonalizado" class="form-label">Sistema Personalizado</label>
                         <input type="text" class="form-control" id="inputSistemaPersonalizado">
-                        <button type="button" class="btn btn-primary mt-2" onclick="">Adicionar</button>
+                        <button type="button" class="btn btn-primary mt-2" onclick="adicionarSistemaPersonalizado()">Adicionar</button>
                     </div>
+
 
                     <div class="col-12">
                         <table class="table">
@@ -76,7 +52,7 @@ echo "Total de sistemas: " . $totalSistemas;
                                 <tr>
                                     <th>Sistemas</th>
                                     <th>Permissão</th>
-                                 
+
                                 </tr>
                             </thead>
                             <tbody id="sistemasPermissoesEdit">
@@ -98,4 +74,3 @@ echo "Total de sistemas: " . $totalSistemas;
         </div>
     </div>
 </div>
-
