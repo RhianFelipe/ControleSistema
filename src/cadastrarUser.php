@@ -29,12 +29,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             echo json_encode($retorna);
         } else {
             // Verificar se o email possui o domínio "@pge.pr.gov.br"
-            $dominioEsperado = "@pge.pr.gov.br";
-            $dominioEmail = substr($email, strpos($email, "@"));
-            if ($dominioEmail !== $dominioEsperado) {
+            $dominioEsperado = ".pr.gov.br";
+            $dominioEmail = substr($email, -strlen($dominioEsperado));
+            
+            if (strcasecmp($dominioEmail, $dominioEsperado) !== 0) {
                 $retorna = ['status' => false, 'msg' => "E-mail deve ser do domínio $dominioEsperado"];
                 echo json_encode($retorna);
-            } else {
+            }else {
                 // Inserir usuários no BD
                 $inserirUsuario = "INSERT INTO usuarios (nome, email, grupo, data_create) VALUES ('$nome', '$email', '$grupo', NOW())";
                 mysqli_query($mysqli, $inserirUsuario);
