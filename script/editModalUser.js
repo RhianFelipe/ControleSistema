@@ -1,6 +1,7 @@
-
 async function adicionarSistemaPersonalizado() {
-  const inputSistemaPersonalizado = document.getElementById("inputSistemaPersonalizado").value;
+  const inputSistemaPersonalizado = document.getElementById(
+    "inputSistemaPersonalizado"
+  ).value;
   const idUsuario = document.getElementById("editid").value;
 
   if (!idUsuario) {
@@ -10,7 +11,9 @@ async function adicionarSistemaPersonalizado() {
 
   try {
     // Construir a URL com os parâmetros, incluindo o ID do usuário
-    const url = `../src/addSistemaPerson.php?sistema=${encodeURIComponent(inputSistemaPersonalizado)}&idUsuario=${idUsuario}`;
+    const url = `../src/addSistemaPerson.php?sistema=${encodeURIComponent(
+      inputSistemaPersonalizado
+    )}&idUsuario=${idUsuario}`;
 
     // Requisição fetch para enviar os dados via método GET
     const resposta = await fetch(url);
@@ -25,18 +28,18 @@ async function adicionarSistemaPersonalizado() {
 
       // Exemplo de mensagem de sucesso usando SweetAlert manualmente
       Swal.fire({
-        title: 'Sucesso!',
-        text: 'O sistema personalizado foi adicionado com sucesso!',
-        icon: 'success',
+        title: "Sucesso!",
+        text: "O sistema personalizado foi adicionado com sucesso!",
+        icon: "success",
       });
     } else {
       console.error("Erro ao adicionar sistema personalizado:", resultado.msg);
 
       // Exemplo de mensagem de erro usando SweetAlert manualmente
       Swal.fire({
-        title: 'Erro!',
+        title: "Erro!",
         text: resultado.msg,
-        icon: 'error',
+        icon: "error",
       });
     }
   } catch (error) {
@@ -44,19 +47,16 @@ async function adicionarSistemaPersonalizado() {
   }
 }
 
-
-
-
 async function excluirSistemaUser(idUsuario, nomeSistema) {
   try {
-    console.log(idUsuario,nomeSistema)
+    console.log(idUsuario, nomeSistema);
     const confirmacao = await Swal.fire({
-      title: 'Tem certeza?',
+      title: "Tem certeza?",
       text: `Você está prestes a excluir o sistema "${nomeSistema}". Esta ação não poderá ser desfeita.`,
-      icon: 'warning',
+      icon: "warning",
       showCancelButton: true,
-      confirmButtonText: 'Sim, excluir',
-      cancelButtonText: 'Cancelar',
+      confirmButtonText: "Sim, excluir",
+      cancelButtonText: "Cancelar",
       reverseButtons: true,
     });
 
@@ -67,10 +67,10 @@ async function excluirSistemaUser(idUsuario, nomeSistema) {
 
       if (resultado.status === true) {
         console.log("Sistema excluído com sucesso!");
-        Swal.fire('Sucesso!', 'O sistema foi excluído com sucesso!', 'success');
+        Swal.fire("Sucesso!", "O sistema foi excluído com sucesso!", "success");
       } else {
         console.error("Erro ao excluir sistema:", resultado.msg);
-        Swal.fire('Erro!', 'Erro ao excluir o sistema.', 'error');
+        Swal.fire("Erro!", "Erro ao excluir o sistema.", "error");
       }
     } else {
       console.log("Exclusão cancelada pelo usuário.");
@@ -79,10 +79,6 @@ async function excluirSistemaUser(idUsuario, nomeSistema) {
     console.error("Erro ao enviar requisição de exclusão:", error);
   }
 }
-
-
-
-
 
 async function openModalEdit(id) {
   console.log(id);
@@ -105,11 +101,14 @@ async function openModalEdit(id) {
       console.log("ID do usuário:", idUsuario);
       document.getElementById("editid").value = idUsuario;
 
-      const { sistemas, permissoes } = preencherSistemas(resposta.dados.permissoes,idUsuario);
+      const { sistemas, permissoes } = preencherSistemas(
+        resposta.dados.permissoes,
+        idUsuario
+      );
       const grupoSelecionado = resposta.dados.grupo;
-      console.log("é oq veio?:",grupoSelecionado);
+      console.log("é oq veio?:", grupoSelecionado);
       const termosAssinados = resposta.dados.termos;
-      console.log("AAA?:",resposta.dados.termos)
+      console.log("AAA?:", resposta.dados.termos);
 
       preencherPermissoes(permissoes, termosAssinados, grupoSelecionado);
 
@@ -121,7 +120,6 @@ async function openModalEdit(id) {
   }
 }
 
-
 async function submitForm(event) {
   event.preventDefault();
   console.log("Entrou aqui");
@@ -130,13 +128,16 @@ async function submitForm(event) {
   const valoresTermos = [];
   const nomesTermos = [];
   const termosEdit = document.getElementById("termosEdit");
-  const checkboxesTermos = termosEdit.querySelectorAll('input[type="checkbox"]');
+  const checkboxesTermos = termosEdit.querySelectorAll(
+    'input[type="checkbox"]'
+  );
 
   checkboxesTermos.forEach((checkbox) => {
     const valorCheckbox = checkbox.checked ? "1" : "0";
     valoresTermos.push(valorCheckbox);
 
-    const nomeTermo = checkbox.parentElement.previousElementSibling.textContent.trim();
+    const nomeTermo =
+      checkbox.parentElement.previousElementSibling.textContent.trim();
     nomesTermos.push(nomeTermo);
   });
 
@@ -151,8 +152,9 @@ async function submitForm(event) {
     permissoes.push(permissao);
   });
 
-  const sistemas = Array.from(document.getElementById("sistemasEdit").children)
-    .map(elemento => elemento.textContent.trim());
+  const sistemas = Array.from(
+    document.getElementById("sistemasEdit").children
+  ).map((elemento) => elemento.textContent.trim());
 
   console.log("ID:", idUsuario);
   console.log("Sistemas:", sistemas);
@@ -166,6 +168,11 @@ async function submitForm(event) {
   const grupoSelecionado = selectGrupo.value;
   console.log("Grupo enviado:", grupoSelecionado);
   dadosForm.append("grupo", grupoSelecionado);
+
+  const selectSetor = document.getElementById("input-setor");
+  const setorSelecionado = selectSetor.value;
+  console.log("Setor enviado:", setorSelecionado);
+  dadosForm.append("setor", setorSelecionado);
 
   sistemas.forEach((sistema) => {
     dadosForm.append("sistema[]", sistema);
@@ -188,13 +195,13 @@ async function submitForm(event) {
 
     const resposta = await dados.json();
     if (resposta.status) {
-      exibirMensagem('As alterações foram salvas corretamente!', 'success');
+      exibirMensagem("As alterações foram salvas corretamente!", "success");
     } else {
-      exibirMensagem('ERRO: As alterações não foram salvas!', 'error');
+      exibirMensagem("ERRO: As alterações não foram salvas!", "error");
     }
   } catch (error) {
     console.error(error);
-    exibirMensagem('Erro ao processar a requisição.', 'error');
+    exibirMensagem("Erro ao processar a requisição.", "error");
   }
 }
 

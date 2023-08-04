@@ -10,7 +10,7 @@ if (!isset($_SESSION['user'])) {
 include "../db/conexao.php";
 
 // Consulta para obter os usuários do banco de dados
-$sql = "SELECT id, nome, email, grupo FROM usuarios ORDER BY nome";
+$sql = "SELECT * FROM usuarios ORDER BY nome";
 $result = $mysqli->query($sql);
 
 // Verifica se há resultados e os armazena em um array associativo
@@ -54,6 +54,7 @@ $mysqli->close();
                     <th>Nome</th>
                     <th>Email</th>
                     <th>Grupo</th>
+                    <th>Setor</th>
                     <th>Ações</th>
                 </tr>
             </thead>
@@ -64,6 +65,7 @@ $mysqli->close();
                         <td><?php echo $usuario['nome']; ?></td>
                         <td><?php echo $usuario['email']; ?></td>
                         <td><?php echo $usuario['grupo']; ?></td>
+                        <td><?php echo $usuario['setor']; ?></td>
                         <td>
                             <!-- Botões para editar e excluir usuários -->
                             <button class="button-edit" onclick="openModalEdit(<?php echo $usuario['id']; ?>)">Editar</button>

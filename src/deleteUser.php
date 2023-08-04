@@ -12,11 +12,13 @@ if (empty($id)) {
     logOperacaoUsuario($mysqli, $id,'Excluído');
 
     // Mover os dados para a tabela de desativados
-    $sqlInsert = "INSERT INTO desativados (nome, email, sistema, permissao, data_exclusao)
-                  SELECT u.nome, u.email, p.sistemas, p.permissao, NOW() AS data_exclusao
-                  FROM usuarios u
-                  JOIN permissoes p ON u.id = p.id_usuario
-                  WHERE u.id = $id";
+    $sqlInsert = "INSERT INTO desativados (nome, email, sistema, permissao, data_exclusao, nome_termo, assinado, grupo, setor)
+    SELECT u.nome, u.email, p.sistemas, p.permissao, NOW() AS data_exclusao, 
+           t.nome_termo, t.assinado, u.grupo, u.setor
+    FROM usuarios u
+    JOIN permissoes p ON u.id = p.id_usuario
+    LEFT JOIN termos_assinados t ON u.id = t.id_usuario
+    WHERE u.id = $id";
 
     // Executar a query de inserção
     $queryInsert = $mysqli->query($sqlInsert) or die($mysqli->error);

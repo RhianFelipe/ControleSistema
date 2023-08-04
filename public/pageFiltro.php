@@ -54,6 +54,7 @@ if (!isset($_SESSION['user'])) {
                     <th>Nome</th>
                     <th>Email</th>
                     <th>Grupo</th>
+                    <th>Setor</th>
                     <th>Ações</th>
                 </tr>
             </thead>
@@ -72,6 +73,7 @@ if (!isset($_SESSION['user'])) {
                                 <td><?php echo $resultado['nome']; ?></td>
                                 <td><?php echo $resultado['email']; ?></td>
                                 <td><?php echo $resultado['grupo']; ?></td>
+                                <td><?php echo $resultado['setor']; ?></td>
                                 <td class="td-button">
                                     <!-- Botões para editar e excluir usuários -->
                                     <button class="button-edit" onclick="openModalEdit('<?php echo $resultado['id']; ?>')">Editar</button>

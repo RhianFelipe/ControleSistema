@@ -22,11 +22,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $nomeUsuario = $row['nome'];
             $emailUsuario = $row['email'];
             $grupoUsuario = $row['grupo'];
-            $resultados[] = array('id' => $id, 'nome' => $nomeUsuario, 'email' => $emailUsuario, 'grupo' => $grupoUsuario);
+            $setorUsuario = $row['setor']; // Adicione esta linha para obter o valor do setor
+            $resultados[] = array(
+                'id' => $id,
+                'nome' => $nomeUsuario,
+                'email' => $emailUsuario,
+                'grupo' => $grupoUsuario,
+                'setor' => $setorUsuario // Adicione esta linha para incluir o valor do setor no array
+            );
         }
     } else {
         $resultados = array();
     }
+    
 
     // Armazene os resultados na sessão em vez de passá-los como parâmetros de URL
     $_SESSION['resultados_filtro'] = $resultados;

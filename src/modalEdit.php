@@ -12,11 +12,12 @@
 
                     <div class="col-12">
                         <label for="edit-grupo" class="form-label">Grupo</label>
-                        <span class="tooltip-icon" data-bs-toggle="tooltip" data-bs-placement="top" title="Selecione um valor caso queira mudar o grupo do usuário">
+                        <span class="tooltip-icon" data-bs-toggle="tooltip" data-bs-placement="top"
+                            title="Selecione um valor caso queira mudar o grupo do usuário">
                             <select id="input-value" name="grupo" class="form-select">
                                 <option value="">Selecione o grupo</option>
                                 <?php
-                                $gruposPermitidos = array("Procurador", "Servidor", "Terceirizado", "Estagiário", "Advogado");
+                                $gruposPermitidos = array("Procurador", "Servidor", "Terceirizado", "Estagiário", "Advogado","Externo");
                                 foreach ($gruposPermitidos as $grupoPermitido) {
                                     echo "<option value='$grupoPermitido'>$grupoPermitido</option>";
                                 }
@@ -24,6 +25,23 @@
                             </select>
                         </span>
                     </div>
+
+                    <div class="col-12">
+                        <label for="edit-setor" class="form-label">Setor</label>
+                        <span class="tooltip-icon" data-bs-toggle="tooltip" data-bs-placement="top"
+                            title="Selecione um valor caso queira mudar o setor do usuário">
+                            <select id="input-setor" name="setor" class="form-select">
+                                <option value="">Selecione o setor</option>
+                                <?php
+                                $setores = array("NII", "CGTI", "", "", "");
+                                foreach ($setores as $setor) {
+                                    echo "<option value='$setor'>$setor</option>";
+                                }
+                                ?>
+                            </select>
+                        </span>
+                    </div>
+
                     <!-- Nova tabela para os termos -->
                     <div class="col-12">
                         <table class="table">
@@ -40,10 +58,15 @@
                     </div>
 
                     <div class="col-12">
-                        <label for="inputSistemaPersonalizado" class="form-label">Sistema Personalizado</label>
-                        <input type="text" class="form-control" id="inputSistemaPersonalizado">
-                        <button type="button" class="btn btn-primary mt-2" onclick="adicionarSistemaPersonalizado()">Adicionar</button>
+                        <div class="input-group input-sistema">
+                            <input type="text" class="form-control" id="inputSistemaPersonalizado"
+                                placeholder="Adicionar sistema personalizado">
+                            <button type="button" class="btn btn-primary" onclick="adicionarSistemaPersonalizado()">
+                                +
+                            </button>
+                        </div>
                     </div>
+
 
 
                     <div class="col-12">
@@ -59,8 +82,7 @@
                                 <tr>
                                     <td class="sistema-list" id="sistemasEdit"></td>
                                     <td class="permissao-list" id="permissaoEdit"></td>
-                                    <td id="sistemaDelete"></td>
-
+                     
                                 </tr>
                             </tbody>
                         </table>

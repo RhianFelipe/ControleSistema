@@ -86,8 +86,17 @@ function preencherPermissoes(permissoes, termosAssinados, grupoSelecionado) {
       checkbox.disabled = true;
     }
 
+    // Estilo para tornar a checkbox redonda
+ 
+    checkbox.style.width = "16px";
+    checkbox.style.height = "16px";
+    checkbox.style.borderRadius = "50%";
+    checkbox.style.border = "2px solid #555";
+    checkbox.style.outline = "none";
+    checkbox.style.cursor = "pointer";
+
     const td = document.createElement("td");
-    td.style.padding = "4.3";
+    td.style.padding = "0.5px";
 
     const label = document.createElement("label");
     label.style.margin = "0";
@@ -102,6 +111,7 @@ function preencherPermissoes(permissoes, termosAssinados, grupoSelecionado) {
     permissaoEdit.appendChild(tr);
   });
 }
+
 
 // Função para verificar se o termo foi assinado
 function isTermoAssinado(termosAssinados, nomeTermo) {

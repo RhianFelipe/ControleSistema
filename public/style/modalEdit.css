@@ -13,3 +13,34 @@
 #edit-usuario-btn:hover {
   background-color: #fca211c9; /* Cor de fundo ao passar o mouse sobre o botão */
 }
+/* Estilo para posicionar a imagem do botão */
+.input-sistema .btn {
+  padding: 0.375rem 0.75rem;
+}
+
+/* Estilo para ajustar o espaço entre o campo de texto e o botão */
+.input-sistema .form-control {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.input-sistema .btn {
+  padding: 0.375rem 0.75rem;
+}
+
+/* Estilo para ajustar o espaço entre o campo de texto e o botão */
+.input-sistema .form-control {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+/* Estilo para deixar o botão à direita do campo de texto */
+.input-sistema .btn-primary {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+tr{
+
+margin: 10rem;
+}

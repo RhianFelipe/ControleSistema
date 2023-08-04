@@ -10,6 +10,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $nome = $dados['nome'];
     $email = $dados['email'];
     $grupo = $dados['grupo'];
+    $setor = $dados['setor'];
     $termoUso = isset($dados['termoUso']) ? 1 : 0; // Verificar se o termo de uso foi marcado (1) ou não (0)
     $termoCompromisso = isset($dados['termoCompromisso']) ? 1 : 0; // Verificar se o termo de compromisso foi marcado (1) ou não (0)
 
@@ -37,7 +38,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 echo json_encode($retorna);
             }else {
                 // Inserir usuários no BD
-                $inserirUsuario = "INSERT INTO usuarios (nome, email, grupo, data_create) VALUES ('$nome', '$email', '$grupo', NOW())";
+                $inserirUsuario = "INSERT INTO usuarios (nome, email, grupo, setor , data_create) VALUES ('$nome', '$email', '$grupo','$setor', NOW())";
                 mysqli_query($mysqli, $inserirUsuario);
                 // Obter o ID do novo usuário
                 $idUsuario = mysqli_insert_id($mysqli);

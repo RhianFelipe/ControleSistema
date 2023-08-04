@@ -35,6 +35,13 @@ if (empty($dados['id'])) {
     $sqlGrupo = "UPDATE usuarios SET grupo = '$novoGrupo' WHERE id = $idUsuario";
     $queryUpdateGrupo = $mysqli->query($sqlGrupo) or die($mysqli->error);
   }
+  
+  if (!empty($dados['setor'])) {
+    // Atualizar o setor do usuário
+    $novoSetor = $dados['setor'];
+    $sqlSetor = "UPDATE usuarios SET setor = '$novoSetor' WHERE id = $idUsuario";
+    $queryUpdateSetor = $mysqli->query($sqlSetor) or die($mysqli->error);
+}
 
 
   if (!empty($dados['termo']) && !empty($dados['nome_termo'])) {
