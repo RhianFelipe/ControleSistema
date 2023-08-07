@@ -115,9 +115,51 @@ footer {
 
 /*=======================================*/
 
-
-/* Estilização do Header */
-
+/* Estilizar Permissões */
 
 
+.selects-permissoes label {
+  margin-bottom: 5px;
+}
 
+
+/* Estilizar checkboxes */
+.termo-container {
+  display: inline-flex; /* Altera a direção do conteúdo para linha */
+ 
+  margin-right: 20px; /* Espaçamento entre os termos */
+}
+
+.termo-container label {
+  margin-right: 5px; /* Espaçamento entre o label e a checkbox */
+}
+
+.termo-container input {
+  margin-bottom: 10px;
+}
+
+/* Estilizar tooltip */
+.termo-container {
+  position: relative;
+}
+
+.termo-container .tooltiptext {
+  visibility: hidden;
+  width: 120px;
+  background-color: #000;
+  color: #fff;
+  text-align: center;
+  padding: 5px 0;
+  border-radius: 6px;
+ 
+  /* Position the tooltip text */
+  position: absolute;
+  z-index: 1;
+  bottom: 100%;
+  left: 50%;
+  margin-left: -60px;
+}
+
+.termo-container:hover .tooltiptext {
+  visibility: visible;
+}

@@ -67,18 +67,23 @@ if (!isset($_SESSION['user'])) {
             <!-- Obter valores dos grupos do banco de dados e mostrá-los em um menu suspenso -->
             <select class="input-value" name="setor" id="setor">
                 <?php
-                $setores = array("CGTI", "NII", "", "", "");
+                include_once "../db/consulta.php";
                 foreach ($setores as $setor) {
                     echo "<option value='$setor'>$setor</option>";
                 }
                 ?>
             </select>
+            <div class="termo-container">
+    <label for="termoUso" title="Termo de Uso e Responsabilidade">TUR?</label>
+    <input class="checkbox" type="checkbox" id="termoUso" name="termoUso">
+</div>
+
+<div class="termo-container">
+    <label for="termoCompromisso" title="Termo de Compromisso e Confidencialidade">TCC?</label>
+    <input class="checkbox" type="checkbox" id="termoCompromisso" name="termoCompromisso">
+</div>
 
 
-            <label for="termoUso">Termo de Uso e Responsabilidade?</label>
-            <input class="checkbox" type="checkbox" id="termoUso" name="termoUso">
-            <label for="termoCompromisso">Termo de Compromisso e Confidencialidade?</label>
-            <input class="checkbox" type="checkbox" id="termoCompromisso" name="termoCompromisso">
 
             <label>Gerenciar Permissões:</label>
             <button id="button-permissao" type="button">Permissões</button><br>

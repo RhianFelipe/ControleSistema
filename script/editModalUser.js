@@ -32,6 +32,13 @@ async function adicionarSistemaPersonalizado() {
         text: "O sistema personalizado foi adicionado com sucesso!",
         icon: "success",
       });
+
+      // Fechar a modal atual
+      const editModel = bootstrap.Modal.getInstance(document.getElementById("editUsuarioModal"));
+      editModel.hide();
+
+      // Abrir a modal novamente para atualizar os dados
+      openModalEdit(idUsuario);
     } else {
       console.error("Erro ao adicionar sistema personalizado:", resultado.msg);
 
@@ -47,17 +54,20 @@ async function adicionarSistemaPersonalizado() {
   }
 }
 
+
 async function excluirSistemaUser(idUsuario, nomeSistema) {
   try {
     console.log(idUsuario, nomeSistema);
+
     const confirmacao = await Swal.fire({
-      title: "Tem certeza?",
+      title: 'Tem certeza?',
       text: `Você está prestes a excluir o sistema "${nomeSistema}". Esta ação não poderá ser desfeita.`,
-      icon: "warning",
+      icon: 'warning',
       showCancelButton: true,
-      confirmButtonText: "Sim, excluir",
-      cancelButtonText: "Cancelar",
-      reverseButtons: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Sim',
+      cancelButtonText: 'Não'
     });
 
     if (confirmacao.isConfirmed) {
@@ -68,6 +78,13 @@ async function excluirSistemaUser(idUsuario, nomeSistema) {
       if (resultado.status === true) {
         console.log("Sistema excluído com sucesso!");
         Swal.fire("Sucesso!", "O sistema foi excluído com sucesso!", "success");
+
+        // Fechar a modal atual
+        const editModel = bootstrap.Modal.getInstance(document.getElementById("editUsuarioModal"));
+        editModel.hide();
+
+        // Abrir a modal novamente para atualizar os dados
+        openModalEdit(idUsuario);
       } else {
         console.error("Erro ao excluir sistema:", resultado.msg);
         Swal.fire("Erro!", "Erro ao excluir o sistema.", "error");

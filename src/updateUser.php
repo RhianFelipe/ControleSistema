@@ -27,7 +27,6 @@ if (empty($dados['id'])) {
   // Logs para atualização do Usuário
   logOperacaoUsuario($mysqli, $idUsuario,'Permissão Atualizada');
 
-
   // Verificar se o campo grupo está preenchido
   if (!empty($dados['grupo'])) {
     // Atualizar o grupo do usuário
@@ -42,7 +41,6 @@ if (empty($dados['id'])) {
     $sqlSetor = "UPDATE usuarios SET setor = '$novoSetor' WHERE id = $idUsuario";
     $queryUpdateSetor = $mysqli->query($sqlSetor) or die($mysqli->error);
 }
-
 
   if (!empty($dados['termo']) && !empty($dados['nome_termo'])) {
     // Recupera os valores dos termos enviados pelo formulário e os respectivos nomes
@@ -60,10 +58,6 @@ if (empty($dados['id'])) {
       // Verificar se a atualização foi bem-sucedida e tratar os erros, se necessário
     }
   }
-  
-  
-  
-  
 
   // Atualizar as permissões dos sistemas no banco de dados
   foreach ($sistemas as $index => $sistema) {

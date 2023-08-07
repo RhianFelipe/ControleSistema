@@ -4,9 +4,15 @@ include "./../db/consulta.php";
 echo "<script src='../js/sweetalert2.js'></script>";
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+  
+
+   
     $nomeSistema = $_POST['nomeSistema'];
     $existeNomeSistema = verificarExistencia($mysqli, "nomeSistema", "admin", $nomeSistema);
-    
+
+    $sqlUser = "SELECT id FROM usuarios";
+    $queryUserID = $result = mysqli_query($mysqli, $sqlUser);
+
     if ($existeNomeSistema->num_rows > 0) {
         echo "<script>
                 Swal.fire({
@@ -18,23 +24,50 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 });
               </script>";
     } else {
-        $inserirSistema = "INSERT INTO admin(usuario,senha,nomeSistema) VALUES ('1','1','$nomeSistema')";
-        $queryInserirSistema = $mysqli->query($inserirSistema) or die($mysqli->error);
-
+        if (isset($_POST['adicionarParaTodos']) && $_POST['adicionarParaTodos'] === '1') {
+            $inserirSistema = "INSERT INTO admin(nomeSistema) VALUES ('$nomeSistema')";
+            $queryInserirSistema = $mysqli->query($inserirSistema) or die($mysqli->error);
+        
+            while ($row = mysqli_fetch_assoc($queryUserID)) {
+                $idUsuario = $row['id'];
+                $inserirPermissao = "INSERT INTO permissoes(id_usuario, sistemas, permissao) VALUES ($idUsuario, '$nomeSistema', 0)";
+                $queryInserirPermissao = $mysqli->query($inserirPermissao) or die($mysqli->error);
+            }
+            
         echo "<script src='../js/sweetalert2.js'></script>";
         echo "<script>
                 Swal.fire({
                     title: 'Sucesso!',
-                    text: 'Sistema inserido com sucesso.',
+                    text: 'Sistema inserido com sucesso para todos os users.',
                     icon: 'success'
                 }).then(function() {
                     window.location.href = '".$_SERVER['PHP_SELF']."';
                 });
               </script>";
     }
-}
-?>
+    
+        else {
+    
+            $inserirSistema = "INSERT INTO admin(nomeSistema) VALUES ('$nomeSistema')";
+            $queryInserirSistema = $mysqli->query($inserirSistema) or die($mysqli->error);
+          echo "A checkbox não está marcada ou o valor não é 1. Fazendo outra coisa...";
+       
+          echo "<script src='../js/sweetalert2.js'></script>";
+          echo "<script>
+                  Swal.fire({
+                      title: 'Sucesso!',
+                      text: 'Sistema inserido com sucesso.',
+                      icon: 'success'
+                  }).then(function() {
+                      window.location.href = '".$_SERVER['PHP_SELF']."';
+                  });
+                </script>";
+      }
+        }
 
+    }
+
+?>
 
 
 <script src="../js/sweetalert2.js"></script>
@@ -51,11 +84,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <form method="POST" class="row g-3" id="edit-usuario-form">
                     <div class="col-12">
                         <label for="sistema">Adicionar Sistema:</label>
-                        <input name="nomeSistema" type="text">
-                        <button type="submit">
+                        <input name="nomeSistema"id="nomeSistema" type="text">
+                        <button type="submit" onclick="">
                             <img src="../public/assets/img/icon-plus.png" alt="Adicionar" class="btn-icon">
                         </button>
                     </div>
+                    <div class="col-12">
+                      
+                      <label for="adicionarParaTodos">Inserir em todos os usuários:</label>
+                      <input type="checkbox" name="adicionarParaTodos" id="adicionarParaTodos" value="1">
+                  </div>
                     </form>
                     <?php
                     // Consulta os nomes de sistema existentes no banco de dados
@@ -98,6 +136,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 <script src="../js/sweetalert2.js"></script>
 <script>
+
+
     function excluirSistema(nomeSistema) {
         Swal.fire({
             title: 'Excluir Sistema',
