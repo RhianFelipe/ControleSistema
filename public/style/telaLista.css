@@ -6,7 +6,7 @@ section {
 
 /* Estilização da tabela de usuários */
 .lista-usuarios {
-  width: 60%;
+  width: 80%;
   border-collapse: collapse;
   margin-top: 20px;
   margin: 0;

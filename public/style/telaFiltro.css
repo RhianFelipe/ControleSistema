@@ -59,7 +59,7 @@
 /* Estilizar área de consulta */
 .area-consulta {
   background-color: #f2f2f2;
-  width: 1000px;
+  width: 60%;
   padding: 30px;
   margin: 100px auto;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
@@ -131,4 +131,44 @@
 
 .input-wrapper input {
   margin-right: 10px;
+}
+
+/*Estilização padrão do Botões editar e excluir*/
+
+
+.td-button {
+ width:  -200rem;
+
+}
+
+
+.button-edit,
+.button-excluir {
+  border: none;
+  border-radius: 5px;
+  padding: 5px 10px;
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+ 
+}
+
+
+
+.button-edit {
+  background-color: var(--footer-header-color);
+  margin-right: 5px;
+}
+
+.button-excluir {
+  background-color: #e02e2e;
+  border-radius: 4px;
+}
+
+.button-edit:hover {
+  background-color: #395670;
+}
+
+.button-excluir:hover {
+  background-color: #c02929;
 }
