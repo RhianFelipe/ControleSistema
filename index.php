@@ -60,22 +60,43 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['usuario']) && isset($
 </head>
 
 <body>
+<script src="./js/sweetalert2.js"></script>
+<?php include './src/login/modalCriarConta.php'; ?>
+
+<script>
+
+async function openModalCriarConta(){
+const criarContaModal = new bootstrap.Modal(
+document.getElementById("criarContaModal")
+);
+criarContaModal.show();   
+}
+</script>
+
+
     <header>
         <img class="imgHeader" src=".\public\assets\img\logo-govpr-white.png">
     </header>
-
     <div id="area-form">
-        <form id="form" method="POST" action="">
-            <h1>Login</h1><br>
-            <label>Usuário:</label>
-            <input class="input-value" id="usuario" value="" placeholder="usuário" name="usuario" type="text" required><br>
+    <form id="form" method="POST" action="">
+        <h1>Login</h1><br>
+        <label>Usuário:</label>
+        <input class="input-value" id="usuario" value="" placeholder="usuário" name="usuario" type="text" required><br>
 
-            <label>Senha:</label>
-            <input class="input-value" value="" placeholder="senha" name="senha" type="password" required><br>
+        <label>Senha:</label>
+        <input class="input-value" value="" placeholder="senha" name="senha" type="password" required><br>
+        
+        <!-- Links abaixo do input de senha -->
+        <div class="links">
+            <a href="esquecer_senha.php">Esquecer senha</a>
+            <a href="javascript:void(0);" onclick="openModalCriarConta()">Criar nova conta</a>
+        </div>
+        
+        <button id="button-submit" type="submit">Login</button>
+    </form>
+</div>
 
-            <button id="button-submit" type="submit">login</button>
-        </form>
-    </div>
+
 
     <footer>
         <p>&copy; 2023 Procuradoria Geral do Estado do Paraná. Todos os direitos reservados.</p>
@@ -106,7 +127,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['usuario']) && isset($
         $_SESSION['login_error'] = false;
     }
     ?>
-    <script src="../js/sweetalert2.js"></script>
+
+
+   
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
+
+ 
 </body>
 
 </html>

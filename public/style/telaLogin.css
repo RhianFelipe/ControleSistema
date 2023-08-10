@@ -50,6 +50,24 @@
   margin-bottom: 0.5rem;
 }
 
+/* Estilização dos links "Esquecer senha" e "Criar nova conta" */
+.links {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.links a {
+  color: #4d6d84;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.links a:hover {
+  text-decoration: underline;
+}
+
 /* Estilização do Footer */
 footer {
   background-color: var(--footer-header-color);

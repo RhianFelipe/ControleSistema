@@ -1,6 +1,6 @@
 <?php
 include "./../db/conexao.php";
-include "./../db/consulta.php";
+
 echo "<script src='../js/sweetalert2.js'></script>";
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {

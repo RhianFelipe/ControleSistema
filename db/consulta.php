@@ -69,5 +69,6 @@ $setores = array(
     "Procuradoria Regional de Paranavaí",
     "Procuradoria Regional de Umuarama",
     "Procuradoria Regional de União da Vitória",
-    "Secretaria"
+    "Secretaria",
+    "Externo"
   );

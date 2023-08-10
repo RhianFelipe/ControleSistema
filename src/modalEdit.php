@@ -33,7 +33,7 @@
                             <select id="input-setor" name="setor" class="form-select">
                                 <option value="">Selecione o setor</option>
                                 <?php
-                                $setores = array("NII", "CGTI", "", "", "");
+                             include_once "../db/consulta.php";
                                 foreach ($setores as $setor) {
                                     echo "<option value='$setor'>$setor</option>";
                                 }
