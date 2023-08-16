@@ -30,16 +30,14 @@ if (!isset($_SESSION['user'])) {
 </head>
 
 <body>
-
     <!-- Criação do Header para logo e navegação-->
     <header>
         <img class="imgHeader" src="..\public\assets\img\logo-govpr-white.png">
         <nav class="navbar">
-
+            <li class="list-header"><a class="a1" href="../public/pageCadastro.php">Cadastrar Usuários</a></li>
             <li class="list-header"><a class="a1" href="../public/pageFiltro.php">Filtrar Usuários</a></li>
             <li class="list-header"><a class="a1" href="../public/pageLista.php">Lista de Usuários</a></li>
             <li class="list-header"><a class="a1" href="../public/pageLogs.php">Logs de Usuário</a></li>
-
         </nav>
     </header>
 
@@ -74,16 +72,14 @@ if (!isset($_SESSION['user'])) {
                 ?>
             </select>
             <div class="termo-container">
-    <label for="termoUso" title="Termo de Uso e Responsabilidade">TUR?</label>
-    <input class="checkbox" type="checkbox" id="termoUso" name="termoUso">
-</div>
+                <label for="termoUso" title="Termo de Uso e Responsabilidade">TUR?</label>
+                <input class="checkbox" type="checkbox" id="termoUso" name="termoUso">
+            </div>
 
-<div class="termo-container">
-    <label for="termoCompromisso" title="Termo de Compromisso e Confidencialidade">TCC?</label>
-    <input class="checkbox" type="checkbox" id="termoCompromisso" name="termoCompromisso">
-</div>
-
-
+            <div class="termo-container">
+                <label for="termoCompromisso" title="Termo de Compromisso e Confidencialidade">TCC?</label>
+                <input class="checkbox" type="checkbox" id="termoCompromisso" name="termoCompromisso">
+            </div>
 
             <label>Gerenciar Permissões:</label>
             <button id="button-permissao" type="button">Permissões</button><br>

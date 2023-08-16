@@ -28,9 +28,11 @@ if (!isset($_SESSION['user'])) {
     <header>
         <img class="imgHeader" src="..\public\assets\img\logo-govpr-white.png">
         <nav class="navbar">
+
             <ul class="list-header">
                 <!-- Links de navegação no cabeçalho -->
-                <li><a class="a1" href="../public/pageCadastro.php">Cadastrar Usuários</a></li>
+                <li ><a class="a1" href="../public/pageCadastro.php">Cadastrar Usuários</a></li>
+                <li class="botao-filtro"><a class="a1" id="botao-filtro-a" href="../public/pageFiltro.php">Filtrar Usuários</a></li>
                 <li><a class="a1" href="../public/pageLista.php">Lista de Usuários</a></li>
                 <li><a class="a1" href="../public/pageLogs.php">Logs de Usuário</a></li>
                 <li><a onclick="openModalSistema()" class="a1">Inserir Sistema</a></li>
