@@ -69,7 +69,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 ?>
 
-
 <script src="../js/sweetalert2.js"></script>
 <link rel="stylesheet" href="../public/style/modalSistema.css?v=<?php echo time(); ?>">
 
@@ -91,7 +90,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     </div>
                     <div class="col-12">
                       
-                      <label for="adicionarParaTodos">Inserir em todos os usuários:</label>
+                      <label for="adicionarParaTodos">Aplicar em  todos os usuários:</label>
                       <input type="checkbox" name="adicionarParaTodos" id="adicionarParaTodos" value="1">
                   </div>
                     </form>
@@ -136,9 +135,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 <script src="../js/sweetalert2.js"></script>
 <script>
-
-
     function excluirSistema(nomeSistema) {
+        var adicionarParaTodos = document.getElementById('adicionarParaTodos').checked ? '1' : '0';
+
         Swal.fire({
             title: 'Excluir Sistema',
             text: 'Deseja realmente excluir o sistema ' + nomeSistema + '?',
@@ -167,12 +166,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         });
                     }
                 };
-                xhttp.open("GET", "../src/sistema/deleteSistema.php?nomeSistema=" + encodeURIComponent(nomeSistema), true);
+                xhttp.open("GET", "../src/sistema/deleteSistema.php?nomeSistema=" + encodeURIComponent(nomeSistema) + "&adicionarParaTodos=" + adicionarParaTodos, true);
                 xhttp.send();
             }
         });
     }
 </script>
+
 
 
 <!-- Incluí comentários para descrever a funcionalidade do código e das partes envolvidas. -->
