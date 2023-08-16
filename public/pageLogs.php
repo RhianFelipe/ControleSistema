@@ -33,6 +33,7 @@ $resultado = mysqli_query($mysqli, $sql);
                 <li><a class="a1" href="../public/pageCadastro.php">Cadastrar Usuários</a></li>
                 <li><a class="a1" href="../public/pageFiltro.php">Filtrar Usuários</a></li>
                 <li><a class="a1" href="../public/pageLista.php">Lista de Usuários</a></li>
+                <li><a class="a1" id="botao-filtro-a" href="../public/pageLogs.php">Logs de Usuário</a></li>
                 <li><a onclick="openModalSistema()" class="a1">Inserir Sistema</a></li>
             </ul>
         </nav>

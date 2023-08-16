@@ -29,6 +29,11 @@ header {
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
 }
 
+#botao-filtro-a{
+
+  background-color: rgba(250, 235, 215, 0.2);
+}
+
 .imgHeader {
   width: 150px;
   height: auto;

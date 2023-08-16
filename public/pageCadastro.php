@@ -34,10 +34,11 @@ if (!isset($_SESSION['user'])) {
     <header>
         <img class="imgHeader" src="..\public\assets\img\logo-govpr-white.png">
         <nav class="navbar">
-            <li class="list-header"><a class="a1" href="../public/pageCadastro.php">Cadastrar Usuários</a></li>
+            <li class="list-header"><a class="a1" id="botao-filtro-a" href="../public/pageCadastro.php">Cadastrar Usuários</a></li>
             <li class="list-header"><a class="a1" href="../public/pageFiltro.php">Filtrar Usuários</a></li>
             <li class="list-header"><a class="a1" href="../public/pageLista.php">Lista de Usuários</a></li>
             <li class="list-header"><a class="a1" href="../public/pageLogs.php">Logs de Usuário</a></li>
+            <li class="list-header"><a onclick="openModalSistema()" class="a1">Inserir Sistema</a></li>
         </nav>
     </header>
 
@@ -153,7 +154,7 @@ if (!isset($_SESSION['user'])) {
             </a>
         </div>
     </footer>
-
+    <?php include '../src/sistema/modalSistema.php'; ?>
     <script src="../script/utils.js"></script>
     <script>
         // Evento de mudança no select do grupo
