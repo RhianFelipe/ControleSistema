@@ -43,4 +43,3 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     header('Location: ../public/pageFiltro.php');
     exit();
 }
-?>

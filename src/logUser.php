@@ -30,4 +30,3 @@ function logAtualizacaoUsuario($mysqli, $id) {
 function logExclusaoUsuario($mysqli, $id) {
     logOperacaoUsuario($mysqli, $id, 'Excluído');
 }
-?>

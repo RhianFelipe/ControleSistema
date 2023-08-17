@@ -60,7 +60,7 @@ $mysqli->close();
                 </tr>
             </thead>
             <tbody>
-                <?php foreach ($usuarios as $usuario): ?>
+                <?php foreach ($usuarios as $usuario) : ?>
                     <!-- Exibir os dados de cada usuário -->
                     <tr id="linha-usuario-<?php echo $usuario['id']; ?>">
                         <td><?php echo $usuario['nome']; ?></td>
@@ -74,7 +74,7 @@ $mysqli->close();
                         </td>
                     </tr>
                 <?php endforeach; ?>
-                <?php if (empty($usuarios)): ?>
+                <?php if (empty($usuarios)) : ?>
                     <!-- Exibir mensagem se nenhum registro for encontrado -->
                     <tr>
                         <td colspan="4">Nenhum registro encontrado.</td>

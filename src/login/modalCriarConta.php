@@ -1,4 +1,4 @@
-<?php 
+<?php
 include "./db/conexao.php";
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -72,7 +72,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         <input type="password" id="senhaC" name="senhaC" class="form-control" required>
                     </div>
                     <div class="col-12">
-                    <button type="submit" class="btn btn-primary" id="criar-conta-btn">Salvar</button>
+                        <button type="submit" class="btn btn-primary" id="criar-conta-btn">Salvar</button>
 
                     </div>
                 </form>
@@ -80,4 +80,3 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </div>
     </div>
 </div>
-

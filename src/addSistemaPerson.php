@@ -21,4 +21,3 @@ if (empty($sistemaPersonalizado) || empty($idUsuario)) {
         echo json_encode($retorna);
     }
 }
-?>

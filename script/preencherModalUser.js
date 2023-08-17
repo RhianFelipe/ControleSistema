@@ -71,7 +71,9 @@ function preencherPermissoes(permissoes, termosAssinados, grupoSelecionado) {
   permissaoEdit.innerHTML = "";
 
   // Verifica se o primeiro termo foi assinado no caso de um usuário terceirizado
-  const primeiroTermoAssinado = grupoSelecionado === "Terceirizado" && isTermoAssinado(termosAssinados, "Termo de Uso e Responsabilidade");
+  const primeiroTermoAssinado =
+    grupoSelecionado === "Terceirizado" &&
+    isTermoAssinado(termosAssinados, "Termo de Uso e Responsabilidade");
 
   // Percorre as permissões recebidas e cria as células da tabela de edição
   permissoes.forEach((permissao, index) => {
@@ -82,12 +84,15 @@ function preencherPermissoes(permissoes, termosAssinados, grupoSelecionado) {
     // Define a lógica de habilitar ou desabilitar os checkboxes com base no grupo selecionado e nos termos assinados
     if (grupoSelecionado === "Terceirizado" && primeiroTermoAssinado) {
       checkbox.disabled = false;
-    } else if (!termosAssinados || !termosAssinados.every(termo => termo.assinado === "1")) {
+    } else if (
+      !termosAssinados ||
+      !termosAssinados.every((termo) => termo.assinado === "1")
+    ) {
       checkbox.disabled = true;
     }
 
     // Estilo para tornar a checkbox redonda
- 
+
     checkbox.style.width = "16px";
     checkbox.style.height = "16px";
     checkbox.style.borderRadius = "50%";
@@ -112,10 +117,11 @@ function preencherPermissoes(permissoes, termosAssinados, grupoSelecionado) {
   });
 }
 
-
 // Função para verificar se o termo foi assinado
 function isTermoAssinado(termosAssinados, nomeTermo) {
-  return termosAssinados.some(termo => termo.nome_termo === nomeTermo && termo.assinado === "1");
+  return termosAssinados.some(
+    (termo) => termo.nome_termo === nomeTermo && termo.assinado === "1"
+  );
 }
 
 // Função para preencher os termos na tabela de edição
@@ -124,7 +130,9 @@ function preencherTermos(termosData, grupoSelecionado) {
   termosEdit.innerHTML = "";
 
   // Verifica se o primeiro termo foi assinado no caso de um usuário terceirizado
-  const primeiroTermoAssinado = grupoSelecionado === "Terceirizado" && isTermoAssinado(termosData, "Termo de Uso e Responsabilidade");
+  const primeiroTermoAssinado =
+    grupoSelecionado === "Terceirizado" &&
+    isTermoAssinado(termosData, "Termo de Uso e Responsabilidade");
 
   // Percorre os dados dos termos e cria as linhas da tabela de edição
   termosData.forEach((termoData, index) => {

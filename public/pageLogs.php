@@ -17,6 +17,7 @@ $resultado = mysqli_query($mysqli, $sql);
 
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="UTF-8">
     <title>Histórico de Logs de Usuários</title>
@@ -25,6 +26,7 @@ $resultado = mysqli_query($mysqli, $sql);
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
     <link rel="icon" href="../public/assets/img/icon-govpr.png" type="image/x-icon">
 </head>
+
 <body>
     <header>
         <img class="imgHeader" src="..\public\assets\img\logo-govpr-white.png">
@@ -41,7 +43,7 @@ $resultado = mysqli_query($mysqli, $sql);
     <section>
         <h1>Histórico de Logs de Usuários</h1>
 
-        <?php if (mysqli_num_rows($resultado) > 0): ?>
+        <?php if (mysqli_num_rows($resultado) > 0) : ?>
             <table class='logs-table'>
                 <tr>
                     <th>ID</th>
@@ -51,7 +53,7 @@ $resultado = mysqli_query($mysqli, $sql);
                     <th>Tipo de Operação</th>
                     <th>Data da Operação</th>
                 </tr>
-                <?php while ($row = mysqli_fetch_assoc($resultado)): ?>
+                <?php while ($row = mysqli_fetch_assoc($resultado)) : ?>
                     <tr>
                         <td><?php echo $row['id']; ?></td>
                         <td><?php echo $row['nome_usuario']; ?></td>
@@ -62,7 +64,7 @@ $resultado = mysqli_query($mysqli, $sql);
                     </tr>
                 <?php endwhile; ?>
             </table>
-        <?php else: ?>
+        <?php else : ?>
             <p>Nenhum registro de log encontrado.</p>
         <?php endif; ?>
 
@@ -73,6 +75,7 @@ $resultado = mysqli_query($mysqli, $sql);
     <script src="../js/sweetalert2.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 </body>
+
 </html>
 
 <?php

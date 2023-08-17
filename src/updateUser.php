@@ -25,7 +25,7 @@ if (empty($dados['id'])) {
   $idUsuario = $dados['id'];
 
   // Logs para atualização do Usuário
-  logOperacaoUsuario($mysqli, $idUsuario,'Permissão Atualizada');
+  logOperacaoUsuario($mysqli, $idUsuario, 'Permissão Atualizada');
 
   // Verificar se o campo grupo está preenchido
   if (!empty($dados['grupo'])) {
@@ -34,27 +34,27 @@ if (empty($dados['id'])) {
     $sqlGrupo = "UPDATE usuarios SET grupo = '$novoGrupo' WHERE id = $idUsuario";
     $queryUpdateGrupo = $mysqli->query($sqlGrupo) or die($mysqli->error);
   }
-  
+
   if (!empty($dados['setor'])) {
     // Atualizar o setor do usuário
     $novoSetor = $dados['setor'];
     $sqlSetor = "UPDATE usuarios SET setor = '$novoSetor' WHERE id = $idUsuario";
     $queryUpdateSetor = $mysqli->query($sqlSetor) or die($mysqli->error);
-}
+  }
 
   if (!empty($dados['termo']) && !empty($dados['nome_termo'])) {
     // Recupera os valores dos termos enviados pelo formulário e os respectivos nomes
     $termos = $dados['termo'];
     $nomesTermo = $dados['nome_termo'];
-    
+
     // Atualizar os termos assinados no banco de dados
     foreach ($termos as $index => $assinado) {
       $nomeTermo = $nomesTermo[$index];
-      
+
       // Realizar a atualização no banco de dados
       $sqlTermo = "UPDATE termos_assinados SET assinado = $assinado WHERE id_usuario = $idUsuario AND nome_termo = '$nomeTermo'";
       $queryUpdateTermo = $mysqli->query($sqlTermo) or die($mysqli->error);
-    
+
       // Verificar se a atualização foi bem-sucedida e tratar os erros, se necessário
     }
   }
@@ -80,5 +80,4 @@ if (empty($dados['id'])) {
     $retorna = ['status' => true, 'msg' => $mensagem, 'permissoes' => $novasPermissoes, 'Sistemas' => $novasSistemas];
     echo json_encode($retorna);
   }
- 
 }

@@ -12,12 +12,11 @@
 
                     <div class="col-12">
                         <label for="edit-grupo" class="form-label">Grupo</label>
-                        <span class="tooltip-icon" data-bs-toggle="tooltip" data-bs-placement="top"
-                            title="Selecione um valor caso queira mudar o grupo do usuário">
+                        <span class="tooltip-icon" data-bs-toggle="tooltip" data-bs-placement="top" title="Selecione um valor caso queira mudar o grupo do usuário">
                             <select id="input-value" name="grupo" class="form-select">
                                 <option value="">Selecione o grupo</option>
                                 <?php
-                                $gruposPermitidos = array("Procurador", "Servidor", "Terceirizado", "Estagiário", "Advogado","Externo");
+                                $gruposPermitidos = array("Procurador", "Servidor", "Terceirizado", "Estagiário", "Advogado", "Externo");
                                 foreach ($gruposPermitidos as $grupoPermitido) {
                                     echo "<option value='$grupoPermitido'>$grupoPermitido</option>";
                                 }
@@ -28,12 +27,11 @@
 
                     <div class="col-12">
                         <label for="edit-setor" class="form-label">Setor</label>
-                        <span class="tooltip-icon" data-bs-toggle="tooltip" data-bs-placement="top"
-                            title="Selecione um valor caso queira mudar o setor do usuário">
+                        <span class="tooltip-icon" data-bs-toggle="tooltip" data-bs-placement="top" title="Selecione um valor caso queira mudar o setor do usuário">
                             <select id="input-setor" name="setor" class="form-select">
                                 <option value="">Selecione o setor</option>
                                 <?php
-                             include_once "../db/consulta.php";
+                                include_once "../db/consulta.php";
                                 foreach ($setores as $setor) {
                                     echo "<option value='$setor'>$setor</option>";
                                 }
@@ -59,8 +57,7 @@
 
                     <div class="col-12">
                         <div class="input-group input-sistema">
-                            <input type="text" class="form-control" id="inputSistemaPersonalizado"
-                                placeholder="Adicionar sistema personalizado">
+                            <input type="text" class="form-control" id="inputSistemaPersonalizado" placeholder="Adicionar sistema personalizado">
                             <button type="button" class="btn btn-primary" onclick="adicionarSistemaPersonalizado()">
                                 +
                             </button>
@@ -82,7 +79,7 @@
                                 <tr>
                                     <td class="sistema-list" id="sistemasEdit"></td>
                                     <td class="permissao-list" id="permissaoEdit"></td>
-                     
+
                                 </tr>
                             </tbody>
                         </table>

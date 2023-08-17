@@ -135,12 +135,9 @@
 
 /*Estilização padrão do Botões editar e excluir*/
 
-
 .td-button {
- width:  -200rem;
-
+  width: -200rem;
 }
-
 
 .button-edit,
 .button-excluir {
@@ -150,10 +147,7 @@
   color: #fff;
   cursor: pointer;
   transition: background-color 0.3s ease;
- 
 }
-
-
 
 .button-edit {
   background-color: var(--footer-header-color);

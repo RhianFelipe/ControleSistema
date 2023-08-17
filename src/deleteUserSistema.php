@@ -26,4 +26,3 @@ echo json_encode($retorna);
 
     
 }
-?>

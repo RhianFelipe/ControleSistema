@@ -25,4 +25,3 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
         echo "Exclusão do sistema concluída.";
     }
 }
-?>

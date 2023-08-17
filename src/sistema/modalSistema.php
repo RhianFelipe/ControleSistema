@@ -4,9 +4,7 @@ include "./../db/conexao.php";
 echo "<script src='../js/sweetalert2.js'></script>";
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-  
 
-   
     $nomeSistema = $_POST['nomeSistema'];
     $existeNomeSistema = verificarExistencia($mysqli, "nomeSistema", "admin", $nomeSistema);
 
@@ -20,52 +18,49 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     text: 'Esse sistema já existe.',
                     icon: 'error'
                 }).then(function() {
-                    window.location.href = '".$_SERVER['PHP_SELF']."';
+                    window.location.href = '" . $_SERVER['PHP_SELF'] . "';
                 });
               </script>";
     } else {
         if (isset($_POST['adicionarParaTodos']) && $_POST['adicionarParaTodos'] === '1') {
             $inserirSistema = "INSERT INTO admin(nomeSistema) VALUES ('$nomeSistema')";
             $queryInserirSistema = $mysqli->query($inserirSistema) or die($mysqli->error);
-        
+
             while ($row = mysqli_fetch_assoc($queryUserID)) {
                 $idUsuario = $row['id'];
                 $inserirPermissao = "INSERT INTO permissoes(id_usuario, sistemas, permissao) VALUES ($idUsuario, '$nomeSistema', 0)";
                 $queryInserirPermissao = $mysqli->query($inserirPermissao) or die($mysqli->error);
             }
-            
-        echo "<script src='../js/sweetalert2.js'></script>";
-        echo "<script>
+
+            echo "<script src='../js/sweetalert2.js'></script>";
+            echo "<script>
                 Swal.fire({
                     title: 'Sucesso!',
                     text: 'Sistema inserido com sucesso para todos os users.',
                     icon: 'success'
                 }).then(function() {
-                    window.location.href = '".$_SERVER['PHP_SELF']."';
+                    window.location.href = '" . $_SERVER['PHP_SELF'] . "';
                 });
               </script>";
-    }
-    
-        else {
-    
+        } else {
+
             $inserirSistema = "INSERT INTO admin(nomeSistema) VALUES ('$nomeSistema')";
             $queryInserirSistema = $mysqli->query($inserirSistema) or die($mysqli->error);
-          echo "A checkbox não está marcada ou o valor não é 1. Fazendo outra coisa...";
-       
-          echo "<script src='../js/sweetalert2.js'></script>";
-          echo "<script>
+            echo "A checkbox não está marcada ou o valor não é 1. Fazendo outra coisa...";
+
+            echo "<script src='../js/sweetalert2.js'></script>";
+            echo "<script>
                   Swal.fire({
                       title: 'Sucesso!',
                       text: 'Sistema inserido com sucesso.',
                       icon: 'success'
                   }).then(function() {
-                      window.location.href = '".$_SERVER['PHP_SELF']."';
+                      window.location.href = '" . $_SERVER['PHP_SELF'] . "';
                   });
                 </script>";
-      }
         }
-
     }
+}
 
 ?>
 
@@ -81,55 +76,54 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </div>
             <div class="modal-body">
                 <form method="POST" class="row g-3" id="edit-usuario-form">
-                <div class="col-12" data-bs-toggle="tooltip" data-bs-placement="top"
-                            title="Marque a caixa de seleção para aplicar a ação a todos os usuários: exclusão ou adição.">
-                      
-                      <label for="adicionarParaTodos"  >Aplicar em  todos os usuários:</label>
-                      <input type="checkbox" name="adicionarParaTodos" id="adicionarParaTodos" value="1">
-                  </div>
+                    <div class="col-12" data-bs-toggle="tooltip" data-bs-placement="top" title="Marque a caixa de seleção para aplicar a ação a todos os usuários: exclusão ou adição.">
+
+                        <label for="adicionarParaTodos">Aplicar em todos os usuários:</label>
+                        <input type="checkbox" name="adicionarParaTodos" id="adicionarParaTodos" value="1">
+                    </div>
                     <div class="col-12">
                         <label for="sistema">Adicionar Sistema:</label>
-                        <input name="nomeSistema"id="nomeSistema" type="text">
+                        <input name="nomeSistema" id="nomeSistema" type="text">
                         <button type="submit" onclick="">
                             <img src="../public/assets/img/icon-plus.png" alt="Adicionar" class="btn-icon">
                         </button>
                     </div>
-                 
-                    </form>
-                    <?php
-                    // Consulta os nomes de sistema existentes no banco de dados
-                    $buscaNomeSistema = "SELECT DISTINCT nomeSistema FROM admin";
-                    $queryBuscaNomeSistema = $mysqli->query($buscaNomeSistema) or die($mysqli->error);
-                    
-                    // Verifica se existem resultados da consulta
-                    if (mysqli_num_rows($queryBuscaNomeSistema) > 0) {
-                        echo "<table>";
-                        echo "<tr>
+
+                </form>
+                <?php
+                // Consulta os nomes de sistema existentes no banco de dados
+                $buscaNomeSistema = "SELECT DISTINCT nomeSistema FROM admin";
+                $queryBuscaNomeSistema = $mysqli->query($buscaNomeSistema) or die($mysqli->error);
+
+                // Verifica se existem resultados da consulta
+                if (mysqli_num_rows($queryBuscaNomeSistema) > 0) {
+                    echo "<table>";
+                    echo "<tr>
                                     <th>Nome do Sistema</th>
                                     <th>Ações</th>
                                 </tr>";
 
-                        // Itera sobre os registros de sistemas
-                        while ($row = mysqli_fetch_assoc($queryBuscaNomeSistema)) {
-                            $nomeSistema = $row['nomeSistema'];
+                    // Itera sobre os registros de sistemas
+                    while ($row = mysqli_fetch_assoc($queryBuscaNomeSistema)) {
+                        $nomeSistema = $row['nomeSistema'];
 
-                            // Verifica se o valor não contém ":" e não está vazio
-                            if (!empty($nomeSistema)) {
-                                echo "<tr>   
+                        // Verifica se o valor não contém ":" e não está vazio
+                        if (!empty($nomeSistema)) {
+                            echo "<tr>   
                                             <td>" . $nomeSistema . "</td>
                                             <td>
                                                 <button class='button-excluir' onclick='excluirSistema(\"" . $nomeSistema . "\")'>Excluir</button>
                                             </td>
                                         </tr>";
-                            }
                         }
-
-                        echo "</table>";
-                    } else {
-                        echo "<p>Nenhum registro de sistema encontrado.</p>";
                     }
-                    ?>
-               
+
+                    echo "</table>";
+                } else {
+                    echo "<p>Nenhum registro de sistema encontrado.</p>";
+                }
+                ?>
+
             </div>
         </div>
     </div>
@@ -168,13 +162,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         });
                     }
                 };
-                xhttp.open("GET", "../src/sistema/deleteSistema.php?nomeSistema=" + encodeURIComponent(nomeSistema) + "&adicionarParaTodos=" + adicionarParaTodos, true);
+                xhttp.open("GET", "../src/sistema/deleteSistema.php?nomeSistema=" + encodeURIComponent(
+                    nomeSistema) + "&adicionarParaTodos=" + adicionarParaTodos, true);
                 xhttp.send();
             }
         });
     }
 </script>
-
-
-
-<!-- Incluí comentários para descrever a funcionalidade do código e das partes envolvidas. -->

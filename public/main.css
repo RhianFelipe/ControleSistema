@@ -29,8 +29,7 @@ header {
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
 }
 
-#botao-filtro-a{
-
+#botao-filtro-a {
   background-color: rgba(250, 235, 215, 0.2);
 }
 
@@ -70,25 +69,24 @@ footer {
   color: white;
   padding: 10px;
   text-align: right;
-  }
-  
-  .contact-info {
+}
+
+.contact-info {
   display: flex;
   justify-content: flex-end;
-  }
-  
-  .contact-link {
+}
+
+.contact-link {
   margin-left: 10px;
   color: white;
   text-decoration: none;
-  }
-  
-  .contact-icon {
- 
+}
+
+.contact-icon {
   height: 25px;
   vertical-align: middle;
-  }
-  
+}
+
 /*Estilização padrão do Botões editar e excluir*/
 .button-edit,
 .button-excluir {
@@ -117,6 +115,3 @@ footer {
 .button-excluir:hover {
   background-color: #c02929;
 }
-
-
-

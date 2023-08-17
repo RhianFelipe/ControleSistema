@@ -34,7 +34,9 @@ async function adicionarSistemaPersonalizado() {
       });
 
       // Fechar a modal atual
-      const editModel = bootstrap.Modal.getInstance(document.getElementById("editUsuarioModal"));
+      const editModel = bootstrap.Modal.getInstance(
+        document.getElementById("editUsuarioModal")
+      );
       editModel.hide();
 
       // Abrir a modal novamente para atualizar os dados
@@ -54,20 +56,19 @@ async function adicionarSistemaPersonalizado() {
   }
 }
 
-
 async function excluirSistemaUser(idUsuario, nomeSistema) {
   try {
     console.log(idUsuario, nomeSistema);
 
     const confirmacao = await Swal.fire({
-      title: 'Tem certeza?',
+      title: "Tem certeza?",
       text: `Você está prestes a excluir o sistema "${nomeSistema}". Esta ação não poderá ser desfeita.`,
-      icon: 'warning',
+      icon: "warning",
       showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'Sim',
-      cancelButtonText: 'Não'
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Sim",
+      cancelButtonText: "Não",
     });
 
     if (confirmacao.isConfirmed) {
@@ -80,7 +81,9 @@ async function excluirSistemaUser(idUsuario, nomeSistema) {
         Swal.fire("Sucesso!", "O sistema foi excluído com sucesso!", "success");
 
         // Fechar a modal atual
-        const editModel = bootstrap.Modal.getInstance(document.getElementById("editUsuarioModal"));
+        const editModel = bootstrap.Modal.getInstance(
+          document.getElementById("editUsuarioModal")
+        );
         editModel.hide();
 
         // Abrir a modal novamente para atualizar os dados
