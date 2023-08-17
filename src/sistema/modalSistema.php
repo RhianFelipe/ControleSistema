@@ -81,6 +81,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </div>
             <div class="modal-body">
                 <form method="POST" class="row g-3" id="edit-usuario-form">
+                <div class="col-12" data-bs-toggle="tooltip" data-bs-placement="top"
+                            title="Marque a caixa de seleção para aplicar a ação a todos os usuários: exclusão ou adição.">
+                      
+                      <label for="adicionarParaTodos"  >Aplicar em  todos os usuários:</label>
+                      <input type="checkbox" name="adicionarParaTodos" id="adicionarParaTodos" value="1">
+                  </div>
                     <div class="col-12">
                         <label for="sistema">Adicionar Sistema:</label>
                         <input name="nomeSistema"id="nomeSistema" type="text">
@@ -88,11 +94,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             <img src="../public/assets/img/icon-plus.png" alt="Adicionar" class="btn-icon">
                         </button>
                     </div>
-                    <div class="col-12">
-                      
-                      <label for="adicionarParaTodos">Aplicar em  todos os usuários:</label>
-                      <input type="checkbox" name="adicionarParaTodos" id="adicionarParaTodos" value="1">
-                  </div>
+                 
                     </form>
                     <?php
                     // Consulta os nomes de sistema existentes no banco de dados

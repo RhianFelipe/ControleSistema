@@ -92,4 +92,16 @@
     border: none; /* Remover a borda do botão */
     margin-left: 0.5rem; /* Espaçamento à esquerda do botão */
   }
+  #adicionarParaTodos {
+    /* Tamanho original da checkbox */
+    width: 16px;
+    height: 16px;
+    margin-right: 8px; /* Espaçamento entre a checkbox e o texto */
+    
+    border: 2px solid #ccc;
+    background-color: #fff;
+    border-radius: 3px;
+    cursor: pointer;
+    vertical-align: middle; /* Ajuste vertical */
+  }
   
