@@ -72,7 +72,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['usuario']) && isset($
         }
     </script>
 
-
     <header>
         <img class="imgHeader" src=".\public\assets\img\logo-govpr-white.png">
     </header>
@@ -87,15 +86,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['usuario']) && isset($
 
             <!-- Links abaixo do input de senha -->
             <div class="links">
-                <a href="esquecer_senha.php">Esquecer senha</a>
-                <a href="javascript:void(0);" onclick="openModalCriarConta()">Criar nova conta</a>
+                <a href="esquecerSenha.php">Esquecer senha</a>
+               <!-- <a href="javascript:void(0);" onclick="openModalCriarConta()">Criar nova conta</a> -->
             </div>
 
             <button id="button-submit" type="submit">Login</button>
         </form>
     </div>
-
-
 
     <footer>
         <p>&copy; 2023 Procuradoria Geral do Estado do Paraná. Todos os direitos reservados.</p>
@@ -127,11 +124,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['usuario']) && isset($
     }
     ?>
 
-
-
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-
-
 
 </body>
 
