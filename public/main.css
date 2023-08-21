@@ -40,7 +40,8 @@ header {
 
 .navbar {
   float: right;
-  margin-top: 8px;
+
+  
 }
 
 .navbar li {
@@ -114,4 +115,53 @@ footer {
 
 .button-excluir:hover {
   background-color: #c02929;
+}
+
+/* Style The Dropdown Button */
+.dropbtn {
+  cursor: pointer;
+}
+
+.dropbtn img {
+  width: 55px; /* Defina o tamanho desejado para a largura */
+  height: auto; /* A altura será ajustada automaticamente para manter a proporção */
+  background-color: var(--footer-header-color);
+}
+
+/* Estilo para a dropdown */
+.dropdown {
+  position: relative;
+  display: inline-block;
+
+}
+
+/* Dropdown Content */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 50px;
+  max-width: 200px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+
+  top: 100%; /* Alinha o topo da dropdown com a parte inferior do botão */
+  right: -10px; /* Alinha a borda direita da dropdown com a borda direita do botão */
+}
+
+/* Links dentro da dropdown */
+.dropdown-content a {
+  color: black;
+  padding: 5px 10px;
+  text-decoration: none;
+  display: block;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {
+  background-color: #f1f1f1;
+}
+
+/* Mostrar a dropdown ao passar o mouse */
+.dropdown:hover .dropdown-content {
+  display: block;
 }

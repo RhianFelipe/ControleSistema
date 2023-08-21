@@ -126,13 +126,16 @@ async function openModalEdit(id) {
         idUsuario
       );
       const grupoSelecionado = resposta.dados.grupo;
-      console.log("é oq veio?:", grupoSelecionado);
+      console.log("Grupo que veio:", grupoSelecionado);
       const termosAssinados = resposta.dados.termos;
-      console.log("AAA?:", resposta.dados.termos);
+      console.log("Termos:", resposta.dados.termos);
+
+      const sidTermos = resposta.dados.sid;
+      console.log("Sid: ", sidTermos)
 
       preencherPermissoes(permissoes, termosAssinados, grupoSelecionado);
 
-      preencherTermos(termosAssinados, grupoSelecionado);
+    preencherTermos(termosAssinados, grupoSelecionado, sidTermos);
     }
   } catch (error) {
     console.error(error);

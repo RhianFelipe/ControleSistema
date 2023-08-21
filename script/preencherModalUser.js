@@ -125,7 +125,7 @@ function isTermoAssinado(termosAssinados, nomeTermo) {
 }
 
 // Função para preencher os termos na tabela de edição
-function preencherTermos(termosData, grupoSelecionado) {
+function preencherTermos(termosData, grupoSelecionado, sidTermos) {
   const termosEdit = document.getElementById("termosEdit");
   termosEdit.innerHTML = "";
 
@@ -164,4 +164,57 @@ function preencherTermos(termosData, grupoSelecionado) {
     // Adiciona a linha com o termo à tabela de edição
     termosEdit.appendChild(tr);
   });
+
+  // Atualiza o valor do SID no elemento span
+  const sidValueSpan = document.getElementById("sidValue");
+  sidValueSpan.textContent = sidTermos; // Substitua pelo valor real do SID
+
+  const editarSidButton = document.getElementById("editarSidButton");
+
+  editarSidButton.addEventListener("click", () => {
+    const sidValue = document.getElementById("sidValue").textContent;
+    
+    // Criação do input
+    const input = document.createElement("input");
+    input.type = "text";
+    input.value = sidValue;
+  
+    // Criação do botão "Salvar"
+    const salvarButton = document.createElement("button");
+    salvarButton.textContent = "Salvar";
+    salvarButton.addEventListener("click", async () => {
+      const novoSid = input.value;
+  
+      // Aqui você pode enviar o novoSid para o servidor usando o fetch
+      // Exemplo:
+      // const response = await fetch("caminho/do/seu/arquivo.php", {
+      //   method: "POST",
+      //   body: JSON.stringify({ novoSid }),
+      //   headers: {
+      //     "Content-Type": "application/json",
+      //   },
+      // });
+  
+      // Se o envio for bem-sucedido, atualize o valor exibido
+      // if (response.ok) {
+      //   sidValueSpan.textContent = novoSid;
+      //   input.remove();
+      //   salvarButton.remove();
+      // } else {
+      //   console.error("Erro ao enviar o novo SID.");
+      // }
+    });
+  
+    // Substituir o valor atual pelo input
+    const sidValueSpan = document.getElementById("sidValue");
+    sidValueSpan.textContent = "";
+    sidValueSpan.appendChild(input);
+    sidValueSpan.appendChild(salvarButton);
+    
+  });
+  
+  
+  
+  
+  
 }

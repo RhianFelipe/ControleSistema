@@ -54,6 +54,11 @@
                             </tbody>
                         </table>
                     </div>
+                    <div>
+    <p id="sidText">SID: <span id="sidValue"></span></p>  <button id="editarSidButton" type="button">Editar</button>
+
+  
+</div>
 
                     <div class="col-12">
                         <div class="input-group input-sistema">

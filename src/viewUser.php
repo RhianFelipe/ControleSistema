@@ -26,6 +26,19 @@ if (!empty($id)) {
             $termosRows[] = $termosRow;
         }
 
+        $sqlSID = "SELECT sid FROM termos_assinados WHERE id_usuario = $id";
+        $resultSID = $mysqli->query($sqlSID);
+        $sidValue = ""; // Inicializa com um valor vazio
+        
+        if ($resultSID && $resultSID->num_rows > 0) {
+          
+            $sidRow = $resultSID->fetch_assoc();
+            $sidValue = $sidRow['sid'];
+        }
+        
+   
+        
+
         $retorna = [
             'status' => true,
             'dados' => [
@@ -35,6 +48,7 @@ if (!empty($id)) {
                 'grupo' => $usuarioRow['grupo'],
                 'permissoes' => $permissoesRows,
                 'termos' => $termosRows,
+                'sid' => $sidValue // Aqui você define o valor do SID
             ]
         ];
     } else {
