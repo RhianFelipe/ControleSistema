@@ -46,7 +46,7 @@ if (!isset($_SESSION['user'])) {
                             alt="Descrição da Imagem"></button>
                     <div class="dropdown-content">
                     <a href="#">Admin</a>
-                        <a href="#">Sair</a>
+                        <a href="../index.php">Sair</a>
                     </div>
                 </div>
 </div>

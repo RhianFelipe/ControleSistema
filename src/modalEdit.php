@@ -55,10 +55,10 @@
                         </table>
                     </div>
                     <div>
-    <p id="sidText">SID: <span id="sidValue"></span></p>  <button id="editarSidButton" type="button">Editar</button>
+                        <p id="sidText" style="display: inline-block; margin-right: 10px;">SID: <span id="sidValue"></span></p>
+                        <button id="editarSidButton" onclick="openSidModal()" type="button">Editar</button>
+                    </div>
 
-  
-</div>
 
                     <div class="col-12">
                         <div class="input-group input-sistema">

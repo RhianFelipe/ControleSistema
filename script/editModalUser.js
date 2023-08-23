@@ -132,10 +132,13 @@ async function openModalEdit(id) {
 
       const sidTermos = resposta.dados.sid;
       console.log("Sid: ", sidTermos)
-
+      
       preencherPermissoes(permissoes, termosAssinados, grupoSelecionado);
 
     preencherTermos(termosAssinados, grupoSelecionado, sidTermos);
+    const sidValueSpan = document.getElementById("sidValue");
+    sidValueSpan.textContent = sidTermos; // Define o valor do sidTermos no span
+  
     }
   } catch (error) {
     console.error(error);
