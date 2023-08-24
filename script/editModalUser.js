@@ -222,6 +222,15 @@ async function submitForm(event) {
     const resposta = await dados.json();
     if (resposta.status) {
       exibirMensagem("As alterações foram salvas corretamente!", "success");
+       // Fechar a modal atual
+       const editModel = bootstrap.Modal.getInstance(
+        document.getElementById("editUsuarioModal")
+      );
+      editModel.hide();
+
+      // Abrir a modal novamente para atualizar os dados
+      openModalEdit(idUsuario);
+      
     } else {
       exibirMensagem("ERRO: As alterações não foram salvas!", "error");
     }

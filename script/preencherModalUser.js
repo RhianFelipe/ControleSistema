@@ -167,9 +167,7 @@ function preencherTermos(termosData, grupoSelecionado, sidTermos) {
 }
 // Função para editar o SID
 function openSidModal() {
-  const editSid = new bootstrap.Modal(
-    document.getElementById("editSid")
-  );
+  const editSid = new bootstrap.Modal(document.getElementById("editSid"));
   editSid.show();
 }
 async function atualizarSidTermos() {
@@ -203,6 +201,21 @@ async function atualizarSidTermos() {
         title: "Sucesso",
         text: "SID atualizado com sucesso.",
       });
+
+      // Fechar o modal editSid
+      const editSidModal = bootstrap.Modal.getInstance(
+        document.getElementById("editSid")
+      );
+      editSidModal.hide();
+
+      // Fechar a modal atual
+      const editModel = bootstrap.Modal.getInstance(
+        document.getElementById("editUsuarioModal")
+      );
+      editModel.hide();
+
+      // Abrir a modal novamente para atualizar os dados
+      openModalEdit(idUsuario);
     } else {
       Swal.fire({
         icon: "error",
@@ -214,7 +227,3 @@ async function atualizarSidTermos() {
     console.error("Erro ao enviar a requisição:", error);
   }
 }
-
-
-
-

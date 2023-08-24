@@ -46,7 +46,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             $inserirSistema = "INSERT INTO admin(nomeSistema) VALUES ('$nomeSistema')";
             $queryInserirSistema = $mysqli->query($inserirSistema) or die($mysqli->error);
-            echo "A checkbox não está marcada ou o valor não é 1. Fazendo outra coisa...";
 
             echo "<script src='../js/sweetalert2.js'></script>";
             echo "<script>

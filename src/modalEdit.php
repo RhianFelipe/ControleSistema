@@ -55,8 +55,8 @@
                         </table>
                     </div>
                     <div>
-                        <p id="sidText" style="display: inline-block; margin-right: 10px;">SID: <span id="sidValue"></span></p>
-                        <button id="editarSidButton" onclick="openSidModal()" type="button">Editar</button>
+                        <p id="sidText" style="display: inline-block; margin-left: 10px;">SID Termos: <span id="sidValue"></span></p>
+                        <button id="editarSidButton" onclick="openSidModal()" type="button"><img src="../public//assets/img/pen.svg" alt=""></button>
                     </div>
 
 
