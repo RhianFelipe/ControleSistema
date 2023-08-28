@@ -26,14 +26,14 @@ if (!empty($id)) {
             $termosRows[] = $termosRow;
         }
 
-        $sqlSID = "SELECT sid FROM termos_assinados WHERE id_usuario = $id";
+        $sqlSID = "SELECT valorSid FROM sid WHERE id_usuario = $id";
         $resultSID = $mysqli->query($sqlSID);
         $sidValue = ""; // Inicializa com um valor vazio
         
         if ($resultSID && $resultSID->num_rows > 0) {
           
             $sidRow = $resultSID->fetch_assoc();
-            $sidValue = $sidRow['sid'];
+            $sidValue = $sidRow['valorSid'];
         }
         
    

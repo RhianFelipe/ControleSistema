@@ -44,10 +44,7 @@
                     <div class="col-12">
                         <table class="table">
                             <thead>
-                                <tr>
-                                    <th>Termo</th>
-                                    <th>Assinado</th>
-                                </tr>
+
                             </thead>
                             <tbody id="termosEdit">
                                 <!-- Os termos serão adicionados dinamicamente aqui -->
@@ -55,10 +52,10 @@
                         </table>
                     </div>
                     <div>
-                        <p id="sidText" style="display: inline-block; margin-left: 10px;">SID Termos: <span id="sidValue"></span></p>
-                        <button id="editarSidButton" onclick="openSidModal()" type="button"><img src="../public//assets/img/pen.svg" alt=""></button>
+                        <p id="sidText" style="display: inline-block; margin-left: 10px;">SID Termos: <a href="https://www.eprotocolo.pr.gov.br/spiweb/consultarProtocoloDigital.do?action=pesquisar" id="sidValue" target="_blank"></a>
+                        </p>
+                        <button id="editarSidButton" onclick="openSidModal()" type="button"><img src="../public/assets/img/pen.svg" alt=""></button>
                     </div>
-
 
                     <div class="col-12">
                         <div class="input-group input-sistema">

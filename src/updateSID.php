@@ -14,12 +14,12 @@ if (empty($novoSid) || $novoSid === "0") {
 }
 
 // Verifica se o novo SID é diferente do SID existente no banco de dados
-$sqlCheckSid = "SELECT sid FROM termos_assinados WHERE id_usuario = $idUsuario";
+$sqlCheckSid = "SELECT valorSid FROM sid WHERE id_usuario = $idUsuario";
 $resultCheckSid = $mysqli->query($sqlCheckSid);
 
 if ($resultCheckSid) {
   $rowCheckSid = $resultCheckSid->fetch_assoc();
-  $sidExistente = $rowCheckSid['sid'];
+  $sidExistente = $rowCheckSid['valorSid'];
   
   if ($novoSid === $sidExistente) {
     echo json_encode(['status' => false, 'message' => 'O novo SID deve ser diferente do SID existente.']);
@@ -33,7 +33,7 @@ if ($resultCheckSid) {
 // Aqui você pode realizar a atualização no banco de dados usando os valores recebidos
 
 // Exemplo de SQL (lembre-se de validar e sanitizar os valores antes de usá-los no SQL)
-$sqlUpdate = "UPDATE termos_assinados SET sid = '$novoSid' WHERE id_usuario = $idUsuario";
+$sqlUpdate = "UPDATE sid SET valorSid = '$novoSid' WHERE id_usuario = $idUsuario";
 $result = $mysqli->query($sqlUpdate);
 
 if ($result) {

@@ -12,13 +12,15 @@ if (empty($id)) {
     logOperacaoUsuario($mysqli, $id,'Excluído');
 
     // Mover os dados para a tabela de desativados
-    $sqlInsert = "INSERT INTO desativados (nome, email, sistema, permissao, data_exclusao, nome_termo, assinado, grupo, setor)
+    $sqlInsert = "INSERT INTO desativados (nome, email, sistema, permissao, data_exclusao, nome_termo, assinado, grupo, setor, nomeSid, valorSid)
     SELECT u.nome, u.email, p.sistemas, p.permissao, NOW() AS data_exclusao, 
-           t.nome_termo, t.assinado, u.grupo, u.setor
+           t.nome_termo, t.assinado, u.grupo, u.setor, s.nomeSid, s.valorSid
     FROM usuarios u
     JOIN permissoes p ON u.id = p.id_usuario
     LEFT JOIN termos_assinados t ON u.id = t.id_usuario
-    WHERE u.id = $id";
+    LEFT JOIN sid s ON u.id = s.id_usuario
+    WHERE u.id = $id;
+";
 
     // Executar a query de inserção
     $queryInsert = $mysqli->query($sqlInsert) or die($mysqli->error);
@@ -27,6 +29,7 @@ if (empty($id)) {
     $sqlDeletePermissoes = "DELETE FROM permissoes WHERE id_usuario = $id";
     $sqlDeleteUsuarios = "DELETE FROM usuarios WHERE id = $id";
     $sqlDeleteTermos = "DELETE FROM termos_assinados WHERE id_usuario = $id";
+    $sqlDeleteSids = "DELETE FROM sid WHERE id_usuario = $id";
 
     // Executar a query de exclusão das permissões
     $queryDeletePermi = $mysqli->query($sqlDeletePermissoes) or die($mysqli->error);
@@ -34,9 +37,11 @@ if (empty($id)) {
     $queryDeleteTermos = $mysqli->query($sqlDeleteTermos) or die($mysqli->error);
     // Executar a query de exclusão do usuário
     $queryDeleteUser = $mysqli->query($sqlDeleteUsuarios) or die($mysqli->error);
+    // Executar a query de exclusão do usuário
+    $queryDeleteSid = $mysqli->query($sqlDeleteSids) or die($mysqli->error);
 
     // Se todas as queries estiverem corretas, retorne true
-    if ($queryInsert && $queryDeletePermi && $queryDeleteTermos && $queryDeleteUser) {
+    if ($queryInsert && $queryDeletePermi && $queryDeleteTermos && $queryDeleteUser && $queryDeleteSid) {
          $retorna = ['status' => true, 'msg' => "Deletado com Sucesso!"];
          echo json_encode($retorna);
     } else {

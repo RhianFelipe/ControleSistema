@@ -40,14 +40,13 @@ if (!isset($_SESSION['user'])) {
             <li class="list-header"><a class="a1" href="../public/pageLogs.php">Logs de Usuário</a></li>
             <li class="list-header"><a onclick="openModalSistema()" class="a1">Inserir Sistema</a></li>
             <div class="dropdown">
-                    <button class="dropbtn"><img src="https://cdn-icons-png.flaticon.com/512/6017/6017051.png"
-                            alt="Descrição da Imagem"></button>
-                    <div class="dropdown-content">
-                 
+                <button class="dropbtn"><img src="https://cdn-icons-png.flaticon.com/512/6017/6017051.png" alt="Descrição da Imagem"></button>
+                <div class="dropdown-content">
+
                     <a href="#">Admin</a>
-                        <a href="#">Sair</a>
-                    </div>
+                    <a href="#">Sair</a>
                 </div>
+            </div>
         </nav>
     </header>
 
@@ -90,6 +89,11 @@ if (!isset($_SESSION['user'])) {
                 <label for="termoCompromisso" title="Termo de Compromisso e Confidencialidade">TCC?</label>
                 <input class="checkbox" type="checkbox" id="termoCompromisso" name="termoCompromisso">
             </div>
+            <div class="termo-container">
+                <label for="sidTermos" title="SID dos Termos">SID</label>
+                <input class="form-control" type="text" id="sidTermos" name="sidTermos" placeholder="SID Termos">
+            </div>
+
 
             <label>Gerenciar Permissões:</label>
             <button id="button-permissao" type="button">Permissões</button><br>
