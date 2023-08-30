@@ -91,7 +91,7 @@ if (!isset($_SESSION['user'])) {
             </div>
             <div class="termo-container">
                 <label for="sidTermos" title="SID dos Termos">SID</label>
-                <input class="form-control" type="text" id="sidTermos" name="sidTermos" placeholder="SID Termos">
+                <input class="form-control" type="text" id="sidTermos" name="sidTermos" placeholder="SID Termos" required>
             </div>
 
 

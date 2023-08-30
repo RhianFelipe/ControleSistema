@@ -28,9 +28,9 @@ async function adicionarSistemaPersonalizado() {
 
       // Exemplo de mensagem de sucesso usando SweetAlert manualmente
       Swal.fire({
+        icon: "success",
         title: "Sucesso!",
         text: "O sistema personalizado foi adicionado com sucesso!",
-        icon: "success",
       });
 
       // Fechar a modal atual
@@ -46,9 +46,10 @@ async function adicionarSistemaPersonalizado() {
 
       // Exemplo de mensagem de erro usando SweetAlert manualmente
       Swal.fire({
+        icon: "error",
         title: "Erro!",
         text: resultado.msg,
-        icon: "error",
+   
       });
     }
   } catch (error) {
@@ -125,6 +126,8 @@ async function openModalEdit(id) {
         resposta.dados.permissoes,
         idUsuario
       );
+
+    
       const grupoSelecionado = resposta.dados.grupo;
       console.log("Grupo que veio:", grupoSelecionado);
       const termosAssinados = resposta.dados.termos;
@@ -132,8 +135,8 @@ async function openModalEdit(id) {
 
       const sidTermos = resposta.dados.sid;
       console.log("Sid: ", sidTermos)
-      
-      preencherPermissoes(permissoes, termosAssinados, grupoSelecionado);
+
+      preencherPermissoes(permissoes, termosAssinados, grupoSelecionado,sistemas);
 
     preencherTermos(termosAssinados, grupoSelecionado, sidTermos);
     const sidValueSpan = document.getElementById("sidValue");

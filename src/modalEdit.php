@@ -51,37 +51,35 @@
                             </tbody>
                         </table>
                     </div>
-<!-- Inclua a referência ao SweetAlert (você já disse que está importado) -->
+                    <!-- Inclua a referência ao SweetAlert (você já disse que está importado) -->
 
-<div>
-    <p id="sidText" style="display: inline-block; margin-left: 10px;">SID Termos:
-        <a href="https://www.eprotocolo.pr.gov.br/spiweb/consultarProtocoloDigital.do?action=pesquisar" title="Clique para copiar SID e ser redirecionado ao site do eProtocolo" id="sidValue" target="_blank" onclick="copyAndRedirect(); return false;">Clique aqui</a>
-    </p>
-    <button id="editarSidButton" onclick="openSidModal()" type="button"><img src="../public/assets/img/pen.svg" alt=""></button>
-</div>
+                    <div>
+                        <p id="sidText" style="display: inline-block; margin-left: 10px;">SID Termos:
+                            <a href="https://www.eprotocolo.pr.gov.br/spiweb/consultarProtocoloDigital.do?action=pesquisar" title="Clique para copiar SID e ser redirecionado ao site do eProtocolo" id="sidValue" target="_blank" onclick="copyAndRedirect(); return false;">Clique aqui</a>
+                        </p>
+                        <button id="editarSidButton" onclick="openSidModal()" type="button"><img src="../public/assets/img/pen.svg" alt=""></button>
+                    </div>
 
-<script>
-    function copyAndRedirect() {
-        var dynamicContent = document.getElementById("sidValue").textContent;
+                    <script>
+                        function copyAndRedirect() {
+                            var dynamicContent = document.getElementById("sidValue").textContent;
 
-        if (dynamicContent) {
-            navigator.clipboard.writeText(dynamicContent)
-                .then(function() {
-                    Swal.fire({
-                        icon: 'success',
-                        text: 'Conteúdo copiado para a área de transferência com sucesso!' 
-                    }).then(function() {
-                        window.open("https://www.eprotocolo.pr.gov.br/spiweb/consultarProtocoloDigital.do?action=pesquisar", '_blank');
-                    });
-                })
-                .catch(function() {
-                    console.log("Falha ao copiar o conteúdo para a área de transferência.");
-                });
-        }
-    }
-</script>
-
-
+                            if (dynamicContent) {
+                                navigator.clipboard.writeText(dynamicContent)
+                                    .then(function() {
+                                        Swal.fire({
+                                            icon: 'success',
+                                            text: 'Conteúdo copiado para a área de transferência com sucesso!'
+                                        }).then(function() {
+                                            window.open("https://www.eprotocolo.pr.gov.br/spiweb/consultarProtocoloDigital.do?action=pesquisar", '_blank');
+                                        });
+                                    })
+                                    .catch(function() {
+                                        console.log("Falha ao copiar o conteúdo para a área de transferência.");
+                                    });
+                            }
+                        }
+                    </script>
                     <div class="col-12">
                         <div class="input-group input-sistema">
                             <input type="text" class="form-control" id="inputSistemaPersonalizado" placeholder="Adicionar sistema personalizado">
@@ -90,8 +88,6 @@
                             </button>
                         </div>
                     </div>
-
-
 
                     <div class="col-12">
                         <table class="table">

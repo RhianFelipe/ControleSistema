@@ -36,9 +36,6 @@ if (!empty($id)) {
             $sidValue = $sidRow['valorSid'];
         }
         
-   
-        
-
         $retorna = [
             'status' => true,
             'dados' => [

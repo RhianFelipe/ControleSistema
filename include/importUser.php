@@ -1,0 +1,4 @@
+    <script src="../script/preencherModalUser.js"></script>
+    <script src="../script/editModalUser.js"></script>
+    <script src="../script/deleteUser.js"></script>
+    <script src="../script/utils.js"></script>

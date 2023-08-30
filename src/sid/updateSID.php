@@ -1,6 +1,6 @@
 <?php
-include_once "../db/conexao.php";
-include "../src/logUser.php";
+include_once "../../db/conexao.php";
+include "../../src/logUser.php";
 
 $dados = $_GET;
 

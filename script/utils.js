@@ -9,7 +9,11 @@ async function openModalSistema() {
   );
   editSistema.show();
 }
-
+// Função para editar o SID
+function openSidModal() {
+  const editSid = new bootstrap.Modal(document.getElementById("editSid"));
+  editSid.show();
+}
 function exibirMensagem(text, icon) {
   return Swal.fire({
     text: text,

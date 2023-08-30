@@ -66,22 +66,39 @@ function preencherSistemas(sistemasData, idUsuario) {
 }
 
 // Função para preencher as permissões da tabela de edição
-function preencherPermissoes(permissoes, termosAssinados, grupoSelecionado) {
+function preencherPermissoes(permissoes, termosAssinados, grupoSelecionado, sistemas) {
   const permissaoEdit = document.getElementById("permissaoEdit");
   permissaoEdit.innerHTML = "";
 
-  // Verifica se o primeiro termo foi assinado no caso de um usuário terceirizado
   const primeiroTermoAssinado =
     grupoSelecionado === "Terceirizado" &&
     isTermoAssinado(termosAssinados, "Termo de Uso e Responsabilidade");
 
-  // Percorre as permissões recebidas e cria as células da tabela de edição
   permissoes.forEach((permissao, index) => {
     const checkbox = document.createElement("input");
     checkbox.type = "checkbox";
     checkbox.checked = permissao === "1";
 
-    // Define a lógica de habilitar ou desabilitar os checkboxes com base no grupo selecionado e nos termos assinados
+    if (sistemas[index] === "VPN" || sistemas[index] === "Wi-Fi") {
+      checkbox.addEventListener("change", function () {
+        if (checkbox.checked) {
+          Swal.fire({
+            title: `Informe o valor para ${sistemas[index]}:`,
+            input: "text",
+            showCancelButton: true,
+            confirmButtonText: "Salvar",
+            preConfirm: (valor) => {
+              if (!valor || valor.trim() === "") {
+                Swal.showValidationMessage(`Informe um valor válido para ${sistemas[index]}`);
+              }
+              // Aqui você pode fazer algo com o valor inserido, como salvá-lo ou exibi-lo
+              console.log(`Valor para ${sistemas[index]}: ${valor}`);
+            },
+          });
+        }
+      });
+    }
+
     if (grupoSelecionado === "Terceirizado" && primeiroTermoAssinado) {
       checkbox.disabled = false;
     } else if (
@@ -90,8 +107,6 @@ function preencherPermissoes(permissoes, termosAssinados, grupoSelecionado) {
     ) {
       checkbox.disabled = true;
     }
-
-    // Estilo para tornar a checkbox redonda
 
     checkbox.style.width = "16px";
     checkbox.style.height = "16px";
@@ -112,7 +127,6 @@ function preencherPermissoes(permissoes, termosAssinados, grupoSelecionado) {
     const tr = document.createElement("tr");
     tr.appendChild(td);
 
-    // Adiciona a célula de permissão à tabela de edição
     permissaoEdit.appendChild(tr);
   });
 }
@@ -165,11 +179,7 @@ function preencherTermos(termosData, grupoSelecionado, sidTermos) {
     termosEdit.appendChild(tr);
   });
 }
-// Função para editar o SID
-function openSidModal() {
-  const editSid = new bootstrap.Modal(document.getElementById("editSid"));
-  editSid.show();
-}
+
 async function atualizarSidTermos() {
   const idUsuario = document.getElementById("editid").value;
   const novoSid = document.getElementById("sidInput").value;
@@ -188,7 +198,7 @@ async function atualizarSidTermos() {
     return;
   }
 
-  const url = `../src/updateSid.php?id=${idUsuario}&novoSid=${novoSid}`;
+  const url = `../src/sid/updateSid.php?id=${idUsuario}&novoSid=${novoSid}`;
 
   try {
     const response = await fetch(url, {
