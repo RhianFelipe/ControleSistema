@@ -3,7 +3,7 @@ function limparFiltragem() {
   history.replaceState(null, null, urlSemParametros);
 }
 
-async function openModalSistema() {
+ function openModalSistema() {
   const editSistema = new bootstrap.Modal(
     document.getElementById("editSistema")
   );
@@ -14,12 +14,20 @@ function openSidModal() {
   const editSid = new bootstrap.Modal(document.getElementById("editSid"));
   editSid.show();
 }
-function exibirMensagem(text, icon) {
+
+
+function openSidModalWifi() {
+  const editSid = new bootstrap.Modal(document.getElementById("editSidWifi"));
+  editSid.show();
+}
+function openSidModalVPN() {
+  const editSid = new bootstrap.Modal(document.getElementById("editSidVPN"));
+  editSid.show();
+}
+function exibirMensagem(icon,title ,text ) {
   return Swal.fire({
-    text: text,
     icon: icon,
-    showCancelButton: false,
-    confirmButtonColor: "#3085d6",
-    confirmButtonText: "Fechar",
+    title: title,
+    text: text,
   });
 }

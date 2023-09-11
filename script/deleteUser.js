@@ -21,10 +21,10 @@ async function apagarUsuarioDados(id) {
 
         if (!resposta.status) {
           // Exibe uma mensagem de erro usando o SweetAlert com a descrição do erro do MySQL
-          exibirMensagem("ERRO: " + resposta.msg, "error");
+          exibirMensagem("error","Erro","ERRO: " + resposta.msg)
         } else {
           // Exibe uma mensagem de sucesso usando o SweetAlert e executa uma ação após o fechamento do diálogo
-          exibirMensagem("Usuário deletado com sucesso!", "success").then(
+          exibirMensagem("success","Sucesso",resposta.msg).then(
             () => {
               linhaUsuario.remove();
               location.reload(); // Recarrega a página
@@ -34,7 +34,8 @@ async function apagarUsuarioDados(id) {
       })
       .catch((error) => {
         // Exibe uma mensagem de erro usando o SweetAlert para erros de parsing JSON
-        exibirMensagem("Erro na resposta do servidor", "error");
+        exibirMensagem("error","Erro","Erro na resposta do servidor")
+        console.error(error)
       });
   }
 }

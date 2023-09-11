@@ -14,7 +14,7 @@ if (empty($novoSid) || $novoSid === "0") {
 }
 
 // Verifica se o novo SID é diferente do SID existente no banco de dados
-$sqlCheckSid = "SELECT valorSid FROM sid WHERE id_usuario = $idUsuario AND nomeSid = 'SID Termos'";
+$sqlCheckSid = "SELECT valorSid FROM sid WHERE id_usuario = $idUsuario AND nomeSid = 'VPN'";
 $resultCheckSid = $mysqli->query($sqlCheckSid);
 
 if ($resultCheckSid) {
@@ -31,7 +31,7 @@ if ($resultCheckSid) {
 }
 
 
-$sqlUpdate = "UPDATE sid SET valorSid = '$novoSid' WHERE id_usuario = $idUsuario AND  nomeSid = 'SID Termos'";
+$sqlUpdate = "UPDATE sid SET valorSid = '$novoSid' WHERE id_usuario = $idUsuario AND  nomeSid = 'VPN'";
 $result = $mysqli->query($sqlUpdate);
 
 if ($result) {

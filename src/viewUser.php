@@ -26,7 +26,7 @@ if (!empty($id)) {
             $termosRows[] = $termosRow;
         }
 
-        $sqlSID = "SELECT valorSid FROM sid WHERE id_usuario = $id";
+        $sqlSID = "SELECT valorSid FROM sid WHERE id_usuario = $id AND nomeSid = 'SID Termos'";
         $resultSID = $mysqli->query($sqlSID);
         $sidValue = ""; // Inicializa com um valor vazio
         

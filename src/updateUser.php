@@ -73,10 +73,7 @@ if (empty($dados['id'])) {
   }
 
   if ($queryUpdate) {
-    $mensagem = "Permissões atualizadas com sucesso!";
-    if (!empty($dados['grupo'])) {
-      $mensagem = "Grupo e permissões atualizados com sucesso!";
-    }
+    $mensagem = "Usuário atualizado com sucesso!";
     $retorna = ['status' => true, 'msg' => $mensagem, 'permissoes' => $novasPermissoes, 'Sistemas' => $novasSistemas];
     echo json_encode($retorna);
   }

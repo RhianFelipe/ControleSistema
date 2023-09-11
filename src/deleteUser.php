@@ -42,7 +42,7 @@ if (empty($id)) {
 
     // Se todas as queries estiverem corretas, retorne true
     if ($queryInsert && $queryDeletePermi && $queryDeleteTermos && $queryDeleteUser && $queryDeleteSid) {
-         $retorna = ['status' => true, 'msg' => "Deletado com Sucesso!"];
+         $retorna = ['status' => true, 'msg' => "Usuário deletado com sucesso!"];
          echo json_encode($retorna);
     } else {
         $retorna = ['status' => false, 'msg' => "ERRO: Não foi possível deletar o Usuário!"];

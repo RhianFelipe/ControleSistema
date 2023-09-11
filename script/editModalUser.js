@@ -17,22 +17,11 @@ async function adicionarSistemaPersonalizado() {
 
     // Requisição fetch para enviar os dados via método GET
     const resposta = await fetch(url);
-
     const resultado = await resposta.json();
 
     // Verifica se a adição foi bem-sucedida
-    if (resultado.status === true) {
-      // Aqui você pode fazer alguma ação adicional, como recarregar os dados da página
-      // ou exibir uma mensagem de sucesso.
-      console.log("Sistema personalizado adicionado com sucesso!");
-
-      // Exemplo de mensagem de sucesso usando SweetAlert manualmente
-      Swal.fire({
-        icon: "success",
-        title: "Sucesso!",
-        text: "O sistema personalizado foi adicionado com sucesso!",
-      });
-
+    if (resultado.status) {
+      exibirMensagem("success","Sucesso",resultado.msg)
       // Fechar a modal atual
       const editModel = bootstrap.Modal.getInstance(
         document.getElementById("editUsuarioModal")
@@ -42,15 +31,8 @@ async function adicionarSistemaPersonalizado() {
       // Abrir a modal novamente para atualizar os dados
       openModalEdit(idUsuario);
     } else {
-      console.error("Erro ao adicionar sistema personalizado:", resultado.msg);
 
-      // Exemplo de mensagem de erro usando SweetAlert manualmente
-      Swal.fire({
-        icon: "error",
-        title: "Erro!",
-        text: resultado.msg,
-   
-      });
+      exibirMensagem("error","Erro",resultado.msg)
     }
   } catch (error) {
     console.error("Erro ao enviar requisição de adição:", error);
@@ -77,10 +59,8 @@ async function excluirSistemaUser(idUsuario, nomeSistema) {
       const resposta = await fetch(url);
       const resultado = await resposta.json();
 
-      if (resultado.status === true) {
-        console.log("Sistema excluído com sucesso!");
-        Swal.fire("Sucesso!", "O sistema foi excluído com sucesso!", "success");
-
+      if (resultado.status) {
+        exibirMensagem("success","Sucesso",resultado.msg)
         // Fechar a modal atual
         const editModel = bootstrap.Modal.getInstance(
           document.getElementById("editUsuarioModal")
@@ -90,8 +70,7 @@ async function excluirSistemaUser(idUsuario, nomeSistema) {
         // Abrir a modal novamente para atualizar os dados
         openModalEdit(idUsuario);
       } else {
-        console.error("Erro ao excluir sistema:", resultado.msg);
-        Swal.fire("Erro!", "Erro ao excluir o sistema.", "error");
+        exibirMensagem("error","Erro",resultado.msg)
       }
     } else {
       console.log("Exclusão cancelada pelo usuário.");
@@ -145,7 +124,7 @@ async function openModalEdit(id) {
     }
   } catch (error) {
     console.error(error);
-    exibirMensagem("Erro ao obter dados do usuário.", "error");
+    exibirMensagem("error","Erro","Erro ao obter dados do usuário.")
   }
 }
 
@@ -224,7 +203,7 @@ async function submitForm(event) {
 
     const resposta = await dados.json();
     if (resposta.status) {
-      exibirMensagem("As alterações foram salvas corretamente!", "success");
+      exibirMensagem("success","Sucesso",resposta.msg)
        // Fechar a modal atual
        const editModel = bootstrap.Modal.getInstance(
         document.getElementById("editUsuarioModal")
