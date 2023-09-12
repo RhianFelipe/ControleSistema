@@ -16,6 +16,14 @@ $result = $mysqli->query($sql);
 // Verifica se há resultados e os armazena em um array associativo
 $usuarios = $result->num_rows > 0 ? $result->fetch_all(MYSQLI_ASSOC) : [];
 
+$sqlContagem = "SELECT COUNT(*) as totalUsuarios FROM usuarios";
+$resultContagem = $mysqli->query($sqlContagem);
+
+ $row = $resultContagem->fetch_assoc();
+ $totalUsuarios = $row['totalUsuarios'];
+
+
+
 $mysqli->close();
 ?>
 
@@ -57,8 +65,11 @@ $mysqli->close();
             </ul>
         </nav>
     </header>
+    <p class="total-usuarios">N°: <?php echo $totalUsuarios; ?> Usuários</p>
 
     <section>
+
+   
         <table class="lista-usuarios">
             <thead>
                 <tr>
@@ -73,6 +84,7 @@ $mysqli->close();
                 <?php foreach ($usuarios as $usuario) : ?>
                 <!-- Exibir os dados de cada usuário -->
                 <tr id="linha-usuario-<?php echo $usuario['id']; ?>">
+               
                     <td><?php echo $usuario['nome']; ?></td>
                     <td><?php echo $usuario['email']; ?></td>
                     <td><?php echo $usuario['grupo']; ?></td>

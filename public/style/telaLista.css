@@ -30,3 +30,21 @@ section {
 .lista-usuarios tr:hover {
   background-color: #f9f9f9;
 }
+
+/* Estilização do número total de usuários */
+.total-usuarios {
+
+  text-align: center;
+  background-color: #007bff;
+  color: white;
+  padding: 5px;
+  font-size: 14px; /* Tamanho da fonte menor */
+  font-weight: bold;
+  padding: 5px; /* Padding menor */
+  border-radius: 5px;
+  position: absolute;
+  top: 0;
+  margin: 10px; /* Margem para afastar do topo e da esquerda */
+  margin-top: 8rem;
+}
+

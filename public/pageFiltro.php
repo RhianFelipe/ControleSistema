@@ -66,7 +66,7 @@ if (!isset($_SESSION['user'])) {
                 <button type="submit" id="button-filtro" class="btn-filtro">Filtrar</button>
             </div>
         </form>
-
+            
         <table class="consulta-table">
             <thead>
                 <tr>
