@@ -31,13 +31,13 @@ function criarBotaoExcluir(idUsuario, sistema) {
 }
 
 // Função para preencher a tabela de sistemas
-function preencherSistemas(sistemasData, idUsuario) {
+function preencherSistemas(sistemasData, idUsuario, sidVPN,sidWifi) {
   const sistemasEdit = document.getElementById("sistemasEdit");
   sistemasEdit.innerHTML = "";
 
   const sistemas = [];
   const permissoes = [];
-
+  console.log("Sids",sidVPN,sidWifi)
   // Percorre os dados de sistemas recebidos e cria as linhas da tabela
   sistemasData.forEach((sistemaData) => {
     const sistema = sistemaData.sistemas;
@@ -52,9 +52,20 @@ function preencherSistemas(sistemasData, idUsuario) {
     // Adiciona o botão de excluir como a primeira célula da linha
     tr.appendChild(criarBotaoExcluir(idUsuario, sistema));
 
-    // Cria uma célula da tabela (<td>) para o nome do sistema e adiciona o nome
+    // Cria uma célula da tabela (<td>) para o nome do sistema
     const tdNomeSistema = document.createElement("td");
+
+    // Adiciona o nome do sistema
     tdNomeSistema.textContent = sistema;
+
+    // Verifica se o sistema é "Wi-Fi" ou "VPN" e adiciona o número "(1)" entre parênteses no lado direito
+    if (sistema === "Wi-Fi") {
+      tdNomeSistema.textContent += ` (${sidWifi})`;
+    } else if (sistema === "VPN") {
+      tdNomeSistema.textContent += ` (${sidVPN})`;
+    }
+    
+
     tr.appendChild(tdNomeSistema);
 
     // Adiciona a linha à tabela de sistemas
@@ -64,6 +75,8 @@ function preencherSistemas(sistemasData, idUsuario) {
   // Retorna os arrays de sistemas e permissões preenchidos
   return { sistemas, permissoes };
 }
+
+
 
 // Função para preencher as permissões da tabela de edição
 function preencherPermissoes(permissoes, termosAssinados, grupoSelecionado, sistemas) {
@@ -193,7 +206,7 @@ async function atualizarSidTermos() {
     return;
   }
 
-  const url = `../src/sid/updateSid.php?id=${idUsuario}&novoSid=${novoSid}`;
+  const url = `../src/sid/updateSID.php?id=${idUsuario}&novoSid=${novoSid}`;
 
   try {
     const response = await fetch(url, {

@@ -21,7 +21,7 @@ async function apagarUsuarioDados(id) {
 
         if (!resposta.status) {
           // Exibe uma mensagem de erro usando o SweetAlert com a descrição do erro do MySQL
-          exibirMensagem("error","Erro","ERRO: " + resposta.msg)
+          exibirMensagem("error","Erro",resposta.msg)
         } else {
           // Exibe uma mensagem de sucesso usando o SweetAlert e executa uma ação após o fechamento do diálogo
           exibirMensagem("success","Sucesso",resposta.msg).then(

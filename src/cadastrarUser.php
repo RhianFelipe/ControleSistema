@@ -14,6 +14,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $termoUso = isset($dados['termoUso']) ? 1 : 0;
     $termoCompromisso = isset($dados['termoCompromisso']) ? 1 : 0;
     $sidTermos = $dados['sidTermos'];
+    $sidWifi = $dados['sidWifi'];
+    $sidVPN = $dados['sidVPN'];
 
     // Verificar se existe Nome e Email
     $existeNome = verificarExistencia($mysqli, "nome", "usuarios", $nome);
@@ -66,8 +68,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     $inserirTermoCompromisso = "INSERT INTO termos_assinados (id_usuario, nome_termo, assinado) VALUES ('$idUsuario', 'Termo de Compromisso e Confidencialidade', '$termoCompromisso')";
                     mysqli_query($mysqli, $inserirTermoCompromisso);
 
-                    $inserirSidTermos = "INSERT INTO sid(id_usuario,nomeSid, valorSid) VALUES ('$idUsuario', 'SID Termos', '$sidTermos')";
+                    $inserirSidTermos = "INSERT INTO sid(id_usuario,nomeSid, valorSid) VALUES ('$idUsuario', 'Termos', '$sidTermos')";
                     mysqli_query($mysqli, $inserirSidTermos);
+                    $inserirSidWifi = "INSERT INTO sid(id_usuario,nomeSid, valorSid) VALUES ('$idUsuario', 'Wi-Fi', '$sidWifi')";
+                    mysqli_query($mysqli, $inserirSidWifi);
+                    $inserirSidVPN = "INSERT INTO sid(id_usuario,nomeSid, valorSid) VALUES ('$idUsuario', 'VPN', '$sidVPN')";
+                    mysqli_query($mysqli, $inserirSidVPN );
                     // Adicionar o registro de log
                     logOperacaoUsuario($mysqli, $idUsuario, 'Criado');
 

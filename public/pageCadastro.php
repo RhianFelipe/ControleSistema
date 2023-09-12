@@ -93,6 +93,14 @@ if (!isset($_SESSION['user'])) {
                 <label for="sidTermos" title="SID dos Termos">SID</label>
                 <input class="form-control" type="text" id="sidTermos" name="sidTermos" placeholder="SID Termos" required>
             </div>
+            <div class="termo-container" hidden>
+                <label for="sidWifi" title="SID Wifi">SID</label>
+                <input class="form-control" type="text" id="sidWifi" name="sidWifi" placeholder="SID Termos" >
+            </div>
+            <div class="termo-container" hidden>
+                <label for="sidVPN" title="SID VPN">SID</label>
+                <input class="form-control" type="text" id="sidVPN" name="sidVPN" placeholder="SID Termos">
+            </div>
 
 
             <label>Gerenciar Permissões:</label>

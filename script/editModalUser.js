@@ -103,7 +103,9 @@ async function openModalEdit(id) {
 
       const { sistemas, permissoes } = preencherSistemas(
         resposta.dados.permissoes,
-        idUsuario
+        idUsuario,
+        resposta.dados.sidVPN,  // Valor do SID para VPN
+        resposta.dados.sidWiFI  // Valor do SID para Wi-Fi
       );
 
     

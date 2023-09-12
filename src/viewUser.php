@@ -26,14 +26,31 @@ if (!empty($id)) {
             $termosRows[] = $termosRow;
         }
 
-        $sqlSID = "SELECT valorSid FROM sid WHERE id_usuario = $id AND nomeSid = 'SID Termos'";
+        $sqlSID = "SELECT valorSid FROM sid WHERE id_usuario = $id AND nomeSid = 'Termos'";
         $resultSID = $mysqli->query($sqlSID);
         $sidValue = ""; // Inicializa com um valor vazio
         
         if ($resultSID && $resultSID->num_rows > 0) {
-          
             $sidRow = $resultSID->fetch_assoc();
             $sidValue = $sidRow['valorSid'];
+        }
+        
+        $sqlSIDWiFI = "SELECT valorSid FROM sid WHERE id_usuario = $id AND nomeSid = 'Wi-Fi'";
+        $resultSIDWiFI = $mysqli->query($sqlSIDWiFI);
+        $sidValueWiFI = "";
+        
+        if ($resultSIDWiFI && $resultSIDWiFI->num_rows > 0) {
+            $sidRowWiFI = $resultSIDWiFI->fetch_assoc();
+            $sidValueWiFI = $sidRowWiFI['valorSid'];
+        }
+        
+        $sqlSIDVPN = "SELECT valorSid FROM sid WHERE id_usuario = $id AND nomeSid = 'VPN'";
+        $resultSIDVPN = $mysqli->query($sqlSIDVPN);
+        $sidValueVPN = "";
+        
+        if ($resultSIDVPN && $resultSIDVPN->num_rows > 0) {
+            $sidRowVPN = $resultSIDVPN->fetch_assoc();
+            $sidValueVPN = $sidRowVPN['valorSid'];
         }
         
         $retorna = [
@@ -45,9 +62,12 @@ if (!empty($id)) {
                 'grupo' => $usuarioRow['grupo'],
                 'permissoes' => $permissoesRows,
                 'termos' => $termosRows,
-                'sid' => $sidValue // Aqui você define o valor do SID
+                'sid' => $sidValue,      // Valor do SID inicial
+                'sidWiFI' => $sidValueWiFI, // Valor do SID para Wi-Fi
+                'sidVPN' => $sidValueVPN  // Valor do SID para VPN
             ]
         ];
+        
     } else {
         $retorna = ['status' => false, 'msg' => "Usuário não encontrado!"];
     }
