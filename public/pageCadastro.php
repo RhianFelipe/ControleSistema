@@ -22,7 +22,8 @@ if (!isset($_SESSION['user'])) {
     <!-- Importar folhas de estilo -->
     <link rel="stylesheet" href="../public/main.css?v=<?php echo time(); ?>">
     <link rel="stylesheet" href="../public/style/telaCadastro.css?v=<?php echo time(); ?>">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
     <script src="../script/utils.js"></script>
     <script src="../js/sweetalert2.js"></script>
     <title>Cadastrar Usuário</title>
@@ -34,13 +35,15 @@ if (!isset($_SESSION['user'])) {
     <header>
         <img class="imgHeader" src="..\public\assets\img\logo-govpr-white.png">
         <nav class="navbar">
-            <li class="list-header"><a class="a1" id="botao-filtro-a" href="../public/pageCadastro.php">Cadastrar Usuários</a></li>
+            <li class="list-header"><a class="a1" id="botao-filtro-a" href="../public/pageCadastro.php">Cadastrar
+                    Usuários</a></li>
             <li class="list-header"><a class="a1" href="../public/pageFiltro.php">Filtrar Usuários</a></li>
             <li class="list-header"><a class="a1" href="../public/pageLista.php">Lista de Usuários</a></li>
             <li class="list-header"><a class="a1" href="../public/pageLogs.php">Logs de Usuário</a></li>
             <li class="list-header"><a onclick="openModalSistema()" class="a1">Inserir Sistema</a></li>
             <div class="dropdown">
-                <button class="dropbtn"><img src="https://cdn-icons-png.flaticon.com/512/6017/6017051.png" alt="Descrição da Imagem"></button>
+                <button class="dropbtn"><img src="https://cdn-icons-png.flaticon.com/512/6017/6017051.png"
+                        alt="Descrição da Imagem"></button>
                 <div class="dropdown-content">
 
                     <a href="#">Admin</a>
@@ -58,7 +61,8 @@ if (!isset($_SESSION['user'])) {
             <input class="input-value" id="nome" value="" placeholder="nome" name="nome" type="text" required><br>
 
             <label>E-mail:</label>
-            <input class="input-value" value="" placeholder="usuario@pge.pr.gov.br" name="email" type="text" required><br>
+            <input class="input-value" value="" placeholder="usuario@pge.pr.gov.br" name="email" type="text"
+                required><br>
 
             <label>Grupo:</label>
             <!-- Obter valores dos grupos do banco de dados e mostrá-los em um menu suspenso -->
@@ -80,22 +84,28 @@ if (!isset($_SESSION['user'])) {
                 }
                 ?>
             </select>
-            <div class="termo-container">
-                <label for="termoUso" title="Termo de Uso e Responsabilidade">TUR?</label>
-                <input class="checkbox" type="checkbox" id="termoUso" name="termoUso">
+            <div class="termo-sid-container">
+                <div class="termo-container">
+                    <label for="termoUso" title="Termo de Uso e Responsabilidade">TUR?</label>
+                    <input class="checkbox" type="checkbox" id="termoUso" name="termoUso">
+                </div>
+
+                <div class="termo-container">
+                    <label for="termoCompromisso" title="Termo de Compromisso e Confidencialidade">TCC?</label>
+                    <input class="checkbox" type="checkbox" id="termoCompromisso" name="termoCompromisso">
+                </div>
+
+                <div class="termo-container">
+                  
+                    <input class="form-control" type="text" id="sidTermos" name="sidTermos" placeholder="SID Termos"
+                        required>
+                </div>
             </div>
 
-            <div class="termo-container">
-                <label for="termoCompromisso" title="Termo de Compromisso e Confidencialidade">TCC?</label>
-                <input class="checkbox" type="checkbox" id="termoCompromisso" name="termoCompromisso">
-            </div>
-            <div class="termo-container">
-                <label for="sidTermos" title="SID dos Termos">SID</label>
-                <input class="form-control" type="text" id="sidTermos" name="sidTermos" placeholder="SID Termos" required>
-            </div>
+
             <div class="termo-container" hidden>
                 <label for="sidWifi" title="SID Wifi">SID</label>
-                <input class="form-control" type="text" id="sidWifi" name="sidWifi" placeholder="SID Termos" >
+                <input class="form-control" type="text" id="sidWifi" name="sidWifi" placeholder="SID Termos">
             </div>
             <div class="termo-container" hidden>
                 <label for="sidVPN" title="SID VPN">SID</label>
@@ -109,7 +119,8 @@ if (!isset($_SESSION['user'])) {
             <button id="button-submit" type="submit">Cadastrar</button>
         </form>
         <!-- Modal para gerenciar permissões -->
-        <div class="modal fade" id="editUsuarioModal" tabindex="-1" aria-labelledby="editUsuarioModalLabel" aria-hidden="true">
+        <div class="modal fade" id="editUsuarioModal" tabindex="-1" aria-labelledby="editUsuarioModalLabel"
+            aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -168,31 +179,34 @@ if (!isset($_SESSION['user'])) {
         <p>&copy; 2023 Procuradoria Geral do Estado do Paraná. Todos os direitos reservados.</p>
         <div class="contact-info">
             <a href="mailto:estag.rhian@pge.pr.gov.br" class="contact-link">
-                <img src="https://1000logos.net/wp-content/uploads/2021/05/Gmail-logo.png" alt="Email" class="contact-icon" style="width: 50px;">
+                <img src="https://1000logos.net/wp-content/uploads/2021/05/Gmail-logo.png" alt="Email"
+                    class="contact-icon" style="width: 50px;">
             </a>
             <a href="https://github.com/RhianFelipe" target="_blank" class="contact-link">
-                <img src="https://cdn-icons-png.flaticon.com/512/25/25231.png" alt="GitHub" class="contact-icon" style="width: 25px;">
+                <img src="https://cdn-icons-png.flaticon.com/512/25/25231.png" alt="GitHub" class="contact-icon"
+                    style="width: 25px;">
             </a>
         </div>
     </footer>
     <?php include '../src/sistema/modalSistema.php'; ?>
     <script src="../script/utils.js"></script>
     <script>
-        // Evento de mudança no select do grupo
-        document.getElementById('grupo').addEventListener('change', function() {
-            const grupoSelecionado = this.value;
-            const termoCompromissoCheckbox = document.getElementById('termoCompromisso');
+    // Evento de mudança no select do grupo
+    document.getElementById('grupo').addEventListener('change', function() {
+        const grupoSelecionado = this.value;
+        const termoCompromissoCheckbox = document.getElementById('termoCompromisso');
 
-            if (grupoSelecionado === 'Terceirizado') {
-                // Se o grupo for "Terceirizado", desabilita o checkbox do segundo termo
-                termoCompromissoCheckbox.disabled = true;
-            } else {
-                // Se o grupo não for "Terceirizado", habilita o checkbox do segundo termo
-                termoCompromissoCheckbox.disabled = false;
-            }
-        });
+        if (grupoSelecionado === 'Terceirizado') {
+            // Se o grupo for "Terceirizado", desabilita o checkbox do segundo termo
+            termoCompromissoCheckbox.disabled = true;
+        } else {
+            // Se o grupo não for "Terceirizado", habilita o checkbox do segundo termo
+            termoCompromissoCheckbox.disabled = false;
+        }
+    });
     </script>
     <script src="../script/cadastrarUser.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">
     </script>
