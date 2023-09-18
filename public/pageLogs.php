@@ -54,7 +54,7 @@ $resultado = mysqli_query($mysqli, $sql);
         <?php if (mysqli_num_rows($resultado) > 0) : ?>
             <table class='logs-table'>
                 <tr>
-                    <th>ID</th>
+                 
                     <th>Nome do Usuário</th>
                     <th>Email do Usuário</th>
                     <th>Grupo do Usuário</th>
@@ -63,7 +63,7 @@ $resultado = mysqli_query($mysqli, $sql);
                 </tr>
                 <?php while ($row = mysqli_fetch_assoc($resultado)) : ?>
                     <tr>
-                        <td><?php echo $row['id']; ?></td>
+                    
                         <td><?php echo $row['nome_usuario']; ?></td>
                         <td><?php echo $row['email_usuario']; ?></td>
                         <td><?php echo $row['grupo_usuario']; ?></td>

@@ -21,9 +21,7 @@ $resultContagem = $mysqli->query($sqlContagem);
 
  $row = $resultContagem->fetch_assoc();
  $totalUsuarios = $row['totalUsuarios'];
-
-
-
+ 
 $mysqli->close();
 ?>
 

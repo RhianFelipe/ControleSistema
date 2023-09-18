@@ -17,6 +17,7 @@ if (empty($novoSid) || $novoSid === "0") {
 $sqlCheckSid = "SELECT valorSid FROM sid WHERE id_usuario = $idUsuario AND nomeSid = 'VPN'";
 $resultCheckSid = $mysqli->query($sqlCheckSid);
 
+
 if ($resultCheckSid) {
   $rowCheckSid = $resultCheckSid->fetch_assoc();
   $sidExistente = $rowCheckSid['valorSid'];
@@ -33,6 +34,10 @@ if ($resultCheckSid) {
 
 $sqlUpdate = "UPDATE sid SET valorSid = '$novoSid' WHERE id_usuario = $idUsuario AND  nomeSid = 'VPN'";
 $result = $mysqli->query($sqlUpdate);
+
+$sqlSistemaUpdate = "UPDATE permissoes SET permissao = 1 WHERE id_usuario = $idUsuario AND sistemas = 'VPN'";
+$resultSistema = $mysqli->query($sqlSistemaUpdate);
+
 
 if ($result) {
   // Atualização bem-sucedida
