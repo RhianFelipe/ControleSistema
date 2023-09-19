@@ -35,7 +35,7 @@ if ($resultCheckSid) {
 $sqlUpdate = "UPDATE sid SET valorSid = '$novoSid' WHERE id_usuario = $idUsuario AND  nomeSid = 'Wi-Fi'";
 $result = $mysqli->query($sqlUpdate);
 
-$sqlSistemaUpdate = "UPDATE permissoes SET permissao =  WHERE id_usuario = $idUsuario AND sistemas = 'Wi-Fi'";
+$sqlSistemaUpdate = "UPDATE permissoes SET permissao = 1  WHERE id_usuario = $idUsuario AND sistemas = 'Wi-Fi'";
 $resultSistema = $mysqli->query($sqlSistemaUpdate);
 
 if ($result) {
