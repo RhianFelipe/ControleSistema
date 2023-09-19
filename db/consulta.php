@@ -7,10 +7,20 @@ function verificarExistencia($mysqli, $valor, $tabela, $variavel)
     $resultVerificacao = $mysqli->query($verificar) or die($mysqli->error);
     return $resultVerificacao;
 }
-// Consulta os sistemas e as permissões disponíveis no banco de dados
+//BUSCAS TABELA USUÁRIOS
+
+
+
+//BUSCA TABELA PERMISSOES
 $buscaSistemas = "SELECT sistemas FROM permissoes";
 $queryBuscaSistemas =  $mysqli->query($buscaSistemas) or die($mysqli->error);
 
+
+//BUSCA TABELA LOGS
+
+
+
+//BUSCA TABELA SID
 
 // Consulta os grupos de cada funcionario(procuradores, estags, servidores...)
 $buscaGrupo = "SELECT grupo FROM usuarios";
