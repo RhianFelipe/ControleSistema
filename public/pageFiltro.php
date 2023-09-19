@@ -1,5 +1,5 @@
 <?php
-
+$pageTitle = "Filtrar Usuários";
 session_start();
 
 if (!isset($_SESSION['user'])) {
@@ -26,36 +26,7 @@ if (!isset($_SESSION['user'])) {
 </head>
 
 <body onload="limparFiltragem()">
-    <header>
-    <style>
-
-</style>
-        <img class="imgHeader" src="..\public\assets\img\logo-govpr-white.png">
-        <nav class="navbar">
-
-            <ul class="list-header">
-                <!-- Links de navegação no cabeçalho -->
-                <li><a class="a1" href="../public/pageCadastro.php">Cadastrar Usuários</a></li>
-                
-                <li><a class="a1" id="botao-filtro-a" href="../public/pageFiltro.php">Filtrar Usuários</a></li>
-                <li><a class="a1" href="../public/pageLista.php">Lista de Usuários</a></li>
-                <li><a class="a1" href="../public/pageLogs.php">Logs de Usuário</a></li>
-                <li><a onclick="openModalSistema()" class="a1">Inserir Sistema</a></li>
-                <div class="dropdown">
-                    <button class="dropbtn"><img src="https://cdn-icons-png.flaticon.com/512/6017/6017051.png"
-                            alt="Descrição da Imagem"></button>
-                    <div class="dropdown-content">
-                    <a href="#">Admin</a>
-                        <a href="../index.php">Sair</a>
-                    </div>
-                </div>
-</div>
-            </ul>
-
-
-        </nav>
-
-    </header>
+<?php include 'header.php'; ?>
     <section class="area-consulta">
         <h1 class="consulta-title">Área de Consulta</h1>
         <form action="../src/filtrarUser.php" method="POST">

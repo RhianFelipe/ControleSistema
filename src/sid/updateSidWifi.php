@@ -28,7 +28,7 @@ if ($resultCheckSid) {
   }
 } else {
   echo json_encode(['status' => false, 'msg' => 'Erro ao verificar o SID existente.']);
-  exit();
+  exit(); 
 }
 
 

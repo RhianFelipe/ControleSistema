@@ -23,10 +23,17 @@ function logCriacaoUsuario($mysqli, $id) {
 
 // Função para registrar a operação de atualização de usuário no log
 function logAtualizacaoUsuario($mysqli, $id) {
-    logOperacaoUsuario($mysqli, $id, 'Permissão Atualizada');
+    logOperacaoUsuario($mysqli, $id, 'Usuário Atualizado');
 }
 
 // Função para registrar a operação de exclusão de usuário no log
 function logExclusaoUsuario($mysqli, $id) {
     logOperacaoUsuario($mysqli, $id, 'Excluído');
+}
+
+function logAddSistemPerson($mysqli,$id){
+
+    logOperacaoUsuario($mysqli, $id, 'Add Sistema Personalizado');
+
+
 }

@@ -1,5 +1,6 @@
 <?php
 // Incluir arquivo de conexão com o banco de dados e arquivo de pop-up
+$pageTitle = "Cadastrar Usuários";
 include "../src/cadastrarUser.php";
 include_once "../db/consulta.php";
 session_start();
@@ -32,26 +33,7 @@ if (!isset($_SESSION['user'])) {
 
 <body>
     <!-- Criação do Header para logo e navegação-->
-    <header>
-        <img class="imgHeader" src="..\public\assets\img\logo-govpr-white.png">
-        <nav class="navbar">
-            <li class="list-header"><a class="a1" id="botao-filtro-a" href="../public/pageCadastro.php">Cadastrar
-                    Usuários</a></li>
-            <li class="list-header"><a class="a1" href="../public/pageFiltro.php">Filtrar Usuários</a></li>
-            <li class="list-header"><a class="a1" href="../public/pageLista.php">Lista de Usuários</a></li>
-            <li class="list-header"><a class="a1" href="../public/pageLogs.php">Logs de Usuário</a></li>
-            <li class="list-header"><a onclick="openModalSistema()" class="a1">Inserir Sistema</a></li>
-            <div class="dropdown">
-                <button class="dropbtn"><img src="https://cdn-icons-png.flaticon.com/512/6017/6017051.png"
-                        alt="Descrição da Imagem"></button>
-                <div class="dropdown-content">
-
-                    <a href="#">Admin</a>
-                    <a href="#">Sair</a>
-                </div>
-            </div>
-        </nav>
-    </header>
+    <?php include 'header.php'; ?>
 
     <!-- Criação formulário para cadastro de Usuário-->
     <div id="area-form">
