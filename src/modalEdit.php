@@ -55,28 +55,18 @@
 
                     <div>
                         <p id="sidText" style="display: inline-block; margin-left: 10px;">SID Termos:
-                            <a href="https://www.eprotocolo.pr.gov.br/spiweb/consultarProtocoloDigital.do?action=pesquisar" title="Clique para copiar SID e ser redirecionado ao site do eProtocolo" id="sidValue" target="_blank" onclick="copyAndRedirect(); return false;">Clique aqui</a>
+                            <a href="" title="Clique para copiar SID e ser redirecionado ao site do eProtocolo" id="sidValue" target="_blank" onclick="copyAndRedirect(); return false;">Clique aqui</a>
                         </p>
                         <button id="editarSidButton" onclick="openSidModal()" type="button"><img src="../public/assets/img/pen.svg" alt=""></button>
                     </div>
+                    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.8/clipboard.min.js"></script>
 
                     <script>
                         function copyAndRedirect() {
                             var dynamicContent = document.getElementById("sidValue").textContent;
-
                             if (dynamicContent) {
-                                navigator.clipboard.writeText(dynamicContent)
-                                    .then(function() {
-                                        Swal.fire({
-                                            icon: 'success',
-                                            text: 'Conteúdo copiado para a área de transferência com sucesso!'
-                                        }).then(function() {
-                                            window.open("https://www.eprotocolo.pr.gov.br/spiweb/consultarProtocoloDigital.do?action=pesquisar", '_blank');
-                                        });
-                                    })
-                                    .catch(function() {
-                                        console.log("Falha ao copiar o conteúdo para a área de transferência.");
-                                    });
+                            window.open("https://www.eprotocolo.pr.gov.br/spiweb/consultarProtocoloDigital.do?action=pesquisar", '_blank');
+
                             }
                         }
                     </script>

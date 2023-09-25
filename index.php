@@ -60,57 +60,40 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['usuario']) && isset($
 </head>
 
 <body>
-    <script src="./js/sweetalert2.js"></script>
-    <?php include './src/login/modalCriarConta.php'; ?>
+  <div class="grid-container">
+    <div class="colun-left">
+      <div class="div-form-login">
+        <div id="area-form">
+          <form id="form" method="POST" action="">
+            <h2 class="h2-fontsize">PROCURADORIA- GERAL DO ESTADO DO PARANÁ</h2><br>
+            <h4 class="h2-fontsize">CONTROLE DE SISTEMAS</h4><br>
+            <p class="text-form-login">Preencha os campos abaixo para entrar no sistema. </p>
+            <label class="text-form-login">Usuário:</label>
+            <input class="input-value" id="usuario" value="" name="usuario" type="text" required><br>
 
-    <script>
-        async function openModalCriarConta() {
-            const criarContaModal = new bootstrap.Modal(
-                document.getElementById("criarContaModal")
-            );
-            criarContaModal.show();
-        }
-    </script>
+            <label class="text-form-login">Senha:</label>
+            <input class="input-value" value="" name="senha" type="password" required><br>
 
-    <header>
-        <img class="imgHeader" src=".\public\assets\img\logo-govpr-white.png">
-    </header>
-    <div id="area-form">
-        <form id="form" method="POST" action="">
-            <h1>Login</h1><br>
-            <label>Usuário:</label>
-            <input class="input-value" id="usuario" value="" placeholder="usuário" name="usuario" type="text" required><br>
+            <button id="button-submit" type="submit">Login</button><br>
+            <a href="#">Esqueci minha senha</a>
 
-            <label>Senha:</label>
-            <input class="input-value" value="" placeholder="senha" name="senha" type="password" required><br>
-
-            <!-- Links abaixo do input de senha -->
-            <div class="links">
-                <a href="esquecerSenha.php">Esquecer senha</a>
-               <!-- <a href="javascript:void(0);" onclick="openModalCriarConta()">Criar nova conta</a> -->
-            </div>
-
-            <button id="button-submit" type="submit">Login</button>
-        </form>
+          </form>
+        </div>
+      </div>
     </div>
 
-    <footer>
-        <p>&copy; 2023 Procuradoria Geral do Estado do Paraná. Todos os direitos reservados.</p>
-        <div class="contact-info">
-            <a href="mailto:estag.rhian@pge.pr.gov.br" class="contact-link">
-                <img src="https://1000logos.net/wp-content/uploads/2021/05/Gmail-logo.png" alt="Email" class="contact-icon" style="width: 50px;">
-            </a>
-            <a href="https://github.com/RhianFelipe" target="_blank" class="contact-link">
-                <img src="https://cdn-icons-png.flaticon.com/512/25/25231.png" alt="GitHub" class="contact-icon" style="width: 25px;">
-            </a>
-        </div>
-    </footer>
+    <div class="colun-right">
+      <img src="public\assets\img\bg-imagem-login.jpg"/>
+      <div class="row">
+        <img class="img-row" src="public\assets\img\logo-governo-branco.png">
+      </div>
+    </div>
+  </div>
 
-    <?php
+  <?php
     // Exibe uma mensagem de erro caso a variável de sessão esteja definida
     if (isset($_SESSION['login_error']) && $_SESSION['login_error']) {
         echo "<script>
-  
         window.onload = function() {
             Swal.fire(
                 'Falha ao logar!',
@@ -123,9 +106,27 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['usuario']) && isset($
         $_SESSION['login_error'] = false;
     }
     ?>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-
+  <script src="../js/sweetalert2.js"></script>
 </body>
 
 </html>
+
+
+
+<!--guardando código
+
+<header>
+        <img class="imgHeader" src="..\public\assets\img\logo-govpr-white.png">
+</header>
+
+     <footer>
+        <p>&copy; 2023 Procuradoria Geral do Estado do Paraná. Todos os direitos reservados.</p>
+        <div class="contact-info">
+            <a href="mailto:estag.rhian@pge.pr.gov.br" class="contact-link">
+                <img src="https://1000logos.net/wp-content/uploads/2021/05/Gmail-logo.png" alt="Email" class="contact-icon" style="width: 50px;">
+            </a>
+            <a href="https://github.com/RhianFelipe" target="_blank" class="contact-link">
+                <img src="https://cdn-icons-png.flaticon.com/512/25/25231.png" alt="GitHub" class="contact-icon" style="width: 25px;">
+            </a>
+        </div>
+    </footer>

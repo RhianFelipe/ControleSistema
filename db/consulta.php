@@ -9,6 +9,12 @@ function verificarExistencia($mysqli, $valor, $tabela, $variavel)
 }
 //BUSCAS TABELA USUÁRIOS
 
+// Consulta para obter os usuários do banco de dados
+$obterNomeUserOrder = "SELECT * FROM usuarios ORDER BY nome";
+$queryobterNomeUserOrder = $mysqli->query($obterNomeUserOrder);
+
+
+//BUSCAS TABELA SISTEMAS
 
 
 //BUSCA TABELA PERMISSOES

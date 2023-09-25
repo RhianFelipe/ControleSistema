@@ -1,4 +1,8 @@
 <?php
+
+include "../db/conexao.php";
+include "../db/consulta.php";
+
 $pageTitle = "Lista de Usuários";
 session_start();
 
@@ -8,14 +12,9 @@ if (!isset($_SESSION['user'])) {
     exit();
 }
 
-include "../db/conexao.php";
-
-// Consulta para obter os usuários do banco de dados
-$sql = "SELECT * FROM usuarios ORDER BY nome";
-$result = $mysqli->query($sql);
 
 // Verifica se há resultados e os armazena em um array associativo
-$usuarios = $result->num_rows > 0 ? $result->fetch_all(MYSQLI_ASSOC) : [];
+$usuarios = $queryobterNomeUserOrder->num_rows > 0 ? $queryobterNomeUserOrder->fetch_all(MYSQLI_ASSOC) : [];
 
 $sqlContagem = "SELECT COUNT(*) as totalUsuarios FROM usuarios";
 $resultContagem = $mysqli->query($sqlContagem);

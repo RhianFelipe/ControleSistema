@@ -12,7 +12,7 @@ if (!isset($_SESSION['user'])) {
 include "../db/conexao.php";
 
 // Consulta para recuperar os registros de log de usuários ordenados por data de operação descendente
-$sql = "SELECT id, nome_usuario, email_usuario, grupo_usuario, tipo_operacao, data_operacao FROM logsusuarios ORDER BY data_operacao DESC";
+$sql = "SELECT * FROM logsusuarios ORDER BY data_operacao DESC";
 $resultado = mysqli_query($mysqli, $sql);
 ?>
 
