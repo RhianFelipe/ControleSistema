@@ -39,7 +39,6 @@
                             </select>
                         </span>
                     </div>
-
                     <!-- Nova tabela para os termos -->
                     <div class="col-12">
                         <table class="table">
@@ -65,7 +64,7 @@
                         function copyAndRedirect() {
                             var dynamicContent = document.getElementById("sidValue").textContent;
                             if (dynamicContent) {
-                            window.open("https://www.eprotocolo.pr.gov.br/spiweb/consultarProtocoloDigital.do?action=pesquisar", '_blank');
+                                window.open("https://www.eprotocolo.pr.gov.br/spiweb/consultarProtocoloDigital.do?action=pesquisar", '_blank');
 
                             }
                         }

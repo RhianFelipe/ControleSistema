@@ -38,9 +38,9 @@ document
       const data = await response.json();
 
       if (data.status) {
-        exibirMensagem("success","Sucesso",data.msg);
+        exibirMensagem("success", "Sucesso", data.msg);
       } else {
-        exibirMensagem("error","Erro",data.msg)
+        exibirMensagem("error", "Erro", data.msg);
       }
     } catch (error) {
       console.error(error);
@@ -49,6 +49,5 @@ document
 
 // Evento de clique no botão "Salvar"
 document.getElementById("salvarModal").addEventListener("click", function () {
-  exibirMensagem("success","Sucesso","Os dados foram salvos.");
+  exibirMensagem("success", "Sucesso", "Os dados foram salvos.");
 });
-

@@ -33,7 +33,6 @@ section {
 
 /* Estilização do número total de usuários */
 .total-usuarios {
-
   text-align: center;
   background-color: #007bff;
   color: white;
@@ -47,4 +46,3 @@ section {
   margin: 10px; /* Margem para afastar do topo e da esquerda */
   margin-top: 8rem;
 }
-

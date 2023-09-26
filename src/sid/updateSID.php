@@ -41,4 +41,3 @@ if ($result) {
   // Erro na atualização
   echo json_encode(['status' => false, 'msg' => 'Erro ao atualizar o SID no banco de dados.']);
 }
-?>

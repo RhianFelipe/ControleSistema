@@ -1,4 +1,7 @@
 <?php
+include "../db/conexao.php";
+include "../db/consulta.php";
+
 $pageTitle = "Logs de Usuário";
 session_start();
 
@@ -8,12 +11,6 @@ if (!isset($_SESSION['user'])) {
     header("Location: ../index.php");
     exit();
 }
-
-include "../db/conexao.php";
-
-// Consulta para recuperar os registros de log de usuários ordenados por data de operação descendente
-$sql = "SELECT * FROM logsusuarios ORDER BY data_operacao DESC";
-$resultado = mysqli_query($mysqli, $sql);
 ?>
 
 <!DOCTYPE html>
@@ -29,23 +26,23 @@ $resultado = mysqli_query($mysqli, $sql);
 </head>
 
 <body>
-<?php include 'header.php'; ?>
+    <?php include 'header.php'; ?>
     <section>
         <h1>Histórico de Logs de Usuários</h1>
 
-        <?php if (mysqli_num_rows($resultado) > 0) : ?>
+        <?php if (mysqli_num_rows($queryBuscaRegistroLogsUser) > 0) : ?>
             <table class='logs-table'>
                 <tr>
-                 
+
                     <th>Nome do Usuário</th>
                     <th>Email do Usuário</th>
                     <th>Grupo do Usuário</th>
                     <th>Tipo de Operação</th>
                     <th>Data da Operação</th>
                 </tr>
-                <?php while ($row = mysqli_fetch_assoc($resultado)) : ?>
+                <?php while ($row = mysqli_fetch_assoc($queryBuscaRegistroLogsUser)) : ?>
                     <tr>
-                    
+
                         <td><?php echo $row['nome_usuario']; ?></td>
                         <td><?php echo $row['email_usuario']; ?></td>
                         <td><?php echo $row['grupo_usuario']; ?></td>
@@ -63,7 +60,8 @@ $resultado = mysqli_query($mysqli, $sql);
 
     <script src="../script/utils.js"></script>
     <script src="../js/sweetalert2.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">
+    </script>
 </body>
 
 </html>

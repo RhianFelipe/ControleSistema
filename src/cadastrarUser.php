@@ -87,4 +87,3 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 // Fecha a conexão com o banco de dados
 mysqli_close($mysqli);
-?>

@@ -40,8 +40,6 @@ header {
 
 .navbar {
   float: right;
-
-  
 }
 
 .navbar li {
@@ -132,7 +130,6 @@ footer {
 .dropdown {
   position: relative;
   display: inline-block;
-
 }
 
 /* Dropdown Content */
@@ -165,4 +162,3 @@ footer {
 .dropdown:hover .dropdown-content {
   display: block;
 }
-

@@ -21,7 +21,7 @@ async function adicionarSistemaPersonalizado() {
 
     // Verifica se a adição foi bem-sucedida
     if (resultado.status) {
-      exibirMensagem("success","Sucesso",resultado.msg)
+      exibirMensagem("success", "Sucesso", resultado.msg);
       // Fechar a modal atual
       const editModel = bootstrap.Modal.getInstance(
         document.getElementById("editUsuarioModal")
@@ -31,8 +31,7 @@ async function adicionarSistemaPersonalizado() {
       // Abrir a modal novamente para atualizar os dados
       openModalEdit(idUsuario);
     } else {
-
-      exibirMensagem("error","Erro",resultado.msg)
+      exibirMensagem("error", "Erro", resultado.msg);
     }
   } catch (error) {
     console.error("Erro ao enviar requisição de adição:", error);
@@ -60,7 +59,7 @@ async function excluirSistemaUser(idUsuario, nomeSistema) {
       const resultado = await resposta.json();
 
       if (resultado.status) {
-        exibirMensagem("success","Sucesso",resultado.msg)
+        exibirMensagem("success", "Sucesso", resultado.msg);
         // Fechar a modal atual
         const editModel = bootstrap.Modal.getInstance(
           document.getElementById("editUsuarioModal")
@@ -70,7 +69,7 @@ async function excluirSistemaUser(idUsuario, nomeSistema) {
         // Abrir a modal novamente para atualizar os dados
         openModalEdit(idUsuario);
       } else {
-        exibirMensagem("error","Erro",resultado.msg)
+        exibirMensagem("error", "Erro", resultado.msg);
       }
     } else {
       console.log("Exclusão cancelada pelo usuário.");
@@ -104,29 +103,32 @@ async function openModalEdit(id) {
       const { sistemas, permissoes } = preencherSistemas(
         resposta.dados.permissoes,
         idUsuario,
-        resposta.dados.sidVPN,  // Valor do SID para VPN
-        resposta.dados.sidWiFI  // Valor do SID para Wi-Fi
+        resposta.dados.sidVPN, // Valor do SID para VPN
+        resposta.dados.sidWiFI // Valor do SID para Wi-Fi
       );
 
-    
       const grupoSelecionado = resposta.dados.grupo;
       console.log("Grupo que veio:", grupoSelecionado);
       const termosAssinados = resposta.dados.termos;
       console.log("Termos:", resposta.dados.termos);
 
       const sidTermos = resposta.dados.sid;
-      console.log("Sid: ", sidTermos)
+      console.log("Sid: ", sidTermos);
 
-      preencherPermissoes(permissoes, termosAssinados, grupoSelecionado,sistemas);
+      preencherPermissoes(
+        permissoes,
+        termosAssinados,
+        grupoSelecionado,
+        sistemas
+      );
 
-    preencherTermos(termosAssinados, grupoSelecionado, sidTermos);
-    const sidValueSpan = document.getElementById("sidValue");
-    sidValueSpan.textContent = sidTermos; // Define o valor do sidTermos no span
-  
+      preencherTermos(termosAssinados, grupoSelecionado, sidTermos);
+      const sidValueSpan = document.getElementById("sidValue");
+      sidValueSpan.textContent = sidTermos; // Define o valor do sidTermos no span
     }
   } catch (error) {
     console.error(error);
-    exibirMensagem("error","Erro","Erro ao obter dados do usuário.")
+    exibirMensagem("error", "Erro", "Erro ao obter dados do usuário.");
   }
 }
 
@@ -205,16 +207,15 @@ async function submitForm(event) {
 
     const resposta = await dados.json();
     if (resposta.status) {
-      exibirMensagem("success","Sucesso",resposta.msg)
-       // Fechar a modal atual
-       const editModel = bootstrap.Modal.getInstance(
+      exibirMensagem("success", "Sucesso", resposta.msg);
+      // Fechar a modal atual
+      const editModel = bootstrap.Modal.getInstance(
         document.getElementById("editUsuarioModal")
       );
       editModel.hide();
 
       // Abrir a modal novamente para atualizar os dados
       openModalEdit(idUsuario);
-      
     } else {
       exibirMensagem("ERRO: As alterações não foram salvas!", "error");
     }

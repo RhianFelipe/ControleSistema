@@ -1,7 +1,6 @@
 <?php
 include_once "../../db/conexao.php";
 
-
 $dados = $_GET;
 
 $idUsuario = $dados['id'];
@@ -45,4 +44,3 @@ if ($result) {
   // Erro na atualização
   echo json_encode(['status' => false, 'msg' => 'Erro ao atualizar o SID no banco de dados.']);
 }
-?>

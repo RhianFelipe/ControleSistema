@@ -3,45 +3,45 @@ session_start();
 
 // Verifica se a solicitação é do tipo POST e se os campos de usuário e senha estão definidos
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['usuario']) && isset($_POST['senha'])) {
-    $conexao_file = "./db/conexao.php";
-    if (!file_exists($conexao_file)) {
-        die("Erro: Arquivo de conexão não encontrado.");
-    }
+  $conexao_file = "./db/conexao.php";
+  if (!file_exists($conexao_file)) {
+    die("Erro: Arquivo de conexão não encontrado.");
+  }
 
-    include $conexao_file;
+  include $conexao_file;
 
-    // Usando prepared statements para evitar SQL Injection
-    $usuario = $_POST['usuario'];
-    $senha = $_POST['senha'];
+  // Usando prepared statements para evitar SQL Injection
+  $usuario = $_POST['usuario'];
+  $senha = $_POST['senha'];
 
-    $stmt = $mysqli->prepare("SELECT * FROM admin WHERE usuario = ? AND senha = ?");
-    $stmt->bind_param("ss", $usuario, $senha);
-    $stmt->execute();
+  $stmt = $mysqli->prepare("SELECT * FROM admin WHERE usuario = ? AND senha = ?");
+  $stmt->bind_param("ss", $usuario, $senha);
+  $stmt->execute();
 
-    // Armazena o resultado da consulta em variáveis ​​associativas
-    $stmt->store_result();
-    $num_rows = $stmt->num_rows;
-    $stmt->bind_result($id, $usuario, $senha, $nome);
+  // Armazena o resultado da consulta em variáveis ​​associativas
+  $stmt->store_result();
+  $num_rows = $stmt->num_rows;
+  $stmt->bind_result($id, $usuario, $senha, $nome);
 
-    // Verifica se há um único resultado e autentica o usuário
-    if ($num_rows == 1 && $stmt->fetch()) {
-        // Armazena os dados do usuário na sessão
-        $_SESSION['user'] = $id;
-        $_SESSION['nome'] = $nome;
+  // Verifica se há um único resultado e autentica o usuário
+  if ($num_rows == 1 && $stmt->fetch()) {
+    // Armazena os dados do usuário na sessão
+    $_SESSION['user'] = $id;
+    $_SESSION['nome'] = $nome;
 
-        // Redireciona para a página de filtro após o login bem-sucedido
-        header("Location: ./public/pageFiltro.php");
-        exit();
-    } else {
-        // Define uma variável de sessão para indicar um erro de login
-        $_SESSION['login_error'] = true;
-        header("Location: ../index.php");
-        exit();
-    }
+    // Redireciona para a página de filtro após o login bem-sucedido
+    header("Location: ./public/pageFiltro.php");
+    exit();
+  } else {
+    // Define uma variável de sessão para indicar um erro de login
+    $_SESSION['login_error'] = true;
+    header("Location: ../index.php");
+    exit();
+  }
 
-    // Fecha o prepared statement e a conexão
-    $stmt->close();
-    mysqli_close($mysqli);
+  // Fecha o prepared statement e a conexão
+  $stmt->close();
+  mysqli_close($mysqli);
 }
 ?>
 
@@ -49,15 +49,26 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['usuario']) && isset($
 <html lang="pt-br">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./public/main.css?v=<?php echo time(); ?>">
-    <link rel="stylesheet" href="./public/style/telaLogin.css?v=<?php echo time(); ?>">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
-    <title>Login</title>
-    <link rel="icon" href="../public/assets/img/icon-govpr.png" type="image/x-icon">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./public/main.css?v=<?php echo time(); ?>">
+  <link rel="stylesheet" href="./public/style/telaLogin.css?v=<?php echo time(); ?>">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+  <title>Login</title>
+  <link rel="icon" href="../public/assets/img/icon-govpr.png" type="image/x-icon">
 </head>
+<script src="./js/sweetalert2.js"></script>
+<?php include './src/login/modalCriarConta.php'; ?>
+
+<script>
+  async function openModalCriarConta() {
+    const criarContaModal = new bootstrap.Modal(
+      document.getElementById("criarContaModal")
+    );
+    criarContaModal.show();
+  }
+</script>
 
 <body>
   <div class="grid-container">
@@ -83,7 +94,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['usuario']) && isset($
     </div>
 
     <div class="colun-right">
-      <img src="public\assets\img\bg-imagem-login.jpg"/>
+      <img src="public\assets\img\bg-imagem-login.jpg" />
       <div class="row">
         <img class="img-row" src="public\assets\img\logo-governo-branco.png">
       </div>
@@ -91,9 +102,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['usuario']) && isset($
   </div>
 
   <?php
-    // Exibe uma mensagem de erro caso a variável de sessão esteja definida
-    if (isset($_SESSION['login_error']) && $_SESSION['login_error']) {
-        echo "<script>
+  // Exibe uma mensagem de erro caso a variável de sessão esteja definida
+  if (isset($_SESSION['login_error']) && $_SESSION['login_error']) {
+    echo "<script>
         window.onload = function() {
             Swal.fire(
                 'Falha ao logar!',
@@ -103,15 +114,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['usuario']) && isset($
         }
     </script>";
 
-        $_SESSION['login_error'] = false;
-    }
-    ?>
+    $_SESSION['login_error'] = false;
+  }
+  ?>
   <script src="../js/sweetalert2.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 </body>
 
 </html>
-
-
 
 <!--guardando código
 

@@ -1,8 +1,10 @@
+
 <?php
 include "../db/conexao.php";
 
 // Função genérica para registrar operações no log de usuários
-function logOperacaoUsuario($mysqli, $id, $tipoOperacao) {
+function logOperacaoUsuario($mysqli, $id, $tipoOperacao)
+{
     // Consulta os dados do usuário com base no ID
     $sqlNomeUsuario = "SELECT nome,email,grupo FROM usuarios WHERE id = $id";
     $queryNomeUsuario = $mysqli->query($sqlNomeUsuario) or die($mysqli->error);
@@ -17,23 +19,25 @@ function logOperacaoUsuario($mysqli, $id, $tipoOperacao) {
 }
 
 // Função para registrar a operação de criação de usuário no log
-function logCriacaoUsuario($mysqli, $id) {
+function logCriacaoUsuario($mysqli, $id)
+{
     logOperacaoUsuario($mysqli, $id, 'Criado');
 }
 
 // Função para registrar a operação de atualização de usuário no log
-function logAtualizacaoUsuario($mysqli, $id) {
+function logAtualizacaoUsuario($mysqli, $id)
+{
     logOperacaoUsuario($mysqli, $id, 'Usuário Atualizado');
 }
 
 // Função para registrar a operação de exclusão de usuário no log
-function logExclusaoUsuario($mysqli, $id) {
+function logExclusaoUsuario($mysqli, $id)
+{
     logOperacaoUsuario($mysqli, $id, 'Excluído');
 }
 
-function logAddSistemPerson($mysqli,$id){
+function logAddSistemPerson($mysqli, $id)
+{
 
     logOperacaoUsuario($mysqli, $id, 'Add Sistema Personalizado');
-
-
 }

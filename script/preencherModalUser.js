@@ -31,13 +31,13 @@ function criarBotaoExcluir(idUsuario, sistema) {
 }
 
 // Função para preencher a tabela de sistemas
-function preencherSistemas(sistemasData, idUsuario, sidVPN,sidWifi) {
+function preencherSistemas(sistemasData, idUsuario, sidVPN, sidWifi) {
   const sistemasEdit = document.getElementById("sistemasEdit");
   sistemasEdit.innerHTML = "";
 
   const sistemas = [];
   const permissoes = [];
-  console.log("Sids",sidVPN,sidWifi)
+  console.log("Sids", sidVPN, sidWifi);
   // Percorre os dados de sistemas recebidos e cria as linhas da tabela
   sistemasData.forEach((sistemaData) => {
     const sistema = sistemaData.sistemas;
@@ -64,7 +64,6 @@ function preencherSistemas(sistemasData, idUsuario, sidVPN,sidWifi) {
     } else if (sistema === "VPN") {
       tdNomeSistema.textContent += ` (${sidVPN})`;
     }
-    
 
     tr.appendChild(tdNomeSistema);
 
@@ -76,10 +75,13 @@ function preencherSistemas(sistemasData, idUsuario, sidVPN,sidWifi) {
   return { sistemas, permissoes };
 }
 
-
-
 // Função para preencher as permissões da tabela de edição
-function preencherPermissoes(permissoes, termosAssinados, grupoSelecionado, sistemas) {
+function preencherPermissoes(
+  permissoes,
+  termosAssinados,
+  grupoSelecionado,
+  sistemas
+) {
   const permissaoEdit = document.getElementById("permissaoEdit");
   permissaoEdit.innerHTML = "";
 
@@ -95,14 +97,14 @@ function preencherPermissoes(permissoes, termosAssinados, grupoSelecionado, sist
     if (sistemas[index] === "Wi-Fi") {
       checkbox.addEventListener("change", function () {
         if (checkbox.checked) {
-          openSidModalWifi()
+          openSidModalWifi();
         }
       });
     }
     if (sistemas[index] === "VPN") {
       checkbox.addEventListener("change", function () {
         if (checkbox.checked) {
-          openSidModalVPN()
+          openSidModalVPN();
         }
       });
     }
@@ -212,9 +214,9 @@ async function atualizarSidTermos() {
     const response = await fetch(url, {
       method: "GET",
     });
- const data = await response.json(); // Analisa a resposta JSON
+    const data = await response.json(); // Analisa a resposta JSON
     if (data.status == true) {
-      exibirMensagem("success","Sucesso",data.msg)
+      exibirMensagem("success", "Sucesso", data.msg);
       // Fechar o modal editSid
       const editSidModal = bootstrap.Modal.getInstance(
         document.getElementById("editSid")
@@ -230,20 +232,18 @@ async function atualizarSidTermos() {
       // Abrir a modal novamente para atualizar os dados
       openModalEdit(idUsuario);
     } else {
-      exibirMensagem("error","Erro",data.msg)
+      exibirMensagem("error", "Erro", data.msg);
     }
   } catch (error) {
     console.error("Erro ao enviar a requisição:", error);
   }
 }
 
-
-
 async function atualizarSidWifi() {
   const idUsuario = document.getElementById("editid").value;
-  console.log(idUsuario)
+  console.log(idUsuario);
   const novoSid = document.getElementById("sidInputWifi").value;
-console.log(novoSid)
+  console.log(novoSid);
   if (!idUsuario) {
     console.error("ID do usuário não encontrado.");
     return;
@@ -264,9 +264,9 @@ console.log(novoSid)
     const response = await fetch(url, {
       method: "GET",
     });
- const data = await response.json(); // Analisa a resposta JSON
+    const data = await response.json(); // Analisa a resposta JSON
     if (data.status == true) {
-      exibirMensagem("success","Sucesso",data.msg)
+      exibirMensagem("success", "Sucesso", data.msg);
       // Fechar o modal editSid
       const editSidModal = bootstrap.Modal.getInstance(
         document.getElementById("editSidWifi")
@@ -282,13 +282,12 @@ console.log(novoSid)
       // Abrir a modal novamente para atualizar os dados
       openModalEdit(idUsuario);
     } else {
-      exibirMensagem("error","Erro",data.msg)
+      exibirMensagem("error", "Erro", data.msg);
     }
   } catch (error) {
     console.error("Erro ao enviar a requisição:", error);
   }
 }
-
 
 async function atualizarSidVPN() {
   const idUsuario = document.getElementById("editid").value;
@@ -314,9 +313,9 @@ async function atualizarSidVPN() {
     const response = await fetch(url, {
       method: "GET",
     });
- const data = await response.json(); // Analisa a resposta JSON
+    const data = await response.json(); // Analisa a resposta JSON
     if (data.status == true) {
-      exibirMensagem("success","Sucesso",data.msg)
+      exibirMensagem("success", "Sucesso", data.msg);
       // Fechar o modal editSid
       const editSidModal = bootstrap.Modal.getInstance(
         document.getElementById("editSidVPN")
@@ -332,7 +331,7 @@ async function atualizarSidVPN() {
       // Abrir a modal novamente para atualizar os dados
       openModalEdit(idUsuario);
     } else {
-      exibirMensagem("error","Erro",data.msg)
+      exibirMensagem("error", "Erro", data.msg);
     }
   } catch (error) {
     console.error("Erro ao enviar a requisição:", error);

@@ -9,8 +9,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Código SQL para criação do Filtro
     $sqlFiltro = "SELECT * FROM usuarios WHERE 1=0"; // Iniciamos a consulta com uma cláusula WHERE falsa
-    if (!empty($nome)){ $sqlFiltro  .= " OR nome LIKE '%$nome%'"; }
-    if (!empty($email)){$sqlFiltro  .= " OR email LIKE '%$email%'";}
+    if (!empty($nome)) {
+        $sqlFiltro  .= " OR nome LIKE '%$nome%'";
+    }
+    if (!empty($email)) {
+        $sqlFiltro  .= " OR email LIKE '%$email%'";
+    }
 
     $resultado = $mysqli->query($sqlFiltro);
     $resultados = array();
@@ -34,7 +38,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     } else {
         $resultados = array();
     }
-    
+
 
     // Armazene os resultados na sessão em vez de passá-los como parâmetros de URL
     $_SESSION['resultados_filtro'] = $resultados;

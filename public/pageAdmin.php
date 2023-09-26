@@ -2,7 +2,6 @@
 $pageTitle = "Pagina Admin";
 ?>
 
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 
@@ -19,7 +18,6 @@ $pageTitle = "Pagina Admin";
     <title>Cadastrar Usuário</title>
     <link rel="icon" href="../public/assets/img/icon-govpr.png" type="image/x-icon">
 </head>
-
 
 <body>
     <h1>Em construção!</h1>

@@ -5,11 +5,11 @@ include_once "../src/logUser.php";
 $id = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_NUMBER_INT);
 
 if (empty($id)) {
-    $retorna = ['status' => false, 'msg' => "Erro: Campo ID vazio." ];
+    $retorna = ['status' => false, 'msg' => "Erro: Campo ID vazio."];
     echo json_encode($retorna);
 } else {
     // Log de exclusão de Usuário
-    logOperacaoUsuario($mysqli, $id,'Excluído');
+    logOperacaoUsuario($mysqli, $id, 'Excluído');
 
     // Mover os dados para a tabela de desativados
     $sqlInsert = "INSERT INTO desativados (nome, email, sistema, permissao, data_exclusao, nome_termo, assinado, grupo, setor, nomeSid, valorSid)
@@ -42,8 +42,8 @@ if (empty($id)) {
 
     // Se todas as queries estiverem corretas, retorne true
     if ($queryInsert && $queryDeletePermi && $queryDeleteTermos && $queryDeleteUser && $queryDeleteSid) {
-         $retorna = ['status' => true, 'msg' => "Usuário deletado com sucesso!"];
-         echo json_encode($retorna);
+        $retorna = ['status' => true, 'msg' => "Usuário deletado com sucesso!"];
+        echo json_encode($retorna);
     } else {
         $retorna = ['status' => false, 'msg' => "ERRO: Não foi possível deletar o Usuário!"];
         echo json_encode($retorna);

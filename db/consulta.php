@@ -7,26 +7,23 @@ function verificarExistencia($mysqli, $valor, $tabela, $variavel)
     $resultVerificacao = $mysqli->query($verificar) or die($mysqli->error);
     return $resultVerificacao;
 }
-//BUSCAS TABELA USUÁRIOS
+// Consultas relacionadas a usuários
+$buscaNomeUserOrder = "SELECT * FROM usuarios ORDER BY nome";
+$queryBuscaNomeUserOrder = $mysqli->query($buscaNomeUserOrder);
 
-// Consulta para obter os usuários do banco de dados
-$obterNomeUserOrder = "SELECT * FROM usuarios ORDER BY nome";
-$queryobterNomeUserOrder = $mysqli->query($obterNomeUserOrder);
+$buscaQuantiaUsuarios = "SELECT COUNT(*) as totalUsuarios FROM usuarios";
+$queryBuscaQuantiaUsuarios = $mysqli->query($buscaQuantiaUsuarios);
 
+$buscaGrupo = "SELECT grupo FROM usuarios";
+$queryBuscaGrupo = $mysqli->query($buscaGrupo) or die($mysqli->error);
 
-//BUSCAS TABELA SISTEMAS
-
-
-//BUSCA TABELA PERMISSOES
+// Consultas relacionadas a sistemas
 $buscaSistemas = "SELECT sistemas FROM permissoes";
 $queryBuscaSistemas =  $mysqli->query($buscaSistemas) or die($mysqli->error);
 
-
-//BUSCA TABELA LOGS
-
-
-
-//BUSCA TABELA SID
+// Consultas relacionadas a logs
+$buscaRegistroLogsUser = "SELECT * FROM logsusuarios ORDER BY data_operacao DESC";
+$queryBuscaRegistroLogsUser = mysqli_query($mysqli, $buscaRegistroLogsUser);
 
 // Consulta os grupos de cada funcionario(procuradores, estags, servidores...)
 $buscaGrupo = "SELECT grupo FROM usuarios";

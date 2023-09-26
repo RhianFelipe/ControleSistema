@@ -27,18 +27,18 @@
   font-size: 27px;
 }
 
-  /* Estilização da Imagem presente dentro desta div */
-  .colun-right img {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-  }
+/* Estilização da Imagem presente dentro desta div */
+.colun-right img {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
 
 .colun-left {
   background-color: rgb(250, 250, 250);
 }
 
-.row img{
+.row img {
   width: 213px;
   height: 60px;
   margin-left: 20px;

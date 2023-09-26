@@ -3,7 +3,7 @@ function limparFiltragem() {
   history.replaceState(null, null, urlSemParametros);
 }
 
- function openModalSistema() {
+function openModalSistema() {
   const editSistema = new bootstrap.Modal(
     document.getElementById("editSistema")
   );
@@ -15,7 +15,6 @@ function openSidModal() {
   editSid.show();
 }
 
-
 function openSidModalWifi() {
   const editSid = new bootstrap.Modal(document.getElementById("editSidWifi"));
   editSid.show();
@@ -24,7 +23,7 @@ function openSidModalVPN() {
   const editSid = new bootstrap.Modal(document.getElementById("editSidVPN"));
   editSid.show();
 }
-function exibirMensagem(icon,title ,text ) {
+function exibirMensagem(icon, title, text) {
   return Swal.fire({
     icon: icon,
     title: title,

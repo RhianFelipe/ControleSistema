@@ -9,20 +9,18 @@ if (empty($idUsuario) || empty($nomeSistema)) {
     $retorna = ['status' => false, 'msg' => "Erro: ID do usuário ou nome do sistema vazio."];
     echo json_encode($retorna);
 } else {
-  
-// Excluir as permissões associadas ao sistema
-$sqlDeletePermissoes = "DELETE FROM permissoes WHERE id_usuario = $idUsuario AND sistemas = '$nomeSistema'";
-$query = $mysqli->query($sqlDeletePermissoes) or die($mysqli->error);
 
-if ($query) {
-    // Se a exclusão foi bem-sucedida
-    $retorna = ['status' => true, 'msg' => "Sistema e suas permissões excluídos com sucesso"];
-} else {
-    // Se ocorreu um erro ao excluir
-    $retorna = ['status' => false, 'msg' => "Erro ao excluir o sistema e suas permissões"];
-}
+    // Excluir as permissões associadas ao sistema
+    $sqlDeletePermissoes = "DELETE FROM permissoes WHERE id_usuario = $idUsuario AND sistemas = '$nomeSistema'";
+    $query = $mysqli->query($sqlDeletePermissoes) or die($mysqli->error);
 
-echo json_encode($retorna);
+    if ($query) {
+        // Se a exclusão foi bem-sucedida
+        $retorna = ['status' => true, 'msg' => "Sistema e suas permissões excluídos com sucesso"];
+    } else {
+        // Se ocorreu um erro ao excluir
+        $retorna = ['status' => false, 'msg' => "Erro ao excluir o sistema e suas permissões"];
+    }
 
-    
+    echo json_encode($retorna);
 }

@@ -1,43 +1,42 @@
 <div class="modal fade" id="editSidWifi" tabindex="-1" aria-labelledby="editUsuarioModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-header" style="background-color: #f8f9fa; display: flex; align-items: center;">
-                <input required name="sid" id="sidInputWifi" placeholder="SID" class="form-control" type="text" style="flex: 1; margin-right: 10px;">
-         
-                <button type="button" class="btn btn-primary" onclick="atualizarSidWifi()">Salvar</button>
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header" style="background-color: #f8f9fa; display: flex; align-items: center;">
+        <input required name="sid" id="sidInputWifi" placeholder="SID" class="form-control" type="text" style="flex: 1; margin-right: 10px;">
 
-               <!--<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> --> 
-            </div>
-        </div>
+        <button type="button" class="btn btn-primary" onclick="atualizarSidWifi()">Salvar</button>
+
+        <!--<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
+      </div>
     </div>
+  </div>
 </div>
 
 <style>
- #sidInput::placeholder {
-        opacity: 0.6; /* Ajuste a opacidade conforme necessário */
-    }
+  #sidInput::placeholder {
+    opacity: 0.6;
+    /* Ajuste a opacidade conforme necessário */
+  }
 
-    /* Estilize o texto do SID */
-#sidText {
-  font-weight: bold;
-  font-size: 16px;
-}
+  /* Estilize o texto do SID */
+  #sidText {
+    font-weight: bold;
+    font-size: 16px;
+  }
 
-/* Estilize o valor do SID */
-#sidValue {
-  color: #007bff; /* Cor azul para destaque */
-}
+  /* Estilize o valor do SID */
+  #sidValue {
+    color: #007bff;
+    /* Cor azul para destaque */
+  }
 
-/* Estilize o botão de edição do SID */
-#editarSidButton {
+  /* Estilize o botão de edição do SID */
+  #editarSidButton {
 
-  border: none;
-  color: white;
+    border: none;
+    color: white;
 
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-
-
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
 </style>
