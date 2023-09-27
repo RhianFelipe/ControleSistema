@@ -22,30 +22,38 @@ if (empty($id)) {
     WHERE u.id = $id;
 ";
 
-    // Executar a query de inserção
-    $queryInsert = $mysqli->query($sqlInsert) or die($mysqli->error);
-
     // Excluir os registros das tabelas originais
     $sqlDeletePermissoes = "DELETE FROM permissoes WHERE id_usuario = $id";
     $sqlDeleteUsuarios = "DELETE FROM usuarios WHERE id = $id";
     $sqlDeleteTermos = "DELETE FROM termos_assinados WHERE id_usuario = $id";
     $sqlDeleteSids = "DELETE FROM sid WHERE id_usuario = $id";
 
-    // Executar a query de exclusão das permissões
-    $queryDeletePermi = $mysqli->query($sqlDeletePermissoes) or die($mysqli->error);
-    // Executar a query de exclusão dos termos assinados
-    $queryDeleteTermos = $mysqli->query($sqlDeleteTermos) or die($mysqli->error);
-    // Executar a query de exclusão do usuário
-    $queryDeleteUser = $mysqli->query($sqlDeleteUsuarios) or die($mysqli->error);
-    // Executar a query de exclusão do usuário
-    $queryDeleteSid = $mysqli->query($sqlDeleteSids) or die($mysqli->error);
+    // Inicie uma transação
+    $mysqli->begin_transaction();
 
-    // Se todas as queries estiverem corretas, retorne true
-    if ($queryInsert && $queryDeletePermi && $queryDeleteTermos && $queryDeleteUser && $queryDeleteSid) {
+    try {
+        // Executar a query de inserção
+        $mysqli->query($sqlInsert);
+        // Executar a query de exclusão das permissões
+        $mysqli->query($sqlDeletePermissoes);
+        // Executar a query de exclusão dos termos assinados
+        $mysqli->query($sqlDeleteTermos);
+        // Executar a query de exclusão do usuário
+        $mysqli->query($sqlDeleteUsuarios);
+        // Executar a query de exclusão do SID
+        $mysqli->query($sqlDeleteSids);
+
+        // Confirmar a transação
+        $mysqli->commit();
+
         $retorna = ['status' => true, 'msg' => "Usuário deletado com sucesso!"];
         echo json_encode($retorna);
-    } else {
+    } catch (Exception $e) {
+        // Em caso de erro, faça um rollback
+        $mysqli->rollback();
+
         $retorna = ['status' => false, 'msg' => "ERRO: Não foi possível deletar o Usuário!"];
         echo json_encode($retorna);
     }
 }
+?>

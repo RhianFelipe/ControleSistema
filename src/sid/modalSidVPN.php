@@ -4,7 +4,7 @@
       <div class="modal-header" style="background-color: #f8f9fa; display: flex; align-items: center;">
         <input required name="sid" id="sidInputVPN" placeholder="SID" class="form-control" type="text" style="flex: 1; margin-right: 10px;">
 
-        <button type="button" class="btn btn-primary" onclick="atualizarSidVPN()">Salvar</button>
+        <button type="button" class="btn btn-primary" onclick="atualizarSid('VPN')">Salvar</button>
 
       </div>
     </div>

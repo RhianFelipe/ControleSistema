@@ -4,7 +4,7 @@
       <div class="modal-header" style="background-color: #f8f9fa; display: flex; align-items: center;">
         <input required name="sid" id="sidInputWifi" placeholder="SID" class="form-control" type="text" style="flex: 1; margin-right: 10px;">
 
-        <button type="button" class="btn btn-primary" onclick="atualizarSidWifi()">Salvar</button>
+        <button type="button" class="btn btn-primary" onclick="atualizarSid('Wifi')">Salvar</button>
 
         <!--<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
       </div>

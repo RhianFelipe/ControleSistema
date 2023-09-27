@@ -64,8 +64,23 @@
                         function copyAndRedirect() {
                             var dynamicContent = document.getElementById("sidValue").textContent;
                             if (dynamicContent) {
-                                window.open("https://www.eprotocolo.pr.gov.br/spiweb/consultarProtocoloDigital.do?action=pesquisar", '_blank');
-
+                                // Copie o conteúdo para a área de transferência
+                                navigator.clipboard.writeText(dynamicContent).then(function() {
+                                    Swal.fire({
+                                        icon: 'success',
+                                        title: 'Copiado com sucesso!',
+                                        text: 'O conteúdo foi copiado para a área de transferência.',
+                                    }).then(function() {
+                                        // Redirecione para o site desejado
+                                        window.open("https://www.eprotocolo.pr.gov.br/spiweb/consultarProtocoloDigital.do?action=pesquisar", '_blank');
+                                    });
+                                }).catch(function(err) {
+                                    Swal.fire({
+                                        icon: 'error',
+                                        title: 'Erro ao copiar',
+                                        text: 'Ocorreu um erro ao copiar o conteúdo para a área de transferência.',
+                                    });
+                                });
                             }
                         }
                     </script>

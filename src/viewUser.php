@@ -13,26 +13,20 @@ if (!empty($id)) {
         // Obter os dados de sistemas e permissões
         $sqlPermissoes = "SELECT sistemas, permissao FROM permissoes WHERE id_usuario = $id ORDER BY sistemas ASC";
         $resultPermissoes = $mysqli->query($sqlPermissoes);
-        $permissoesRows = array();
-        while ($permissoesRow = $resultPermissoes->fetch_assoc()) {
-            $permissoesRows[] = $permissoesRow;
-        }
+        $permissoesRows = $resultPermissoes->fetch_all(MYSQLI_ASSOC);
 
         // Obter os dados de termos assinados
         $sqlTermos = "SELECT nome_termo, assinado FROM termos_assinados WHERE id_usuario = $id";
         $resultTermos = $mysqli->query($sqlTermos);
-        $termosRows = array();
-        while ($termosRow = $resultTermos->fetch_assoc()) {
-            $termosRows[] = $termosRow;
-        }
+        $termosRows = $resultTermos->fetch_all(MYSQLI_ASSOC);
 
-        $sqlSID = "SELECT valorSid FROM sid WHERE id_usuario = $id AND nomeSid = 'Termos'";
-        $resultSID = $mysqli->query($sqlSID);
-        $sidValue = ""; // Inicializa com um valor vazio
-
-        if ($resultSID && $resultSID->num_rows > 0) {
-            $sidRow = $resultSID->fetch_assoc();
-            $sidValue = $sidRow['valorSid'];
+        // Obter os valores de SID
+        $sqlSIDTermos = "SELECT valorSid FROM sid WHERE id_usuario = $id AND nomeSid = 'Termos'";
+        $resultSIDTermos = $mysqli->query($sqlSIDTermos);
+        $sidValueTermos = "";
+        if ($resultSIDTermos && $resultSIDTermos->num_rows > 0) {
+            $sidRowTermos = $resultSIDTermos->fetch_assoc();
+            $sidValueTermos = $sidRowTermos['valorSid'];
         }
 
         $sqlSIDWiFI = "SELECT valorSid FROM sid WHERE id_usuario = $id AND nomeSid = 'Wi-Fi'";
@@ -62,7 +56,7 @@ if (!empty($id)) {
                 'grupo' => $usuarioRow['grupo'],
                 'permissoes' => $permissoesRows,
                 'termos' => $termosRows,
-                'sid' => $sidValue,      // Valor do SID inicial
+                'sid' => $sidValueTermos,      // Valor do SID inicial
                 'sidWiFI' => $sidValueWiFI, // Valor do SID para Wi-Fi
                 'sidVPN' => $sidValueVPN  // Valor do SID para VPN
             ]
