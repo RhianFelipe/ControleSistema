@@ -16,7 +16,7 @@ function openSidModal() {
 }
 
 function openSidModalWifi() {
-  const editSid = new bootstrap.Modal(document.getElementById("editSidWifi"));
+  const editSid = new bootstrap.Modal(document.getElementById("editSidWi-Fi"));
   editSid.show();
 }
 function openSidModalVPN() {

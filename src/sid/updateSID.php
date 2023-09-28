@@ -1,11 +1,11 @@
 <?php
 include_once "../../db/conexao.php";
 
-
 $dados = $_GET;
 
 $idUsuario = $dados['id'];
 $novoSid = $dados['novoSid'];
+$nomeSistema = $dados['nomeSid']; // Adicione o nome do sistema como parâmetro
 
 // Verifica se o novo SID não é vazio
 if (empty($novoSid) || $novoSid === "0") {
@@ -13,8 +13,8 @@ if (empty($novoSid) || $novoSid === "0") {
   exit();
 }
 
-// Verifica se o novo SID é diferente do SID existente no banco de dados
-$sqlCheckSid = "SELECT valorSid FROM sid WHERE id_usuario = $idUsuario AND nomeSid = 'Termos'";
+// Verifica se o novo SID é diferente do SID existente no banco de dados para o sistema especificado
+$sqlCheckSid = "SELECT valorSid FROM sid WHERE id_usuario = $idUsuario AND nomeSid = '$nomeSistema'";
 $resultCheckSid = $mysqli->query($sqlCheckSid);
 
 if ($resultCheckSid) {
@@ -30,8 +30,7 @@ if ($resultCheckSid) {
   exit();
 }
 
-
-$sqlUpdate = "UPDATE sid SET valorSid = '$novoSid' WHERE id_usuario = $idUsuario AND  nomeSid = 'Termos'";
+$sqlUpdate = "UPDATE sid SET valorSid = '$novoSid' WHERE id_usuario = $idUsuario AND nomeSid = '$nomeSistema'";
 $result = $mysqli->query($sqlUpdate);
 
 if ($result) {
@@ -41,3 +40,4 @@ if ($result) {
   // Erro na atualização
   echo json_encode(['status' => false, 'msg' => 'Erro ao atualizar o SID no banco de dados.']);
 }
+?>

@@ -85,8 +85,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['usuario']) && isset($
             <label class="text-form-login">Senha:</label>
             <input class="input-value" value="" name="senha" type="password" required><br>
 
-            <button id="button-submit" type="submit">Login</button><br>
-            <a href="#">Esqueci minha senha</a>
+             <button id="button-submit" type="submit">Login</button><br>
+       <!--        <a href="#">Esqueci minha senha</a>
+  -->
+   
 
           </form>
         </div>

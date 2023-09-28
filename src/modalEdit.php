@@ -84,7 +84,10 @@
                             }
                         }
                     </script>
-                    <div class="col-12">
+                    <!-- 
+
+
+<div class="col-12">
                         <div class="input-group input-sistema">
                             <input type="text" class="form-control" id="inputSistemaPersonalizado" placeholder="Adicionar sistema personalizado">
                             <button type="button" class="btn btn-primary" onclick="adicionarSistemaPersonalizado()">
@@ -92,6 +95,9 @@
                             </button>
                         </div>
                     </div>
+
+                    -->
+
 
                     <div class="col-12">
                         <table class="table">
