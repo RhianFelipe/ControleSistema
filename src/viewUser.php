@@ -56,8 +56,8 @@ if (!empty($id)) {
                 'grupo' => $usuarioRow['grupo'],
                 'permissoes' => $permissoesRows,
                 'termos' => $termosRows,
-                'sid' => $sidValueTermos,      // Valor do SID inicial
-                'sidWiFI' => $sidValueWiFI, // Valor do SID para Wi-Fi
+                'sidTermos' => $sidValueTermos,      // Valor do SID inicial
+                'sidWifi' => $sidValueWiFI, // Valor do SID para Wi-Fi
                 'sidVPN' => $sidValueVPN  // Valor do SID para VPN
             ]
         ];

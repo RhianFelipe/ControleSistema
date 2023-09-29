@@ -52,12 +52,30 @@
                     </div>
                     <!-- Inclua a referência ao SweetAlert (você já disse que está importado) -->
 
-                    <div>
-                        <p id="sidText" style="display: inline-block; margin-left: 10px;">SID Termos:
-                            <a href="" title="Clique para copiar SID e ser redirecionado ao site do eProtocolo" id="sidValue" target="_blank" onclick="copyAndRedirect(); return false;">Clique aqui</a>
+                    <div style="display: inline-block;  margin:0; margin-left: 10px;">
+                        <p id="sidText" style="display: inline-block;  margin:0; margin-left: 10px;">SID Termos:
+                            <a href="" style="display: inline-block;  margin:0;"  title="Clique para copiar SID e ser redirecionado ao site do eProtocolo" id="sidValue" target="_blank" onclick="copyAndRedirect(); return false;">Clique aqui</a>
                         </p>
                         <button id="editarSidButton" onclick="openSidModal()" type="button"><img src="../public/assets/img/pen.svg" alt=""></button>
                     </div>
+                    <div style="display: inline-block;  margin:0; margin-left: 10px;">
+                        <p id="sidText" style="display: inline-block;  margin:0; margin-left: 10px;">SID Wi-Fi:
+                            <a href="" title="Clique para copiar SID e ser redirecionado ao site do eProtocolo" id="sidValueWifi" target="_blank" onclick="copyAndRedirect(); return false;"></a>
+                        </p>
+                        <button id="editarSidButton" onclick="openSidModalWifi()" type="button"><img src="../public/assets/img/pen.svg" alt=""></button>
+                    </div>
+
+                    <div style="display: inline-block;  margin:0; margin-left: 10px;">
+                        <p id="sidText" style="display: inline-block;  margin:0; margin-left: 10px;">SID VPN:
+                            <a href="" title="Clique para copiar SID e ser redirecionado ao site do eProtocolo" id="sidValueVPN" target="_blank" onclick="copyAndRedirect(); return false;"></a>
+                        </p>
+                        <button id="editarSidButton" onclick="openSidModalVPN()" type="button"><img src="../public/assets/img/pen.svg" alt=""></button>
+                    </div>
+<style>
+
+    
+</style>
+
                     <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.8/clipboard.min.js"></script>
 
                     <script>
@@ -97,7 +115,6 @@
                     </div>
 
                     -->
-
 
                     <div class="col-12">
                         <table class="table">

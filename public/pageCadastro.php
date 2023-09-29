@@ -75,14 +75,20 @@ if (!isset($_SESSION['user'])) {
                     <input class="checkbox" type="checkbox" id="termoCompromisso" name="termoCompromisso">
                 </div>
 
-                <div class="termo-container">
-
-                    <input class="form-control" type="text" id="sidTermos" name="sidTermos" placeholder="SID Termos" required>
+                <div class="termo-container" hidden>
+                    <label for="termoWi-Fi" title="Termo Wi-Fi">Wi-Fi</label>
+                    <input class="checkbox" type="checkbox" id="termoWi-Fi" name="termoWi-Fi">
                 </div>
-            </div>
+
+                <div class="termo-container" hidden>
+                    <label for="termoVPN" title="VPNS">VPN</label>
+                    <input class="checkbox" type="checkbox" id="termoVPN" name="termoVPN">
+                </div>
 
 
-            <div class="termo-container" hidden>
+
+
+                <div class="termo-container" hidden>
                 <label for="sidWifi" title="SID Wifi">SID</label>
                 <input class="form-control" type="text" id="sidWifi" name="sidWifi" placeholder="SID Termos">
             </div>
@@ -90,6 +96,17 @@ if (!isset($_SESSION['user'])) {
                 <label for="sidVPN" title="SID VPN">SID</label>
                 <input class="form-control" type="text" id="sidVPN" name="sidVPN" placeholder="SID Termos">
             </div>
+
+
+
+                <div class="termo-container">
+
+                    <input class="form-control" type="text" id="sidTermos" name="sidTermos" placeholder="SID Termos" required>
+                </div>
+            </div>
+
+
+  
 
 
             <label>Gerenciar Permissões:</label>

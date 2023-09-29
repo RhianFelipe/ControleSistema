@@ -31,13 +31,13 @@ function criarBotaoExcluir(idUsuario, sistema) {
 }
 
 // Função para preencher a tabela de sistemas
-function preencherSistemas(sistemasData, idUsuario, sidVPN, sidWifi) {
+function preencherSistemas(sistemasData, idUsuario) {
   const sistemasEdit = document.getElementById("sistemasEdit");
   sistemasEdit.innerHTML = "";
 
   const sistemas = [];
   const permissoes = [];
-  console.log("Sids", sidVPN, sidWifi);
+ 
   // Percorre os dados de sistemas recebidos e cria as linhas da tabela
   sistemasData.forEach((sistemaData) => {
     const sistema = sistemaData.sistemas;
@@ -58,12 +58,7 @@ function preencherSistemas(sistemasData, idUsuario, sidVPN, sidWifi) {
     // Adiciona o nome do sistema
     tdNomeSistema.textContent = sistema;
 
-    // Verifica se o sistema é "Wi-Fi" ou "VPN" e adiciona o número "(1)" entre parênteses no lado direito
-    if (sistema === "Wi-Fi") {
-      tdNomeSistema.textContent += ` (${sidWifi})`;
-    } else if (sistema === "VPN") {
-      tdNomeSistema.textContent += ` (${sidVPN})`;
-    }
+
 
     tr.appendChild(tdNomeSistema);
 
@@ -85,37 +80,23 @@ function preencherPermissoes(
   const permissaoEdit = document.getElementById("permissaoEdit");
   permissaoEdit.innerHTML = "";
 
-  const primeiroTermoAssinado =
-    grupoSelecionado === "Terceirizado" &&
-    isTermoAssinado(termosAssinados, "Termo de Uso e Responsabilidade");
+  // Verifica se o primeiro termo foi assinado
+  const primeiroTermoAssinado = termosAssinados.some(
+    (termo) => termo.nome_termo === "Termo de Uso e Responsabilidade" && termo.assinado === "1"
+  );
 
   permissoes.forEach((permissao, index) => {
     const checkbox = document.createElement("input");
     checkbox.type = "checkbox";
     checkbox.checked = permissao === "1";
 
-    if (sistemas[index] === "Wi-Fi") {
-      checkbox.addEventListener("change", function () {
-        if (checkbox.checked) {
-          openSidModalWifi();
-        }
-      });
-    }
-    if (sistemas[index] === "VPN") {
-      checkbox.addEventListener("change", function () {
-        if (checkbox.checked) {
-          openSidModalVPN();
-        }
-      });
-    }
-
-    if (grupoSelecionado === "Terceirizado" && primeiroTermoAssinado) {
-      checkbox.disabled = false;
-    } else if (
-      !termosAssinados ||
-      !termosAssinados.every((termo) => termo.assinado === "1")
-    ) {
-      checkbox.disabled = true;
+    // Define a lógica de habilitar ou desabilitar os checkboxes com base no grupo selecionado e nos termos assinados
+    if (grupoSelecionado === "Terceirizado") {
+      // Para terceirizados, habilitar todas as checkboxes se o primeiro termo foi assinado
+      checkbox.disabled = !primeiroTermoAssinado;
+    } else {
+      // Para outros grupos, habilitar todas as checkboxes se ambos os dois primeiros termos foram assinados
+      checkbox.disabled = !(termosAssinados[0]?.assinado === "1" && termosAssinados[1]?.assinado === "1");
     }
 
     checkbox.style.width = "16px";
@@ -140,6 +121,8 @@ function preencherPermissoes(
     permissaoEdit.appendChild(tr);
   });
 }
+
+
 
 // Função para verificar se o termo foi assinado
 function isTermoAssinado(termosAssinados, nomeTermo) {

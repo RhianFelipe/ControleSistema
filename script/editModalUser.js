@@ -102,9 +102,7 @@ async function openModalEdit(id) {
 
       const { sistemas, permissoes } = preencherSistemas(
         resposta.dados.permissoes,
-        idUsuario,
-        resposta.dados.sidVPN, // Valor do SID para VPN
-        resposta.dados.sidWiFI // Valor do SID para Wi-Fi
+        idUsuario
       );
 
       const grupoSelecionado = resposta.dados.grupo;
@@ -112,7 +110,9 @@ async function openModalEdit(id) {
       const termosAssinados = resposta.dados.termos;
       console.log("Termos:", resposta.dados.termos);
 
-      const sidTermos = resposta.dados.sid;
+      const sidTermos = resposta.dados.sidTermos;
+      const sidWifi =  resposta.dados.sidWifi;
+      const sidVPN = resposta.dados.sidVPN;
       console.log("Sid: ", sidTermos);
 
       preencherPermissoes(
@@ -123,8 +123,16 @@ async function openModalEdit(id) {
       );
 
       preencherTermos(termosAssinados, grupoSelecionado, sidTermos);
+
       const sidValueSpan = document.getElementById("sidValue");
-      sidValueSpan.textContent = sidTermos; // Define o valor do sidTermos no span
+      sidValueSpan.textContent = sidTermos; 
+
+      const sidValueWifi = document.getElementById("sidValueWifi");
+      sidValueWifi.textContent = sidWifi; 
+
+      const sidValueVPN = document.getElementById("sidValueVPN");
+      sidValueVPN.textContent = sidVPN; 
+
     }
   } catch (error) {
     console.error(error);

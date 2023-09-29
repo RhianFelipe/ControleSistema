@@ -13,6 +13,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $setor = $dados['setor'];
     $termoUso = isset($dados['termoUso']) ? 1 : 0;
     $termoCompromisso = isset($dados['termoCompromisso']) ? 1 : 0;
+    $termoWifi = isset($dados['termoWi-Fi']) ? 1 : 0;
+    $termoVPN = isset($dados['termoVPN']) ? 1 : 0;
+
     $sidTermos = $dados['sidTermos'];
     $sidWifi = $dados['sidWifi'];
     $sidVPN = $dados['sidVPN'];
@@ -59,6 +62,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 // Inserir os valores dos termos assinados e SID
                 $mysqli->query("INSERT INTO termos_assinados (id_usuario, nome_termo, assinado) VALUES ('$idUsuario', 'Termo de Uso e Responsabilidade', '$termoUso')");
                 $mysqli->query("INSERT INTO termos_assinados (id_usuario, nome_termo, assinado) VALUES ('$idUsuario', 'Termo de Compromisso e Confidencialidade', '$termoCompromisso')");
+                $mysqli->query("INSERT INTO termos_assinados (id_usuario, nome_termo, assinado) VALUES ('$idUsuario', 'Termo de Wi-Fi', '$termoWifi')");
+                $mysqli->query("INSERT INTO termos_assinados (id_usuario, nome_termo, assinado) VALUES ('$idUsuario', 'Termo de VPN', '$termoVPN')");
                 $mysqli->query("INSERT INTO sid(id_usuario,nomeSid, valorSid) VALUES ('$idUsuario', 'Termos', '$sidTermos')");
                 $mysqli->query("INSERT INTO sid(id_usuario,nomeSid, valorSid) VALUES ('$idUsuario', 'Wi-Fi', '$sidWifi')");
                 $mysqli->query("INSERT INTO sid(id_usuario,nomeSid, valorSid) VALUES ('$idUsuario', 'VPN', '$sidVPN')");
