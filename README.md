@@ -31,5 +31,5 @@ Este projeto foi desenvolvido com o objetivo de supervisionar o acesso dos funci
 
 [About discussions - GitHub Docs](https://docs.github.com/en/discussions/collaborating-with-your-community-using-discussions/about-discussions)
 
-git config --global http.proxy http://estag.rhyan:password@10.15.54.12:8080
+
 
