@@ -52,56 +52,50 @@
                     </div>
                     <!-- Inclua a referência ao SweetAlert (você já disse que está importado) -->
 
-                    <div style="display: inline-block;  margin:0; margin-left: 10px;">
-                        <p id="sidText" style="display: inline-block;  margin:0; margin-left: 10px;">SID Termos:
-                            <a href="" style="display: inline-block;  margin:0;"  title="Clique para copiar SID e ser redirecionado ao site do eProtocolo" id="sidValue" target="_blank" onclick="copyAndRedirect(); return false;">Clique aqui</a>
-                        </p>
-                        <button id="editarSidButton" onclick="openSidModal()" type="button"><img src="../public/assets/img/pen.svg" alt=""></button>
-                    </div>
-                    <div style="display: inline-block;  margin:0; margin-left: 10px;">
-                        <p id="sidText" style="display: inline-block;  margin:0; margin-left: 10px;">SID Wi-Fi:
-                            <a href="" title="Clique para copiar SID e ser redirecionado ao site do eProtocolo" id="sidValueWifi" target="_blank" onclick="copyAndRedirect(); return false;"></a>
-                        </p>
-                        <button id="editarSidButton" onclick="openSidModalWifi()" type="button"><img src="../public/assets/img/pen.svg" alt=""></button>
-                    </div>
+                    <div style="display: inline-block; margin: 0; margin-left: 10px;">
+  <p id="sidText" style="display: inline-block; margin: 0; margin-left: 10px;">SID Termos:
+    <a href="" style="display: inline-block; margin: 0;" title="Clique para copiar SID e ser redirecionado ao site do eProtocolo" id="sidValue" target="_blank" onclick="copyAndRedirect('sidValue', 'https://www.eprotocolo.pr.gov.br/spiweb/consultarProtocoloDigital.do?action=pesquisar'); return false;">Clique aqui</a>
+  </p>
+  <button id="editarSidButton" onclick="openSidModal()" type="button"><img src="../public/assets/img/pen.svg" alt=""></button>
+</div>
+<div style="display: inline-block; margin: 0; margin-left: 10px;">
+  <p id="sidText" style="display: inline-block; margin: 0; margin-left: 10px;">SID Wi-Fi:
+    <a href="" title="Clique para copiar SID e ser redirecionado ao site do eProtocolo" id="sidValueWifi" target="_blank" onclick="copyAndRedirect('sidValueWifi', 'https://www.eprotocolo.pr.gov.br/spiweb/consultarProtocoloDigital.do?action=pesquisar'); return false;"></a>
+  </p>
+  <button id="editarSidButton" onclick="openSidModalWifi()" type="button"><img src="../public/assets/img/pen.svg" alt=""></button>
+</div>
+<div style="display: inline-block; margin: 0; margin-left: 10px;">
+  <p id="sidText" style="display: inline-block; margin: 0; margin-left: 10px;">SID VPN:
+    <a href="" title="Clique para copiar SID e ser redirecionado ao site do eProtocolo" id="sidValueVPN" target="_blank" onclick="copyAndRedirect('sidValueVPN', 'https://www.eprotocolo.pr.gov.br/spiweb/consultarProtocoloDigital.do?action=pesquisar'); return false;"></a>
+  </p>
+  <button id="editarSidButton" onclick="openSidModalVPN()" type="button"><img src="../public/assets/img/pen.svg" alt=""></button>
+</div>
 
-                    <div style="display: inline-block;  margin:0; margin-left: 10px;">
-                        <p id="sidText" style="display: inline-block;  margin:0; margin-left: 10px;">SID VPN:
-                            <a href="" title="Clique para copiar SID e ser redirecionado ao site do eProtocolo" id="sidValueVPN" target="_blank" onclick="copyAndRedirect(); return false;"></a>
-                        </p>
-                        <button id="editarSidButton" onclick="openSidModalVPN()" type="button"><img src="../public/assets/img/pen.svg" alt=""></button>
-                    </div>
-<style>
+<script>
+  function copyAndRedirect(elementId, redirectUrl) {
+    var dynamicContent = document.getElementById(elementId).textContent;
+    if (dynamicContent) {
+      // Copie o conteúdo para a área de transferência
+      navigator.clipboard.writeText(dynamicContent).then(function () {
+        Swal.fire({
+          icon: 'success',
+          title: 'Copiado com sucesso!',
+          text: 'O conteúdo foi copiado para a área de transferência.',
+        }).then(function () {
+          // Redirecione para o site desejado
+          window.open(redirectUrl, '_blank');
+        });
+      }).catch(function (err) {
+        Swal.fire({
+          icon: 'error',
+          title: 'Erro ao copiar',
+          text: 'Ocorreu um erro ao copiar o conteúdo para a área de transferência.',
+        });
+      });
+    }
+  }
+</script>
 
-    
-</style>
-
-                    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.8/clipboard.min.js"></script>
-
-                    <script>
-                        function copyAndRedirect() {
-                            var dynamicContent = document.getElementById("sidValue").textContent;
-                            if (dynamicContent) {
-                                // Copie o conteúdo para a área de transferência
-                                navigator.clipboard.writeText(dynamicContent).then(function() {
-                                    Swal.fire({
-                                        icon: 'success',
-                                        title: 'Copiado com sucesso!',
-                                        text: 'O conteúdo foi copiado para a área de transferência.',
-                                    }).then(function() {
-                                        // Redirecione para o site desejado
-                                        window.open("https://www.eprotocolo.pr.gov.br/spiweb/consultarProtocoloDigital.do?action=pesquisar", '_blank');
-                                    });
-                                }).catch(function(err) {
-                                    Swal.fire({
-                                        icon: 'error',
-                                        title: 'Erro ao copiar',
-                                        text: 'Ocorreu um erro ao copiar o conteúdo para a área de transferência.',
-                                    });
-                                });
-                            }
-                        }
-                    </script>
                     <!-- 
 
 
