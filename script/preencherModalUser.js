@@ -132,7 +132,7 @@ function isTermoAssinado(termosAssinados, nomeTermo) {
 }
 
 // Função para preencher os termos na tabela de edição
-function preencherTermos(termosData, grupoSelecionado, sidTermos) {
+function preencherTermos(termosData, grupoSelecionado) {
   const termosEdit = document.getElementById("termosEdit");
   termosEdit.innerHTML = "";
 
@@ -172,8 +172,6 @@ function preencherTermos(termosData, grupoSelecionado, sidTermos) {
     termosEdit.appendChild(tr);
   });
 }
-
-
 
 async function atualizarSid(nomeSid) {
   const idUsuario = document.getElementById("editid").value;

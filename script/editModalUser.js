@@ -110,11 +110,12 @@ async function openModalEdit(id) {
       const termosAssinados = resposta.dados.termos;
       console.log("Termos:", resposta.dados.termos);
 
-      const sidTermos = resposta.dados.sidTermos;
+      const sidTermoTur = resposta.dados.sidTermoTur;
+      const sidTermoTcc = resposta.dados.sidTermoTcc;
       const sidWifi =  resposta.dados.sidWifi;
       const sidVPN = resposta.dados.sidVPN;
-      console.log("Sid: ", sidTermos);
-
+      console.log("Sid Tur: ", sidTermoTur);
+      console.log("Sid Tcc: ", sidTermoTcc);
       preencherPermissoes(
         permissoes,
         termosAssinados,
@@ -122,10 +123,13 @@ async function openModalEdit(id) {
         sistemas
       );
 
-      preencherTermos(termosAssinados, grupoSelecionado, sidTermos);
+      preencherTermos(termosAssinados, grupoSelecionado);
 
-      const sidValueSpan = document.getElementById("sidValue");
-      sidValueSpan.textContent = sidTermos; 
+      const sidValueTur = document.getElementById("sidValueTur");
+      sidValueTur.textContent = sidTermoTur ; 
+
+      const sidValueTcc = document.getElementById("sidValueTcc");
+      sidValueTcc.textContent = sidTermoTcc; 
 
       const sidValueWifi = document.getElementById("sidValueWifi");
       sidValueWifi.textContent = sidWifi; 

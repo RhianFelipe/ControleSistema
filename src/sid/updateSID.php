@@ -12,7 +12,11 @@ if (empty($novoSid) || $novoSid === "0") {
   echo json_encode(['status' => false, 'msg' => 'O SID não pode ser vazio ou igual a "0".']);
   exit();
 }
-
+// Verifique se a string contém pontos e traços
+if (!preg_match('/^\d{2}\.\d{3}\.\d{3}-\d$/', $novoSid)) {
+  echo json_encode(['status' => false, 'msg' => 'O formato do número do protocolo está incorreto.']);
+  exit();
+}
 // Verifica se o novo SID é diferente do SID existente no banco de dados para o sistema especificado
 $sqlCheckSid = "SELECT valorSid FROM sid WHERE id_usuario = $idUsuario AND nomeSid = '$nomeSistema'";
 $resultCheckSid = $mysqli->query($sqlCheckSid);

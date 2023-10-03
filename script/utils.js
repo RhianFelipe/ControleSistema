@@ -10,8 +10,13 @@ function openModalSistema() {
   editSistema.show();
 }
 // Função para editar o SID
-function openSidModal() {
-  const editSid = new bootstrap.Modal(document.getElementById("editSidTermos"));
+function openSidModalTur() {
+  const editSid = new bootstrap.Modal(document.getElementById("editSidTermoTur"));
+  editSid.show();
+}
+
+function openSidModalTcc() {
+  const editSid = new bootstrap.Modal(document.getElementById("editSidTermoTcc"));
   editSid.show();
 }
 
