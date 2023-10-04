@@ -1,6 +1,9 @@
 <header>
 <a href="../public/pageFiltro.php">
   <img class="imgHeader" src="..\public\assets\img\logo-govpr-white.png" alt="Descrição da imagem">
+  
+
+  
 </a>
     <nav class="navbar">
         <li class="list-header"><a class="a1" <?php if ($pageTitle === 'Cadastrar Usuários') echo 'id="botao-filtro-a"'; ?> href="../public/pageCadastro.php">Cadastrar Usuários</a></li>
