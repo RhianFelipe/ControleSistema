@@ -90,13 +90,18 @@ function preencherPermissoes(
     checkbox.type = "checkbox";
     checkbox.checked = permissao === "1";
 
-    // Define a lógica de habilitar ou desabilitar os checkboxes com base no grupo selecionado e nos termos assinados
-    if (grupoSelecionado === "Terceirizado") {
-      // Para terceirizados, habilitar todas as checkboxes se o primeiro termo foi assinado
-      checkbox.disabled = !primeiroTermoAssinado;
+    // Verifica se sistemas[index] é igual a "Wi-Fi" ou "VPN" para desabilitar o checkbox
+    if (sistemas[index] === "Wi-Fi" || sistemas[index] === "VPN") {
+      checkbox.disabled = true;
     } else {
-      // Para outros grupos, habilitar todas as checkboxes se ambos os dois primeiros termos foram assinados
-      checkbox.disabled = !(termosAssinados[0]?.assinado === "1" && termosAssinados[1]?.assinado === "1");
+      // Define a lógica de habilitar ou desabilitar os checkboxes com base no grupo selecionado e nos termos assinados
+      if (grupoSelecionado === "Terceirizado") {
+        // Para terceirizados, habilitar todas as checkboxes se o primeiro termo foi assinado
+        checkbox.disabled = !primeiroTermoAssinado;
+      } else {
+        // Para outros grupos, habilitar todas as checkboxes se ambos os dois primeiros termos foram assinados
+        checkbox.disabled = !(termosAssinados[0]?.assinado === "1" && termosAssinados[1]?.assinado === "1");
+      }
     }
 
     checkbox.style.width = "16px";
@@ -121,6 +126,7 @@ function preencherPermissoes(
     permissaoEdit.appendChild(tr);
   });
 }
+
 
 
 

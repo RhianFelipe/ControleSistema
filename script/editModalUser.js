@@ -116,6 +116,7 @@ async function openModalEdit(id) {
       const sidVPN = resposta.dados.sidVPN;
       console.log("Sid Tur: ", sidTermoTur);
       console.log("Sid Tcc: ", sidTermoTcc);
+    
       preencherPermissoes(
         permissoes,
         termosAssinados,
