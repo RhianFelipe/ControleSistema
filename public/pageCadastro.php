@@ -28,6 +28,7 @@ if (!isset($_SESSION['user'])) {
     <script src="../js/sweetalert2.js"></script>
     <title>Cadastrar Usuário</title>
     <link rel="icon" href="../public/assets/img/icon-govpr.png" type="image/x-icon">
+
 </head>
 
 <body>
@@ -86,27 +87,24 @@ if (!isset($_SESSION['user'])) {
                 </div>
 
 
-
-
                 <div class="termo-container" hidden>
-                <label for="sidWifi" title="SID Wifi">SID</label>
-                <input class="form-control" type="text" id="sidWifi" name="sidWifi" placeholder="SID Termos">
-            </div>
-            <div class="termo-container" hidden>
-                <label for="sidVPN" title="SID VPN">SID</label>
-                <input class="form-control" type="text" id="sidVPN" name="sidVPN" placeholder="SID Termos">
-            </div>
+                    <label for="sidWifi" title="SID Wifi">SID</label>
+                    <input class="form-control" type="text" id="sidWifi" name="sidWifi" placeholder="SID Termos">
+                </div>
+                <div class="termo-container" hidden>
+                    <label for="sidVPN" title="SID VPN">SID</label>
+                    <input class="form-control" type="text" id="sidVPN" name="sidVPN" placeholder="SID Termos">
+                </div>
 
-
+                <script src="../script/utils.js"></script>
 
                 <div class="termo-container">
 
-                    <input class="form-control" type="text" id="sidTermos" name="sidTermos" placeholder="SID Termos" required>
+                    <input class="form-control" type="text" id="sidTermos" name="sidTermos" placeholder="SID Termos" maxlength="12" oninput="formatarSid(this)" required>
                 </div>
             </div>
 
 
-  
 
 
             <label>Gerenciar Permissões:</label>
@@ -182,7 +180,7 @@ if (!isset($_SESSION['user'])) {
         </div>
     </footer>
     <?php include '../src/sistema/modalSistema.php'; ?>
-    <script src="../script/utils.js"></script>
+
     <script>
         // Evento de mudança no select do grupo
         document.getElementById('grupo').addEventListener('change', function() {
@@ -197,7 +195,12 @@ if (!isset($_SESSION['user'])) {
                 termoCompromissoCheckbox.disabled = false;
             }
         });
+
+
+    
     </script>
+    <script  src="../script/formatarSid.js"></script>
+    <script src="../script/utils.js"></script>
     <script src="../script/cadastrarUser.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">
