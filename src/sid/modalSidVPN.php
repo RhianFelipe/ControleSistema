@@ -2,7 +2,7 @@
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-header" style="background-color: #f8f9fa; display: flex; align-items: center;">
-        <input required name="sid" id="sidInputVPN" placeholder="SID" class="form-control" type="text"  style="flex: 1; margin-right: 10px;" maxlength="12" oninput="formatarSid(this)" >
+        <input required name="sid" id="sidInputVPN" placeholder="SID" class="form-control" type="text" style="flex: 1; margin-right: 10px;" maxlength="12" oninput="formatarSid(this)">
 
         <button type="button" class="btn btn-primary" onclick="atualizarSid('VPN')">Salvar</button>
 

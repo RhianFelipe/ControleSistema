@@ -26,7 +26,7 @@ $resultCheckSid = $mysqli->query($sqlCheckSid);
 if ($resultCheckSid) {
   $rowCheckSid = $resultCheckSid->fetch_assoc();
   $sidExistente = $rowCheckSid['valorSid'];
-  
+
   if ($novoSid === $sidExistente) {
     echo json_encode(['status' => false, 'msg' => 'O novo SID deve ser diferente do SID existente.']);
     exit();
@@ -57,12 +57,12 @@ if ($inserirPermissao) {
   // Inserir nova permissão
   $sistemas = $nomeSistema;
   $permissao = 1;
-  
+
   $sqlInsertPermissao = "INSERT INTO permissoes (id_usuario, sistemas, permissao, data_altere)
     VALUES ($idUsuario, '$sistemas', $permissao, NOW())";
-  
+
   $resultInsertPermissao = $mysqli->query($sqlInsertPermissao);
-  
+
   if (!$resultInsertPermissao) {
     echo json_encode(['status' => false, 'msg' => 'Erro ao inserir permissão no banco de dados.']);
     exit();

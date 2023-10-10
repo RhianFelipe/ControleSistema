@@ -195,11 +195,8 @@ if (!isset($_SESSION['user'])) {
                 termoCompromissoCheckbox.disabled = false;
             }
         });
-
-
-    
     </script>
-    <script  src="../script/formatarSid.js"></script>
+    <script src="../script/formatarSid.js"></script>
     <script src="../script/utils.js"></script>
     <script src="../script/cadastrarUser.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>

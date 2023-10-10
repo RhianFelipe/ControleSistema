@@ -161,7 +161,6 @@ footer {
   visibility: visible;
 }
 
-
 /* Estilização do container dos termos e do SID */
 .termo-container {
   display: flex;
@@ -175,7 +174,6 @@ footer {
 }
 
 /* Estilização do input SID */
-
 
 /* Estilização do contêiner dos termos e do SID */
 .termo-sid-container {

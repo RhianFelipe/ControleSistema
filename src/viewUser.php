@@ -24,7 +24,7 @@ if (!empty($id)) {
         $sqlSIDTermoTur = "SELECT valorSid FROM sid WHERE id_usuario = $id AND nomeSid = 'TermoTur'";
         $resultSIDTermoTur = $mysqli->query($sqlSIDTermoTur);
         $sidValueTermoTur = "";
-        if ( $resultSIDTermoTur &&  $resultSIDTermoTur->num_rows > 0) {
+        if ($resultSIDTermoTur &&  $resultSIDTermoTur->num_rows > 0) {
             $sidRowTermos =  $resultSIDTermoTur->fetch_assoc();
             $sidValueTermoTur = $sidRowTermos['valorSid'];
         }
@@ -32,7 +32,7 @@ if (!empty($id)) {
         $sqlSIDTermoTcc = "SELECT valorSid FROM sid WHERE id_usuario = $id AND nomeSid = 'TermoTcc'";
         $resultSIDTermoTcc = $mysqli->query($sqlSIDTermoTcc);
         $sidValueTermoTcc = "";
-        if ($resultSIDTermoTcc  && $resultSIDTermoTcc ->num_rows > 0) {
+        if ($resultSIDTermoTcc  && $resultSIDTermoTcc->num_rows > 0) {
             $sidRowTermos = $resultSIDTermoTcc->fetch_assoc();
             $sidValueTermoTcc = $sidRowTermos['valorSid'];
         }
@@ -64,8 +64,8 @@ if (!empty($id)) {
                 'grupo' => $usuarioRow['grupo'],
                 'permissoes' => $permissoesRows,
                 'termos' => $termosRows,
-                'sidTermoTur' => $sidValueTermoTur,     
-                'sidTermoTcc' => $sidValueTermoTcc,      
+                'sidTermoTur' => $sidValueTermoTur,
+                'sidTermoTcc' => $sidValueTermoTcc,
                 'sidWifi' => $sidValueWiFI, // Valor do SID para Wi-Fi
                 'sidVPN' => $sidValueVPN  // Valor do SID para VPN
             ]

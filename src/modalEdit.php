@@ -11,7 +11,7 @@
           <input type="hidden" name="id" id="editid">
 
           <div class="col-12">
-         
+
             <span class="tooltip-icon" data-bs-toggle="tooltip" data-bs-placement="top" title="Selecione um valor caso queira mudar o grupo do usuário">
               <select id="input-value" name="grupo" class="form-select">
                 <option value="">Selecione o grupo</option>
@@ -26,7 +26,7 @@
           </div>
 
           <div class="col-12">
-        
+
             <span class="tooltip-icon" data-bs-toggle="tooltip" data-bs-placement="top" title="Selecione um valor caso queira mudar o setor do usuário">
               <select id="input-setor" name="setor" class="form-select">
                 <option value="">Selecione o setor</option>

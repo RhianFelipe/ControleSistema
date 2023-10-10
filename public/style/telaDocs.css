@@ -1,60 +1,60 @@
 /* Estilos gerais */
 body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #4d6d84;
-    color: #fff;
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #4d6d84;
+  color: #fff;
 }
 
-
 nav ul {
-    list-style-type: none;
-    padding: 0;
-    background-color: #444;
-    text-align: center; /* Centraliza os itens do menu */
+  list-style-type: none;
+  padding: 0;
+  background-color: #444;
+  text-align: center; /* Centraliza os itens do menu */
 }
 
 nav ul li {
-    display: inline;
-    margin-right: 20px;
+  display: inline;
+  margin-right: 20px;
 }
 
 nav ul li a {
-    text-decoration: none;
-    color: #fff;
-    transition: color 0.3s; /* Adiciona transição suave para a cor do texto */
+  text-decoration: none;
+  color: #fff;
+  transition: color 0.3s; /* Adiciona transição suave para a cor do texto */
 }
 
 nav ul li a:hover {
-    color: #4d6d84; /* Cor ao passar o mouse */
+  color: #4d6d84; /* Cor ao passar o mouse */
 }
 
 main {
-    max-width: 800px;
-    margin: 20px auto;
-    padding: 20px;
-    background-color: #fff; /* Fundo branco para o conteúdo principal */
-    border-radius: 10px; /* Cantos arredondados */
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Sombra suave */
+  max-width: 800px;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: #fff; /* Fundo branco para o conteúdo principal */
+  border-radius: 10px; /* Cantos arredondados */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Sombra suave */
 }
 
 section {
-    margin-bottom: 20px;
+  margin-bottom: 20px;
 }
 
 /* Estilos para o log de versão */
-h2, h3 {
-    color: #4d6d84; /* Cor dos cabeçalhos */
+h2,
+h3 {
+  color: #4d6d84; /* Cor dos cabeçalhos */
 }
 
 ul {
-    list-style-type: none;
-    padding-left: 0;
+  list-style-type: none;
+  padding-left: 0;
 }
 
 li {
-    margin-bottom: 10px;
+  margin-bottom: 10px;
 }
 
 /* Adicione estilos adicionais conforme necessário */

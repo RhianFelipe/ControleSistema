@@ -58,4 +58,3 @@ foreach ($sistemas as $index => $sistema) {
 $mensagem = "Usuário atualizado com sucesso!";
 $retorna = ['status' => true, 'msg' => $mensagem, 'permissoes' => $novasPermissoes, 'Sistemas' => $novasSistemas];
 echo json_encode($retorna);
-?>

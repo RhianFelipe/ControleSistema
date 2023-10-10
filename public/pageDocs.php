@@ -21,9 +21,8 @@ if (!isset($_SESSION['user'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../public/main.css">
     <link rel="stylesheet" href="../public/style/telaDocs.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
-        <link rel="icon" href="../public/assets/img/icon-govpr.png" type="image/x-icon">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <link rel="icon" href="../public/assets/img/icon-govpr.png" type="image/x-icon">
     <title>Documentação</title>
 </head>
 
@@ -54,66 +53,66 @@ if (!isset($_SESSION['user'])) {
     </nav>
 
     <style>
-    /* Estilo para links que ativam as descrições */
-    .link-description {
-        cursor: pointer;
-        /* Altera o cursor para indicar que é clicável */
-        color: #333;
-        /* Cor do texto (pode personalizar) */
-        text-decoration: none;
-        /* Remove a sublinhagem padrão */
-        font-weight: bold;
-        /* Define a fonte como negrito (pode personalizar) */
-        transition: color 0.3s ease-in-out, text-decoration 0.3s ease-in-out;
-        /* Efeito de transição suave na cor e na sublinhagem */
-    }
+        /* Estilo para links que ativam as descrições */
+        .link-description {
+            cursor: pointer;
+            /* Altera o cursor para indicar que é clicável */
+            color: #333;
+            /* Cor do texto (pode personalizar) */
+            text-decoration: none;
+            /* Remove a sublinhagem padrão */
+            font-weight: bold;
+            /* Define a fonte como negrito (pode personalizar) */
+            transition: color 0.3s ease-in-out, text-decoration 0.3s ease-in-out;
+            /* Efeito de transição suave na cor e na sublinhagem */
+        }
 
-    .link-description:hover {
-        color: #555;
-        /* Cor alterada ao passar o mouse (pode personalizar) */
-        text-decoration: underline;
-        /* Adiciona sublinhagem ao passar o mouse */
-    }
+        .link-description:hover {
+            color: #555;
+            /* Cor alterada ao passar o mouse (pode personalizar) */
+            text-decoration: underline;
+            /* Adiciona sublinhagem ao passar o mouse */
+        }
 
-    /* Estilos para a seção tutorial */
-    #tutorial1 {
-        display: none;
-        padding: 20px;
-        background-color: #f0f0f0;
-        border: 1px solid #ccc;
-        border-radius: 5px;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    }
+        /* Estilos para a seção tutorial */
+        #tutorial1 {
+            display: none;
+            padding: 20px;
+            background-color: #f0f0f0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
 
-    #tutorial1 h4 {
-        font-size: 24px;
-        font-weight: bold;
-        margin-bottom: 10px;
-        font-family: Arial, sans-serif;
-    }
+        #tutorial1 h4 {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            font-family: Arial, sans-serif;
+        }
 
-    #tutorial1 p {
-        font-size: 18px;
-        font-family: Arial, sans-serif;
-        line-height: 1.5;
-    }
+        #tutorial1 p {
+            font-size: 18px;
+            font-family: Arial, sans-serif;
+            line-height: 1.5;
+        }
 
-    #tutorial1 ul {
-        list-style: none;
-        margin-left: 0;
-        padding-left: 20px;
-    }
+        #tutorial1 ul {
+            list-style: none;
+            margin-left: 0;
+            padding-left: 20px;
+        }
 
-    #tutorial1 li {
-        font-size: 15px;
-        font-family: Arial, sans-serif;
-        margin-bottom: 10px;
-    }
+        #tutorial1 li {
+            font-size: 15px;
+            font-family: Arial, sans-serif;
+            margin-bottom: 10px;
+        }
 
-    #tutorial1 span {
-        font-weight: bold;
-        color: #007bff;
-    }
+        #tutorial1 span {
+            font-weight: bold;
+            color: #007bff;
+        }
     </style>
     <main>
         <section id="guia-utilizacao">
@@ -172,9 +171,7 @@ if (!isset($_SESSION['user'])) {
 
             <!-- Link para o Guia do Usuário em PDF -->
             <h3>Guia do Usuário</h3>
-            <p>Consulte o <a
-                    href="https://drive.google.com/file/d/1TQsNzOh2nXZ3CPCH-QYpylbgOE-mcXgJ/view?usp=drive_link"
-                    target="_blank">Guia do Usuário (PDF)</a> para obter informações detalhadas sobre como utilizar o
+            <p>Consulte o <a href="https://drive.google.com/file/d/1TQsNzOh2nXZ3CPCH-QYpylbgOE-mcXgJ/view?usp=drive_link" target="_blank">Guia do Usuário (PDF)</a> para obter informações detalhadas sobre como utilizar o
                 projeto.</p>
         </section>
 
@@ -193,96 +190,96 @@ if (!isset($_SESSION['user'])) {
         </section>
     </main>
     <style>
-    /* Remova a borda e estilização padrão do botão */
-    button.dropbtn {
-        border: none;
-        background: none;
-        padding: 0;
-        cursor: pointer;
-    }
+        /* Remova a borda e estilização padrão do botão */
+        button.dropbtn {
+            border: none;
+            background: none;
+            padding: 0;
+            cursor: pointer;
+        }
 
-    /* Defina a largura e altura máxima para a imagem */
-    button.dropbtn img {
-        max-width: 100%;
-        max-height: 100%;
-    }
+        /* Defina a largura e altura máxima para a imagem */
+        button.dropbtn img {
+            max-width: 100%;
+            max-height: 100%;
+        }
 
-    /* Remova o contorno ao focar o botão (opcional) */
-    button.dropbtn:focus {
-        outline: none;
-    }
+        /* Remova o contorno ao focar o botão (opcional) */
+        button.dropbtn:focus {
+            outline: none;
+        }
     </style>
     <script>
-    // Função para alternar a exibição da descrição do tutorial
-    function toggleDescription(tutorialId) {
-        const tutorial = document.getElementById(tutorialId);
-        if (tutorial.style.display === 'none' || tutorial.style.display === '') {
-            tutorial.style.display = 'block';
-        } else {
-            tutorial.style.display = 'none';
+        // Função para alternar a exibição da descrição do tutorial
+        function toggleDescription(tutorialId) {
+            const tutorial = document.getElementById(tutorialId);
+            if (tutorial.style.display === 'none' || tutorial.style.display === '') {
+                tutorial.style.display = 'block';
+            } else {
+                tutorial.style.display = 'none';
+            }
         }
-    }
 
-    // Seu nome de usuário e nome do repositório
-    const username = 'RhianFelipe';
-    const repoName = 'ControleSistema';
+        // Seu nome de usuário e nome do repositório
+        const username = 'RhianFelipe';
+        const repoName = 'ControleSistema';
 
-    // URL da API do GitHub para obter os commits
-    const apiUrl = `https://api.github.com/repos/${username}/${repoName}/commits?per_page=10`;
+        // URL da API do GitHub para obter os commits
+        const apiUrl = `https://api.github.com/repos/${username}/${repoName}/commits?per_page=10`;
 
-    // Função para buscar os commits e atualizar o log de versão
-    async function updateLog() {
-        try {
-            const response = await fetch(apiUrl);
-            const commits = await response.json();
-            const logList = document.getElementById('log-list');
+        // Função para buscar os commits e atualizar o log de versão
+        async function updateLog() {
+            try {
+                const response = await fetch(apiUrl);
+                const commits = await response.json();
+                const logList = document.getElementById('log-list');
 
-            // Limpar o log de versão existente
-            logList.innerHTML = '';
+                // Limpar o log de versão existente
+                logList.innerHTML = '';
 
-            // Iterar pelos 10 commits mais recentes e adicionar à lista
-            commits.slice(0, 10).forEach(commit => {
-                const listItem = document.createElement('li');
-                listItem.classList.add('commit-entry');
+                // Iterar pelos 10 commits mais recentes e adicionar à lista
+                commits.slice(0, 10).forEach(commit => {
+                    const listItem = document.createElement('li');
+                    listItem.classList.add('commit-entry');
 
-                // Adicionar a data do commit na mesma linha da mensagem do commit
-                const commitMessage = document.createElement('span');
-                commitMessage.textContent =
-                    `${new Date(commit.commit.author.date).toLocaleDateString()} - ${commit.commit.message}`;
-                listItem.appendChild(commitMessage);
+                    // Adicionar a data do commit na mesma linha da mensagem do commit
+                    const commitMessage = document.createElement('span');
+                    commitMessage.textContent =
+                        `${new Date(commit.commit.author.date).toLocaleDateString()} - ${commit.commit.message}`;
+                    listItem.appendChild(commitMessage);
 
-                logList.appendChild(listItem);
+                    logList.appendChild(listItem);
+                });
+            } catch (error) {
+                console.error('Erro ao buscar commits:', error);
+            }
+        }
+
+        // Chamar a função para atualizar o log de versão
+        updateLog();
+
+        // Função para exibir a guia clicada
+        function showTab(tabId) {
+            const sections = document.querySelectorAll('section');
+            sections.forEach(section => {
+                section.style.display = 'none';
             });
-        } catch (error) {
-            console.error('Erro ao buscar commits:', error);
+            const tab = document.getElementById(tabId);
+            tab.style.display = 'block';
         }
-    }
 
-    // Chamar a função para atualizar o log de versão
-    updateLog();
-
-    // Função para exibir a guia clicada
-    function showTab(tabId) {
-        const sections = document.querySelectorAll('section');
-        sections.forEach(section => {
-            section.style.display = 'none';
-        });
-        const tab = document.getElementById(tabId);
-        tab.style.display = 'block';
-    }
-
-    // Exibir a primeira guia por padrão
-    showTab('guia-utilizacao');
-
-    document.querySelector('a[href="#guia-utilizacao"]').addEventListener('click', function(e) {
-        e.preventDefault();
+        // Exibir a primeira guia por padrão
         showTab('guia-utilizacao');
-    });
 
-    document.querySelector('a[href="#log-versao"]').addEventListener('click', function(e) {
-        e.preventDefault();
-        showTab('log-versao');
-    });
+        document.querySelector('a[href="#guia-utilizacao"]').addEventListener('click', function(e) {
+            e.preventDefault();
+            showTab('guia-utilizacao');
+        });
+
+        document.querySelector('a[href="#log-versao"]').addEventListener('click', function(e) {
+            e.preventDefault();
+            showTab('log-versao');
+        });
     </script>
 </body>
 
