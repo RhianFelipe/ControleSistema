@@ -39,6 +39,9 @@ if (!isset($_SESSION['user'])) {
                     <th>Grupo do Usuário</th>
                     <th>Tipo de Operação</th>
                     <th>Data da Operação</th>
+                    <th>Adminstrador</th>
+                    
+                    
                 </tr>
                 <?php while ($row = mysqli_fetch_assoc($queryBuscaRegistroLogsUser)) : ?>
                     <tr>
@@ -48,6 +51,7 @@ if (!isset($_SESSION['user'])) {
                         <td><?php echo $row['grupo_usuario']; ?></td>
                         <td><?php echo $row['tipo_operacao']; ?></td>
                         <td><?php echo $row['data_operacao']; ?></td>
+                        <td><?php echo $row['nome_admin']; ?></td>
                     </tr>
                 <?php endwhile; ?>
             </table>

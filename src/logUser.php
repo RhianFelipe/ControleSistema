@@ -1,5 +1,6 @@
 
 <?php
+session_start();
 include "../db/conexao.php";
 
 // Função genérica para registrar operações no log de usuários
@@ -13,10 +14,14 @@ function logOperacaoUsuario($mysqli, $id, $tipoOperacao)
     $emailUsuario = $rowNomeUsuario['email'];
     $grupoUsuario = $rowNomeUsuario['grupo'];
 
-    // Insere o registro de log no banco de dados
-    $sqlLogs = "INSERT INTO logsusuarios (id_usuario, nome_usuario,email_usuario, grupo_usuario ,tipo_operacao, data_operacao) VALUES ('$id', '$nomeUsuario','$emailUsuario',' $grupoUsuario', '$tipoOperacao', NOW())";
+    // Obtém o valor da variável de sessão $_SESSION['nome']
+    $nomeAdmin = $_SESSION['nome'];
+
+    // Insere o registro de log no banco de dados, incluindo o valor de $_SESSION['nome']
+    $sqlLogs = "INSERT INTO logsusuarios (id_usuario, nome_usuario, email_usuario, grupo_usuario, tipo_operacao, nome_admin, data_operacao) VALUES ('$id', '$nomeUsuario', '$emailUsuario', '$grupoUsuario', '$tipoOperacao', '$nomeAdmin', NOW())";
     $queryLogs = $mysqli->query($sqlLogs) or die($mysqli->error);
 }
+
 
 // Função para registrar a operação de criação de usuário no log
 function logCriacaoUsuario($mysqli, $id)

@@ -3,7 +3,7 @@
 $pageTitle = "Cadastrar Usuários";
 include "../src/cadastrarUser.php";
 include_once "../db/consulta.php";
-session_start();
+
 
 // Verifica se a variável de sessão está definida
 if (!isset($_SESSION['user'])) {
