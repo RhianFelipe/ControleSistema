@@ -163,3 +163,11 @@ footer {
 .dropdown:hover .dropdown-content {
   display: block;
 }
+
+p#username {
+  text-align: center;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 5px;
+  margin-bottom: 0;
+}

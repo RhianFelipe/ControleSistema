@@ -22,13 +22,7 @@
 
 
 <style>
-    p#username {
-        text-align: center;
-        border: 1px solid #ccc;
-        border-radius: 5px;
-        padding: 5px;
-        margin-bottom: 0;
-    }
+
 </style>
 
 <?php

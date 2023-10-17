@@ -112,11 +112,11 @@ async function openModalEdit(id) {
 
       const sidTermoTur = resposta.dados.sidTermoTur;
       const sidTermoTcc = resposta.dados.sidTermoTcc;
-      const sidWifi =  resposta.dados.sidWifi;
+      const sidWifi = resposta.dados.sidWifi;
       const sidVPN = resposta.dados.sidVPN;
       console.log("Sid Tur: ", sidTermoTur);
       console.log("Sid Tcc: ", sidTermoTcc);
-    
+
       preencherPermissoes(
         permissoes,
         termosAssinados,
@@ -127,17 +127,16 @@ async function openModalEdit(id) {
       preencherTermos(termosAssinados, grupoSelecionado);
 
       const sidValueTur = document.getElementById("sidValueTur");
-      sidValueTur.textContent = sidTermoTur ; 
+      sidValueTur.textContent = sidTermoTur;
 
       const sidValueTcc = document.getElementById("sidValueTcc");
-      sidValueTcc.textContent = sidTermoTcc; 
+      sidValueTcc.textContent = sidTermoTcc;
 
       const sidValueWifi = document.getElementById("sidValueWifi");
-      sidValueWifi.textContent = sidWifi; 
+      sidValueWifi.textContent = sidWifi;
 
       const sidValueVPN = document.getElementById("sidValueVPN");
-      sidValueVPN.textContent = sidVPN; 
-
+      sidValueVPN.textContent = sidVPN;
     }
   } catch (error) {
     console.error(error);

@@ -6,9 +6,9 @@ $dados = filter_input_array(INPUT_POST, FILTER_DEFAULT);
 
 // Verificar se algum campo está vazio
 if (empty($dados['id']) || empty($dados['sistema']) || empty($dados['permissao'])) {
-  $retorna = ['status' => false, 'msg' => "Erro: Campo ID, Sistema ou Permissão vazio."];
-  echo json_encode($retorna);
-  exit; // Encerrar a execução do script
+    $retorna = ['status' => false, 'msg' => "Erro: Campo ID, Sistema ou Permissão vazio."];
+    echo json_encode($retorna);
+    exit; // Encerrar a execução do script
 }
 
 include_once "../db/conexao.php";

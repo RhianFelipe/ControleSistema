@@ -33,19 +33,15 @@ if (!isset($_SESSION['user'])) {
         <?php if (mysqli_num_rows($queryBuscaRegistroLogsUser) > 0) : ?>
             <table class='logs-table'>
                 <tr>
-
                     <th>Nome do Usuário</th>
                     <th>Email do Usuário</th>
                     <th>Grupo do Usuário</th>
                     <th>Tipo de Operação</th>
                     <th>Data da Operação</th>
                     <th>Adminstrador</th>
-                    
-                    
                 </tr>
                 <?php while ($row = mysqli_fetch_assoc($queryBuscaRegistroLogsUser)) : ?>
                     <tr>
-
                         <td><?php echo $row['nome_usuario']; ?></td>
                         <td><?php echo $row['email_usuario']; ?></td>
                         <td><?php echo $row['grupo_usuario']; ?></td>

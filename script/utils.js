@@ -11,12 +11,16 @@ function openModalSistema() {
 }
 // Função para editar o SID
 function openSidModalTur() {
-  const editSid = new bootstrap.Modal(document.getElementById("editSidTermoTur"));
+  const editSid = new bootstrap.Modal(
+    document.getElementById("editSidTermoTur")
+  );
   editSid.show();
 }
 
 function openSidModalTcc() {
-  const editSid = new bootstrap.Modal(document.getElementById("editSidTermoTcc"));
+  const editSid = new bootstrap.Modal(
+    document.getElementById("editSidTermoTcc")
+  );
   editSid.show();
 }
 
@@ -35,5 +39,3 @@ function exibirMensagem(icon, title, text) {
     text: text,
   });
 }
-
-

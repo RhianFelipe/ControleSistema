@@ -38,6 +38,7 @@ if (!isset($_SESSION['user'])) {
             <div class="dropdown">
                 <button class="dropbtn"><img src="../public/assets/img/icon-profile.png" alt=""></button>
                 <div class="dropdown-content">
+                    <p id="username"><?php echo $_SESSION['nome']; ?></p>
                     <a href="../public/pageAdmin.php">Admin</a>
                     <a href="../public/pageDocs.php">Documentação</a>
                     <a href="#">Sair</a>
@@ -112,6 +113,14 @@ if (!isset($_SESSION['user'])) {
         #tutorial1 span {
             font-weight: bold;
             color: #007bff;
+        }
+
+        p#username {
+            text-align: center;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 5px;
+            margin-bottom: 0;
         }
     </style>
     <main>

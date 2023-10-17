@@ -37,7 +37,7 @@ function preencherSistemas(sistemasData, idUsuario) {
 
   const sistemas = [];
   const permissoes = [];
- 
+
   // Percorre os dados de sistemas recebidos e cria as linhas da tabela
   sistemasData.forEach((sistemaData) => {
     const sistema = sistemaData.sistemas;
@@ -57,8 +57,6 @@ function preencherSistemas(sistemasData, idUsuario) {
 
     // Adiciona o nome do sistema
     tdNomeSistema.textContent = sistema;
-
-
 
     tr.appendChild(tdNomeSistema);
 
@@ -82,7 +80,9 @@ function preencherPermissoes(
 
   // Verifica se o primeiro termo foi assinado
   const primeiroTermoAssinado = termosAssinados.some(
-    (termo) => termo.nome_termo === "Termo de Uso e Responsabilidade" && termo.assinado === "1"
+    (termo) =>
+      termo.nome_termo === "Termo de Uso e Responsabilidade" &&
+      termo.assinado === "1"
   );
 
   permissoes.forEach((permissao, index) => {
@@ -100,7 +100,10 @@ function preencherPermissoes(
         checkbox.disabled = !primeiroTermoAssinado;
       } else {
         // Para outros grupos, habilitar todas as checkboxes se ambos os dois primeiros termos foram assinados
-        checkbox.disabled = !(termosAssinados[0]?.assinado === "1" && termosAssinados[1]?.assinado === "1");
+        checkbox.disabled = !(
+          termosAssinados[0]?.assinado === "1" &&
+          termosAssinados[1]?.assinado === "1"
+        );
       }
     }
 
@@ -126,9 +129,6 @@ function preencherPermissoes(
     permissaoEdit.appendChild(tr);
   });
 }
-
-
-
 
 // Função para verificar se o termo foi assinado
 function isTermoAssinado(termosAssinados, nomeTermo) {
