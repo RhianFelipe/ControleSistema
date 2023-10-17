@@ -1,49 +1,67 @@
 <?php
 session_start();
 
-// Verifica se a solicitação é do tipo POST e se os campos de usuário e senha estão definidos
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['usuario']) && isset($_POST['senha'])) {
-  $conexao_file = "./db/conexao.php";
-  if (!file_exists($conexao_file)) {
-    die("Erro: Arquivo de conexão não encontrado.");
-  }
+$conexao_file = "./db/conexao.php";
 
-  include $conexao_file;
+if (!file_exists($conexao_file)) {
+  die("Erro: Arquivo de conexão não encontrado.");
+}
 
-  // Usando prepared statements para evitar SQL Injection
-  $usuario = $_POST['usuario'];
-  $senha = $_POST['senha'];
+include $conexao_file;
 
-  $stmt = $mysqli->prepare("SELECT * FROM admin WHERE usuario = ? AND senha = ?");
-  $stmt->bind_param("ss", $usuario, $senha);
-  $stmt->execute();
+if (isset($_POST['usuario']) && isset($_POST['senha'])) {
+  // Usando mysqli->real_escape_string para evitar injeção de SQL
+  $usuario = $mysqli->real_escape_string($_POST['usuario']);
+  $senha_digitada = $mysqli->real_escape_string($_POST['senha']);
 
-  // Armazena o resultado da consulta em variáveis ​​associativas
-  $stmt->store_result();
-  $num_rows = $stmt->num_rows;
-  $stmt->bind_result($id, $usuario, $senha, $nome);
+  // Construa a consulta SQL
+  $sql = "SELECT id, senha, usuario FROM admin WHERE usuario = '$usuario'";
+  $result = $mysqli->query($sql);
 
-  // Verifica se há um único resultado e autentica o usuário
-  if ($num_rows == 1 && $stmt->fetch()) {
-    // Armazena os dados do usuário na sessão
-    $_SESSION['user'] = $id;
-    $_SESSION['nome'] = $nome;
+  if ($result) {
+    if ($result->num_rows > 0) {
+      $row = $result->fetch_assoc();
+      $id = $row['id'];
+      $senha_bd = $row['senha'];
 
-    // Redireciona para a página de filtro após o login bem-sucedido
-    header("Location: ./public/pageFiltro.php");
-    exit();
-  } else {
-    // Define uma variável de sessão para indicar um erro de login
+      // Descriptografa a senha do BD usando cifra de César chave 3
+      $senha_descriptografada = '';
+      for ($i = 0; $i < strlen($senha_bd); $i++) {
+        $char = $senha_bd[$i];
+        $decrypted_char = chr(ord($char) - 3);
+        $senha_descriptografada .= $decrypted_char;
+      }
+
+      // Verifique se a senha digitada corresponde à senha do BD
+      if ($senha_digitada === $senha_descriptografada) {
+        // Defina as variáveis de sessão
+        $_SESSION['user'] = $id;
+        $_SESSION['nome'] = $usuario;
+
+        // Redireciona para a página de filtro após o login bem-sucedido
+        header("Location: ./public/pageFiltro.php");
+        exit();
+      } else {
+        // Define uma variável de sessão para indicar um erro de login
+        $_SESSION['login_error'] = true;
+        header("Location: ../index.php");
+        exit();
+      }
+    } else {
+     // Define uma variável de sessão para indicar um erro de login
     $_SESSION['login_error'] = true;
     header("Location: ../index.php");
     exit();
+    }
+  } else {
+    echo "Erro na consulta ao banco de dados.";
   }
 
-  // Fecha o prepared statement e a conexão
-  $stmt->close();
   mysqli_close($mysqli);
 }
+
 ?>
+
 
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -59,15 +77,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['usuario']) && isset($
   <link rel="icon" href="../public/assets/img/icon-govpr.png" type="image/x-icon">
 </head>
 <script src="./js/sweetalert2.js"></script>
-<?php include './src/login/modalCriarConta.php'; ?>
+<?php // include './src/login/modalCriarConta.php'; 
+?>
 
 <script>
-  async function openModalCriarConta() {
+  /*
+   async function openModalCriarConta() {
     const criarContaModal = new bootstrap.Modal(
       document.getElementById("criarContaModal")
     );
     criarContaModal.show();
   }
+  */
 </script>
 
 <body>
@@ -104,6 +125,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['usuario']) && isset($
   </div>
 
   <?php
+
   // Exibe uma mensagem de erro caso a variável de sessão esteja definida
   if (isset($_SESSION['login_error']) && $_SESSION['login_error']) {
     echo "<script>
@@ -118,6 +140,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['usuario']) && isset($
 
     $_SESSION['login_error'] = false;
   }
+
+
   ?>
   <script src="../js/sweetalert2.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
