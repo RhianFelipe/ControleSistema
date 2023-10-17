@@ -48,10 +48,10 @@ if (isset($_POST['usuario']) && isset($_POST['senha'])) {
         exit();
       }
     } else {
-     // Define uma variável de sessão para indicar um erro de login
-    $_SESSION['login_error'] = true;
-    header("Location: ../index.php");
-    exit();
+      // Define uma variável de sessão para indicar um erro de login
+      $_SESSION['login_error'] = true;
+      header("Location: ../index.php");
+      exit();
     }
   } else {
     echo "Erro na consulta ao banco de dados.";
@@ -59,9 +59,7 @@ if (isset($_POST['usuario']) && isset($_POST['senha'])) {
 
   mysqli_close($mysqli);
 }
-
 ?>
-
 
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -107,8 +105,7 @@ if (isset($_POST['usuario']) && isset($_POST['senha'])) {
             <input class="input-value" value="" name="senha" type="password" required><br>
 
             <button id="button-submit" type="submit">Login</button><br>
-            <!--        <a href="#">Esqueci minha senha</a>
-  -->
+            <!--<a href="#">Esqueci minha senha</a>-->
 
 
           </form>

@@ -8,8 +8,6 @@ if (!isset($_SESSION['user'])) {
     exit();
 }
 
-
-
 ?>
 
 <!DOCTYPE html>
@@ -29,7 +27,6 @@ if (!isset($_SESSION['user'])) {
 <body onload="limparFiltragem()">
 
 
-<!-- <h1>Bem-vindo à sua página de perfil, <?php //echo $_SESSION['nome']; ?></h1>  -->
     <?php include 'header.php'; ?>
     <section class="area-consulta">
         <h1 class="consulta-title">Área de Consulta</h1>
