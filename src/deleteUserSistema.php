@@ -1,5 +1,6 @@
 <?php
 include "../db/conexao.php";
+include "../src/logUser.php";
 
 $idUsuario = filter_input(INPUT_GET, 'idUsuario', FILTER_SANITIZE_SPECIAL_CHARS);
 $nomeSistema = filter_input(INPUT_GET, 'nomeSistema', FILTER_SANITIZE_SPECIAL_CHARS);
@@ -16,6 +17,7 @@ if (empty($idUsuario) || empty($nomeSistema)) {
 
     if ($query) {
         // Se a exclusão foi bem-sucedida
+        logOperacaoUsuario($mysqli, $idUsuario, 'Sistema do Usuário excluido');
         $retorna = ['status' => true, 'msg' => "Sistema e suas permissões excluídos com sucesso"];
     } else {
         // Se ocorreu um erro ao excluir

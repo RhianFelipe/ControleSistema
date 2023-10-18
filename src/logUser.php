@@ -46,3 +46,9 @@ function logAddSistemPerson($mysqli, $id)
 
     logOperacaoUsuario($mysqli, $id, 'Add Sistema Personalizado');
 }
+
+function logExlusaoSistemaEspecifico($mysqli, $id){
+
+    logOperacaoUsuario($mysqli, $id, 'Sistema específico excluido');
+
+}

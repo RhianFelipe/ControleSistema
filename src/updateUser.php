@@ -18,7 +18,7 @@ $sistemas = $dados['sistema'];
 $idUsuario = $dados['id'];
 
 // Logs para atualização do Usuário
-logOperacaoUsuario($mysqli, $idUsuario, 'Permissão Atualizada');
+logOperacaoUsuario($mysqli, $idUsuario, 'Usuário Atualizado');
 
 // Verificar e atualizar grupo e setor
 if (!empty($dados['grupo'])) {
