@@ -1,6 +1,6 @@
 <?php
-include_once "../../db/conexao.php";
-
+include "../../db/conexao.php";
+include_once "../logUser.php";
 $dados = $_GET;
 
 $idUsuario = $dados['id'];
@@ -8,14 +8,8 @@ $novoSid = $dados['novoSid'];
 $nomeSistema = $dados['nomeSid'];
 
 // Verifica se o novo SID não é vazio
-if (empty($novoSid) || $novoSid === "0") {
-  echo json_encode(['status' => false, 'msg' => 'O SID não pode ser vazio ou igual a "0".']);
-  exit();
-}
-
-// Verifique se a string contém pontos e traços
-if (!preg_match('/^\d{2}\.\d{3}\.\d{3}-\d$/', $novoSid)) {
-  echo json_encode(['status' => false, 'msg' => 'O formato do número do protocolo está incorreto.']);
+if (empty($novoSid) || $novoSid === "0" || !preg_match('/^\d{2}\.\d{3}\.\d{3}-\d$/', $novoSid)) {
+  echo json_encode(['status' => false, 'msg' => 'O SID é inválido.']);
   exit();
 }
 
@@ -36,20 +30,21 @@ if ($resultCheckSid) {
   exit();
 }
 
-// Verifica se já existe uma entrada para 'Wi-Fi' na tabela permissoes
-$sqlCheckWiFi = "SELECT id FROM permissoes WHERE id_usuario = $idUsuario AND sistemas = 'Wi-Fi'";
-$resultCheckWiFi = $mysqli->query($sqlCheckWiFi);
+// Verifica se já existe uma entrada para 'Wi-Fi' ou 'VPN' na tabela permissoes
+$sqlCheckSistemas = "SELECT sistemas FROM permissoes WHERE id_usuario = $idUsuario AND sistemas IN ('Wi-Fi', 'VPN')";
+$resultCheckSistemas = $mysqli->query($sqlCheckSistemas);
 
-// Verifica se já existe uma entrada para 'VPN' na tabela permissoes
-$sqlCheckVPN = "SELECT id FROM permissoes WHERE id_usuario = $idUsuario AND sistemas = 'VPN'";
-$resultCheckVPN = $mysqli->query($sqlCheckVPN);
+$permissoesExistentes = array();
+while ($rowCheckSistema = $resultCheckSistemas->fetch_assoc()) {
+  $permissoesExistentes[] = $rowCheckSistema['sistemas'];
+}
 
 // Verifique se deve inserir uma nova permissão
 $inserirPermissao = false;
 
-if ($nomeSistema === 'Wi-Fi' && ($resultCheckWiFi->num_rows === 0)) {
+if ($nomeSistema === 'Wi-Fi' && !in_array('Wi-Fi', $permissoesExistentes)) {
   $inserirPermissao = true;
-} elseif ($nomeSistema === 'VPN' && ($resultCheckVPN->num_rows === 0)) {
+} elseif ($nomeSistema === 'VPN' && !in_array('VPN', $permissoesExistentes)) {
   $inserirPermissao = true;
 }
 
@@ -71,9 +66,7 @@ if ($inserirPermissao) {
 
 // Atualizar o SID
 $sqlUpdate = "UPDATE sid SET valorSid = '$novoSid' WHERE id_usuario = $idUsuario AND nomeSid = '$nomeSistema'";
-$result = $mysqli->query($sqlUpdate);
-
-if ($result) {
+if (executaConsultaELog($mysqli, $sqlUpdate, $idUsuario, 'SID Atualizado')) {
   echo json_encode(['status' => true, 'msg' => 'SID atualizado com sucesso.']);
 } else {
   echo json_encode(['status' => false, 'msg' => 'Erro ao atualizar o SID no banco de dados.']);

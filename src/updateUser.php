@@ -4,57 +4,83 @@ include "../src/logUser.php";
 
 $dados = filter_input_array(INPUT_POST, FILTER_DEFAULT);
 
+$idUsuario = $dados['id'];
+$sistemas = $dados['sistema'];
+
 // Verificar se algum campo está vazio
-if (empty($dados['id']) || empty($dados['sistema']) || empty($dados['permissao'])) {
+if (empty($idUsuario) || empty($sistemas) || empty($dados['permissao'])) {
     $retorna = ['status' => false, 'msg' => "Erro: Campo ID, Sistema ou Permissão vazio."];
     echo json_encode($retorna);
     exit; // Encerrar a execução do script
 }
 
-include_once "../db/conexao.php";
-
-// Recupera os valores dos sistemas enviados pelo formulário e do ID
-$sistemas = $dados['sistema'];
-$idUsuario = $dados['id'];
-
-// Logs para atualização do Usuário
-logOperacaoUsuario($mysqli, $idUsuario, 'Usuário Atualizado');
-
-// Verificar e atualizar grupo e setor
+// Atualizar grupo e setor, se definidos
 if (!empty($dados['grupo'])) {
-    $novoGrupo = $dados['grupo'];
-    $sqlGrupo = "UPDATE usuarios SET grupo = '$novoGrupo' WHERE id = $idUsuario";
-    $mysqli->query($sqlGrupo);
+    $sqlUpdateGrupo = "UPDATE usuarios SET grupo = '{$dados['grupo']}' WHERE id = $idUsuario";
+    executaConsultaELog($mysqli, $sqlUpdateGrupo, $idUsuario, 'Grupo Atualizado');
 }
 
 if (!empty($dados['setor'])) {
-    $novoSetor = $dados['setor'];
-    $sqlSetor = "UPDATE usuarios SET setor = '$novoSetor' WHERE id = $idUsuario";
-    $mysqli->query($sqlSetor);
+    $sqlUpdateSetor = "UPDATE usuarios SET setor = '{$dados['setor']}' WHERE id = $idUsuario";
+    executaConsultaELog($mysqli, $sqlUpdateSetor, $idUsuario, 'Setor Atualizado');
 }
 
-// Verificar e atualizar termos assinados
-if (!empty($dados['termo']) && !empty($dados['nome_termo'])) {
-    $termos = $dados['termo'];
-    $nomesTermo = $dados['nome_termo'];
+// Atualizar termos assinados
+$termosAssinadosAtuais = array();
+$queryTermos = "SELECT nome_termo, assinado FROM termos_assinados WHERE id_usuario = $idUsuario";
+$resultTermos = $mysqli->query($queryTermos);
 
-    foreach ($termos as $index => $assinado) {
-        $nomeTermo = $nomesTermo[$index];
-        $sqlTermo = "UPDATE termos_assinados SET assinado = $assinado WHERE id_usuario = $idUsuario AND nome_termo = '$nomeTermo'";
-        $mysqli->query($sqlTermo);
+if ($resultTermos) {
+    while ($rowTermo = $resultTermos->fetch_assoc()) {
+        $termosAssinadosAtuais[$rowTermo['nome_termo']] = $rowTermo['assinado'];
     }
 }
 
-// Atualizar as permissões dos sistemas no banco de dados
-foreach ($sistemas as $index => $sistema) {
-    $permissao = $dados['permissao'][$index];
-    $novasPermissoes[$index] = $permissao;
-    $novasSistemas = $sistemas;
+$termosAlterados = false;
 
-    $sqlPermissoes = "UPDATE permissoes SET permissao = $permissao, data_altere = NOW() WHERE id_usuario = $idUsuario AND sistemas = '$sistema'";
-    $mysqli->query($sqlPermissoes);
+if (!empty($dados['termo']) && !empty($dados['nome_termo'])) {
+    foreach ($dados['termo'] as $index => $assinado) {
+        $nomeTermo = $dados['nome_termo'][$index];
+        $termoAtual = $termosAssinadosAtuais[$nomeTermo];
+
+        if ($termoAtual != $assinado) {
+            $sqlUpdateTermo = "UPDATE termos_assinados SET assinado = $assinado WHERE id_usuario = $idUsuario AND nome_termo = '$nomeTermo'";
+            $mysqli->query($sqlUpdateTermo);
+            $termosAlterados = true;
+        }
+    }
 }
 
-$mensagem = "Usuário atualizado com sucesso!";
-$retorna = ['status' => true, 'msg' => $mensagem, 'permissoes' => $novasPermissoes, 'Sistemas' => $novasSistemas];
+if ($termosAlterados) {
+    logOperacaoUsuario($mysqli, $idUsuario, 'Termos Atualizados');
+}
+
+// Atualizar permissões
+$permissaoAtual = array();
+$queryPermissoes = "SELECT sistemas, permissao FROM permissoes WHERE id_usuario = $idUsuario";
+$resultPermissoes = $mysqli->query($queryPermissoes);
+
+if ($resultPermissoes) {
+    while ($row = $resultPermissoes->fetch_assoc()) {
+        $permissaoAtual[$row['sistemas']] = $row['permissao'];
+    }
+}
+
+$permissoesAlteradas = false;
+
+foreach ($sistemas as $index => $sistema) {
+    $permissao = $dados['permissao'][$index];
+
+    if (!isset($permissaoAtual[$sistema]) || $permissaoAtual[$sistema] != $permissao) {
+        $sqlUpdatePermissao = "UPDATE permissoes SET permissao = $permissao, data_altere = NOW() WHERE id_usuario = $idUsuario AND sistemas = '$sistema'";
+        $mysqli->query($sqlUpdatePermissao);
+        $permissoesAlteradas = true;
+    }
+}
+
+if ($permissoesAlteradas) {
+    logOperacaoUsuario($mysqli, $idUsuario, 'Atualização de Permissões');
+}
+
+$retorna = ['status' => true, 'msg' => 'Usuário atualizado com sucesso!'];
 echo json_encode($retorna);

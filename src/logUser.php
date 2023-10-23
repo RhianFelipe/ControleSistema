@@ -1,7 +1,16 @@
 
 <?php
 session_start();
-include "../db/conexao.php";
+
+// Função para executar consultas SQL e registrar no log
+function executaConsultaELog($mysqli, $sql, $idUsuario, $logMessage)
+{
+    $result =  $mysqli->query($sql) or die($mysqli->error);
+    if ($result) {
+        logOperacaoUsuario($mysqli, $idUsuario, $logMessage);
+        return $result;
+    }
+}
 
 // Função genérica para registrar operações no log de usuários
 function logOperacaoUsuario($mysqli, $id, $tipoOperacao)
@@ -20,35 +29,4 @@ function logOperacaoUsuario($mysqli, $id, $tipoOperacao)
     // Insere o registro de log no banco de dados, incluindo o valor de $_SESSION['nome']
     $sqlLogs = "INSERT INTO logsusuarios (id_usuario, nome_usuario, email_usuario, grupo_usuario, tipo_operacao, nome_admin, data_operacao) VALUES ('$id', '$nomeUsuario', '$emailUsuario', '$grupoUsuario', '$tipoOperacao', '$nomeAdmin', NOW())";
     $queryLogs = $mysqli->query($sqlLogs) or die($mysqli->error);
-}
-
-
-// Função para registrar a operação de criação de usuário no log
-function logCriacaoUsuario($mysqli, $id)
-{
-    logOperacaoUsuario($mysqli, $id, 'Criado');
-}
-
-// Função para registrar a operação de atualização de usuário no log
-function logAtualizacaoUsuario($mysqli, $id)
-{
-    logOperacaoUsuario($mysqli, $id, 'Usuário Atualizado');
-}
-
-// Função para registrar a operação de exclusão de usuário no log
-function logExclusaoUsuario($mysqli, $id)
-{
-    logOperacaoUsuario($mysqli, $id, 'Excluído');
-}
-
-function logAddSistemPerson($mysqli, $id)
-{
-
-    logOperacaoUsuario($mysqli, $id, 'Add Sistema Personalizado');
-}
-
-function logExlusaoSistemaEspecifico($mysqli, $id){
-
-    logOperacaoUsuario($mysqli, $id, 'Sistema específico excluido');
-
 }
