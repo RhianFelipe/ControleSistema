@@ -126,13 +126,13 @@ async function openModalEdit(id) {
 
       preencherTermos(termosAssinados, grupoSelecionado);
 
-      const sidValueTur = document.getElementById("sidValueTur");
+      const sidValueTur = document.getElementById("sidValueTermoTur");
       sidValueTur.textContent = sidTermoTur;
 
-      const sidValueTcc = document.getElementById("sidValueTcc");
+      const sidValueTcc = document.getElementById("sidValueTermoTcc");
       sidValueTcc.textContent = sidTermoTcc;
 
-      const sidValueWifi = document.getElementById("sidValueWifi");
+      const sidValueWifi = document.getElementById("sidValueWi-Fi");
       sidValueWifi.textContent = sidWifi;
 
       const sidValueVPN = document.getElementById("sidValueVPN");

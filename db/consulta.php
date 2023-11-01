@@ -42,7 +42,7 @@ $setores = array(
     "Gabinete da Procuradora-Geral do Estado",
     "Núcleo Administrativo Setorial",
     "Núcleo de Comunicação Social",
-    "Núcleo de Informática e Informação",
+    "Núcleo de Informática e Informações",
     "Núcleo de Integridade e Compliance Setorial",
     "Núcleo de Planejamento Setorial",
     "Núcleo de Recursos Humanos Setorial",

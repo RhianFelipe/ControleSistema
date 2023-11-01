@@ -207,12 +207,20 @@ async function atualizarSid(nomeSid) {
     if (data.status == true) {
       exibirMensagem("success", "Sucesso", data.msg);
       // Fechar o modal editSid
+
+      
+      const linkElement = document.getElementById(`sidValue${nomeSid}`);
+    
+      linkElement.textContent = novoSid;
       const editSidModal = bootstrap.Modal.getInstance(
         document.getElementById(`editSid${nomeSid}`)
       );
       editSidModal.hide();
 
-      // Fechar a modal atual
+
+
+/*
+    // Fechar a modal atual
       const editModel = bootstrap.Modal.getInstance(
         document.getElementById("editUsuarioModal")
       );
@@ -220,6 +228,9 @@ async function atualizarSid(nomeSid) {
 
       // Abrir a modal novamente para atualizar os dados
       openModalEdit(idUsuario);
+
+*/
+  
     } else {
       exibirMensagem("error", "Erro", data.msg);
     }

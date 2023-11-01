@@ -54,20 +54,20 @@
 
           <div style="display: inline-block; margin: 0; margin-left: 10px;">
             <p id="sidText" style="display: inline-block; margin: 0; margin-left: 10px;">SID TUR:
-              <a href="" style="display: inline-block; margin: 0;" title="Clique para copiar SID e ser redirecionado ao site do eProtocolo" id="sidValueTur" target="_blank" onclick="copyAndRedirect('sidValueTur', 'https://www.eprotocolo.pr.gov.br/spiweb/consultarProtocoloDigital.do?action=pesquisar'); return false;">Clique aqui</a>
+              <a href="" style="display: inline-block; margin: 0;" title="Clique para copiar SID e ser redirecionado ao site do eProtocolo" id="sidValueTermoTur" target="_blank" onclick="copyAndRedirect('sidValueTermoTur', 'https://www.eprotocolo.pr.gov.br/spiweb/consultarProtocoloDigital.do?action=pesquisar'); return false;">Clique aqui</a>
             </p>
             <button id="editarSidButton" onclick="openSidModalTur()" type="button"><img src="../public/assets/img/pen.svg" alt=""></button>
           </div>
 
           <div style="display: inline-block; margin: 0; margin-left: 10px;">
             <p id="sidText" style="display: inline-block; margin: 0; margin-left: 10px;">SID TCC:
-              <a href="" style="display: inline-block; margin: 0;" title="Clique para copiar SID e ser redirecionado ao site do eProtocolo" id="sidValueTcc" target="_blank" onclick="copyAndRedirect('sidValueTcc', 'https://www.eprotocolo.pr.gov.br/spiweb/consultarProtocoloDigital.do?action=pesquisar'); return false;">Clique aqui</a>
+              <a href="" style="display: inline-block; margin: 0;" title="Clique para copiar SID e ser redirecionado ao site do eProtocolo" id="sidValueTermoTcc" target="_blank" onclick="copyAndRedirect('sidValueTermoTcc', 'https://www.eprotocolo.pr.gov.br/spiweb/consultarProtocoloDigital.do?action=pesquisar'); return false;">Clique aqui</a>
             </p>
             <button id="editarSidButton" onclick="openSidModalTcc()" type="button"><img src="../public/assets/img/pen.svg" alt=""></button>
           </div>
           <div style="display: inline-block; margin: 0; margin-left: 10px;">
             <p id="sidText" style="display: inline-block; margin: 0; margin-left: 10px;">SID Wi-Fi:
-              <a href="" title="Clique para copiar SID e ser redirecionado ao site do eProtocolo" id="sidValueWifi" target="_blank" onclick="copyAndRedirect('sidValueWifi', 'https://www.eprotocolo.pr.gov.br/spiweb/consultarProtocoloDigital.do?action=pesquisar'); return false;"></a>
+              <a href="" title="Clique para copiar SID e ser redirecionado ao site do eProtocolo" id="sidValueWi-Fi" target="_blank" onclick="copyAndRedirect('sidValueWi-Fi', 'https://www.eprotocolo.pr.gov.br/spiweb/consultarProtocoloDigital.do?action=pesquisar'); return false;"></a>
             </p>
             <button id="editarSidButton" onclick="openSidModalWifi()" type="button"><img src="../public/assets/img/pen.svg" alt=""></button>
           </div>
