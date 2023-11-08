@@ -21,7 +21,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Verifica se o nome ou o email já existem
     $existeNome = verificarExistencia($mysqli, 'nome', 'usuarios', $nome);
     $existeEmail = verificarExistencia($mysqli, 'email', 'usuarios', $email);
-
+    $existeSid = verificarExistencia($mysqli, 'valorSid', 'sid', $sidTermos);
     if ($existeNome->num_rows > 0) {
         $retorna = ['status' => false, 'msg' => "Esse nome já existe."];
     } elseif ($existeEmail->num_rows > 0) {
@@ -36,6 +36,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $retorna = ['status' => false, 'msg' => "E-mail deve ser do domínio $dominioEsperado"];
         } elseif (!preg_match('/^\d{2}\.\d{3}\.\d{3}-\d$/', $sidTermos)) {
             $retorna = ['status' => false, 'msg' => 'O formato do número do protocolo está incorreto.'];
+        } elseif ($existeSid->num_rows > 0) {
+            $retorna = ['status' => false, 'msg' => 'Este SID já existe.'];
         } else {
             // Inserir usuários no BD
             $mysqli->query("INSERT INTO usuarios (nome, email, grupo, setor, data_create) VALUES ('$nome', '$email', '$grupo','$setor', NOW())");

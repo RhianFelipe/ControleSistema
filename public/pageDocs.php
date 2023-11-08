@@ -10,7 +10,6 @@ if (!isset($_SESSION['user'])) {
     header("Location: ../index.php");
     exit();
 }
-
 ?>
 
 <!DOCTYPE html>
@@ -26,22 +25,26 @@ if (!isset($_SESSION['user'])) {
     <title>Documentação</title>
 </head>
 
-
-
 <body>
     <header>
+
+
         <a href="../public/pageFiltro.php">
             <img class="imgHeader" src="..\public\assets\img\logo-govpr-white.png" alt="Descrição da imagem">
         </a>
 
         <nav class="navbar">
+            <a class="home-link" title="Página Inicial" href="../public/pageFiltro.php">
+                <img src="../public/assets/img/icons8-home-64.png" alt="Home">
+            </a>
+
             <div class="dropdown">
                 <button class="dropbtn"><img src="../public/assets/img/icon-profile.png" alt=""></button>
                 <div class="dropdown-content">
                     <p id="username"><?php echo $_SESSION['nome']; ?></p>
-                    <a href="../public/pageAdmin.php">Admin</a>
+                    <a href="../admin/src/public/pageAdmin.php">Admin</a>
                     <a href="../public/pageDocs.php">Documentação</a>
-                    <a href="#">Sair</a>
+                    <a href="?logout=1">Sair</a>
                 </div>
             </div>
         </nav>
@@ -52,6 +55,14 @@ if (!isset($_SESSION['user'])) {
             <li><a href="#log-versao">Log de Versão</a></li>
         </ul>
     </nav>
+
+    <?php
+    if (isset($_GET['logout'])) {
+        session_destroy();
+        header("Location: ../index.php");
+        exit();
+    }
+    ?>
 
     <style>
         /* Estilo para links que ativam as descrições */
@@ -121,6 +132,16 @@ if (!isset($_SESSION['user'])) {
             border-radius: 5px;
             padding: 5px;
             margin-bottom: 0;
+        }
+
+
+        /* Estilo para o ícone da casa */
+        .home-link img {
+            width: 45px;
+            /* Defina a largura desejada */
+            height: 50px;
+            /* Defina a altura desejada */
+            margin-right: 1rem;
         }
     </style>
     <main>

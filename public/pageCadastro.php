@@ -68,12 +68,12 @@ if (!isset($_SESSION['user'])) {
             <div class="termo-sid-container">
                 <div class="termo-container">
                     <label for="termoUso" title="Termo de Uso e Responsabilidade">TUR?</label>
-                    <input class="checkbox" type="checkbox" id="termoUso" name="termoUso">
+                    <input class="checkbox" type="checkbox" id="termoUso" name="termoUso" required>
                 </div>
 
                 <div class="termo-container">
                     <label for="termoCompromisso" title="Termo de Compromisso e Confidencialidade">TCC?</label>
-                    <input class="checkbox" type="checkbox" id="termoCompromisso" name="termoCompromisso">
+                    <input class="checkbox" type="checkbox" id="termoCompromisso" name="termoCompromisso" required>
                 </div>
 
                 <div class="termo-container" hidden>
@@ -103,9 +103,6 @@ if (!isset($_SESSION['user'])) {
                     <input class="form-control" type="text" id="sidTermos" name="sidTermos" placeholder="SID Termos" maxlength="12" oninput="formatarSid(this)" required>
                 </div>
             </div>
-
-
-
 
             <label>Gerenciar Permissões:</label>
             <button id="button-permissao" type="button">Permissões</button><br>
@@ -182,19 +179,24 @@ if (!isset($_SESSION['user'])) {
     <?php include '../src/sistema/modalSistema.php'; ?>
 
     <script>
-        // Evento de mudança no select do grupo
-        document.getElementById('grupo').addEventListener('change', function() {
-            const grupoSelecionado = this.value;
-            const termoCompromissoCheckbox = document.getElementById('termoCompromisso');
+  document.getElementById('grupo').addEventListener('change', function() {
+    const grupoSelecionado = this.value;
+    const termoCompromissoCheckbox = document.getElementById('termoCompromisso');
+    const termoCompromissoLabel = document.querySelector('label[for="termoCompromisso"]');
 
-            if (grupoSelecionado === 'Terceirizado') {
-                // Se o grupo for "Terceirizado", desabilita o checkbox do segundo termo
-                termoCompromissoCheckbox.disabled = true;
-            } else {
-                // Se o grupo não for "Terceirizado", habilita o checkbox do segundo termo
-                termoCompromissoCheckbox.disabled = false;
-            }
-        });
+    if (grupoSelecionado === 'Terceirizado') {
+        // Se o grupo for "Terceirizado", desabilita o checkbox do segundo termo
+        termoCompromissoCheckbox.disabled = true;
+        termoCompromissoCheckbox.removeAttribute('required');
+        termoCompromissoLabel.removeAttribute('title'); // Opcional: Remove o atributo 'title' do label
+    } else {
+        // Se o grupo não for "Terceirizado", habilita o checkbox do segundo termo
+        termoCompromissoCheckbox.disabled = false;
+        termoCompromissoCheckbox.setAttribute('required', 'required');
+        termoCompromissoLabel.setAttribute('title', 'Termo de Compromisso e Confidencialidade'); // Opcional: Restaura o atributo 'title' do label
+    }
+});
+
     </script>
     <script src="../script/formatarSid.js"></script>
     <script src="../script/utils.js"></script>
