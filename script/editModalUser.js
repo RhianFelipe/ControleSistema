@@ -126,6 +126,10 @@ async function openModalEdit(id) {
 
       preencherTermos(termosAssinados, grupoSelecionado);
 
+      const nomeUsuarioTitle = document.getElementById("nomeTitleModalUser");
+      nomeUsuarioTitle.textContent = resposta.dados.nome
+      console.log("NOOOME", resposta.dados.nome)
+
       const sidValueTur = document.getElementById("sidValueTermoTur");
       sidValueTur.textContent = sidTermoTur;
 
