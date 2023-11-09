@@ -68,7 +68,7 @@ if (!isset($_SESSION['user'])) {
                                 <td class="td-button">
                                     <!-- Botões para editar e excluir usuários -->
                                     <button class="button-edit" onclick="openModalEdit('<?php echo $resultado['id']; ?>')">Editar</button>
-                                    <button class="button-excluir" onclick="apagarUsuarioDados('<?php echo $resultado['id']; ?>')">Excluir</button>
+                                    <button class="button-excluir" onclick="apagarUsuarioDados(<?php echo $resultado['id']; ?>, '<?php echo $resultado['nome']; ?>')">Excluir</button>
                                 </td>
                             </tr>
                         <?php endforeach; ?>
