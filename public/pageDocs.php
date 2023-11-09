@@ -209,8 +209,8 @@ if (!isset($_SESSION['user'])) {
             <h2>Log de Versão</h2>
             <ul>
                 <li>
-                    <h3>Versão 1.0.0</h3>
-                    <p>Data: 29 de Setembro de 2023</p>
+                    <h3>v1.6.10</h3>
+                    <p>Data de Início: 29 de Setembro de 2023</p>
                     <ul id="log-list">
 
                     </ul>

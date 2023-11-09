@@ -64,7 +64,7 @@ $mysqli->close();
                         <td>
                             <!-- Botões para editar e excluir usuários -->
                             <button class="button-edit" onclick="openModalEdit(<?php echo $usuario['id']; ?>)">Editar</button>
-                            <button class="button-excluir" onclick="apagarUsuarioDados(<?php echo $usuario['id']; ?>)">Excluir</button>
+                            <button class="button-excluir" onclick="apagarUsuarioDados(<?php echo $usuario['id']; ?>, '<?php echo $usuario['nome']; ?>')">Excluir</button>
                         </td>
                     </tr>
                 <?php endforeach; ?>

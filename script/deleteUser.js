@@ -1,10 +1,11 @@
-async function apagarUsuarioDados(id) {
+async function apagarUsuarioDados(id, nome) {
   console.log("Entrou:", id);
+
 
   // Exibe um diálogo de confirmação usando o Swal.fire
   const confirmar = await Swal.fire({
     title: "Tem certeza?",
-    text: "Tem certeza que deseja excluir o registro selecionado?",
+    text: `Tem certeza que deseja excluir o usuário '${nome}'?`,
     icon: "warning",
     showCancelButton: true,
     confirmButtonColor: "#3085d6",
