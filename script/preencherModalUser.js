@@ -162,11 +162,14 @@ function preencherTermos(termosData, grupoSelecionado) {
     checkboxTermo.type = "checkbox";
     checkboxTermo.checked = assinado === "1";
 
-    // Define a lógica de habilitar ou desabilitar os checkboxes com base no grupo selecionado e nos termos assinados
-    if (index === 1 && grupoSelecionado === "Terceirizado") {
-      checkboxTermo.disabled = true;
-    } else {
-      if (grupoSelecionado === "Terceirizado" && primeiroTermoAssinado) {
+    // Verifica se o termo está assinado e desabilita a checkbox
+    if (assinado === "1") {
+      checkboxTermo.disabled = true; // Desabilita a checkbox se o termo estiver assinado
+    } else if (grupoSelecionado === "Terceirizado") {
+      // Se for um usuário terceirizado, mantém a lógica existente
+      if (index === 1) {
+        checkboxTermo.disabled = true;
+      } else if (primeiroTermoAssinado) {
         checkboxTermo.disabled = false;
       }
     }
@@ -178,6 +181,8 @@ function preencherTermos(termosData, grupoSelecionado) {
     termosEdit.appendChild(tr);
   });
 }
+
+
 
 async function atualizarSid(nomeSid) {
   const idUsuario = document.getElementById("editid").value;
@@ -216,8 +221,6 @@ async function atualizarSid(nomeSid) {
         document.getElementById(`editSid${nomeSid}`)
       );
       editSidModal.hide();
-
-
 
 /*
     // Fechar a modal atual
