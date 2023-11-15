@@ -14,15 +14,46 @@ if (empty($idUsuario) || empty($sistemas) || empty($dados['permissao'])) {
     exit; // Encerrar a execução do script
 }
 
-// Atualizar grupo e setor, se definidos
 if (!empty($dados['grupo'])) {
-    $sqlUpdateGrupo = "UPDATE usuarios SET grupo = '{$dados['grupo']}' WHERE id = $idUsuario";
-    executaConsultaELog($mysqli, $sqlUpdateGrupo, $idUsuario, 'Grupo Atualizado');
+    // Consulta para verificar o valor atual do grupo
+    $sqlVerificaGrupo = "SELECT grupo FROM usuarios WHERE id = $idUsuario";
+    $resultado = $mysqli->query($sqlVerificaGrupo);
+
+    if ($resultado) {
+        $row = $resultado->fetch_assoc();
+        $grupoAtual = $row['grupo'];
+
+        // Verificar se o valor recebido é diferente do valor atual no banco de dados
+        if ($dados['grupo'] !== $grupoAtual) {
+            // Se forem diferentes, executar a atualização
+            $sqlUpdateGrupo = "UPDATE usuarios SET grupo = '{$dados['grupo']}' WHERE id = $idUsuario";
+            executaConsultaELog($mysqli, $sqlUpdateGrupo, $idUsuario, 'Grupo Atualizado');
+        }
+        // Se forem iguais, não fazer a atualização e continuar
+    } else {
+        // Tratar erros na consulta, se necessário
+    }
 }
 
 if (!empty($dados['setor'])) {
-    $sqlUpdateSetor = "UPDATE usuarios SET setor = '{$dados['setor']}' WHERE id = $idUsuario";
-    executaConsultaELog($mysqli, $sqlUpdateSetor, $idUsuario, 'Setor Atualizado');
+    // Consulta para verificar o valor atual do setor
+    $sqlVerificaSetor = "SELECT setor FROM usuarios WHERE id = $idUsuario";
+    $resultadoSetor = $mysqli->query($sqlVerificaSetor);
+
+    if ($resultadoSetor) {
+        $rowSetor = $resultadoSetor->fetch_assoc();
+        $setorAtual = $rowSetor['setor'];
+
+        // Verificar se o valor recebido é diferente do valor atual no banco de dados
+        if ($dados['setor'] !== $setorAtual) {
+            // Se forem diferentes, executar a atualização
+            $sqlUpdateSetor = "UPDATE usuarios SET setor = '{$dados['setor']}' WHERE id = $idUsuario";
+            executaConsultaELog($mysqli, $sqlUpdateSetor, $idUsuario, 'Setor Atualizado');
+        }
+        // Se forem iguais, não fazer a atualização e continuar
+    } else {
+        // Tratar erros na consulta, se necessário
+    }
 }
 
 // Atualizar termos assinados

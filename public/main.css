@@ -59,6 +59,7 @@ header {
 
 .list-header .a1:hover {
   background-color: rgba(250, 235, 215, 0.2);
+  cursor: pointer;
 }
 
 /*Estilização padrão do Footer*/

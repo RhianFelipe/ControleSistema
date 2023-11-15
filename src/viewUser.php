@@ -23,7 +23,7 @@ function consultarDados($mysqli, $id, $tabela, $campo) {
 }
 
 if (!empty($id)) {
-    $sqlUsuario = "SELECT id, nome, email, grupo FROM usuarios WHERE id = $id";
+    $sqlUsuario = "SELECT id, nome, email, grupo, setor FROM usuarios WHERE id = $id";
     $resultUsuario = $mysqli->query($sqlUsuario);
     $usuarioRow = $resultUsuario->fetch_assoc();
 
@@ -42,6 +42,7 @@ if (!empty($id)) {
                 'nome' => $usuarioRow['nome'],
                 'email' => $usuarioRow['email'],
                 'grupo' => $usuarioRow['grupo'],
+                'setor' => $usuarioRow['setor'],
                 'permissoes' => $permissoesRows,
                 'termos' => $termosRows,
                 'sidTermoTur' => $sidValueTermoTur,

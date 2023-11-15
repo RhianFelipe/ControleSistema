@@ -107,9 +107,17 @@ async function openModalEdit(id) {
 
       const grupoSelecionado = resposta.dados.grupo;
       console.log("Grupo que veio:", grupoSelecionado);
+      const setorSelecionado = resposta.dados.setor;
+      console.log("Setor que veio:",setorSelecionado)
+
+      // Definir valor selecionado para o select do grupo
+document.getElementById('input-value').value = grupoSelecionado;
+
+// Definir valor selecionado para o select do setor
+document.getElementById('input-setor').value = setorSelecionado;
+
       const termosAssinados = resposta.dados.termos;
       console.log("Termos:", resposta.dados.termos);
-
       const sidTermoTur = resposta.dados.sidTermoTur;
       const sidTermoTcc = resposta.dados.sidTermoTcc;
       const sidWifi = resposta.dados.sidWifi;
@@ -128,7 +136,7 @@ async function openModalEdit(id) {
 
       const nomeUsuarioTitle = document.getElementById("nomeTitleModalUser");
       nomeUsuarioTitle.textContent = resposta.dados.nome
-      console.log("NOOOME", resposta.dados.nome)
+      console.log("Nome do Usuário:", resposta.dados.nome)
 
       const sidValueTur = document.getElementById("sidValueTermoTur");
       sidValueTur.textContent = sidTermoTur;
@@ -150,7 +158,7 @@ async function openModalEdit(id) {
 
 async function submitForm(event) {
   event.preventDefault();
-  console.log("Entrou aqui");
+  console.log("Entrou no Submit");
 
   const idUsuario = document.getElementById("editid").value;
   const valoresTermos = [];
