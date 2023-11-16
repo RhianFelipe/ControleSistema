@@ -110,7 +110,7 @@ if (!isset($_SESSION['user'])) {
             <button id="button-submit" type="submit">Cadastrar</button>
         </form>
         <!-- Modal para gerenciar permissões -->
-        <div class="modal fade" id="editUsuarioModal" tabindex="-1" aria-labelledby="editUsuarioModalLabel" aria-hidden="true">
+        <div class="modal fade" id="sistemaCadModal" tabindex="-1" aria-labelledby="editUsuarioModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
