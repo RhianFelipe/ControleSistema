@@ -110,11 +110,23 @@ async function openModalEdit(id) {
       const setorSelecionado = resposta.dados.setor;
       console.log("Setor que veio:",setorSelecionado)
 
-      // Definir valor selecionado para o select do grupo
+// Suponha que 'grupoSelecionado' e 'setorSelecionado' sejam os valores retornados pelo fetch
+
+// Definir valor selecionado para o select do grupo
 document.getElementById('input-value').value = grupoSelecionado;
 
 // Definir valor selecionado para o select do setor
 document.getElementById('input-setor').value = setorSelecionado;
+
+// Verificar se o valor retornado é 'Padrão' e definir o valor do select de acordo
+if (grupoSelecionado === 'Padrão') {
+  document.getElementById('input-value').value = '';
+}
+
+if (setorSelecionado === 'Padrão') {
+  document.getElementById('input-setor').value = '';
+}
+
 
       const termosAssinados = resposta.dados.termos;
       console.log("Termos:", resposta.dados.termos);

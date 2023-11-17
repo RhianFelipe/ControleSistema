@@ -32,10 +32,14 @@ $mysqli->close();
     <link rel="stylesheet" href="../public/style/telaLista.css?v=<?php echo time(); ?>">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
     <link rel="icon" href="../public/assets/img/icon-govpr.png" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pretty-checkbox@3.0/dist/pretty-checkbox.min.css">
     <title>Sistema de Controle de Permissões</title>
 </head>
 
 <body>
+
+
+
     <?php include 'header.php'; ?>
     <p class="total-usuarios">N°: <?php echo $totalUsuarios; ?> Usuários</p>
 
