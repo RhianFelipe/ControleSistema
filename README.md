@@ -13,7 +13,8 @@ Este projeto foi desenvolvido com o objetivo de supervisionar o acesso dos funci
 <p display="inline-block">
   <img width="48" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg" alt="php-logo"/>
   <img width="48" src="https://www.freeiconspng.com/uploads/sql-database-icon-png-17.png" alt="mysql-logo"/>
-   <img width="48" src="https://brandslogos.com/wp-content/uploads/thumbs/bootstrap-logo-vector.svg" alt="mysql-logo"/>
+  <img width="48" src="https://brandslogos.com/wp-content/uploads/thumbs/bootstrap-logo-vector.svg" alt="boots-logo"/>
+  <img width="48" src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f4/WampServer-logo.svg/1200px-WampServer-logo.svg.png" alt="wamp-logo"/>
 </p>
                                                                                                   
 ### Ferramentas de desenvolvimento
