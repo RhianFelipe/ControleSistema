@@ -42,20 +42,9 @@
           <!-- Nova tabela para os termos -->
           <div class="col-12">
             <table class="table">
-              <thead>
-
-              </thead>
+      
               <tbody id="termosEdit">
-              <div class="pretty p-svg p-curve">
-        <input type="checkbox" />
-        <div class="state p-success">
-            <!-- svg path -->
-            <svg class="svg svg-icon" viewBox="0 0 20 20">
-                <path d="M7.629,14.566c0.125,0.125,0.291,0.188,0.456,0.188c0.164,0,0.329-0.062,0.456-0.188l8.219-8.221c0.252-0.252,0.252-0.659,0-0.911c-0.252-0.252-0.659-0.252-0.911,0l-7.764,7.763L4.152,9.267c-0.252-0.251-0.66-0.251-0.911,0c-0.252,0.252-0.252,0.66,0,0.911L7.629,14.566z" style="stroke: white;fill:white;"></path>
-            </svg>
-            <label>Recurring</label>
-        </div>
-    </div>
+                <!-- Os termos serão adicionados dinamicamente aqui -->
               </tbody>
             </table>
           </div>
@@ -68,19 +57,19 @@
             <button id="editarSidButton" onclick="openSidModalTur()" type="button"><img src="../public/assets/img/pen.svg" alt=""></button>
           </div>
 
-          <div style="display: inline-block; margin: 0; margin-left: 10px;">
+          <div id="divSidTCC" style="display: inline-block; margin: 0; margin-left: 10px;">
             <p id="sidText" style="display: inline-block; margin: 0; margin-left: 10px;">SID TCC:
               <a href="" style="display: inline-block; margin: 0;" title="Clique para copiar SID e ser redirecionado ao site do eProtocolo" id="sidValueTermoTcc" target="_blank" onclick="copyAndRedirect('sidValueTermoTcc', 'https://www.eprotocolo.pr.gov.br/spiweb/consultarProtocoloDigital.do?action=pesquisar'); return false;">Clique aqui</a>
             </p>
             <button id="editarSidButton" onclick="openSidModalTcc()" type="button"><img src="../public/assets/img/pen.svg" alt=""></button>
           </div>
-          <div style="display: inline-block; margin: 0; margin-left: 10px;">
+          <div  id="divSidWiFi"  style="display: inline-block; margin: 0; margin-left: 10px;">
             <p id="sidText" style="display: inline-block; margin: 0; margin-left: 10px;">SID Wi-Fi:
               <a href="" title="Clique para copiar SID e ser redirecionado ao site do eProtocolo" id="sidValueWi-Fi" target="_blank" onclick="copyAndRedirect('sidValueWi-Fi', 'https://www.eprotocolo.pr.gov.br/spiweb/consultarProtocoloDigital.do?action=pesquisar'); return false;"></a>
             </p>
             <button id="editarSidButton" onclick="openSidModalWifi()" type="button"><img src="../public/assets/img/pen.svg" alt=""></button>
           </div>
-          <div style="display: inline-block; margin: 0; margin-left: 10px;">
+          <div id="divSidVPN"  style="display: inline-block; margin: 0; margin-left: 10px;">
             <p id="sidText" style="display: inline-block; margin: 0; margin-left: 10px;">SID VPN:
               <a href="" title="Clique para copiar SID e ser redirecionado ao site do eProtocolo" id="sidValueVPN" target="_blank" onclick="copyAndRedirect('sidValueVPN', 'https://www.eprotocolo.pr.gov.br/spiweb/consultarProtocoloDigital.do?action=pesquisar'); return false;"></a>
             </p>
@@ -113,7 +102,6 @@
           </script>
 
           <!-- 
-
 
                     <div class="col-12">
                         <div class="input-group input-sistema">

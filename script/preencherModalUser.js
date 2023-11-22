@@ -142,12 +142,21 @@ function preencherTermos(termosData, grupoSelecionado) {
   const termosEdit = document.getElementById("termosEdit");
   termosEdit.innerHTML = "";
 
+  const divSidWiFi = document.getElementById('divSidWiFi');
+  const divSidVPN = document.getElementById('divSidVPN');
+  const divSidTCC = document.getElementById('divSidTCC');
+
+  // Oculta inicialmente as divs do Wi-Fi e VPN
+  divSidWiFi.style.display = 'none';
+  divSidVPN.style.display = 'none';
+
   // Verifica se o primeiro termo foi assinado no caso de um usuário terceirizado
   const primeiroTermoAssinado =
     grupoSelecionado === "Terceirizado" &&
     isTermoAssinado(termosData, "Termo de Uso e Responsabilidade");
 
-  // Percorre os dados dos termos e cria as linhas da tabela de edição
+    
+
   termosData.forEach((termoData, index) => {
     const nomeTermo = termoData.nome_termo;
     const assinado = termoData.assinado;
@@ -179,6 +188,15 @@ function preencherTermos(termosData, grupoSelecionado) {
 
     // Adiciona a linha com o termo à tabela de edição
     termosEdit.appendChild(tr);
+
+    // Verifica e exibe a div correspondente ao termo assinado
+    if (nomeTermo === 'Termo de Wi-Fi' && assinado === '1') {
+      divSidWiFi.style.display = 'inline-block';
+    }
+
+    if (nomeTermo === 'Termo de VPN' && assinado === '1') {
+      divSidVPN.style.display = 'inline-block';
+    }
   });
 }
 
@@ -212,8 +230,6 @@ async function atualizarSid(nomeSid) {
     if (data.status == true) {
       exibirMensagem("success", "Sucesso", data.msg);
       // Fechar o modal editSid
-
-      
       const linkElement = document.getElementById(`sidValue${nomeSid}`);
     
       linkElement.textContent = novoSid;
@@ -222,7 +238,7 @@ async function atualizarSid(nomeSid) {
       );
       editSidModal.hide();
 
-/*
+
     // Fechar a modal atual
       const editModel = bootstrap.Modal.getInstance(
         document.getElementById("editUsuarioModal")
@@ -232,7 +248,7 @@ async function atualizarSid(nomeSid) {
       // Abrir a modal novamente para atualizar os dados
       openModalEdit(idUsuario);
 
-*/
+
   
     } else {
       exibirMensagem("error", "Erro", data.msg);
