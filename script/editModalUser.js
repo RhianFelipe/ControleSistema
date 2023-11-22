@@ -236,29 +236,44 @@ async function submitForm(event) {
   });
 
   try {
-    const dados = await fetch("../src/updateUser.php", {
-      method: "POST",
-      body: dadosForm,
+    // Exibir SweetAlert para confirmar a ação
+    const confirmacao = await Swal.fire({
+      title: 'Tem certeza?',
+      text: 'Deseja atualizar os dados?',
+      icon: 'question',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Sim, atualizar!',
+      cancelButtonText: 'Cancelar'
     });
-
-    const resposta = await dados.json();
-    if (resposta.status) {
-      exibirMensagem("success", "Sucesso", resposta.msg);
-      // Fechar a modal atual
-      const editModel = bootstrap.Modal.getInstance(
-        document.getElementById("editUsuarioModal")
-      );
-      editModel.hide();
-
-      // Abrir a modal novamente para atualizar os dados
-      openModalEdit(idUsuario);
-    } else {
-      exibirMensagem("ERRO: As alterações não foram salvas!", "error");
+  
+    if (confirmacao.isConfirmed) {
+      const dados = await fetch("../src/updateUser.php", {
+        method: "POST",
+        body: dadosForm,
+      });
+  
+      const resposta = await dados.json();
+      if (resposta.status) {
+        exibirMensagem("success", "Sucesso", resposta.msg);
+        // Fechar a modal atual
+        const editModel = bootstrap.Modal.getInstance(
+          document.getElementById("editUsuarioModal")
+        );
+        editModel.hide();
+  
+        // Abrir a modal novamente para atualizar os dados
+        openModalEdit(idUsuario);
+      } else {
+        exibirMensagem("ERRO: As alterações não foram salvas!", "error");
+      }
     }
   } catch (error) {
     console.error(error);
     exibirMensagem("Erro ao processar a requisição.", "error");
   }
+  
 }
 
 const editForm = document.getElementById("edit-usuario-form");
