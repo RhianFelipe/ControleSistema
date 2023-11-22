@@ -22,7 +22,11 @@ Este projeto foi desenvolvido com o objetivo de supervisionar o acesso dos funci
 </p>
 
 ## Documentação
+[Guia de Instalação](https://docs.github.com/en/issues/tracking-your-work-with-issues/about-issues)
 
+[Guia de Usuários](https://docs.github.com/en/issues/tracking-your-work-with-issues/about-issues)
+
+[Diagrmas](https://docs.github.com/en/issues/tracking-your-work-with-issues/about-issues)****
 
 ## References
 [About issues - GitHub Docs](https://docs.github.com/en/issues/tracking-your-work-with-issues/about-issues)
