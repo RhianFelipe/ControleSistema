@@ -51,6 +51,7 @@ $setores = array(
     "Procuradoria Administrativa",
     "Procuradoria Ambiental",
     "Procuradoria Consultiva de Aquisições e Serviços",
+    "Procuradoria Consultiva de Concessões, Convênios e Parcerias",
     "Procuradoria Consultiva de Obras e Serviços de Engenharia",
     "Procuradoria Consultiva de Recursos Humanos",
     "Procuradoria Consultiva junto à Governadoria",

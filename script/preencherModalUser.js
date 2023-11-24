@@ -197,6 +197,13 @@ function preencherTermos(termosData, grupoSelecionado) {
     if (nomeTermo === 'Termo de VPN' && assinado === '1') {
       divSidVPN.style.display = 'inline-block';
     }
+
+    if (nomeTermo === 'Termo de Compromisso e Confidencialidade' && assinado === '0' && grupoSelecionado === "Terceirizado" ) {
+      divSidTCC.style.display = 'none';
+    }else if(nomeTermo === 'Termo de Compromisso e Confidencialidade' && assinado === '1'){
+      divSidTCC.style.display = 'inline-block';
+    }
+
   });
 }
 
