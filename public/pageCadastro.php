@@ -49,7 +49,7 @@ if (!isset($_SESSION['user'])) {
             <!-- Obter valores dos grupos do banco de dados e mostrá-los em um menu suspenso -->
             <select class="input-value" name="grupo" id="grupo">
                 <?php
-                $gruposPermitidos = array("Procurador", "Servidor", "Terceirizado", "Estagiário", "Advogado", "Externo");
+                $gruposPermitidos = array("Procurador", "Servidor","Servidor(Comissão)", "Terceirizado", "Estagiário", "Advogado", "Externo");
                 foreach ($gruposPermitidos as $grupoPermitido) {
                     echo "<option value='$grupoPermitido'>$grupoPermitido</option>";
                 }

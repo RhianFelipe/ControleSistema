@@ -145,10 +145,14 @@ function preencherTermos(termosData, grupoSelecionado) {
   const divSidWiFi = document.getElementById('divSidWiFi');
   const divSidVPN = document.getElementById('divSidVPN');
   const divSidTCC = document.getElementById('divSidTCC');
+  const divSidTUR = document.getElementById('divSidTUR');
+
 
   // Oculta inicialmente as divs do Wi-Fi e VPN
   divSidWiFi.style.display = 'none';
   divSidVPN.style.display = 'none';
+  divSidTUR.style.display = 'none';
+  divSidTCC.style.display = 'none';
 
   // Verifica se o primeiro termo foi assinado no caso de um usuário terceirizado
   const primeiroTermoAssinado =
@@ -196,6 +200,10 @@ function preencherTermos(termosData, grupoSelecionado) {
 
     if (nomeTermo === 'Termo de VPN' && assinado === '1') {
       divSidVPN.style.display = 'inline-block';
+    }
+
+    if (nomeTermo === 'Termo de Uso e Responsabilidade' && assinado === '1') {
+      divSidTUR.style.display = 'inline-block';
     }
 
     if (nomeTermo === 'Termo de Compromisso e Confidencialidade' && assinado === '0' && grupoSelecionado === "Terceirizado" ) {

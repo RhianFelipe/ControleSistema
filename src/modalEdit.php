@@ -16,7 +16,7 @@
               <select id="input-value" name="grupo" class="form-select">
                 <option value="">Selecione o grupo</option>
                 <?php
-                $gruposPermitidos = array("Procurador", "Servidor", "Terceirizado", "Estagiário", "Advogado", "Externo");
+                $gruposPermitidos = array("Procurador", "Servidor","Servidor(Comissão)", "Terceirizado", "Estagiário", "Advogado", "Externo");
                 foreach ($gruposPermitidos as $grupoPermitido) {
                   echo "<option value='$grupoPermitido'>$grupoPermitido</option>";
                 }
@@ -50,7 +50,7 @@
           </div>
           <!-- Inclua a referência ao SweetAlert -->
 
-          <div style="display: inline-block; margin: 0; margin-left: 10px;">
+          <div id="divSidTUR" style="display: inline-block; margin: 0; margin-left: 10px;">
             <p id="sidText" style="display: inline-block; margin: 0; margin-left: 10px;">SID TUR:
               <a href="" style="display: inline-block; margin: 0;" title="Clique para copiar SID e ser redirecionado ao site do eProtocolo" id="sidValueTermoTur" target="_blank" onclick="copyAndRedirect('sidValueTermoTur', 'https://www.eprotocolo.pr.gov.br/spiweb/consultarProtocoloDigital.do?action=pesquisar'); return false;">Clique aqui</a>
             </p>
