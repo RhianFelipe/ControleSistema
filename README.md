@@ -1,5 +1,5 @@
 <h1 align="center">Controle de Sistemas</h1>
-<p align="center"><i>Repositório para versionamento e documentação do projeto "Controle de Sistemas" com objetivo de gerenciar as permissões dos usuários para determinado site.</i></p>
+<p align="center"><i>Repositório para versionamento e documentação do projeto "CSSPR" com objetivo de gerenciar as permissões dos usuários para determinado site.</i></p>
 
 
 
@@ -13,6 +13,8 @@ Este projeto foi desenvolvido com o objetivo de supervisionar o acesso dos funci
 <p display="inline-block">
   <img width="48" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg" alt="php-logo"/>
   <img width="48" src="https://www.freeiconspng.com/uploads/sql-database-icon-png-17.png" alt="mysql-logo"/>
+  <img width="48" src="https://brandslogos.com/wp-content/uploads/thumbs/bootstrap-logo-vector.svg" alt="boots-logo"/>
+  <img width="48" src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f4/WampServer-logo.svg/1200px-WampServer-logo.svg.png" alt="wamp-logo"/>
 </p>
                                                                                                   
 ### Ferramentas de desenvolvimento
@@ -22,7 +24,11 @@ Este projeto foi desenvolvido com o objetivo de supervisionar o acesso dos funci
 </p>
 
 ## Documentação
+[Guia de Instalação e Uso](documentacao/instalacao.md)
 
+[Guia de Usuários](documentacao/GuiaUserCSSPR.pdf)
+
+[Diagramas](https://docs.github.com/en/issues/tracking-your-work-with-issues/about-issues)
 
 ## References
 [About issues - GitHub Docs](https://docs.github.com/en/issues/tracking-your-work-with-issues/about-issues)
