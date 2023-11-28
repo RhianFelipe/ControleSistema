@@ -63,8 +63,8 @@ $mysqli->close();
 
                         <td><?php echo $usuario['nome']; ?></td>
                         <td><?php echo $usuario['email']; ?></td>
-                        <td><?php echo $usuario['grupo']; ?></td>
-                        <td><?php echo $usuario['setor']; ?></td>
+                        <td id="tdGrupo"><?php echo $usuario['grupo']; ?></td>
+                        <td id="tdSetor"><?php echo $usuario['setor']; ?></td>
                         <td>
                             <!-- Botões para editar e excluir usuários -->
                             <button class="button-edit" onclick="openModalEdit(<?php echo $usuario['id']; ?>)">Editar</button>

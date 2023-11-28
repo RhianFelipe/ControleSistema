@@ -235,6 +235,9 @@ async function submitForm(event) {
     dadosForm.append("nome_termo[]", nomeTermo);
   });
 
+
+
+
   try {
     // Exibir SweetAlert para confirmar a ação
     const confirmacao = await Swal.fire({
@@ -255,6 +258,11 @@ async function submitForm(event) {
       });
   
       const resposta = await dados.json();
+      const tdGrupo = document.getElementById('tdGrupo');
+      const tdSetor = document.getElementById('tdSetor');
+    
+    tdGrupo.textContent = grupoSelecionado;
+    tdSetor.textContent = setorSelecionado;
       if (resposta.status) {
         exibirMensagem("success", "Sucesso", resposta.msg);
         // Fechar a modal atual

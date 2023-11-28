@@ -254,17 +254,6 @@ async function atualizarSid(nomeSid) {
       editSidModal.hide();
 
 
-    // Fechar a modal atual
-      const editModel = bootstrap.Modal.getInstance(
-        document.getElementById("editUsuarioModal")
-      );
-      editModel.hide();
-
-      // Abrir a modal novamente para atualizar os dados
-      openModalEdit(idUsuario);
-
-
-  
     } else {
       exibirMensagem("error", "Erro", data.msg);
     }
