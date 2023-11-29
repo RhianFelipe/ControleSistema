@@ -89,7 +89,10 @@ function preencherPermissoes(
     const checkbox = document.createElement("input");
     checkbox.type = "checkbox";
     checkbox.checked = permissao === "1";
-
+  /*
+  
+  
+ 
     // Verifica se sistemas[index] é igual a "Wi-Fi" ou "VPN" para desabilitar o checkbox
     if (sistemas[index] === "Wi-Fi" || sistemas[index] === "VPN") {
       checkbox.disabled = true;
@@ -106,7 +109,7 @@ function preencherPermissoes(
         );
       }
     }
-
+ */
     checkbox.style.width = "16px";
     checkbox.style.height = "16px";
     checkbox.style.borderRadius = "50%";

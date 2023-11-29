@@ -3,7 +3,8 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="editUsuarioModalLabel">Editar Usuário -</h5> <h5 style="margin-left: 0.5rem;" class="modal-title" id="nomeTitleModalUser"></h5>
+        <h5 class="modal-title" id="editUsuarioModalLabel">Editar Usuário -</h5>
+        <h5 style="margin-left: 0.5rem;" class="modal-title" id="nomeTitleModalUser"></h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
@@ -16,7 +17,7 @@
               <select id="input-value" name="grupo" class="form-select">
                 <option value="">Selecione o grupo</option>
                 <?php
-                $gruposPermitidos = array("Procurador", "Servidor","Servidor(Comissão)", "Terceirizado", "Estagiário", "Advogado", "Externo");
+                $gruposPermitidos = array("Procurador", "Servidor", "Servidor(Comissão)", "Terceirizado", "Estagiário", "Advogado", "Externo");
                 foreach ($gruposPermitidos as $grupoPermitido) {
                   echo "<option value='$grupoPermitido'>$grupoPermitido</option>";
                 }
@@ -42,7 +43,7 @@
           <!-- Nova tabela para os termos -->
           <div class="col-12">
             <table class="table">
-      
+
               <tbody id="termosEdit">
                 <!-- Os termos serão adicionados dinamicamente aqui -->
               </tbody>
@@ -63,13 +64,15 @@
             </p>
             <button id="editarSidButton" onclick="openSidModalTcc()" type="button"><img src="../public/assets/img/pen.svg" alt=""></button>
           </div>
-          <div  id="divSidWiFi"  style="display: inline-block; margin: 0; margin-left: 10px;">
-            <p id="sidText" style="display: inline-block; margin: 0; margin-left: 10px;">SID Wi-Fi:
-              <a href="" title="Clique para copiar SID e ser redirecionado ao site do eProtocolo" id="sidValueWi-Fi" target="_blank" onclick="copyAndRedirect('sidValueWi-Fi', 'https://www.eprotocolo.pr.gov.br/spiweb/consultarProtocoloDigital.do?action=pesquisar'); return false;"></a>
+          <div id="divSidWiFi" style="display: inline-block; margin: 0; margin-left: 10px;">
+            <p id="sidText" style="display: inline-block; margin: 0; margin-left: 10px; text-decoration: none;">
+              SID Wi-Fi:
+              <a id="sidValueWi-Fi" target="_blank" style="text-decoration: none; color: inherit; cursor: inherit;">Texto do link</a>
             </p>
             <button id="editarSidButton" onclick="openSidModalWifi()" type="button"><img src="../public/assets/img/pen.svg" alt=""></button>
           </div>
-          <div id="divSidVPN"  style="display: inline-block; margin: 0; margin-left: 10px;">
+
+          <div id="divSidVPN" style="display: inline-block; margin: 0; margin-left: 10px;">
             <p id="sidText" style="display: inline-block; margin: 0; margin-left: 10px;">SID VPN:
               <a href="" title="Clique para copiar SID e ser redirecionado ao site do eProtocolo" id="sidValueVPN" target="_blank" onclick="copyAndRedirect('sidValueVPN', 'https://www.eprotocolo.pr.gov.br/spiweb/consultarProtocoloDigital.do?action=pesquisar'); return false;"></a>
             </p>

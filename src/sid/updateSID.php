@@ -6,9 +6,9 @@ $dados = $_GET;
 $idUsuario = $dados['id'];
 $novoSid = $dados['novoSid'];
 $nomeSistema = $dados['nomeSid'];
-
+ //|| !preg_match('/^\d{2}\.\d{3}\.\d{3}-\d$/', $novoSid)
 // Verifica se o novo SID não é vazio
-if (empty($novoSid) || $novoSid === "0" || !preg_match('/^\d{2}\.\d{3}\.\d{3}-\d$/', $novoSid)) {
+if (empty($novoSid) || $novoSid === "0" ) {
   echo json_encode(['status' => false, 'msg' => 'O SID é inválido.']);
   exit();
 }

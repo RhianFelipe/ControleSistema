@@ -57,7 +57,7 @@ $setores = array(
     "Procuradoria Consultiva junto à Governadoria",
     "Procuradoria da Dívida Ativa",
     "Procuradoria de Ações Coletivas",
-    "Procuradoria de Execuções,Precatórios e Cálculos",
+    "Procuradoria de Execuções, Precatórios e Cálculos",
     "Procuradoria de Honorários da Gratuidade da Justiça",
     "Procuradoria de Saúde",
     "Procuradoria de Sucessões",
