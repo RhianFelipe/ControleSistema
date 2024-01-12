@@ -12,7 +12,7 @@
             <button class="dropbtn"><img src="../public/assets/img/icon-profile.png" alt="Descrição da Imagem"></button>
             <div class="dropdown-content">
                 <p id="username"><?php echo $_SESSION['nome']; ?></p>
-                <a href="../admin/src/public/pageAdmin.php">Admin</a>
+                <a href="../admin/public/pageAdmin.php">Admin</a>
                 <a href="../public/pageDocs.php">Documentação</a>
                 <a href="?logout=1">Sair</a>
             </div>
