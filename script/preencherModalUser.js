@@ -218,6 +218,94 @@ function preencherTermos(termosData, grupoSelecionado) {
   });
 }
 
+// Função para criar uma div com os elementos desejados
+function createSidDiv(id, labelText, onClickFunction, linkId, linkText) {
+  const div = document.createElement('div');
+  div.id = id;
+  div.style.display = 'inline-block';
+  div.style.margin = '0';
+  div.style.marginLeft = '10px';
+
+  const paragraph = document.createElement('p');
+  paragraph.id = 'sidText';
+  paragraph.style.display = 'inline-block';
+  paragraph.style.margin = '0';
+  paragraph.style.marginLeft = '10px';
+  paragraph.textContent = labelText;
+
+  const link = document.createElement('a');
+  link.id = linkId;
+  link.href = '#'; // Defina o href conforme necessário
+  link.style.display = 'inline-block';
+  link.style.marginLeft = '3px';
+  link.title = 'Clique para copiar SID e ser redirecionado ao site do eProtocolo';
+  link.target = '_blank';
+  link.textContent = linkText;
+  link.onclick = function() {
+    copyAndRedirect(linkId, 'https://www.eprotocolo.pr.gov.br/spiweb/consultarProtocoloDigital.do?action=pesquisar');
+    return false;
+  };
+
+  const button = document.createElement('button');
+  button.id = 'editarSidButton';
+  button.onclick = onClickFunction;
+  button.type = 'button';
+
+  const image = document.createElement('img');
+  image.src = '../public/assets/img/pen.svg';
+  image.alt = '';
+
+  button.appendChild(image);
+  paragraph.appendChild(link);
+  paragraph.appendChild(button);
+  div.appendChild(paragraph);
+
+  return div;
+}
+
+function openSidModalTur() {
+  const editSid = new bootstrap.Modal(
+    document.getElementById("editSidTermoTur")
+  );
+  editSid.show();
+}
+
+function openSidModalTcc() {
+  const editSid = new bootstrap.Modal(
+    document.getElementById("editSidTermoTcc")
+  );
+  editSid.show();
+}
+
+function openSidModalWifi() {
+  const editSid = new bootstrap.Modal(document.getElementById("editSidWi-Fi"));
+  editSid.show();
+}
+function openSidModalVPN() {
+  const editSid = new bootstrap.Modal(document.getElementById("editSidVPN"));
+  editSid.show();
+}
+
+// Função para adicionar as divs ao contêiner
+function addDivsToContainer() {
+  const container = document.getElementById('divContainer');
+
+  const divSidTUR = createSidDiv('divSidTUR', 'SID TUR:', openSidModalTur, 'sidValueTermoTur', '');
+  const divSidTCC = createSidDiv('divSidTCC', 'SID TCC:', openSidModalTcc, 'sidValueTermoTcc', '');
+  const divSidWiFi = createSidDiv('divSidWiFi', 'SID Wi-Fi:', openSidModalWifi, 'sidValueWi-Fi', '');
+  const divSidVPN = createSidDiv('divSidVPN', 'SID VPN:', openSidModalVPN, 'sidValueVPN', '');
+
+
+  container.appendChild(divSidTUR);
+  container.appendChild(divSidTCC);
+  container.appendChild(divSidWiFi);
+  container.appendChild(divSidVPN);
+}
+
+// Chama a função para adicionar as divs ao carregar a página
+addDivsToContainer();
+
+
 
 
 async function atualizarSid(nomeSid) {
@@ -245,6 +333,7 @@ async function atualizarSid(nomeSid) {
       method: "GET",
     });
     const data = await response.json(); // Analisa a resposta JSON
+    console.log(data)
     if (data.status == true) {
       exibirMensagem("success", "Sucesso", data.msg);
       // Fechar o modal editSid

@@ -50,34 +50,17 @@
             </table>
           </div>
           <!-- Inclua a referência ao SweetAlert -->
+          <!-- Este é o contêiner onde as divs serão adicionadas dinamicamente -->
 
-          <div id="divSidTUR" style="display: inline-block; margin: 0; margin-left: 10px;">
-            <p id="sidText" style="display: inline-block; margin: 0; margin-left: 10px;">SID TUR:
-              <a href="" style="display: inline-block; margin: 0;" title="Clique para copiar SID e ser redirecionado ao site do eProtocolo" id="sidValueTermoTur" target="_blank" onclick="copyAndRedirect('sidValueTermoTur', 'https://www.eprotocolo.pr.gov.br/spiweb/consultarProtocoloDigital.do?action=pesquisar'); return false;">Clique aqui</a>
-            </p>
-            <button id="editarSidButton" onclick="openSidModalTur()" type="button"><img src="../public/assets/img/pen.svg" alt=""></button>
-          </div>
-
-          <div id="divSidTCC" style="display: inline-block; margin: 0; margin-left: 10px;">
-            <p id="sidText" style="display: inline-block; margin: 0; margin-left: 10px;">SID TCC:
-              <a href="" style="display: inline-block; margin: 0;" title="Clique para copiar SID e ser redirecionado ao site do eProtocolo" id="sidValueTermoTcc" target="_blank" onclick="copyAndRedirect('sidValueTermoTcc', 'https://www.eprotocolo.pr.gov.br/spiweb/consultarProtocoloDigital.do?action=pesquisar'); return false;">Clique aqui</a>
-            </p>
-            <button id="editarSidButton" onclick="openSidModalTcc()" type="button"><img src="../public/assets/img/pen.svg" alt=""></button>
-          </div>
-          <div id="divSidWiFi" style="display: inline-block; margin: 0; margin-left: 10px;">
-            <p id="sidText" style="display: inline-block; margin: 0; margin-left: 10px; text-decoration: none;">
-              SID Wi-Fi:
-              <a id="sidValueWi-Fi" target="_blank" style="text-decoration: none; color: inherit; cursor: inherit;">Texto do link</a>
-            </p>
-            <button id="editarSidButton" onclick="openSidModalWifi()" type="button"><img src="../public/assets/img/pen.svg" alt=""></button>
-          </div>
-
-          <div id="divSidVPN" style="display: inline-block; margin: 0; margin-left: 10px;">
-            <p id="sidText" style="display: inline-block; margin: 0; margin-left: 10px;">SID VPN:
-              <a href="" title="Clique para copiar SID e ser redirecionado ao site do eProtocolo" id="sidValueVPN" target="_blank" onclick="copyAndRedirect('sidValueVPN', 'https://www.eprotocolo.pr.gov.br/spiweb/consultarProtocoloDigital.do?action=pesquisar'); return false;"></a>
-            </p>
-            <button id="editarSidButton" onclick="openSidModalVPN()" type="button"><img src="../public/assets/img/pen.svg" alt=""></button>
-          </div>
+          <div id="divContainer"></div>
+          <style>
+        #divContainer {
+            display: flex;
+            flex-direction: column; /* Empilhar elementos verticalmente */
+            align-items: flex-start; /* Alinhar à esquerda */
+        }
+ 
+        </style>
 
           <script>
             function copyAndRedirect(elementId, redirectUrl) {
@@ -104,8 +87,7 @@
             }
           </script>
 
-          <!-- 
-
+          <!--
                     <div class="col-12">
                         <div class="input-group input-sistema">
                             <input type="text" class="form-control" id="inputSistemaPersonalizado" placeholder="Adicionar sistema personalizado">
@@ -114,8 +96,7 @@
                             </button>
                         </div>
                     </div>
-
-                    -->
+           -->
 
           <div class="col-12">
             <table class="table">
