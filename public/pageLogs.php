@@ -4,6 +4,9 @@ include "../db/consulta.php";
 
 $pageTitle = "Logs de Usuário";
 session_start();
+include_once "../view/src/verificarPermissao.php";
+
+verificarPermissao();
 
 // Verifica se a sessão do usuário está definida
 if (!isset($_SESSION['user'])) {
@@ -61,6 +64,7 @@ if (!isset($_SESSION['user'])) {
 
     <script src="../script/utils.js"></script>
     <script src="../js/sweetalert2.js"></script>
+    <script src="../script/utils.js"></script>
     <script src="../script/sistemaModalEdit.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">
     </script>

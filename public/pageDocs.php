@@ -1,7 +1,9 @@
 <?php
 // Incluir arquivo de conexão com o banco de dados e arquivo de pop-up
 $pageTitle = "Documentação";
+include_once "../db/conexao.php";
 include_once "../db/consulta.php";
+
 session_start();
 
 // Verifica se a variável de sessão está definida

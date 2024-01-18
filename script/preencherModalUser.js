@@ -289,6 +289,10 @@ function openSidModalVPN() {
 // Função para adicionar as divs ao contêiner
 function addDivsToContainer() {
   const container = document.getElementById('divContainer');
+  if (!container) {
+    console.error("Elemento 'divContainer' não encontrado.");
+    return;
+}
 
   const divSidTUR = createSidDiv('divSidTUR', 'SID TUR:', openSidModalTur, 'sidValueTermoTur', '');
   const divSidTCC = createSidDiv('divSidTCC', 'SID TCC:', openSidModalTcc, 'sidValueTermoTcc', '');

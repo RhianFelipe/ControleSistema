@@ -3,7 +3,9 @@
 $pageTitle = "Cadastrar Usuários";
 include "../src/cadastrarUser.php";
 include_once "../db/consulta.php";
+include_once "../view/src/verificarPermissao.php";
 
+verificarPermissao();
 
 // Verifica se a variável de sessão está definida
 if (!isset($_SESSION['user'])) {

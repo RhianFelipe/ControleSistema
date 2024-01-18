@@ -5,6 +5,9 @@ include "../db/consulta.php";
 
 $pageTitle = "Lista de Usuários";
 session_start();
+include_once "../view/src/verificarPermissao.php";
+
+verificarPermissao();
 
 if (!isset($_SESSION['user'])) {
     // Redireciona o usuário para o painel de login se a sessão não estiver definida
@@ -37,7 +40,6 @@ $mysqli->close();
 </head>
 
 <body>
-
 
 
     <?php include 'header.php'; ?>

@@ -45,7 +45,7 @@ function preencherPermissoes(
         const classePermissao = permissao === "1" ? "verde" : "vermelha";
 
         const td = document.createElement("td");
-        td.style.padding = "0.5px";
+       
         td.textContent = textoPermissao;
         td.classList.add(classePermissao); // Adiciona a classe à célula
 

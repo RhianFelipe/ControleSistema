@@ -39,6 +39,7 @@ if (isset($_POST['usuario']) && isset($_POST['senha'])) {
                
                 $_SESSION['user'] = $id;
                 $_SESSION['nome'] = $usuario;
+                $_SESSION['permissao'] = $permissao;
 
                 // Verifique o valor da permissão e redirecione conforme necessário
                 if ($permissao == 1) {

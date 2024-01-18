@@ -10,7 +10,7 @@
 
             <div class="dropdown-content">
                 <p id="username"><?php echo $_SESSION['nome']; ?></p>
-              <a href="../../public/pageDocs.php">Documentação</a>
+            <!-- <a href="../../public/pageDocs.php">Documentação</a> -->  
                 <a href="?logout=1">Sair</a>
             </div>
         </div>

@@ -7,6 +7,15 @@ if (!isset($_SESSION['user'])) {
     header("Location: ../../index.php");
     exit();
 }
+ 
+    $permissaoUsuario = $_SESSION['permissao'];
+
+    // Verifica se o usuário tem permissão 0 (ou outra condição específica)
+    if ($permissaoUsuario == 0) {
+        // Usuário tem permissão 0, redirecione para uma página de acesso negado
+        header("Location: ../../view/public/viewBlock.php");
+        exit();
+    }
 
 ?>
 <!DOCTYPE html>
