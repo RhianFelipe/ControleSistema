@@ -1,7 +1,6 @@
 async function apagarUsuarioDados(id, nome) {
   console.log("Entrou:", id);
 
-
   // Exibe um diálogo de confirmação usando o Swal.fire
   const confirmar = await Swal.fire({
     title: "Tem certeza?",

@@ -89,7 +89,7 @@ function preencherPermissoes(
     const checkbox = document.createElement("input");
     checkbox.type = "checkbox";
     checkbox.checked = permissao === "1";
-  /*
+    /*
   
   
  
@@ -145,24 +145,21 @@ function preencherTermos(termosData, grupoSelecionado) {
   const termosEdit = document.getElementById("termosEdit");
   termosEdit.innerHTML = "";
 
-  const divSidWiFi = document.getElementById('divSidWiFi');
-  const divSidVPN = document.getElementById('divSidVPN');
-  const divSidTCC = document.getElementById('divSidTCC');
-  const divSidTUR = document.getElementById('divSidTUR');
-
+  const divSidWiFi = document.getElementById("divSidWiFi");
+  const divSidVPN = document.getElementById("divSidVPN");
+  const divSidTCC = document.getElementById("divSidTCC");
+  const divSidTUR = document.getElementById("divSidTUR");
 
   // Oculta inicialmente as divs do Wi-Fi e VPN
-  divSidWiFi.style.display = 'none';
-  divSidVPN.style.display = 'none';
-  divSidTUR.style.display = 'none';
-  divSidTCC.style.display = 'none';
+  divSidWiFi.style.display = "none";
+  divSidVPN.style.display = "none";
+  divSidTUR.style.display = "none";
+  divSidTCC.style.display = "none";
 
   // Verifica se o primeiro termo foi assinado no caso de um usuário terceirizado
   const primeiroTermoAssinado =
     grupoSelecionado === "Terceirizado" &&
     isTermoAssinado(termosData, "Termo de Uso e Responsabilidade");
-
-    
 
   termosData.forEach((termoData, index) => {
     const nomeTermo = termoData.nome_termo;
@@ -197,63 +194,73 @@ function preencherTermos(termosData, grupoSelecionado) {
     termosEdit.appendChild(tr);
 
     // Verifica e exibe a div correspondente ao termo assinado
-    if (nomeTermo === 'Termo de Wi-Fi' && assinado === '1') {
-      divSidWiFi.style.display = 'inline-block';
+    if (nomeTermo === "Termo de Wi-Fi" && assinado === "1") {
+      divSidWiFi.style.display = "inline-block";
     }
 
-    if (nomeTermo === 'Termo de VPN' && assinado === '1') {
-      divSidVPN.style.display = 'inline-block';
+    if (nomeTermo === "Termo de VPN" && assinado === "1") {
+      divSidVPN.style.display = "inline-block";
     }
 
-    if (nomeTermo === 'Termo de Uso e Responsabilidade' && assinado === '1') {
-      divSidTUR.style.display = 'inline-block';
+    if (nomeTermo === "Termo de Uso e Responsabilidade" && assinado === "1") {
+      divSidTUR.style.display = "inline-block";
     }
 
-    if (nomeTermo === 'Termo de Compromisso e Confidencialidade' && assinado === '0' && grupoSelecionado === "Terceirizado" ) {
-      divSidTCC.style.display = 'none';
-    }else if(nomeTermo === 'Termo de Compromisso e Confidencialidade' && assinado === '1'){
-      divSidTCC.style.display = 'inline-block';
+    if (
+      nomeTermo === "Termo de Compromisso e Confidencialidade" &&
+      assinado === "0" &&
+      grupoSelecionado === "Terceirizado"
+    ) {
+      divSidTCC.style.display = "none";
+    } else if (
+      nomeTermo === "Termo de Compromisso e Confidencialidade" &&
+      assinado === "1"
+    ) {
+      divSidTCC.style.display = "inline-block";
     }
-
   });
 }
 
 // Função para criar uma div com os elementos desejados
 function createSidDiv(id, labelText, onClickFunction, linkId, linkText) {
-  const div = document.createElement('div');
+  const div = document.createElement("div");
   div.id = id;
-  div.style.display = 'inline-block';
-  div.style.margin = '0';
-  div.style.marginLeft = '10px';
+  div.style.display = "inline-block";
+  div.style.margin = "0";
+  div.style.marginLeft = "10px";
 
-  const paragraph = document.createElement('p');
-  paragraph.id = 'sidText';
-  paragraph.style.display = 'inline-block';
-  paragraph.style.margin = '0';
-  paragraph.style.marginLeft = '10px';
+  const paragraph = document.createElement("p");
+  paragraph.id = "sidText";
+  paragraph.style.display = "inline-block";
+  paragraph.style.margin = "0";
+  paragraph.style.marginLeft = "10px";
   paragraph.textContent = labelText;
 
-  const link = document.createElement('a');
+  const link = document.createElement("a");
   link.id = linkId;
-  link.href = '#'; // Defina o href conforme necessário
-  link.style.display = 'inline-block';
-  link.style.marginLeft = '3px';
-  link.title = 'Clique para copiar SID e ser redirecionado ao site do eProtocolo';
-  link.target = '_blank';
+  link.href = "#"; // Defina o href conforme necessário
+  link.style.display = "inline-block";
+  link.style.marginLeft = "3px";
+  link.title =
+    "Clique para copiar SID e ser redirecionado ao site do eProtocolo";
+  link.target = "_blank";
   link.textContent = linkText;
-  link.onclick = function() {
-    copyAndRedirect(linkId, 'https://www.eprotocolo.pr.gov.br/spiweb/consultarProtocoloDigital.do?action=pesquisar');
+  link.onclick = function () {
+    copyAndRedirect(
+      linkId,
+      "https://www.eprotocolo.pr.gov.br/spiweb/consultarProtocoloDigital.do?action=pesquisar"
+    );
     return false;
   };
 
-  const button = document.createElement('button');
-  button.id = 'editarSidButton';
+  const button = document.createElement("button");
+  button.id = "editarSidButton";
   button.onclick = onClickFunction;
-  button.type = 'button';
+  button.type = "button";
 
-  const image = document.createElement('img');
-  image.src = '../public/assets/img/pen.svg';
-  image.alt = '';
+  const image = document.createElement("img");
+  image.src = "../public/assets/img/pen.svg";
+  image.alt = "";
 
   button.appendChild(image);
   paragraph.appendChild(link);
@@ -288,13 +295,36 @@ function openSidModalVPN() {
 
 // Função para adicionar as divs ao contêiner
 function addDivsToContainer() {
-  const container = document.getElementById('divContainer');
+  const container = document.getElementById("divContainer");
 
-  const divSidTUR = createSidDiv('divSidTUR', 'SID TUR:', openSidModalTur, 'sidValueTermoTur', '');
-  const divSidTCC = createSidDiv('divSidTCC', 'SID TCC:', openSidModalTcc, 'sidValueTermoTcc', '');
-  const divSidWiFi = createSidDiv('divSidWiFi', 'SID Wi-Fi:', openSidModalWifi, 'sidValueWi-Fi', '');
-  const divSidVPN = createSidDiv('divSidVPN', 'SID VPN:', openSidModalVPN, 'sidValueVPN', '');
-
+  const divSidTUR = createSidDiv(
+    "divSidTUR",
+    "SID TUR:",
+    openSidModalTur,
+    "sidValueTermoTur",
+    ""
+  );
+  const divSidTCC = createSidDiv(
+    "divSidTCC",
+    "SID TCC:",
+    openSidModalTcc,
+    "sidValueTermoTcc",
+    ""
+  );
+  const divSidWiFi = createSidDiv(
+    "divSidWiFi",
+    "SID Wi-Fi:",
+    openSidModalWifi,
+    "sidValueWi-Fi",
+    ""
+  );
+  const divSidVPN = createSidDiv(
+    "divSidVPN",
+    "SID VPN:",
+    openSidModalVPN,
+    "sidValueVPN",
+    ""
+  );
 
   container.appendChild(divSidTUR);
   container.appendChild(divSidTCC);
@@ -304,9 +334,6 @@ function addDivsToContainer() {
 
 // Chama a função para adicionar as divs ao carregar a página
 addDivsToContainer();
-
-
-
 
 async function atualizarSid(nomeSid) {
   const idUsuario = document.getElementById("editid").value;
@@ -333,19 +360,17 @@ async function atualizarSid(nomeSid) {
       method: "GET",
     });
     const data = await response.json(); // Analisa a resposta JSON
-    console.log(data)
+    console.log(data);
     if (data.status == true) {
       exibirMensagem("success", "Sucesso", data.msg);
       // Fechar o modal editSid
       const linkElement = document.getElementById(`sidValue${nomeSid}`);
-    
+
       linkElement.textContent = novoSid;
       const editSidModal = bootstrap.Modal.getInstance(
         document.getElementById(`editSid${nomeSid}`)
       );
       editSidModal.hide();
-
-
     } else {
       exibirMensagem("error", "Erro", data.msg);
     }

@@ -4,70 +4,70 @@ session_start();
 $conexao_file = "./db/conexao.php";
 
 if (!file_exists($conexao_file)) {
-    die("Erro: Arquivo de conexão não encontrado.");
+  die("Erro: Arquivo de conexão não encontrado.");
 }
 
 include $conexao_file;
 
 if (isset($_POST['usuario']) && isset($_POST['senha'])) {
-    // Usando mysqli->real_escape_string para evitar injeção de SQL
-    $usuario = $mysqli->real_escape_string($_POST['usuario']);
-    $senha_digitada = $mysqli->real_escape_string($_POST['senha']);
+  // Usando mysqli->real_escape_string para evitar injeção de SQL
+  $usuario = $mysqli->real_escape_string($_POST['usuario']);
+  $senha_digitada = $mysqli->real_escape_string($_POST['senha']);
 
-    // Construa a consulta SQL
-    $sql = "SELECT id, senha, usuario, permissao FROM admin WHERE usuario = '$usuario'";
-    $result = $mysqli->query($sql);
+  // Construa a consulta SQL
+  $sql = "SELECT id, senha, usuario, permissao FROM admin WHERE usuario = '$usuario'";
+  $result = $mysqli->query($sql);
 
-    if ($result) {
-        if ($result->num_rows > 0) {
-            $row = $result->fetch_assoc();
-            $id = $row['id'];
-            $senha_bd = $row['senha'];
-            $permissao = $row['permissao'];
+  if ($result) {
+    if ($result->num_rows > 0) {
+      $row = $result->fetch_assoc();
+      $id = $row['id'];
+      $senha_bd = $row['senha'];
+      $permissao = $row['permissao'];
 
-            // Descriptografa a senha do BD usando cifra de César chave 3
-            $senha_descriptografada = '';
-            for ($i = 0; $i < strlen($senha_bd); $i++) {
-                $char = $senha_bd[$i];
-                $decrypted_char = chr(ord($char) - 3);
-                $senha_descriptografada .= $decrypted_char;
-            }
+      // Descriptografa a senha do BD usando cifra de César chave 3
+      $senha_descriptografada = '';
+      for ($i = 0; $i < strlen($senha_bd); $i++) {
+        $char = $senha_bd[$i];
+        $decrypted_char = chr(ord($char) - 3);
+        $senha_descriptografada .= $decrypted_char;
+      }
 
-            // Verifique se a senha digitada corresponde à senha do BD
-            if ($senha_digitada === $senha_descriptografada) {
-                // Inicia a sessão antes de atribuir valores
-               
-                $_SESSION['user'] = $id;
-                $_SESSION['nome'] = $usuario;
-                $_SESSION['permissao'] = $permissao;
+      // Verifique se a senha digitada corresponde à senha do BD
+      if ($senha_digitada === $senha_descriptografada) {
+        // Inicia a sessão antes de atribuir valores
 
-                // Verifique o valor da permissão e redirecione conforme necessário
-                if ($permissao == 1) {
-                    // Redireciona para a página de filtro após o login bem-sucedido
-                    header("Location: ./public/pageFiltro.php");
-                    exit();
-                } else {
-                    // Redireciona para outra página
-                    header("Location: ./view/public/viewFiltro.php");
-                    exit();
-                }
-            } else {
-                // Define uma variável de sessão para indicar um erro de login
-                $_SESSION['login_error'] = true;
-                header("Location: ../index.php");
-                exit();
-            }
+        $_SESSION['user'] = $id;
+        $_SESSION['nome'] = $usuario;
+        $_SESSION['permissao'] = $permissao;
+
+        // Verifique o valor da permissão e redirecione conforme necessário
+        if ($permissao == 1) {
+          // Redireciona para a página de filtro após o login bem-sucedido
+          header("Location: ./public/pageFiltro.php");
+          exit();
         } else {
-            // Define uma variável de sessão para indicar um erro de login
-            $_SESSION['login_error'] = true;
-            header("Location: ../index.php");
-            exit();
+          // Redireciona para outra página
+          header("Location: ./view/public/viewFiltro.php");
+          exit();
         }
+      } else {
+        // Define uma variável de sessão para indicar um erro de login
+        $_SESSION['login_error'] = true;
+        header("Location: ../index.php");
+        exit();
+      }
     } else {
-        echo "Erro na consulta ao banco de dados.";
+      // Define uma variável de sessão para indicar um erro de login
+      $_SESSION['login_error'] = true;
+      header("Location: ../index.php");
+      exit();
     }
+  } else {
+    echo "Erro na consulta ao banco de dados.";
+  }
 
-    mysqli_close($mysqli);
+  mysqli_close($mysqli);
 }
 ?>
 

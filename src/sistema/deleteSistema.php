@@ -20,4 +20,3 @@ if ($adicionarParaTodos === '1') {
 
     echo json_encode(['status' => true, 'message' => 'Exclusão do sistema concluída.']);
 }
-?>

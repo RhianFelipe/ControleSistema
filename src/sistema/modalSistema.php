@@ -30,134 +30,133 @@
 </div>
 
 <script>
-async function enviarDados() {
-    const nomeSistema = document.getElementById('nomeSistema').value;
-    const adicionarParaTodos = document.getElementById('adicionarParaTodos').checked ? '1' : '0';
+    async function enviarDados() {
+        const nomeSistema = document.getElementById('nomeSistema').value;
+        const adicionarParaTodos = document.getElementById('adicionarParaTodos').checked ? '1' : '0';
 
-    if (nomeSistema.trim() === '') {
-        Swal.fire({
-            title: 'Erro!',
-            text: 'Por favor, insira um nome de sistema válido.',
-            icon: 'error'
+        if (nomeSistema.trim() === '') {
+            Swal.fire({
+                title: 'Erro!',
+                text: 'Por favor, insira um nome de sistema válido.',
+                icon: 'error'
+            });
+            return; // Não prossegue se o nome do sistema estiver vazio
+        }
+
+        const confirmacao = await Swal.fire({
+            title: 'Confirmar adição',
+            text: `Deseja realmente adicionar o sistema ${nomeSistema}?`,
+            icon: 'question',
+            showCancelButton: true,
+            confirmButtonText: 'Sim',
+            cancelButtonText: 'Cancelar'
         });
-        return; // Não prossegue se o nome do sistema estiver vazio
-    }
 
-    const confirmacao = await Swal.fire({
-        title: 'Confirmar adição',
-        text: `Deseja realmente adicionar o sistema ${nomeSistema}?`,
-        icon: 'question',
-        showCancelButton: true,
-        confirmButtonText: 'Sim',
-        cancelButtonText: 'Cancelar'
-    });
+        if (confirmacao.isConfirmed) {
+            try {
+                const url = `../src/sistema/updateSistema.php?nomeSistema=${encodeURIComponent(nomeSistema)}&adicionarParaTodos=${adicionarParaTodos}`;
 
-    if (confirmacao.isConfirmed) {
-        try {
-            const url = `../src/sistema/updateSistema.php?nomeSistema=${encodeURIComponent(nomeSistema)}&adicionarParaTodos=${adicionarParaTodos}`;
-
-            const response = await fetch(url, {
-                method: 'GET'
-            });
-
-            if (!response.ok) {
-                throw new Error('Erro ao enviar os dados');
-            }
-
-            const data = await response.json();
-
-            // Exibir o SweetAlert com base na resposta do servidor
-            if (data.status === true) {
-                Swal.fire({
-                    title: 'Sucesso!',
-                    text: data.msg,
-                    icon: 'success'
+                const response = await fetch(url, {
+                    method: 'GET'
                 });
-                // Fechar o modal após o sucesso
-                const editSistemaModal = bootstrap.Modal.getInstance(
-                    document.getElementById('editSistema')
-                );
-                editSistemaModal.hide();
-                openModalSistema();
-                // Faça o que for necessário com os dados recebidos
-            } else {
+
+                if (!response.ok) {
+                    throw new Error('Erro ao enviar os dados');
+                }
+
+                const data = await response.json();
+
+                // Exibir o SweetAlert com base na resposta do servidor
+                if (data.status === true) {
+                    Swal.fire({
+                        title: 'Sucesso!',
+                        text: data.msg,
+                        icon: 'success'
+                    });
+                    // Fechar o modal após o sucesso
+                    const editSistemaModal = bootstrap.Modal.getInstance(
+                        document.getElementById('editSistema')
+                    );
+                    editSistemaModal.hide();
+                    openModalSistema();
+                    // Faça o que for necessário com os dados recebidos
+                } else {
+                    Swal.fire({
+                        title: 'Erro!',
+                        text: data.msg,
+                        icon: 'error'
+                    });
+                }
+            } catch (error) {
+                console.error('Houve um erro:', error);
+                // Exibir um alerta caso ocorra um erro
                 Swal.fire({
                     title: 'Erro!',
-                    text: data.msg,
+                    text: 'Erro ao enviar os dados.',
                     icon: 'error'
                 });
             }
-        } catch (error) {
-            console.error('Houve um erro:', error);
-            // Exibir um alerta caso ocorra um erro
-            Swal.fire({
-                title: 'Erro!',
-                text: 'Erro ao enviar os dados.',
-                icon: 'error'
-            });
         }
     }
-}
 
 
 
-async function excluirSistema(nomeSistema) {
-    const adicionarParaTodos = document.getElementById('adicionarParaTodos').checked ? '1' : '0';
+    async function excluirSistema(nomeSistema) {
+        const adicionarParaTodos = document.getElementById('adicionarParaTodos').checked ? '1' : '0';
 
-    const confirmacao = await Swal.fire({
-        title: 'Tem certeza?',
-        text: 'Você realmente deseja excluir este sistema?',
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonText: 'Sim',
-        cancelButtonText: 'Cancelar'
-    });
+        const confirmacao = await Swal.fire({
+            title: 'Tem certeza?',
+            text: 'Você realmente deseja excluir este sistema?',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Sim',
+            cancelButtonText: 'Cancelar'
+        });
 
-    if (confirmacao.isConfirmed) {
-        try {
-            const url = `../src/sistema/deleteSistema.php?nomeSistema=${encodeURIComponent(nomeSistema)}&adicionarParaTodos=${adicionarParaTodos}`;
+        if (confirmacao.isConfirmed) {
+            try {
+                const url = `../src/sistema/deleteSistema.php?nomeSistema=${encodeURIComponent(nomeSistema)}&adicionarParaTodos=${adicionarParaTodos}`;
 
-            const response = await fetch(url, {
-                method: 'DELETE'
-            });
-
-            if (!response.ok) {
-                throw new Error('Erro ao excluir o sistema');
-            }
-
-            const data = await response.json();
-
-            // Manipular a resposta JSON aqui
-            if (data.status === true) {
-                Swal.fire({
-                    title: 'Sucesso!',
-                    text: data.message,
-                    icon: 'success'
+                const response = await fetch(url, {
+                    method: 'DELETE'
                 });
-                // Fechar o modal após o sucesso
-                const editSistemaModal = bootstrap.Modal.getInstance(
-                    document.getElementById('editSistema')
-                );
-                editSistemaModal.hide();
-                openModalSistema();
-            } else {
+
+                if (!response.ok) {
+                    throw new Error('Erro ao excluir o sistema');
+                }
+
+                const data = await response.json();
+
+                // Manipular a resposta JSON aqui
+                if (data.status === true) {
+                    Swal.fire({
+                        title: 'Sucesso!',
+                        text: data.message,
+                        icon: 'success'
+                    });
+                    // Fechar o modal após o sucesso
+                    const editSistemaModal = bootstrap.Modal.getInstance(
+                        document.getElementById('editSistema')
+                    );
+                    editSistemaModal.hide();
+                    openModalSistema();
+                } else {
+                    Swal.fire({
+                        title: 'Erro!',
+                        text: data.message,
+                        icon: 'error'
+                    });
+                }
+            } catch (error) {
+                console.error('Houve um erro:', error);
                 Swal.fire({
                     title: 'Erro!',
-                    text: data.message,
+                    text: 'Erro ao excluir o sistema',
                     icon: 'error'
                 });
             }
-        } catch (error) {
-            console.error('Houve um erro:', error);
-            Swal.fire({
-                title: 'Erro!',
-                text: 'Erro ao excluir o sistema',
-                icon: 'error'
-            });
         }
     }
-}
-
 </script>
 
 <script src="../js/sweetalert2.js"></script>

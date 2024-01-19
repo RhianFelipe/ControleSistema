@@ -1,6 +1,7 @@
 <?php
 
-function verificarPermissao() {
+function verificarPermissao()
+{
     // Verifica se o usuário está logado
     if (!isset($_SESSION['user']) || !isset($_SESSION['permissao'])) {
         // Usuário não está logado, redirecione para a página de login
@@ -17,5 +18,3 @@ function verificarPermissao() {
         exit();
     }
 }
-
-?>

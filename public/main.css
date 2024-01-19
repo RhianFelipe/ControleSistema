@@ -6,7 +6,7 @@
   --section-bgcolor: rgb(219, 219, 219);
 }
 
-@import '~pretty-checkbox/src/pretty-checkbox.scss';
+@import "~pretty-checkbox/src/pretty-checkbox.scss";
 
 /*Remove o espaço extra adicionado pelo padding e a borda de um elemento.*/
 * {
@@ -22,10 +22,6 @@ body {
   font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
     "Lucida Sans", Arial, sans-serif;
 }
-
-
-
-
 
 /*Estilização padrão do Header*/
 header {

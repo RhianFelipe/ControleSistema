@@ -53,15 +53,16 @@
           <!-- Este é o contêiner onde as divs serão adicionadas dinamicamente -->
 
           <div id="divContainer"></div>
-        
+
           <style>
-        #divContainer {
-            display: flex;
-            flex-direction: column; /* Empilhar elementos verticalmente */
-            align-items: flex-start; /* Alinhar à esquerda */
-        }
- 
-        </style>
+            #divContainer {
+              display: flex;
+              flex-direction: column;
+              /* Empilhar elementos verticalmente */
+              align-items: flex-start;
+              /* Alinhar à esquerda */
+            }
+          </style>
 
           <script>
             function copyAndRedirect(elementId, redirectUrl) {

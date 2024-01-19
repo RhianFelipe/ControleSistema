@@ -1,4 +1,4 @@
-<?php 
+<?php
 include "../../db/conexao.php";
 
 $buscaNomeSistema = "SELECT DISTINCT nomeSistema FROM admin";
@@ -28,4 +28,3 @@ if (!empty($sistemas)) {
 }
 
 echo json_encode($retorna);
-?>

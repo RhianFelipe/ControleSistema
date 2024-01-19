@@ -82,17 +82,15 @@ if (!isset($_SESSION['user'])) {
                 <?php endif; ?>
             </tbody>
         </table>
-<style>
+        <style>
+            .verde {
+                color: green;
+            }
 
-.verde {
-    color: green;
-}
-
-.vermelha {
-    color: red;
-}
-
-</style>
+            .vermelha {
+                color: red;
+            }
+        </style>
     </section>
     <?php include '../src/readModalUser.php'; ?>
     <script src="../script/readModalUser.js"></script>

@@ -13,29 +13,30 @@
 
 
         <style>
-    .col-12 {
-        margin-bottom: 10px;
-    }
+          .col-12 {
+            margin-bottom: 10px;
+          }
 
-    .label {
-        font-weight: bold;
-        margin-right: 5px;
-    }
+          .label {
+            font-weight: bold;
+            margin-right: 5px;
+          }
 
-    .value {
-        color: #555; /* Cor mais escura para os valores */
-    }
-</style>
+          .value {
+            color: #555;
+            /* Cor mais escura para os valores */
+          }
+        </style>
 
-<div class="col-12">
-    <span class="label">Grupo:</span>
-    <span class="value" id="input-value">Procuradora</span>
-</div>
+        <div class="col-12">
+          <span class="label">Grupo:</span>
+          <span class="value" id="input-value">Procuradora</span>
+        </div>
 
-<div class="col-12">
-    <span class="label">Setor:</span>
-    <span class="value" id="input-setor">T.I</span>
-</div>
+        <div class="col-12">
+          <span class="label">Setor:</span>
+          <span class="value" id="input-setor">T.I</span>
+        </div>
 
         <!-- Nova tabela para os termos -->
         <div class="col-12">
@@ -104,18 +105,21 @@
           </table>
         </div>
         <style>
- .table {
-    width: 100%;
-    border-collapse: collapse; /* Mescla as bordas das células para evitar espaços entre elas */
-  }
+          .table {
+            width: 100%;
+            border-collapse: collapse;
+            /* Mescla as bordas das células para evitar espaços entre elas */
+          }
 
-  .table td, .table th {
-    border-bottom: 1px solid #ddd; /* Ajuste a largura da borda conforme necessário */
-  
-    text-align: left; /* Alinha o texto à esquerda nas células */
-  }
+          .table td,
+          .table th {
+            border-bottom: 1px solid #ddd;
+            /* Ajuste a largura da borda conforme necessário */
 
-</style>
+            text-align: left;
+            /* Alinha o texto à esquerda nas células */
+          }
+        </style>
 
 
 
