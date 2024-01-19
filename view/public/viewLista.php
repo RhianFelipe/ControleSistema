@@ -1,7 +1,7 @@
 <?php
 
 include "../../db/conexao.php";
-include "../../db/consulta.php";
+include "../db/consulta.php";
 
 $pageTitle = "Lista de Usuários";
 session_start();

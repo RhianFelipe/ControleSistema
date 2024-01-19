@@ -2,9 +2,6 @@
 $pageTitle = "Filtrar Usuários";
 session_start();
 
-include_once "../view/src/verificarPermissao.php";
-verificarPermissao();
-
 if (!isset($_SESSION['user'])) {
     // Redireciona o usuário para o painel de login se a sessão não estiver definida
     header("Location: ../index.php");
@@ -24,11 +21,10 @@ if (!isset($_SESSION['user'])) {
     <link rel="stylesheet" href="../public/style/telaFiltro.css?v=<?php echo time(); ?>">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
     <link rel="icon" href="../public/assets/img/icon-govpr.png" type="image/x-icon">
-    
     <title>Sistema de Controle de Permissões</title>
 </head>
 
-<body>
+<body onload="limparFiltragem()">
 
 
     <?php include 'header.php'; ?>
@@ -67,16 +63,13 @@ if (!isset($_SESSION['user'])) {
                             <tr class="linha-usuario" id="linha-usuario-<?php echo $resultado['id']; ?>">
                                 <td><?php echo $resultado['nome']; ?></td>
                                 <td><?php echo $resultado['email']; ?></td>
-                                <td id="tdGrupo"><?php echo $resultado['grupo']; ?></td>
-                                <td id="tdSetor"><?php echo $resultado['setor']; ?></td>
+                                <td><?php echo $resultado['grupo']; ?></td>
+                                <td><?php echo $resultado['setor']; ?></td>
                                 <td class="td-button">
                                     <!-- Botões para editar e excluir usuários -->
                                     <button class="button-edit" onclick="openModalEdit('<?php echo $resultado['id']; ?>')">Editar</button>
                                     <button class="button-excluir" onclick="apagarUsuarioDados(<?php echo $resultado['id']; ?>, '<?php echo $resultado['nome']; ?>')">Excluir</button>
                                 </td>
-
-                               
-
                             </tr>
                         <?php endforeach; ?>
                     <?php endif; ?>
@@ -90,19 +83,13 @@ if (!isset($_SESSION['user'])) {
             </tbody>
         </table>
     </section>
-    
- 
-    <script src="../script/editModalUser.js"></script>
-    <script src="../script/preencherModalUser.js"></script>
-    <script src="../script/deleteUser.js"></script>
-    <script src="../script/utils.js"></script>
-    <script  src="../script/formatarSid.js"></script>
-    <script src="../js/sweetalert2.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-     integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">
-    </script>
-    <?php include '../src/modalEdit.php'; ?>
 
+   
+    <?php include '../include/importUser.php'; ?>
+    <script src="../js/sweetalert2.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">
+    </script>
+    <?php include '../include/modals.php'; ?>
 </body>
 
 </html>
