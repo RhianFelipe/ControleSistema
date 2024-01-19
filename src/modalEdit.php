@@ -53,7 +53,7 @@
           <!-- Este é o contêiner onde as divs serão adicionadas dinamicamente -->
 
           <div id="divContainer"></div>
-          <script src="../script/preencherModalUser.js"></script>
+        
           <style>
         #divContainer {
             display: flex;

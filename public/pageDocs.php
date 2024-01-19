@@ -1,10 +1,11 @@
 <?php
 // Incluir arquivo de conexão com o banco de dados e arquivo de pop-up
 $pageTitle = "Documentação";
-include_once "../db/conexao.php";
 include_once "../db/consulta.php";
-
 session_start();
+include_once "../view/src/verificarPermissao.php";
+
+verificarPermissao();
 
 // Verifica se a variável de sessão está definida
 if (!isset($_SESSION['user'])) {
@@ -44,7 +45,7 @@ if (!isset($_SESSION['user'])) {
                 <button class="dropbtn"><img src="../public/assets/img/icon-profile.png" alt=""></button>
                 <div class="dropdown-content">
                     <p id="username"><?php echo $_SESSION['nome']; ?></p>
-                    <a href="../admin/src/public/pageAdmin.php">Admin</a>
+                    <a href="../admin/public/pageAdmin.php">Admin</a>
                     <a href="../public/pageDocs.php">Documentação</a>
                     <a href="?logout=1">Sair</a>
                 </div>

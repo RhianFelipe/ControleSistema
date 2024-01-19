@@ -7,6 +7,7 @@ include_once "../view/src/verificarPermissao.php";
 
 verificarPermissao();
 
+
 // Verifica se a variável de sessão está definida
 if (!isset($_SESSION['user'])) {
     // Redireciona o usuário para o painel de login

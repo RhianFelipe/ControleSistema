@@ -2,6 +2,7 @@
 $pageTitle = "Pagina Admin";
 session_start();
 
+
 if (!isset($_SESSION['user'])) {
     // Redireciona o usuário para o painel de login se a sessão não estiver definida
     header("Location: ../../index.php");

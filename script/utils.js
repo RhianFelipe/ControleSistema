@@ -3,6 +3,7 @@ function limparFiltragem() {
   history.replaceState(null, null, urlSemParametros);
 }
 
+
 // Função para editar o SID
 function openSidModalTur() {
   const editSid = new bootstrap.Modal(

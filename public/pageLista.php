@@ -42,6 +42,7 @@ $mysqli->close();
 <body>
 
 
+
     <?php include 'header.php'; ?>
     <p class="total-usuarios">N°: <?php echo $totalUsuarios; ?> Usuários</p>
 

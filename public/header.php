@@ -9,7 +9,7 @@
         <li class="list-header"><a class="a1" <?php if ($pageTitle === 'Logs de Usuário') echo 'id="botao-filtro-a"'; ?> href="../public/pageLogs.php">Logs de Usuário</a></li>
         <li class="list-header"><a onclick="openModalSistema()" class="a1">Editar Sistema</a></li>
         <div class="dropdown">
-        <button class="dropbtn" style="border: none; outline: none;"><img src="../public/assets/img/icon-profile.png" alt="Descrição da Imagem"></button>
+            <button class="dropbtn"><img src="../public/assets/img/icon-profile.png" alt="Descrição da Imagem"></button>
             <div class="dropdown-content">
                 <p id="username"><?php echo $_SESSION['nome']; ?></p>
                 <a href="../admin/public/pageAdmin.php">Admin</a>
