@@ -93,6 +93,7 @@ if (!isset($_SESSION['user'])) {
         </style>
     </section>
     <?php include '../src/readModalUser.php'; ?>
+    <?php include '../src/modalAlterPassword.php'; ?>
     <script src="../script/readModalUser.js"></script>
     <script src="../../script/utils.js"></script>
     <script src="../script/preencherModalRead.js"></script>

@@ -20,7 +20,7 @@ $resultCheckSid = $mysqli->query($sqlCheckSid);
 if ($resultCheckSid) {
   $rowCheckSid = $resultCheckSid->fetch_assoc();
   $sidExistente = $rowCheckSid['valorSid'];
-  
+
   if ($novoSid === $sidExistente) {
     echo json_encode(['status' => false, 'msg' => 'O novo SID deve ser diferente do SID existente.']);
     exit();
@@ -36,9 +36,8 @@ $result = $mysqli->query($sqlUpdate);
 
 if ($result) {
   // Atualização bem-sucedida
-  echo json_encode(['status' => true , 'msg' => 'SID atualizado com sucesso.']);
+  echo json_encode(['status' => true, 'msg' => 'SID atualizado com sucesso.']);
 } else {
   // Erro na atualização
   echo json_encode(['status' => false, 'msg' => 'Erro ao atualizar o SID no banco de dados.']);
 }
-?>

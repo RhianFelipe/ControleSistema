@@ -11,6 +11,7 @@
             <div class="dropdown-content">
                 <p id="username"><?php echo $_SESSION['nome']; ?></p>
                 <!-- <a href="../../public/pageDocs.php">Documentação</a> -->
+                 <a href="#" onclick="openModalAlterSenha()">Alterar Senha</a> 
                 <a href="?logout=1">Sair</a>
             </div>
         </div>
@@ -24,3 +25,18 @@ if (isset($_GET['logout'])) {
     exit();
 }
 ?>
+
+<script>
+
+function openModalAlterSenha(){
+
+
+  const alterSenha = new bootstrap.Modal(
+    document.getElementById("alterPasswordModal")
+  );
+  alterSenha.show();
+
+
+}
+
+</script>
