@@ -3,8 +3,42 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="editUsuarioModalLabel">Editar Usuário -</h5>
+        <h5 class="modal-title" id="editUsuarioModalLabel">Editar -</h5>
         <h5 style="margin-left: 0.5rem;" class="modal-title" id="nomeTitleModalUser"></h5>
+        <button type="button" class="" onclick="atualizarNome()">
+          <img src="../public/assets/img/pen.svg" alt="">
+        </button>
+
+        <script>
+          function atualizarNome() {
+            var novoNome = prompt("Digite o novo nome:");
+            if (novoNome !== null && novoNome !== "") {
+              document.getElementById("nomeTitleModalUser").textContent = novoNome;
+
+              var id = document.getElementById("editid").value;
+              var url = '../src/updateName.php?novoNome=' + encodeURIComponent(novoNome) + '&id=' + encodeURIComponent(id);
+
+              fetch(url)
+                .then(response => {
+                  return response.json(); // Convertendo a resposta para JSON
+                })
+                .then(data => {
+                  if (data.status) {
+                    exibirMensagem('success', 'Sucesso!', data.msg);
+                  } else {
+                    exibirMensagem('error', 'Erro!', data.msg);
+                  }
+                })
+                .catch(error => {
+                  console.error('Erro de rede:', error);
+                  exibirMensagem('error', 'Erro de rede!', 'Ocorreu um erro ao conectar-se ao servidor.');
+                });
+
+            }
+          }
+        </script>
+
+
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
@@ -98,7 +132,7 @@
                             </button>
                         </div>
                     </div>
-           -->
+          -->
 
           <div class="col-12">
             <table class="table">

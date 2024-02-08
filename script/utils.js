@@ -4,6 +4,7 @@ function limparFiltragem() {
 }
 
 // Função para editar o SID
+/*
 function openSidModalTur() {
   const editSid = new bootstrap.Modal(
     document.getElementById("editSidTermoTur")
@@ -26,6 +27,16 @@ function openSidModalVPN() {
   const editSid = new bootstrap.Modal(document.getElementById("editSidVPN"));
   editSid.show();
 }
+
+function openEditName() {
+  const editName= new bootstrap.Modal(
+    document.getElementById("editName")
+  );
+  editName.show();
+}
+
+*/
+
 function exibirMensagem(icon, title, text) {
   return Swal.fire({
     icon: icon,
@@ -33,3 +44,5 @@ function exibirMensagem(icon, title, text) {
     text: text,
   });
 }
+
+
