@@ -8,7 +8,9 @@ body {
 .container {
     display: flex;
     max-width: 100%; /* Modificado para ocupar 100% da largura da tela */
-    height: 57.41rem;
+    
+    height: 100em;
+
 }
 
 .sidebar {

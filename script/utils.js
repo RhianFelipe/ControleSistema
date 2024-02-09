@@ -4,7 +4,7 @@ function limparFiltragem() {
 }
 
 // Função para editar o SID
-/*
+
 function openSidModalTur() {
   const editSid = new bootstrap.Modal(
     document.getElementById("editSidTermoTur")
@@ -35,7 +35,7 @@ function openEditName() {
   editName.show();
 }
 
-*/
+
 
 function exibirMensagem(icon, title, text) {
   return Swal.fire({

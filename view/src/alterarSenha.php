@@ -16,11 +16,6 @@ if (empty($idUsuario) || empty($newPassword)) {
         $senha_criptografada .= $encrypted_char;
     }
 
-    // Aqui você realizaria a lógica para alterar a senha no banco de dados.
-    // Suponhamos que você tenha uma tabela 'usuarios' com um campo 'senha'.
-
-    // Use boas práticas de segurança, como hash para a senha.
-
     $sqlUpdateSenha = "UPDATE admin SET senha = '$senha_criptografada' WHERE id = $idUsuario";
     $querySenha = $mysqli->query($sqlUpdateSenha) or die($mysqli->error);
 

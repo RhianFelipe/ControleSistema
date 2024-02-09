@@ -27,7 +27,8 @@ if ($permissaoUsuario == 0) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../public/style/telaAdmin.css?v=<?php echo time(); ?>">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-... (verifique a integridade no site do Font Awesome)" crossorigin="anonymous">
-
+    <script src="../../js/sweetalert2.js"></script>
+    <script src="../../script/utils.js"></script>
     <title>Dashboard de Administração</title>
 </head>
 
@@ -58,45 +59,10 @@ if ($permissaoUsuario == 0) {
 
 <script>
     function showAccounts() {
-        document.getElementById('dashboardContent').innerHTML = `
-    
-            <?php include 'pageGerenciarConta.php'; ?>
-   `
+        document.getElementById('dashboardContent').innerHTML =
+            `<?php include 'pageGerenciarConta.php'; ?>`
     }
 
-    function submitForm() {
-        // Obtém os valores dos campos
-        var username = document.getElementById('username').value;
-        var password = document.getElementById('password').value;
-        var permission = document.getElementById('permission').value;
-
-        // Cria um objeto FormData para enviar os dados
-        var formData = new FormData();
-        formData.append('username', username);
-        formData.append('password', password);
-        formData.append('permission', permission);
-
-        // Usa o Fetch API para enviar os dados para o arquivo PHP
-        fetch('../src/criarConta.php', {
-                method: 'POST',
-                body: formData
-            })
-            .then(response => response.json())
-            .then(data => {
-                // Lida com a resposta do servidor
-                if (data.success) {
-                    // Se a operação foi bem-sucedida, exibe um alerta de sucesso
-                    alert('Usuário cadastrado com sucesso!');
-                } else {
-                    // Se houve um erro, exibe um alerta de erro
-                    alert('Erro ao cadastrar usuário: ' + data.mensagem);
-                }
-            })
-            .catch(error => {
-                // Se ocorreu um erro durante a requisição, exibe um alerta de erro
-                alert('Erro ao enviar dados: ' + error.message);
-            });
-    }
 
 
     function showPermissions() {
@@ -114,4 +80,66 @@ if ($permissaoUsuario == 0) {
         </div>
     `;
     }
+
+    function resetarSenha(id) {
+        const novaSenha = prompt("Digite a nova senha:");
+        if (novaSenha !== null && novaSenha !== "") {
+
+            fetch('../src/resetarSenhaConta.php?id=' + id + '&novaSenha=' + encodeURIComponent(novaSenha), {
+                    method: 'GET'
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.status) {
+                        exibirMensagem('success', 'Sucesso!', data.msg);
+                    } else {
+                        exibirMensagem('error', 'Erro!', data.msg);
+                    }
+                })
+                .catch(error => {
+                    console.error('Erro ao redefinir a senha:', error);
+                    exibirMensagem('error', 'Erro de rede!', 'Ocorreu um erro ao conectar-se ao servidor.');
+                });
+
+        }
+
+    }
+
+    function excluirConta(id, usuario) {
+        Swal.fire({
+            title: 'Tem certeza?',
+            text: "Você realmente deseja excluir a conta de '" + usuario + "'?",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Sim, excluir!',
+            cancelButtonText: 'Cancelar'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                fetch('../src/excluirConta.php?id=' + id + '&usuario=' + encodeURIComponent(usuario), {
+                        method: 'GET'
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.status) {
+                            const linhaUsuario = document.getElementById("linha-usuario-" + id);
+                            exibirMensagem('success', 'Sucesso!', data.msg).then(() => {
+
+                                linhaUsuario.remove();
+                                l
+                            });;
+                        } else {
+                            exibirMensagem('error', 'Erro!', data.msg);
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Erro ao excluir a conta:', error);
+                        exibirMensagem('error', 'Erro de rede!', 'Ocorreu um erro ao conectar-se ao servidor.');
+                    });
+            }
+        });
+    }
 </script>
+
+<script src="../script/criarConta.js"></script>

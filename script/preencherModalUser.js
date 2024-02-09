@@ -222,7 +222,7 @@ function preencherTermos(termosData, grupoSelecionado) {
 }
 
 // Função para criar uma div com os elementos desejados
-function createSidDiv(id, labelText, onClickFunction, linkId, linkText) {
+function createSidDiv(id, labelText, onClickFunction, linkId) {
   const div = document.createElement("div");
   div.id = id;
   div.style.display = "inline-block";
@@ -244,7 +244,7 @@ function createSidDiv(id, labelText, onClickFunction, linkId, linkText) {
   link.title =
     "Clique para copiar SID e ser redirecionado ao site do eProtocolo";
   link.target = "_blank";
-  link.textContent = linkText;
+  
   link.onclick = function () {
     copyAndRedirect(
       linkId,
@@ -302,28 +302,24 @@ function addDivsToContainer() {
     "SID TUR:",
     openSidModalTur,
     "sidValueTermoTur",
-    ""
   );
   const divSidTCC = createSidDiv(
     "divSidTCC",
     "SID TCC:",
     openSidModalTcc,
     "sidValueTermoTcc",
-    ""
   );
   const divSidWiFi = createSidDiv(
     "divSidWiFi",
     "SID Wi-Fi:",
     openSidModalWifi,
     "sidValueWi-Fi",
-    ""
   );
   const divSidVPN = createSidDiv(
     "divSidVPN",
     "SID VPN:",
     openSidModalVPN,
     "sidValueVPN",
-    ""
   );
 
   container.appendChild(divSidTUR);

@@ -29,7 +29,7 @@
                     exibirMensagem('error', 'Erro!', data.msg);
                   }
                 })
-                .catch(error => {
+                .catch(error =>  {
                   console.error('Erro de rede:', error);
                   exibirMensagem('error', 'Erro de rede!', 'Ocorreu um erro ao conectar-se ao servidor.');
                 });
@@ -124,14 +124,14 @@
           </script>
 
           <!--
-                    <div class="col-12">
-                        <div class="input-group input-sistema">
-                            <input type="text" class="form-control" id="inputSistemaPersonalizado" placeholder="Adicionar sistema personalizado">
-                            <button type="button" class="btn btn-primary" onclick="adicionarSistemaPersonalizado()">
+          <div class="col-12">
+            <div class="input-group input-sistema">
+              <input type="text" class="form-control" id="inputSistemaPersonalizado" placeholder="Adicionar sistema personalizado">
+              <button type="button" class="btn btn-primary" onclick="adicionarSistemaPersonalizado()">
                                 +
-                            </button>
-                        </div>
-                    </div>
+              </button>
+            </div>
+          </div>
           -->
 
           <div class="col-12">
