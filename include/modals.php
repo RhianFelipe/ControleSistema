@@ -4,3 +4,4 @@
 <?php include '../src/sid/modalSidWifi.php'; ?>
 <?php include '../src/sid/modalSidVPN.php'; ?>
 <?php include '../src/sistema/modalSistema.php'; ?>
+<?php include '../view/src/modalAlterPassword.php'; ?>
