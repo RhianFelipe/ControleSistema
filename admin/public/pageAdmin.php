@@ -89,6 +89,6 @@ if ($permissaoUsuario == 0) {
 </script>
 
 <script src="../script/gerenciarConta/criarConta.js"></script>
-<script src="../script/gerenciarConta/excluirConta"></script>
+<script src="../script/gerenciarConta/excluirConta.js"></script>
 <script src="../script/gerenciarConta/resetarSenhaConta.js"></script>
 <script src="../script/gerenciarSetorGrupo/manterSetor.js"></script>
