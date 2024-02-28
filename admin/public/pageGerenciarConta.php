@@ -54,7 +54,7 @@ $totalUsuarios = $resultado->num_rows;
             <option value="0">Não</option>
         </select>
 
-        <button type="button" onclick="submitForm()">Criar Conta</button>
+        <button type="button" onclick="criarContaAdm()">Criar Conta</button>
     </form>
     <section id="dados-conta-section">
     <h2>Dados de Conta Criada</h2>

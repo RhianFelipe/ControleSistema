@@ -40,9 +40,11 @@ if ($permissaoUsuario == 0) {
             <ul>
 
                 <li><a href="#" onclick="showAccounts()">Gerenciar Contas</a></li>
+                <li><a href="#" onclick="showSectorGroup()">Gerenciar Grupo/Setor</a></li>
                 <li><a href="#" onclick="showPermissions()">Gerenciar Permissões</a></li>
                 <li><a href="#" onclick="showReports()">Gerenciar Relatórios</a></li>
 
+                
             </ul>
         </div>
 
@@ -63,7 +65,10 @@ if ($permissaoUsuario == 0) {
             `<?php include 'pageGerenciarConta.php'; ?>`
     }
 
-
+    function showSectorGroup() {
+        document.getElementById('dashboardContent').innerHTML = 
+            `<?php include 'pageGrupoSetor.php'; ?>`;
+    }
 
     function showPermissions() {
         document.getElementById('dashboardContent').innerHTML = `
@@ -80,66 +85,10 @@ if ($permissaoUsuario == 0) {
         </div>
     `;
     }
-
-    function resetarSenha(id) {
-        const novaSenha = prompt("Digite a nova senha:");
-        if (novaSenha !== null && novaSenha !== "") {
-
-            fetch('../src/resetarSenhaConta.php?id=' + id + '&novaSenha=' + encodeURIComponent(novaSenha), {
-                    method: 'GET'
-                })
-                .then(response => response.json())
-                .then(data => {
-                    if (data.status) {
-                        exibirMensagem('success', 'Sucesso!', data.msg);
-                    } else {
-                        exibirMensagem('error', 'Erro!', data.msg);
-                    }
-                })
-                .catch(error => {
-                    console.error('Erro ao redefinir a senha:', error);
-                    exibirMensagem('error', 'Erro de rede!', 'Ocorreu um erro ao conectar-se ao servidor.');
-                });
-
-        }
-
-    }
-
-    function excluirConta(id, usuario) {
-        Swal.fire({
-            title: 'Tem certeza?',
-            text: "Você realmente deseja excluir a conta de '" + usuario + "'?",
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Sim, excluir!',
-            cancelButtonText: 'Cancelar'
-        }).then((result) => {
-            if (result.isConfirmed) {
-                fetch('../src/excluirConta.php?id=' + id + '&usuario=' + encodeURIComponent(usuario), {
-                        method: 'GET'
-                    })
-                    .then(response => response.json())
-                    .then(data => {
-                        if (data.status) {
-                            const linhaUsuario = document.getElementById("linha-usuario-" + id);
-                            exibirMensagem('success', 'Sucesso!', data.msg).then(() => {
-
-                                linhaUsuario.remove();
-                                l
-                            });;
-                        } else {
-                            exibirMensagem('error', 'Erro!', data.msg);
-                        }
-                    })
-                    .catch(error => {
-                        console.error('Erro ao excluir a conta:', error);
-                        exibirMensagem('error', 'Erro de rede!', 'Ocorreu um erro ao conectar-se ao servidor.');
-                    });
-            }
-        });
-    }
+ 
 </script>
 
-<script src="../script/criarConta.js"></script>
+<script src="../script/gerenciarConta/criarConta.js"></script>
+<script src="../script/gerenciarConta/excluirConta"></script>
+<script src="../script/gerenciarConta/resetarSenhaConta.js"></script>
+<script src="../script/gerenciarSetorGrupo/manterSetor.js"></script>

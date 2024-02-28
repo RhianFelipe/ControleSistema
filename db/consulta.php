@@ -29,59 +29,16 @@ $queryBuscaRegistroLogsUser = mysqli_query($mysqli, $buscaRegistroLogsUser);
 $buscaGrupo = "SELECT grupo FROM usuarios";
 $queryBuscaGrupo = $mysqli->query($buscaGrupo) or die($mysqli->error);
 
-$setores = array(
-    "Assessoria Técnica do Gabinete",
-    "Coordenadoria de Assuntos Fiscais",
-    "Coordenadoria de Estudos Jurídicos",
-    "Coordenadoria de Gestão Estratégica e Tecnologia da Informação",
-    "Coordenadoria de Recursos",
-    "Coordenadoria do Consultivo",
-    "Coordenadoria do Passivo",
-    "Coordenadoria Judicial",
-    "Diretoria Geral",
-    "Gabinete da Procuradora-Geral do Estado",
-    "Núcleo Administrativo Setorial",
-    "Núcleo de Comunicação Social",
-    "Núcleo de Informática e Informações",
-    "Núcleo de Integridade e Compliance Setorial",
-    "Núcleo de Planejamento Setorial",
-    "Núcleo de Recursos Humanos Setorial",
-    "Núcleo Fazendário Setorial",
-    "Procuradoria  Regional de Pato Branco",
-    "Procuradoria Administrativa",
-    "Procuradoria Ambiental",
-    "Procuradoria Consultiva de Aquisições e Serviços",
-    "Procuradoria Consultiva de Concessões, Convênios e Parcerias",
-    "Procuradoria Consultiva de Obras e Serviços de Engenharia",
-    "Procuradoria Consultiva de Recursos Humanos",
-    "Procuradoria Consultiva junto à Governadoria",
-    "Procuradoria da Dívida Ativa",
-    "Procuradoria de Ações Coletivas",
-    "Procuradoria de Execuções, Precatórios e Cálculos",
-    "Procuradoria de Honorários da Gratuidade da Justiça",
-    "Procuradoria de Saúde",
-    "Procuradoria de Sucessões",
-    "Procuradoria do Contecioso Fiscal",
-    "Procuradoria do Patrimônio",
-    "Procuradoria Funcional",
-    "Procuradoria Previdenciária Funcional",
-    "Procuradoria Regional de Apucarana",
-    "Procuradoria Brasíla",
-    "Procuradoria Regional de Campo Mourão",
-    "Procuradoria Regional de Cascavel",
-    "Procuradoria Regional de Cornélio Procópio",
-    "Procuradoria Regional de Foz do Iguaçu",
-    "Procuradoria Regional de Francisco Beltrão",
-    "Procuradoria Regional de Guarapuava",
-    "Procuradoria Regional de Jacarezinho",
-    "Procuradoria Regional de Londrina",
-    "Procuradoria Regional de Maringá",
-    "Procuradoria Regional de Paranaguá",
-    "Procuradoria Regional de Paranavaí",
-    "Procuradoria Regional de Ponta Grossa",
-    "Procuradoria Regional de Umuarama",
-    "Procuradoria Regional de União da Vitória",
-    "Procuradoria Trabalhista",
-    "Secretaria",
-    "Externo"
-);
+// Consulta SQL para selecionar todos os setores da tabela
+$buscaSetor = "SELECT nomeSetor FROM setores ORDER BY nomeSetor ASC";
+$queryBuscaSetor = $mysqli->query($buscaSetor) or die($mysqli->error);
+
+$setores = array();
+
+if ($queryBuscaSetor->num_rows > 0) {
+    // Armazenar os resultados em um array
+    while ($row = $queryBuscaSetor->fetch_assoc()) {
+        $setores[] = $row["nomeSetor"];
+    }
+} else {
+}
