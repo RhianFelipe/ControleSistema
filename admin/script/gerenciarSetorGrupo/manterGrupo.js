@@ -1,18 +1,5 @@
-function criarNomeSetor(){
+function criarNomeSetor() {}
 
+function editarNomeSetor(id) {}
 
-    
-}
-
-
-function editarNomeSetor(id){
-
-
-
-}
-
-function excluirNomeSetor(){
-
-
-    
-}
+function excluirNomeSetor() {}

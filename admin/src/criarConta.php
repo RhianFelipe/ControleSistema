@@ -17,7 +17,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     } else {
         // Converte a permissão de "Sim" ou "Não" para 0 ou 1
         $permissao = ($permissao_texto === 'Sim') ? 1 : 0;
-        
+
         // Verifica se o usuário já existe
         $consultaUsuario = "SELECT id FROM admin WHERE usuario = '$usuario'";
         $resultadoConsulta = $mysqli->query($consultaUsuario);
@@ -34,7 +34,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $encrypted_char = chr(ord($char) + 3);
                 $senha_criptografada .= $encrypted_char;
             }
-        
+
             // Realiza a inserção dos dados no banco de dados
             $inserirUsuario = "INSERT INTO admin (usuario, senha, permissao) VALUES ('$usuario', '$senha_criptografada', '$permissao')";
 
@@ -62,4 +62,3 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 // Retorna a resposta em formato JSON
 header('Content-Type: application/json');
 echo json_encode($resposta);
-?>

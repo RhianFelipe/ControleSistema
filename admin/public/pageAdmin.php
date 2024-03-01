@@ -44,7 +44,7 @@ if ($permissaoUsuario == 0) {
                 <li><a href="#" onclick="showPermissions()">Gerenciar Permissões</a></li>
                 <li><a href="#" onclick="showReports()">Gerenciar Relatórios</a></li>
 
-                
+
             </ul>
         </div>
 
@@ -66,7 +66,7 @@ if ($permissaoUsuario == 0) {
     }
 
     function showSectorGroup() {
-        document.getElementById('dashboardContent').innerHTML = 
+        document.getElementById('dashboardContent').innerHTML =
             `<?php include 'pageGrupoSetor.php'; ?>`;
     }
 
@@ -85,7 +85,6 @@ if ($permissaoUsuario == 0) {
         </div>
     `;
     }
- 
 </script>
 
 <script src="../script/gerenciarConta/criarConta.js"></script>

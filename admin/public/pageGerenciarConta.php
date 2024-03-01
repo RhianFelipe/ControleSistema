@@ -32,13 +32,13 @@ $totalUsuarios = $resultado->num_rows;
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pretty-checkbox@3.0/dist/pretty-checkbox.min.css">
 
     <title>Criar Contas</title>
-  
+
 </head>
 
 
 <body>
     <header>
-    <h1>Criar Contas</h1>
+        <h1>Criar Contas</h1>
     </header>
 
     <form id="accountForm" method="post">
@@ -54,11 +54,11 @@ $totalUsuarios = $resultado->num_rows;
             <option value="0">Não</option>
         </select>
 
-        <button type="button" onclick="criarContaAdm()">Criar Conta</button>
+        <button type="button" onclick="criarConta()">Criar Conta</button>
     </form>
     <section id="dados-conta-section">
-    <h2>Dados de Conta Criada</h2>
-    <table class="dados-conta" id="dados-conta-table">
+        <h2>Dados de Conta Criada</h2>
+        <table class="dados-conta" id="dados-conta-table">
             <thead>
                 <tr>
                     <th>Nome de Usuário</th>
@@ -80,8 +80,8 @@ $totalUsuarios = $resultado->num_rows;
                         echo "<td>";
                         echo "<button class='button-edit' onclick='resetarSenha(" . $row['id'] . ")'>Resetar Senha</button>";
                         echo "<button class='button-excluir' onclick='excluirConta(" . $row['id'] . ", \"" . $row['usuario'] . "\")'>Excluir</button>";
-                        
-                         echo "</td>";
+
+                        echo "</td>";
                         echo "</tr>";
                     }
                 } else {

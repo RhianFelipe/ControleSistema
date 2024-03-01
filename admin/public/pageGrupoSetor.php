@@ -48,21 +48,21 @@ $setores = $queryBuscaSetor->num_rows;
     <section id="adicionar-buttons">
         <div class="add-setor-grupo">
             <div class="row">
-                  <!-- 
+                <!-- 
                 <div class="col">
                     <button type="button" class="btn btn-primary btn-sm">Adicionar Grupo</button>
                 </div>
                 -->
-                
+
                 <div class="col">
                     <button type="button" class="btn btn-primary btn-sm" onclick="criarNomeSetor()">Adicionar Setor</button>
                 </div>
-                
+
             </div>
         </div>
     </section>
 
-  <!-- 
+    <!-- 
 
     <section id="dados-conta-section">
         <h2>Grupos</h2>
@@ -88,11 +88,6 @@ $setores = $queryBuscaSetor->num_rows;
         </table>
     </section>
 
- 
-
-
-
-
    -->
     <section id="dados-conta-section">
         <h2>Setores</h2>
@@ -105,8 +100,7 @@ $setores = $queryBuscaSetor->num_rows;
             </thead>
             <tbody>
 
-            
-            <?php
+                <?php
                 // Verificar se há resultados da consulta
                 if ($queryBuscaSetor->num_rows > 0) {
                     // Loop para exibir os dados dos usuários
@@ -116,9 +110,7 @@ $setores = $queryBuscaSetor->num_rows;
                         echo "<td>";
                         echo "<button class='button-edit' onclick='editarNomeSetor(" . $row['id'] . ", \"" . $row['nomeSetor'] . "\")'>Editar</button>";
                         echo "<button class='button-excluir' onclick='excluirNomeSetor(" . $row['id'] . ", \"" . $row['nomeSetor'] . "\")'>Excluir</button>";
-
-                        
-                         echo "</td>";
+                        echo "</td>";
                         echo "</tr>";
                     }
                 } else {
@@ -138,4 +130,3 @@ $setores = $queryBuscaSetor->num_rows;
 
 
 </html>
-
