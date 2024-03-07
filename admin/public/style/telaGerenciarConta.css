@@ -1,55 +1,55 @@
 #dados-conta-section {
-    margin-top: 20px;
-    padding: 20px;
-    border-radius: 8px;
-    background-color: #f2f2f2;
+  margin-top: 20px;
+  padding: 20px;
+  border-radius: 8px;
+  background-color: #f2f2f2;
 }
 
 #dados-conta-section h2 {
-    font-size: 1.5rem;
-    color: #333;
-    margin-bottom: 10px;
+  font-size: 1.5rem;
+  color: #333;
+  margin-bottom: 10px;
 }
 
 #dados-conta-table {
-    width: 100%;
-    border-collapse: collapse;
+  width: 100%;
+  border-collapse: collapse;
 }
 
 #dados-conta-table th,
 #dados-conta-table td {
-    padding: 10px;
-    border-bottom: 1px solid #ddd;
-    text-align: left;
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+  text-align: left;
 }
 
 #dados-conta-table th {
-    background-color: #f0f0f0;
-    font-weight: bold;
+  background-color: #f0f0f0;
+  font-weight: bold;
 }
 
 #dados-conta-table td {
-    background-color: #fff;
+  background-color: #fff;
 }
 
 #dados-conta-table td:nth-child(odd) {
-    background-color: #f9f9f9;
+  background-color: #f9f9f9;
 }
 
 #dados-conta-table td button {
-    padding: 5px 10px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
+  padding: 5px 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
 }
 
 #dados-conta-table td button:first-child {
-    background-color: #007bff;
-    color: #fff;
+  background-color: #007bff;
+  color: #fff;
 }
 
 #dados-conta-table td button:last-child {
-    background-color: #dc3545;
-    color: #fff;
-    margin-left: 5px;
+  background-color: #dc3545;
+  color: #fff;
+  margin-left: 5px;
 }

@@ -2,7 +2,6 @@
 $pageTitle = "Pagina Admin";
 session_start();
 
-
 if (!isset($_SESSION['user'])) {
     // Redireciona o usuário para o painel de login se a sessão não estiver definida
     header("Location: ../../index.php");
@@ -43,7 +42,6 @@ if ($permissaoUsuario == 0) {
                 <li><a href="#" onclick="showSectorGroup()">Gerenciar Grupo/Setor</a></li>
                 <li><a href="#" onclick="showPermissions()">Gerenciar Permissões</a></li>
                 <li><a href="#" onclick="showReports()">Gerenciar Relatórios</a></li>
-
 
             </ul>
         </div>

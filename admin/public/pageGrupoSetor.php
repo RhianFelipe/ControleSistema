@@ -11,8 +11,6 @@ verificarPermissao();
 $buscaSetor = "SELECT * FROM setores ORDER BY nomeSetor ASC";
 $queryBuscaSetor = $mysqli->query($buscaSetor) or die($mysqli->error);
 
-
-
 // Obter o número total de usuários
 $setores = $queryBuscaSetor->num_rows;
 
@@ -99,30 +97,25 @@ $setores = $queryBuscaSetor->num_rows;
                 </tr>
             </thead>
             <tbody>
-
-                <?php
-                // Verificar se há resultados da consulta
-                if ($queryBuscaSetor->num_rows > 0) {
-                    // Loop para exibir os dados dos usuários
-                    while ($row = $queryBuscaSetor->fetch_assoc()) {
-                        echo "<tr id='linha-usuario-" . $row['id'] . "'>";
-                        echo "<td id='mostrar-setor'>" . $row['nomeSetor'] . "</td>";
-                        echo "<td>";
-                        echo "<button class='button-edit' onclick='editarNomeSetor(" . $row['id'] . ", \"" . $row['nomeSetor'] . "\")'>Editar</button>";
-                        echo "<button class='button-excluir' onclick='excluirNomeSetor(" . $row['id'] . ", \"" . $row['nomeSetor'] . "\")'>Excluir</button>";
-                        echo "</td>";
-                        echo "</tr>";
-                    }
-                } else {
-                    // Se nenhum registro for encontrado, exibir mensagem na tabela
-                    echo "<tr>";
-                    echo "<td colspan='3'>Nenhum registro encontrado.</td>";
-                    echo "</tr>";
-                }
-                ?>
+                <?php if ($queryBuscaSetor->num_rows > 0) : ?>
+                    <?php while ($row = $queryBuscaSetor->fetch_assoc()) : ?>
+                        <tr id="linha-usuario-<?php echo $row['id']; ?>">
+                            <td id="mostrar-setor"><?php echo $row['nomeSetor']; ?></td>
+                            <td>
+                                <button class="button-edit" onclick="editarNomeSetor(<?php echo $row['id']; ?>, '<?php echo $row['nomeSetor']; ?>')">Editar</button>
+                                <button class="button-excluir" onclick="excluirNomeSetor(<?php echo $row['id']; ?>, '<?php echo $row['nomeSetor']; ?>')">Excluir</button>
+                            </td>
+                        </tr>
+                    <?php endwhile; ?>
+                <?php else : ?>
+                    <tr>
+                        <td colspan="3">Nenhum registro encontrado.</td>
+                    </tr>
+                <?php endif; ?>
             </tbody>
         </table>
     </section>
+
 
 
 </body>

@@ -22,7 +22,7 @@ $buscaSistemas = "SELECT sistemas FROM permissoes";
 $queryBuscaSistemas =  $mysqli->query($buscaSistemas) or die($mysqli->error);
 
 // Consultas relacionadas a logs
-$buscaRegistroLogsUser = "SELECT * FROM logsusuarios ORDER BY data_operacao DESC";
+$buscaRegistroLogsUser = "SELECT * FROM logsusuarios ORDER BY data_operacao DESC LIMIT 200";
 $queryBuscaRegistroLogsUser = mysqli_query($mysqli, $buscaRegistroLogsUser);
 
 // Consulta os grupos de cada funcionario(procuradores, estags, servidores...)
