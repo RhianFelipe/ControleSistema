@@ -11,16 +11,92 @@ if (empty($id)) {
     // Log de exclusão de Usuário
     logOperacaoUsuario($mysqli, $id, 'Excluído');
 
-    // Mover os dados para a tabela de desativados
-    $sqlInsert = "INSERT INTO desativados (nome, email, sistema, permissao, data_exclusao, nome_termo, assinado, grupo, setor, nomeSid, valorSid)
-    SELECT u.nome, u.email, p.sistemas, p.permissao, NOW() AS data_exclusao, 
-           t.nome_termo, t.assinado, u.grupo, u.setor, s.nomeSid, s.valorSid
-    FROM usuarios u
-    JOIN permissoes p ON u.id = p.id_usuario
-    LEFT JOIN termos_assinados t ON u.id = t.id_usuario
-    LEFT JOIN sid s ON u.id = s.id_usuario
-    WHERE u.id = $id;
-";
+    // Consulta para selecionar id, nome e email do usuário
+    $sqlUsuarioInfo = "SELECT id, nome, email, grupo, setor
+                   FROM usuarios
+                   WHERE id = $id";
+
+    $resultUsuarioInfo = $mysqli->query($sqlUsuarioInfo);
+
+    if ($resultUsuarioInfo->num_rows > 0) {
+        // Extrair os dados do resultado
+        $row =  $resultUsuarioInfo->fetch_assoc();
+        $id = $row["id"];
+        $nome = $row["nome"];
+        $email = $row["email"];
+        $grupo = $row["grupo"];
+        $setor = $row["setor"];
+
+
+        // Consulta para inserir dados na tabela 'desativados' para nome e email
+        $sqlInsertDesativadosNomeEmailGrupoSetor = "INSERT INTO desativados (id_usuario, nome, email, grupo, setor, data_exclusao)
+        VALUES ($id, '$nome', '$email', '$grupo', '$setor', NOW())";
+    $mysqli->query($sqlInsertDesativadosNomeEmailGrupoSetor);
+    }
+
+    // Consulta para selecionar sistemas e permissões do usuário
+    $sqlPermissoes = "SELECT sistemas, permissao
+                  FROM permissoes
+                  WHERE id_usuario = $id";
+
+    $resultPermissoes = $mysqli->query($sqlPermissoes);
+
+
+    if ($resultPermissoes->num_rows > 0) {
+        // Extrair os dados do resultado e inserir na tabela 'desativados'
+        while ($row = $resultPermissoes->fetch_assoc()) {
+            $sistemas = $row["sistemas"];
+            $permissao = $row["permissao"];
+
+            // Consulta para inserir dados na tabela 'desativados'
+            $sqlInsertPermissoes = "INSERT INTO desativados (id_usuario, sistema, permissao) 
+        VALUES ($id, '$sistemas', '$permissao')";
+
+            $mysqli->query($sqlInsertPermissoes);
+        }
+    }
+
+    // Consulta para selecionar os termos assinados pelo usuário
+    $sqlTermosAssinados = "SELECT nome_termo, assinado
+    FROM termos_assinados
+    WHERE id_usuario = $id";
+
+    $resultTermosAssinados = $mysqli->query($sqlTermosAssinados);
+
+    if ($resultTermosAssinados->num_rows > 0) {
+        // Extrair os dados do resultado e inserir na tabela 'desativados'
+        while ($row = $resultTermosAssinados->fetch_assoc()) {
+            $nome_termo = $row["nome_termo"];
+            $assinado = $row["assinado"];
+
+            // Consulta para inserir dados na tabela 'desativados'
+            $sqlInsertTermosAssinados = "INSERT INTO desativados (id_usuario, nome_termo, assinado) 
+            VALUES ($id, '$nome_termo', '$assinado')";
+
+            $mysqli->query($sqlInsertTermosAssinados);
+        }
+    }
+
+    // Consulta para selecionar o SID do usuário
+    $sqlSid = "SELECT nomeSid, valorSid
+    FROM sid
+    WHERE id_usuario = $id";
+
+    $resultSid = $mysqli->query($sqlSid);
+
+    if ($resultSid->num_rows > 0) {
+        // Extrair os dados do resultado e inserir na tabela 'desativados'
+        while ($row = $resultSid->fetch_assoc()) {
+            $nomeSid = $row["nomeSid"];
+            $valorSid = $row["valorSid"];
+
+            // Consulta para inserir dados na tabela 'desativados'
+            $sqlInsertSid = "INSERT INTO desativados (id_usuario, nomeSid, valorSid) 
+            VALUES ($id, '$nomeSid', '$valorSid')";
+            $mysqli->query($sqlInsertSid);
+        }
+    }
+
 
     // Excluir os registros das tabelas originais
     $sqlDeletePermissoes = "DELETE FROM permissoes WHERE id_usuario = $id";
@@ -32,8 +108,6 @@ if (empty($id)) {
     $mysqli->begin_transaction();
 
     try {
-        // Executar a query de inserção
-        $mysqli->query($sqlInsert);
         // Executar a query de exclusão das permissões
         $mysqli->query($sqlDeletePermissoes);
         // Executar a query de exclusão dos termos assinados

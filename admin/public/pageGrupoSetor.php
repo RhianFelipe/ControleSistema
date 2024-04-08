@@ -53,7 +53,7 @@ $setores = $queryBuscaSetor->num_rows;
                 -->
 
                 <div class="col">
-                    <button type="button" class="btn btn-primary btn-sm" onclick="criarNomeSetor()">Adicionar Setor</button>
+                    <button type="button" class="btn btn-success btn-sm" onclick="criarNomeSetor()">Adicionar Setor</button>
                 </div>
 
             </div>

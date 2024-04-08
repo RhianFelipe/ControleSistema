@@ -7,16 +7,18 @@ body {
 
 .container {
   display: flex;
-  max-width: 100%; /* Modificado para ocupar 100% da largura da tela */
-
-  height: 205em;
+  height: 100vh; /* Usando altura total da viewport */
 }
 
 .sidebar {
-  width: 200px;
+  width: 230px;
   padding: 20px;
   background-color: #333;
   color: #fff;
+  position: fixed; /* Fixa a sidebar */
+  top: 0; /* Alinha ao topo */
+  left: 0; /* Alinha ao canto esquerdo */
+  bottom: 0; /* Estende até o final da tela */
 }
 
 .sidebar h2 {
@@ -39,8 +41,9 @@ body {
 }
 
 .content {
-  flex: 1;
+  flex: 0.9;
   padding: 20px;
+  margin-left: -70px; /* Adiciona margem à esquerda para acomodar a sidebar */
 }
 
 .button-container {
@@ -62,12 +65,14 @@ body {
 .button-container button:hover {
   background-color: #45a049;
 }
-/*===========================================================================*/
+
+
+
 
 /* Estilos básicos para o formulário */
 .form-container {
   max-width: 400px;
-  margin: 20px auto;
+  margin: 20px ;
   padding: 20px;
   background-color: #fff;
   border-radius: 8px;
@@ -86,12 +91,14 @@ label {
 input,
 select {
   padding: 10px;
-  margin-bottom: 16px;
+  margin-bottom: 10rem; /* Ajuste a margem inferior conforme necessário */
   border: 1px solid #ccc;
   border-radius: 4px;
 }
 
+
 button {
+  
   background-color: #4caf50;
   color: #fff;
   padding: 10px;
