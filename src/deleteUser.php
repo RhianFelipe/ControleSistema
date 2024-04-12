@@ -12,7 +12,7 @@ if (empty($id)) {
     logOperacaoUsuario($mysqli, $id, 'Excluído');
 
     // Consulta para selecionar id, nome e email do usuário
-    $sqlUsuarioInfo = "SELECT id, nome, email, grupo, setor
+    $sqlUsuarioInfo = "SELECT id, nome, email, grupo, data_create, setor
                    FROM usuarios
                    WHERE id = $id";
 
@@ -26,12 +26,12 @@ if (empty($id)) {
         $email = $row["email"];
         $grupo = $row["grupo"];
         $setor = $row["setor"];
+        $data_create = $row["data_create"];
 
+        $sqlInsertDesativadosNomeEmailGrupoSetor = "INSERT INTO desativados.usuarios (id, nome, email, grupo, setor, data_create, data_delete)
+        VALUES ($id, '$nome', '$email', '$grupo', '$setor', '$data_create', NOW())";
 
-        // Consulta para inserir dados na tabela 'desativados' para nome e email
-        $sqlInsertDesativadosNomeEmailGrupoSetor = "INSERT INTO desativados (id_usuario, nome, email, grupo, setor, data_exclusao)
-        VALUES ($id, '$nome', '$email', '$grupo', '$setor', NOW())";
-    $mysqli->query($sqlInsertDesativadosNomeEmailGrupoSetor);
+        $mysqli->query($sqlInsertDesativadosNomeEmailGrupoSetor);
     }
 
     // Consulta para selecionar sistemas e permissões do usuário
@@ -48,10 +48,9 @@ if (empty($id)) {
             $sistemas = $row["sistemas"];
             $permissao = $row["permissao"];
 
-            // Consulta para inserir dados na tabela 'desativados'
-            $sqlInsertPermissoes = "INSERT INTO desativados (id_usuario, sistema, permissao) 
-        VALUES ($id, '$sistemas', '$permissao')";
-
+            // Consulta para inserir dados na tabela 'desativados' para permissões
+            $sqlInsertPermissoes = "INSERT INTO desativados.permissoes (id_usuario, sistemas, permissao) 
+                                VALUES ($id, '$sistemas', '$permissao')";
             $mysqli->query($sqlInsertPermissoes);
         }
     }
@@ -69,10 +68,9 @@ if (empty($id)) {
             $nome_termo = $row["nome_termo"];
             $assinado = $row["assinado"];
 
-            // Consulta para inserir dados na tabela 'desativados'
-            $sqlInsertTermosAssinados = "INSERT INTO desativados (id_usuario, nome_termo, assinado) 
-            VALUES ($id, '$nome_termo', '$assinado')";
-
+            // Consulta para inserir dados na tabela 'desativados' para termos assinados
+            $sqlInsertTermosAssinados = "INSERT INTO desativados.termos_assinados (id_usuario, nome_termo, assinado) 
+                                      VALUES ($id, '$nome_termo', '$assinado')";
             $mysqli->query($sqlInsertTermosAssinados);
         }
     }
@@ -90,9 +88,9 @@ if (empty($id)) {
             $nomeSid = $row["nomeSid"];
             $valorSid = $row["valorSid"];
 
-            // Consulta para inserir dados na tabela 'desativados'
-            $sqlInsertSid = "INSERT INTO desativados (id_usuario, nomeSid, valorSid) 
-            VALUES ($id, '$nomeSid', '$valorSid')";
+            // Consulta para inserir dados na tabela 'desativados' para SID
+            $sqlInsertSid = "INSERT INTO desativados.sid (id_usuario, nomeSid, valorSid) 
+                         VALUES ($id, '$nomeSid', '$valorSid')";
             $mysqli->query($sqlInsertSid);
         }
     }

@@ -8,7 +8,9 @@ include_once "../../view/src/verificarPermissao.php";
 verificarPermissao();
 
 // Consulta SQL para selecionar todos os setores da tabela
-$buscaDeletados = "SELECT * FROM desativados ORDER BY nome ASC";
+$buscaDeletados = "SELECT * FROM desativados.usuarios ORDER BY data_delete DESC, nome ASC";
+
+
 $queryBuscarDeletados = $mysqli->query($buscaDeletados) or die($mysqli->error);
 
 // Obter o número total de usuários
@@ -43,49 +45,52 @@ $deletados = $queryBuscarDeletados->num_rows;
         <h1>Usuários Deletados</h1>
     </header>
 
-<!--
+
 
     <section id="dados-conta-section">
-        <h2>Setores</h2>
-        <table class="dados-conta" id="dados-conta-table">
-            <thead>
-                <tr>
-                <th>Nome</th>
-                    <th>Email</th>
-                    <th>Grupo</th>
-                    <th>Setor</th>
-                    <th>Ações</th>
+      
+    <table class="dados-conta" id="dados-conta-table">
+    <thead>
+        <tr>
+            <th>Nome</th>
+            <th>Email</th>
+            <th>Grupo</th>
+            <th>Setor</th>
+            <th>Data de Criação</th>
+            <th>Data de Exclusão</th>
+            <th>Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php if ($queryBuscarDeletados->num_rows > 0) : ?>
+            <?php while ($row = $queryBuscarDeletados->fetch_assoc()) : ?>
+                <tr id="linha-usuario-<?php echo $row['id']; ?>">
+                    <td id="mostrar-setor"><?php echo $row['nome']; ?></td>
+                    <td><?php echo $row['email']; ?></td>
+                    <td id="tdGrupo"><?php echo $row['grupo']; ?></td>
+                    <td id="tdSetor"><?php echo $row['setor']; ?></td>
+                    <td><?php echo date('d/m/Y H:i:s', strtotime($row['data_create'])); ?></td>
+                    <td><?php echo date('d/m/Y H:i:s', strtotime($row['data_delete'])); ?></td>
+
+
+                    <td>
+                        <button class="btn btn-view" onclick="openModalDelete(<?php echo $row['id']; ?>)">
+                            <i class="fas fa-eye"></i> Visualizar
+                        </button>
+                    </td>
                 </tr>
-            </thead>
-            <tbody>
-                <?php if ($queryBuscarDeletados->num_rows > 0) : ?>
-                    <?php while ($row = $queryBuscarDeletados->fetch_assoc()) : ?>
-                        <tr id="linha-usuario-<?php echo $row['id_usuario']; ?>">
-                            <td id="mostrar-setor"><?php echo $row['nome']; ?></td>
-                            <td><?php echo $row['email']; ?></td>
-                            <td id="tdGrupo"><?php echo $row['grupo']; ?></td>
-                            <td id="tdSetor"><?php echo $row['setor']; ?></td>
+            <?php endwhile; ?>
+        <?php else : ?>
+            <tr>
+                <td colspan="7">Nenhum registro encontrado.</td>
+            </tr>
+        <?php endif; ?>
+    </tbody>
+</table>
 
-
-                            <td>
-                            <button class="btn btn-view" onclick="openModalDelete(<?php echo $row['id_usuario']; ?>)"><i class="fas fa-eye"></i>Visualizar</button>
-
-
-
-                                
-                            </td>
-                        </tr>
-                    <?php endwhile; ?>
-                <?php else : ?>
-                    <tr>
-                        <td colspan="3">Nenhum registro encontrado.</td>
-                    </tr>
-                <?php endif; ?>
-            </tbody>
-        </table>
     </section>
 
- -->
+
 
 </body>
 
