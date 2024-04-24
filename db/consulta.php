@@ -25,9 +25,6 @@ $queryBuscaSistemas =  $mysqli->query($buscaSistemas) or die($mysqli->error);
 $buscaRegistroLogsUser = "SELECT * FROM logsusuarios ORDER BY data_operacao DESC LIMIT 200";
 $queryBuscaRegistroLogsUser = mysqli_query($mysqli, $buscaRegistroLogsUser);
 
-// Consulta os grupos de cada funcionario(procuradores, estags, servidores...)
-$buscaGrupo = "SELECT grupo FROM usuarios";
-$queryBuscaGrupo = $mysqli->query($buscaGrupo) or die($mysqli->error);
 
 // Consulta SQL para selecionar todos os setores da tabela
 $buscaSetor = "SELECT nomeSetor FROM setores ORDER BY nomeSetor ASC";

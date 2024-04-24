@@ -149,6 +149,10 @@ async function openModalEdit(id) {
       nomeUsuarioTitle.textContent = resposta.dados.nome;
       console.log("Nome do Usuário:", resposta.dados.nome);
 
+      const emailUsuario = document.getElementById("emailUser");
+      emailUsuario.textContent = resposta.dados.email;
+      console.log("Nome do Email:", resposta.dados.email);
+
       const sidValueTur = document.getElementById("sidValueTermoTur");
       sidValueTur.textContent = sidTermoTur;
 

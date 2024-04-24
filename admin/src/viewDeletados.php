@@ -3,7 +3,8 @@ include_once '../../db/conexao.php'; // Verifique o caminho correto para o arqui
 
 $id = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_NUMBER_INT);
 
-function consultarValorSID($mysqli, $id, $nomeSid) {
+function consultarValorSID($mysqli, $id, $nomeSid)
+{
     $sql = "SELECT valorSid FROM desativados.sid WHERE id_usuario = $id AND nomeSid = '$nomeSid'";
     $result = $mysqli->query($sql);
     if ($result && $result->num_rows > 0) {
@@ -13,7 +14,8 @@ function consultarValorSID($mysqli, $id, $nomeSid) {
     return "";
 }
 
-function consultarDados($mysqli, $id, $tabela, $campo) {
+function consultarDados($mysqli, $id, $tabela, $campo)
+{
     $sql = "SELECT $campo FROM desativados.$tabela WHERE id_usuario = $id";
     $result = $mysqli->query($sql);
     if ($result && $result->num_rows > 0) {
