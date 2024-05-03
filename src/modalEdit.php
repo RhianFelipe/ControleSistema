@@ -129,7 +129,7 @@
                             </tbody>
                         </table>
                     </div>
-                    <!-- Inclua a referência ao SweetAlert -->
+       
                     <!-- Este é o contêiner onde as divs serão adicionadas dinamicamente -->
 
                     <div id="divContainer"></div>

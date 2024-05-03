@@ -145,10 +145,10 @@ function preencherTermos(termosData, grupoSelecionado) {
   const termosEdit = document.getElementById("termosEdit");
   termosEdit.innerHTML = "";
 
-  const divSidWiFi = document.getElementById("divSidWiFi");
+  const divSidWiFi = document.getElementById("divSidWi-Fi");
   const divSidVPN = document.getElementById("divSidVPN");
-  const divSidTCC = document.getElementById("divSidTCC");
-  const divSidTUR = document.getElementById("divSidTUR");
+  const divSidTCC = document.getElementById("divSidTermoTcc");
+  const divSidTUR = document.getElementById("divSidTermoTur");
 
   // Oculta inicialmente as divs do Wi-Fi e VPN
   divSidWiFi.style.display = "none";
@@ -270,66 +270,44 @@ function createSidDiv(id, labelText, onClickFunction, linkId) {
   return div;
 }
 
-function openSidModalTur() {
+function openSidModal(nomeSid) {
   const editSid = new bootstrap.Modal(
-    document.getElementById("editSidTermoTur")
+    document.getElementById("editSid" + nomeSid)
   );
   editSid.show();
 }
 
-function openSidModalTcc() {
-  const editSid = new bootstrap.Modal(
-    document.getElementById("editSidTermoTcc")
-  );
-  editSid.show();
-}
-
-function openSidModalWifi() {
-  const editSid = new bootstrap.Modal(document.getElementById("editSidWi-Fi"));
-  editSid.show();
-}
-function openSidModalVPN() {
-  const editSid = new bootstrap.Modal(document.getElementById("editSidVPN"));
-  editSid.show();
-}
 
 // Função para adicionar as divs ao contêiner
-function addDivsToContainer() {
+function preencherSid(sids) {
   const container = document.getElementById("divContainer");
 
-  const divSidTUR = createSidDiv(
-    "divSidTUR",
-    "SID TUR:",
-    openSidModalTur,
-    "sidValueTermoTur",
-  );
-  const divSidTCC = createSidDiv(
-    "divSidTCC",
-    "SID TCC:",
-    openSidModalTcc,
-    "sidValueTermoTcc",
-  );
-  const divSidWiFi = createSidDiv(
-    "divSidWiFi",
-    "SID Wi-Fi:",
-    openSidModalWifi,
-    "sidValueWi-Fi",
-  );
-  const divSidVPN = createSidDiv(
-    "divSidVPN",
-    "SID VPN:",
-    openSidModalVPN,
-    "sidValueVPN",
-  );
+  // Limpar conteúdo do container
+  container.innerHTML = '';
+  sids.sort((a, b) => a.nomeSid.localeCompare(b.nomeSid));
+  sids.forEach(sid => {
+    const divSid = createSidDiv(
+      "divSid" + sid.nomeSid,
+      "SID " + sid.nomeSid + ":",
+      () => openSidModal(sid.nomeSid),
+      "sidValue" + sid.nomeSid,
+    );
 
-  container.appendChild(divSidTUR);
-  container.appendChild(divSidTCC);
-  container.appendChild(divSidWiFi);
-  container.appendChild(divSidVPN);
+    container.appendChild(divSid);
+
+    // Loop através dos elementos dentro da divSid atual
+    divSid.querySelectorAll('a').forEach(link => {
+      if (link.id === "sidValue" + sid.nomeSid) {
+        link.textContent = sid.valorSid;
+      }
+    });
+    
+  });
 }
 
-// Chama a função para adicionar as divs ao carregar a página
-addDivsToContainer();
+
+
+
 
 async function atualizarSid(nomeSid) {
   const idUsuario = document.getElementById("editid").value;

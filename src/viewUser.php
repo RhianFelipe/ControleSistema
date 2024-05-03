@@ -14,7 +14,8 @@ function consultarValorSID($mysqli, $id, $nomeSid) {
 }
 
 function consultarDados($mysqli, $id, $tabela, $campo) {
-    $sql = "SELECT $campo FROM $tabela WHERE id_usuario = $id";
+    $sql = "SELECT $campo FROM $tabela WHERE id_usuario = $id ";
+
     $result = $mysqli->query($sql);
     if ($result && $result->num_rows > 0) {
         return $result->fetch_all(MYSQLI_ASSOC);
@@ -30,10 +31,7 @@ if (!empty($id)) {
     if ($usuarioRow) {
         $permissoesRows = consultarDados($mysqli, $id, 'permissoes', 'sistemas, permissao');
         $termosRows = consultarDados($mysqli, $id, 'termos_assinados', 'nome_termo, assinado');
-        $sidValueTermoTur = consultarValorSID($mysqli, $id, 'TermoTur');
-        $sidValueTermoTcc = consultarValorSID($mysqli, $id, 'TermoTcc');
-        $sidValueWiFI = consultarValorSID($mysqli, $id, 'Wi-Fi');
-        $sidValueVPN = consultarValorSID($mysqli, $id, 'VPN');
+        $sid = consultarDados($mysqli, $id, 'sid', 'nomeSid, valorSid');
 
         $retorna = [
             'status' => true,
@@ -45,10 +43,7 @@ if (!empty($id)) {
                 'setor' => $usuarioRow['setor'],
                 'permissoes' => $permissoesRows,
                 'termos' => $termosRows,
-                'sidTermoTur' => $sidValueTermoTur,
-                'sidTermoTcc' => $sidValueTermoTcc,
-                'sidWifi' => $sidValueWiFI,
-                'sidVPN' => $sidValueVPN
+                'sid' => $sid,
             ]
         ];
     } else {
