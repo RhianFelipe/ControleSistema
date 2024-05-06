@@ -27,8 +27,6 @@ if (empty($idUsuario) || empty($newPassword)) {
         $retorna = ['status' => false, 'msg' => "Erro ao alterar a senha"];
     }
 
-    // Adicione operações adicionais aqui se necessário
-
     echo json_encode($retorna);
 }
 ?>

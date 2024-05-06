@@ -286,13 +286,14 @@ function preencherSid(sids) {
   container.innerHTML = '';
   sids.sort((a, b) => a.nomeSid.localeCompare(b.nomeSid));
   sids.forEach(sid => {
+    const nomeSemTermo = sid.nomeSid.replace(/^Termo/, '').toUpperCase(); // Remove "Termo" e converte para maiúsculo
     const divSid = createSidDiv(
       "divSid" + sid.nomeSid,
-      "SID " + sid.nomeSid + ":",
+      "SID " + nomeSemTermo + ":", // Usando o nome sem "Termo" em maiúsculo
       () => openSidModal(sid.nomeSid),
       "sidValue" + sid.nomeSid,
     );
-
+    
     container.appendChild(divSid);
 
     // Loop através dos elementos dentro da divSid atual
@@ -304,10 +305,6 @@ function preencherSid(sids) {
     
   });
 }
-
-
-
-
 
 async function atualizarSid(nomeSid) {
   const idUsuario = document.getElementById("editid").value;

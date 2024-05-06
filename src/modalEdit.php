@@ -3,12 +3,21 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="editUsuarioModalLabel">Editar -</h5>
-                <h5 style="margin-left: 0.5rem;" class="modal-title" id="nomeTitleModalUser"></h5>
-                <button type="button" class="" onclick="atualizarNome()">
-                    <img src="../public/assets/img/pen.svg" alt="">
-                </button>
-
+                <div class="modal-header1" style="display: flex; flex-direction: column;">
+                    <div style="display: flex; align-items: center;">
+                        <h5 class="modal-title" id="editUsuarioModalLabel">Editar -</h5>
+                        <h5 style="margin-left: 0.5rem;" class="modal-title" id="nomeTitleModalUser"></h5>
+                        <button type="button" class="" onclick="atualizarNome()">
+                            <img src="../public/assets/img/pen.svg" alt="">
+                        </button>
+                    </div>
+                    <div style="display: flex; align-items: center;">
+                        <h6 id="emailUser" style="margin-bottom: -0.2rem;"></h6>
+                        <button type="button" class="" onclick="atualizarEmail()">
+                            <img src="../public/assets/img/pen.svg" alt="">
+                        </button>
+                    </div>
+                </div>
                 <script>
                 function atualizarNome() {
                     var novoNome = prompt("Digite o novo nome:");
@@ -75,17 +84,7 @@
             <div class="modal-body">
                 <form class="row g-3" id="edit-usuario-form">
                     <input type="hidden" name="id" id="editid">
-                    <div class="col-12" style="display: flex; align-items: center;">
-                        <div class="col-auto" style="margin-left: 6px;">
-                            <h6 id="emailUser"></h6>
-                        </div>
-                        <div class="col-auto" style="margin-top: -10px; margin-right: -100px;">
-                            <!-- Ajuste de margem superior -->
-                            <button type="button" class="" onclick="atualizarEmail()">
-                                <img src="../public/assets/img/pen.svg" alt="">
-                            </button>
-                        </div>
-                    </div>
+
 
 
 
@@ -129,7 +128,7 @@
                             </tbody>
                         </table>
                     </div>
-       
+
                     <!-- Este é o contêiner onde as divs serão adicionadas dinamicamente -->
 
                     <div id="divContainer"></div>
