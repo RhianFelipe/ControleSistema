@@ -134,6 +134,16 @@ async function openModalEdit(id) {
 
 
       preencherSid(sid)
+      sid.map(sids => {
+        console.log("Sid: ", sids);
+        const sidSemTermo = sids.nomeSid.replace(/^Termo/, '').toUpperCase(); 
+        criarModalSid(
+          `editSid${sids.nomeSid}`,
+          `sidInput${sids.nomeSid}`,
+          sidSemTermo,
+          `atualizarSid('${sids.nomeSid}')`
+        );
+      });
 
       preencherPermissoes(
         permissoes,

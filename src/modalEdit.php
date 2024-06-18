@@ -7,33 +7,33 @@
                     <div style="display: flex; align-items: center;">
                         <h5 class="modal-title" id="editUsuarioModalLabel">Editar -</h5>
                         <h5 style="margin-left: 0.5rem;" class="modal-title" id="nomeTitleModalUser"></h5>
-                        <button type="button" class="" onclick="atualizarNome()">
+                        <button type="button" class=""
+                            onclick="atualizarCampo('Nome','nomeTitleModalUser', 'updateName' )">
                             <img src="../public/assets/img/pen.svg" alt="">
                         </button>
                     </div>
                     <div style="display: flex; align-items: center;">
                         <h6 id="emailUser" style="margin-bottom: -0.2rem;"></h6>
-                        <button type="button" class="" onclick="atualizarEmail()">
+                        <button type="button" class="" onclick="atualizarCampo('Email','emailUser','updateEmail')">
                             <img src="../public/assets/img/pen.svg" alt="">
                         </button>
                     </div>
                 </div>
                 <script>
-                function atualizarNome() {
-                    var novoNome = prompt("Digite o novo nome:");
-                    if (novoNome !== null && novoNome !== "") {
-                        document.getElementById("nomeTitleModalUser").textContent = novoNome;
+                function atualizarCampo(tipoCampo, campoID, arqRequest) {
+                    var novoValor = prompt(`Digite o novo ${tipoCampo}:`);
+                    if (novoValor !== null && novoValor.trim() !== "") {
+                      
 
                         var id = document.getElementById("editid").value;
-                        var url = '../src/updateName.php?novoNome=' + encodeURIComponent(novoNome) + '&id=' +
-                            encodeURIComponent(id);
+                        var url =
+                            `../src/${arqRequest}.php?novo${tipoCampo}=${encodeURIComponent(novoValor)}&id=${encodeURIComponent(id)}`;
 
                         fetch(url)
-                            .then(response => {
-                                return response.json(); // Convertendo a resposta para JSON
-                            })
+                            .then(response => response.json())
                             .then(data => {
                                 if (data.status) {
+                                    document.getElementById(campoID).textContent = novoValor;
                                     exibirMensagem('success', 'Sucesso!', data.msg);
                                 } else {
                                     exibirMensagem('error', 'Erro!', data.msg);
@@ -44,36 +44,6 @@
                                 exibirMensagem('error', 'Erro de rede!',
                                     'Ocorreu um erro ao conectar-se ao servidor.');
                             });
-
-                    }
-                }
-
-                function atualizarEmail() {
-                    var novoEmail = prompt("Digite o novo email:");
-                    if (novoEmail !== null && novoEmail !== "") {
-                        document.getElementById("emailUser").textContent = novoEmail;
-
-                        var id = document.getElementById("editid").value;
-                        var url = '../src/updateEmail.php?novoEmail=' + encodeURIComponent(novoEmail) + '&id=' +
-                            encodeURIComponent(id);
-
-                        fetch(url)
-                            .then(response => {
-                                return response.json(); // Convertendo a resposta para JSON
-                            })
-                            .then(data => {
-                                if (data.status) {
-                                    exibirMensagem('success', 'Sucesso!', data.msg);
-                                } else {
-                                    exibirMensagem('error', 'Erro!', data.msg);
-                                }
-                            })
-                            .catch(error => {
-                                console.error('Erro de rede:', error);
-                                exibirMensagem('error', 'Erro de rede!',
-                                    'Ocorreu um erro ao conectar-se ao servidor.');
-                            });
-
                     }
                 }
                 </script>
@@ -84,9 +54,6 @@
             <div class="modal-body">
                 <form class="row g-3" id="edit-usuario-form">
                     <input type="hidden" name="id" id="editid">
-
-
-
 
                     <div class="col-12">
 
