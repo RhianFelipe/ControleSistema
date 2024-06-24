@@ -66,16 +66,6 @@ function preencherTermos(termosData, grupoSelecionado) {
   const termosEdit = document.getElementById("termosEdit");
   termosEdit.innerHTML = "";
 
-  const divSidWiFi = document.getElementById("divSidWiFi");
-  const divSidVPN = document.getElementById("divSidVPN");
-  const divSidTCC = document.getElementById("divSidTCC");
-  const divSidTUR = document.getElementById("divSidTUR");
-
-  // Oculta inicialmente as divs do Wi-Fi e VPN
-  divSidWiFi.style.display = "none";
-  divSidVPN.style.display = "none";
-  divSidTUR.style.display = "none";
-  divSidTCC.style.display = "none";
 
   termosData.forEach((termoData, index) => {
     const nomeTermo = termoData.nome_termo;
@@ -99,30 +89,7 @@ function preencherTermos(termosData, grupoSelecionado) {
     termosEdit.appendChild(tr);
 
     // Verifica e exibe a div correspondente ao termo assinado
-    if (nomeTermo === "Termo de Wi-Fi" && assinado === "1") {
-      divSidWiFi.style.display = "inline-block";
-    }
-
-    if (nomeTermo === "Termo de VPN" && assinado === "1") {
-      divSidVPN.style.display = "inline-block";
-    }
-
-    if (nomeTermo === "Termo de Uso e Responsabilidade" && assinado === "1") {
-      divSidTUR.style.display = "inline-block";
-    }
-
-    if (
-      nomeTermo === "Termo de Compromisso e Confidencialidade" &&
-      assinado === "0" &&
-      grupoSelecionado === "Terceirizado"
-    ) {
-      divSidTCC.style.display = "none";
-    } else if (
-      nomeTermo === "Termo de Compromisso e Confidencialidade" &&
-      assinado === "1"
-    ) {
-      divSidTCC.style.display = "inline-block";
-    }
+    
   });
 }
 
@@ -162,47 +129,39 @@ function createSidDiv(id, labelText, onClickFunction, linkId, linkText) {
   return div;
 }
 
+
 // Função para adicionar as divs ao contêiner
-function addDivsToContainer() {
+function preencherSid(sids) {
   const container = document.getElementById("divContainer");
 
-  const divSidTUR = createSidDiv(
-    "divSidTUR",
-    "SID TUR:",
-    openSidModalTur,
-    "sidValueTermoTur",
-    ""
-  );
-  const divSidTCC = createSidDiv(
-    "divSidTCC",
-    "SID TCC:",
-    openSidModalTcc,
-    "sidValueTermoTcc",
-    ""
-  );
-  const divSidWiFi = createSidDiv(
-    "divSidWiFi",
-    "SID Wi-Fi:",
-    openSidModalWifi,
-    "sidValueWi-Fi",
-    ""
-  );
-  const divSidVPN = createSidDiv(
-    "divSidVPN",
-    "SID VPN:",
-    openSidModalVPN,
-    "sidValueVPN",
-    ""
-  );
+  // Limpar conteúdo do container
+  container.innerHTML = '';
+  sids.sort((a, b) => a.nomeSid.localeCompare(b.nomeSid));
+  sids.forEach(sid => {
+    if (!sid.valorSid) {
+      return; // Pular este sid se valorSid for zerado, nulo ou vazio
+    }
 
-  container.appendChild(divSidTUR);
-  container.appendChild(divSidTCC);
-  container.appendChild(divSidWiFi);
-  container.appendChild(divSidVPN);
+    const nomeSemTermo = sid.nomeSid.replace(/^Termo/, '').toUpperCase(); // Remove "Termo" e converte para maiúsculo
+    const divSid = createSidDiv(
+      "divSid" + sid.nomeSid,
+      "SID " + nomeSemTermo + ":", // Usando o nome sem "Termo" em maiúsculo
+      () => openSidModal(sid.nomeSid),
+      "sidValue" + sid.nomeSid,
+    );
+    
+    container.appendChild(divSid);
+
+    // Loop através dos elementos dentro da divSid atual
+    divSid.querySelectorAll('a').forEach(link => {
+      if (link.id === "sidValue" + sid.nomeSid) {
+        link.textContent = sid.valorSid;
+      }
+    });
+    
+  });
 }
 
-// Chama a função para adicionar as divs ao carregar a página
-addDivsToContainer();
 
 async function atualizarSid(nomeSid) {
   const idUsuario = document.getElementById("editid").value;

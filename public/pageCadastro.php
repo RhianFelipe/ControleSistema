@@ -182,24 +182,33 @@ if (!isset($_SESSION['user'])) {
   
 
     <script>
-        document.getElementById('grupo').addEventListener('change', function() {
-            const grupoSelecionado = this.value;
-            const termoCompromissoCheckbox = document.getElementById('termoCompromisso');
-            const termoCompromissoLabel = document.querySelector('label[for="termoCompromisso"]');
+    document.getElementById('grupo').addEventListener('change', function() {
+        const grupoSelecionado = this.value;
+        const termoCompromissoCheckbox = document.getElementById('termoCompromisso');
+        const termoCompromissoLabel = document.querySelector('label[for="termoCompromisso"]');
 
-            if (grupoSelecionado === 'Terceirizado') {
-                // Se o grupo for "Terceirizado", desabilita o checkbox do segundo termo
-                termoCompromissoCheckbox.disabled = true;
+        if (grupoSelecionado === 'Terceirizado') {
+            // Se o grupo for "Terceirizado", desabilita o checkbox do segundo termo
+            termoCompromissoCheckbox.disabled = true;
+            termoCompromissoCheckbox.removeAttribute('required');
+            termoCompromissoLabel.removeAttribute('title'); // Opcional: Remove o atributo 'title' do label
+        } else {
+            // Se o grupo for "Externo" ou outro valor, habilita o checkbox do segundo termo
+            termoCompromissoCheckbox.disabled = false;
+            
+            if (grupoSelecionado === 'Externo') {
+                // Se o grupo for "Externo", remove o atributo 'required'
                 termoCompromissoCheckbox.removeAttribute('required');
                 termoCompromissoLabel.removeAttribute('title'); // Opcional: Remove o atributo 'title' do label
             } else {
-                // Se o grupo não for "Terceirizado", habilita o checkbox do segundo termo
-                termoCompromissoCheckbox.disabled = false;
+                // Se o grupo não for "Terceirizado" nem "Externo", adiciona o atributo 'required'
                 termoCompromissoCheckbox.setAttribute('required', 'required');
                 termoCompromissoLabel.setAttribute('title', 'Termo de Compromisso e Confidencialidade'); // Opcional: Restaura o atributo 'title' do label
             }
-        });
-    </script>
+        }
+    });
+</script>
+
     <script src="../script/formatarSid.js"></script>
     <script src="../script/utils.js"></script>
     <script src="../script/cadastrarUser.js"></script>

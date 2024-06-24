@@ -47,13 +47,13 @@ async function openModalView(id) {
       }
 
       const termosAssinados = resposta.dados.termos;
-      console.log("Termos:", resposta.dados.termos);
-      const sidTermoTur = resposta.dados.sidTermoTur;
-      const sidTermoTcc = resposta.dados.sidTermoTcc;
-      const sidWifi = resposta.dados.sidWifi;
-      const sidVPN = resposta.dados.sidVPN;
-      console.log("Sid Tur: ", sidTermoTur);
-      console.log("Sid Tcc: ", sidTermoTcc);
+      console.log("Termos:", termosAssinados);
+      const sid = resposta.dados.sid;
+      console.log("Sid: ", sid);
+
+
+      preencherSid(sid)
+
 
       preencherPermissoes(
         permissoes,
@@ -67,18 +67,6 @@ async function openModalView(id) {
       const nomeUsuarioTitle = document.getElementById("nomeTitleModalUser");
       nomeUsuarioTitle.textContent = resposta.dados.nome;
       console.log("Nome do Usuário:", resposta.dados.nome);
-
-      const sidValueTur = document.getElementById("sidValueTermoTur");
-      sidValueTur.textContent = sidTermoTur;
-
-      const sidValueTcc = document.getElementById("sidValueTermoTcc");
-      sidValueTcc.textContent = sidTermoTcc;
-
-      const sidValueWifi = document.getElementById("sidValueWi-Fi");
-      sidValueWifi.textContent = sidWifi;
-
-      const sidValueVPN = document.getElementById("sidValueVPN");
-      sidValueVPN.textContent = sidVPN;
     }
   } catch (error) {
     console.error(error);
