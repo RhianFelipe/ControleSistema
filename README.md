@@ -26,7 +26,7 @@ Este projeto foi desenvolvido com o objetivo de supervisionar o acesso dos funci
 ## Documentação
 [Guia de Instalação e Uso](docs/instalacao.md)
 
-[Guia de Usuários](docs/GuiaUserCSSPR.pdf)
+[Guia de Usuários](docs/)
 
 [Diagramas](https://docs.github.com/en/issues/tracking-your-work-with-issues/about-issues)
 
