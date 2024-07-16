@@ -171,9 +171,6 @@ if (!isset($_SESSION['user'])) {
     <footer>
         <p>&copy; 2023 Procuradoria Geral do Estado do Paraná. Todos os direitos reservados.</p>
         <div class="contact-info">
-            <a href="mailto:estag.rhian@pge.pr.gov.br" class="contact-link">
-                <img src="https://1000logos.net/wp-content/uploads/2021/05/Gmail-logo.png" alt="Email" class="contact-icon" style="width: 50px;">
-            </a>
             <a href="https://github.com/RhianFelipe" target="_blank" class="contact-link">
                 <img src="https://cdn-icons-png.flaticon.com/512/25/25231.png" alt="GitHub" class="contact-icon" style="width: 25px;">
             </a>

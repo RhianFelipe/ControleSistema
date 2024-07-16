@@ -28,6 +28,7 @@ if ($permissaoUsuario == 0) {
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-... (verifique a integridade no site do Font Awesome)" crossorigin="anonymous">
     <script src="../../js/sweetalert2.js"></script>
     <script src="../../script/utils.js"></script>
+    <link rel="icon" href="../../public/assets/img/icon-govpr.png" type="image/x-icon">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
     <title>Dashboard de Administração</title>
 </head>
@@ -40,9 +41,7 @@ if ($permissaoUsuario == 0) {
             <ul>
 
                 <li><a href="#" onclick="showAccounts()">Gerenciar Contas</a></li>
-                <li><a href="#" onclick="showSectorGroup()">Gerenciar Grupo/Setor</a></li>
-                <li><a href="#" onclick="showPermissions()">Gerenciar Permissões</a></li>
-                <li><a href="#" onclick="showReports()">Gerenciar Relatórios</a></li>
+                <li><a href="#" onclick="showSectorGroup()">Gerenciar Setor</a></li>
                 <li><a href="#" onclick="showDeletedUsers()">Lista de Excluídos</a></li>
 
             </ul>
@@ -75,22 +74,10 @@ if ($permissaoUsuario == 0) {
             `<?php include 'pageDelete.php'; ?>`;
     }
 
-    function showPermissions() {
-        document.getElementById('dashboardContent').innerHTML = `
-        <h1>Gerenciar Permissões</h1>
-        <!-- Lógica para exibir e gerenciar permissões -->
-    `;
-    }
-
-    function showReports() {
-        document.getElementById('dashboardContent').innerHTML = `
-        <h1>Gerenciar Relatórios</h1>
-        <div id="reportSection">
-            <!-- Lógica para exibir relatórios -->
-        </div>
-    `;
-    }
 </script>
+
+
+
 
 <?php include '../src/modalDeletados.php'; ?>
 <script src="../script/gerenciarConta/criarConta.js"></script>

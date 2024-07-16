@@ -27,7 +27,7 @@ $setores = $queryBuscaSetor->num_rows;
     <link rel="icon" href="../public/assets/img/icon-govpr.png" type="image/x-icon">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pretty-checkbox@3.0/dist/pretty-checkbox.min.css">
 
-    <title>Gerenciar Setor e Grupo</title>
+    <title>Gerenciar Setor</title>
 
 </head>
 
@@ -39,7 +39,7 @@ $setores = $queryBuscaSetor->num_rows;
 
 <body>
     <header>
-        <h1>Gerenciar Setor e Grupo</h1>
+        <h1>Gerenciar Setor</h1>
     </header>
 
 
