@@ -28,14 +28,6 @@ Este projeto foi desenvolvido com o objetivo de supervisionar o acesso dos funci
 
 [Guia de Usuários](docs/)
 
-[Diagramas](https://docs.github.com/en/issues/tracking-your-work-with-issues/about-issues)
-
-## Referências
-[About issues - GitHub Docs](https://docs.github.com/en/issues/tracking-your-work-with-issues/about-issues)
-
-[About wikis - GitHub Docs](https://docs.github.com/en/communities/documenting-your-project-with-wikis/about-wikis)
-
-[About discussions - GitHub Docs](https://docs.github.com/en/discussions/collaborating-with-your-community-using-discussions/about-discussions)
 
 
 
