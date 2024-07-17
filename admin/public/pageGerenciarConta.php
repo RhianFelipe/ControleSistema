@@ -4,20 +4,14 @@ include "../../db/conexao.php";
 
 $pageTitle = "Lista de Admin";
 include_once "../../view/src/verificarPermissao.php";
-
 verificarPermissao();
 
 // Consulta SQL para selecionar os atributos 'usuario' e 'permissao' da tabela 'admin'
-$sql = "SELECT id, usuario, permissao FROM admin WHERE usuario <> '' AND permissao IS NOT NULL ORDER BY usuario ASC";
-
-
-
-// Executar a consulta
-$resultado = $mysqli->query($sql);
+$buscaUsuarioAdmin = "SELECT id, usuario, permissao FROM admin WHERE usuario <> '' AND permissao IS NOT NULL ORDER BY usuario ASC";
+$resultado = $mysqli->query($buscaUsuarioAdmin);
 
 // Obter o número total de usuários
 $totalUsuarios = $resultado->num_rows;
-
 
 ?>
 <!DOCTYPE html>
@@ -32,9 +26,7 @@ $totalUsuarios = $resultado->num_rows;
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pretty-checkbox@3.0/dist/pretty-checkbox.min.css">
 
     <title>Criar Contas</title>
-
 </head>
-
 
 <body>
     <header>
@@ -94,10 +86,5 @@ $totalUsuarios = $resultado->num_rows;
             </tbody>
         </table>
     </section>
-
-
 </body>
-
-
-
 </html>
